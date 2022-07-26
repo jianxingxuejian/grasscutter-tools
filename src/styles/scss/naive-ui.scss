@@ -1,0 +1,44 @@
+.n-menu-item-content__icon {
+  width: auto !important;
+  font-size: 2rem !important;
+  margin-right: 0.4rem !important;
+}
+
+.n-base-selection-tag-wrapper {
+  padding: 0 0 0 0.5rem;
+  .n-tag {
+    font-size: 0.9rem;
+  }
+}
+
+.n-base-selection {
+  .n-base-selection-tags {
+    padding: 0 0;
+  }
+  .n-base-suffix {
+    right: 0.5rem;
+    .n-base-suffix__arrow {
+      font-size: 1rem;
+    }
+  }
+}
+
+.n-base-clear > .n-base-clear__clear {
+  font-size: 1rem;
+}
+
+.n-form.n-form--inline .n-form-item {
+  margin-right: 1.5rem;
+}
+
+.n-popconfirm .n-popconfirm__action .n-button:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+.n-popconfirm .n-popconfirm__action:not(:first-child) {
+  margin-top: 0.5rem;
+}
+
+.n-popover:not(.n-popover--raw):not(.n-popover--scrollable):not(.n-popover--show-header-or-footer) {
+  padding: 0.5rem 1rem;
+}

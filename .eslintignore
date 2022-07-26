@@ -1,0 +1,17 @@
+*.sh
+node_modules
+lib
+*.md
+*.woff
+*.ttf
+.idea
+/dist/
+/public
+/docs
+.local
+package.json
+pnpm-lock.yaml
+!.env-config.ts
+src/types/components.d.ts
+src/types/auto-import.d.ts
+.eslintrc-auto-import.json

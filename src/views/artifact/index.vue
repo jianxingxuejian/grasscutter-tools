@@ -1,0 +1,141 @@
+<template>
+  <div class="flex-row select-none">
+    <!--左侧圣遗物列表选择-->
+    <div class="w-20% of-scroll grid grid-cols-2 gap-2 p-2">
+      <div v-for="item in artifacts" :key="item.id">
+        <n-popover :delay="300" :keep-alive-on-hover="false" class="w-25rem">
+          <template #trigger>
+            <img
+              class="w-full rd-3 transition hover:scale-110 cursor-pointer"
+              :src="getImageUrl(item.img)"
+              @click="selectArtifact(item.id)"
+            />
+          </template>
+          <template #header>
+            <div class="font-bold text-center">
+              <span> {{ item.name }} </span>
+            </div>
+          </template>
+          <div class="text-sm">
+            <span>二件套：{{ item.description1 }}</span>
+            <br />
+            <span>四件套：{{ item.description2 }}</span>
+          </div>
+        </n-popover>
+      </div>
+    </div>
+
+    <div class="w-80% of-auto py-2 px-4 flex-col gap-y-4">
+      <!--顶部圣遗物部位和主属性选择-->
+      <div class="flex-center">
+        <span class="shrink-0 text-lg">部位：</span>
+        <n-radio-group v-model:value="currentPosition">
+          <n-radio-button
+            v-for="position in positions"
+            :key="position.value"
+            :value="position.value"
+            :label="position.label"
+            class="px-4!"
+          />
+        </n-radio-group>
+        <span class="shrink-0 ml-8 text-lg">主属性：</span>
+        <n-select v-model:value="currentMainstat" :options="mainstatOptions" @update:value="selectMainstat"> </n-select>
+      </div>
+      <!--顶部初始词条和档次选择-->
+      <div class="flex-center">
+        <span class="shrink-0 text-lg">词条：</span>
+        <my-select
+          v-model:value="currentSubstats"
+          multiple
+          clearable
+          placeholder="请选择4个初始词条"
+          :options="substatOptions"
+          :max-select-count="4"
+        />
+        <span class="shrink-0 ml-8 text-lg">档次：</span>
+        <n-radio-group v-model:value="gear">
+          <n-radio-button label="1档" :value="0" class="px-3!" />
+          <n-radio-button label="2档" :value="1" class="px-3!" />
+          <n-radio-button label="3档" :value="2" class="px-3!" />
+          <n-radio-button label="4档" :value="3" class="px-3!" />
+        </n-radio-group>
+      </div>
+      <!--中间圣遗物展示和强化-->
+      <div class="h-50 flex-around">
+        <div class="flex-col items-center">
+          <n-button type="success" :disabled="currentSubstats.length != 4" class="h-6 w-15"> 生成 </n-button>
+          <img class="h-40 w-40 mt-2" :src="artifactImg" />
+        </div>
+        <div class="">123</div>
+        <div>123</div>
+      </div>
+      <!--底部命令语句-->
+      <div class="">
+        <n-input type="textarea" size="large" :value="command" />
+      </div>
+      <div class="flex-center">
+        <n-button type="primary"> 生成圣遗物 </n-button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+  import { stats, positions, positionMainstats, artifacts } from './constant'
+  import { getImageUrl } from '@/utils'
+
+  //左侧点击选择圣遗物
+  const artifactId = ref<number>(97514)
+  function selectArtifact(id: number) {
+    artifactId.value = id
+  }
+  const artifactImg = computed(() => {
+    let artifact = artifacts.find(x => x.id == artifactId.value)
+    if (artifact) {
+      return getImageUrl(artifact.img)
+    }
+  })
+
+  /** 当前部位 */
+  const currentPosition = ref(0)
+  /** 5个部位对应的主属性数组 */
+  const positionMainstatArr = [7, 8, 3, 10, 0]
+  /** 可选主属性列表 */
+  const mainstatOptions = computed(() => positionMainstats[currentPosition.value])
+  /** 当前部位的主属性 */
+  const currentMainstat = computed({
+    get() {
+      return positionMainstatArr[currentPosition.value]
+    },
+    set(value: number) {
+      positionMainstatArr[currentPosition.value] = value
+    }
+  })
+
+  /** 词条档次 */
+  const gear = ref(3)
+  /** 可选副属性列表 */
+  const substatOptions = computed(() => stats.slice(0, 10).filter(x => x.value != currentMainstat.value))
+  /** 5个部位的副属性列表二维数组 */
+  const positionSubstats = ref<number[][]>([[], [], [], [], []])
+  /** 当前部位副属性已选id列表 */
+  const currentSubstats = computed({
+    get() {
+      return positionSubstats.value[currentPosition.value]
+    },
+    set(value: number[]) {
+      positionSubstats.value[currentPosition.value] = value
+    }
+  })
+
+  /** 选择主属性后，删除副属性中的相同属性 */
+  function selectMainstat(value: number) {
+    let index = currentSubstats.value.findIndex(x => x == value)
+    if (index != -1) {
+      currentSubstats.value.splice(index, 1)
+    }
+  }
+
+  /** 命令 */
+  const command = ref(' ')
+</script>
