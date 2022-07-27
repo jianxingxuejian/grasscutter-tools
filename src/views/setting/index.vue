@@ -10,8 +10,8 @@
           <n-input v-model:value="server.ip" />
         </n-input-group>
       </n-form-item>
-      <n-form-item label="用户名" path="username">
-        <n-input v-model:value="server.username" />
+      <n-form-item label="UID" path="uid">
+        <n-input v-model:value="server.uid" />
       </n-form-item>
       <n-tooltip>
         <template #trigger>
@@ -126,6 +126,7 @@
   const serverRules: FormRules = {
     ip: {
       required: true,
+      trigger: ['input', 'blur'],
       validator(_rule, value) {
         if (!value) {
           return new Error('请输入服务器IP地址')
@@ -137,13 +138,19 @@
           return new Error('请输入正确的IP地址')
         }
         return true
-      },
-      trigger: ['input', 'blur']
+      }
     },
-    username: {
+    uid: {
       required: true,
-      message: '请输入用户名',
-      trigger: ['input', 'blur']
+      trigger: ['input', 'blur'],
+      validator(_rule, value) {
+        if (!value) {
+          return new Error('请输入uid')
+        } else if (!/^\+?[1-9]\d*$/.test(value)) {
+          return new Error('请输入正确的uid')
+        }
+        return true
+      }
     }
   }
 
@@ -157,17 +164,20 @@
     }, 1000)
   }
 
-  function checkService() {
-    serverFormRef.value?.validate(err => {
-      if (err) return false
-      else return true
+  async function checkService() {
+    let check = false
+    await serverFormRef.value?.validate(err => {
+      if (!err) {
+        check = true
+      }
     })
-    return false
+    return check
   }
 
   async function sendVerifyCode() {
-    if (checkService()) {
-      const result = await mailVerifyCode({ username: server.username })
+    const check = await checkService()
+    if (check) {
+      const result = await mailVerifyCode(server.uid)
       console.log(result)
     }
   }
@@ -175,32 +185,39 @@
   const verifyCode = ref<string>('')
   const verifyCodeItemRef = ref<FormItemInst | null>(null)
   const verifyCodeRule: FormItemRule = {
-    required: true,
-    message: '请输入验证码',
+    validator() {
+      if (verifyCode.value.length === 0) {
+        return new Error('请填写验证码')
+      }
+    },
     trigger: ['input', 'blur']
   }
   const password = ref<string>('')
   const passwordItemRef = ref<FormItemInst | null>(null)
   const passwordRule: FormItemRule = {
-    required: true,
-    message: '请输入密码',
+    validator() {
+      if (password.value.length === 0) {
+        return new Error('请填写密码')
+      }
+    },
     trigger: ['input', 'blur']
   }
 
   async function handlePlayerAuth() {
+    console.log(verifyCode.value)
     if (!checkService) return
     if (authWay.value) {
       verifyCodeItemRef.value?.validate().then(async () => {
-        const result = await playerAuthByVerifyCode({ username: server.username, verifyCode: verifyCode.value })
-        const token = result?.data.token
+        const result = await playerAuthByVerifyCode(server.uid, verifyCode.value)
+        const token = result?.data
         if (token) {
           settingsStore.updateToken(token)
         }
       })
     } else {
       passwordItemRef.value?.validate().then(async () => {
-        const result = await playerAuthByPassword({ username: server.username, password: password.value })
-        const token = result?.data.token
+        const result = await playerAuthByPassword(server.uid, password.value)
+        const token = result?.data
         if (token) {
           settingsStore.updateToken(token)
         }
@@ -211,15 +228,18 @@
   const adminVoucher = ref<string>('')
   const adminVoucherItemRef = ref<FormItemInst | null>(null)
   const adminVoucherRule: FormItemRule = {
-    required: true,
-    message: '请输入管理员凭证',
+    validator() {
+      if (adminVoucher.value.length === 0) {
+        return new Error('请填写管理员凭证')
+      }
+    },
     trigger: ['input', 'blur']
   }
 
   function handleAdminAuth() {
     verifyCodeItemRef.value?.validate().then(async () => {
-      const result = await adminAuth({ adminVoucher: adminVoucher.value })
-      const token = result?.data.token
+      const result = await adminAuth(adminVoucher.value)
+      const token = result?.data
       if (token) {
         settingsStore.updateToken(token)
       }

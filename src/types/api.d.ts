@@ -9,27 +9,8 @@ interface ApiResult<T> {
 }
 
 declare namespace Param {
-  interface AdminAuth {
-    adminVoucher: string
-  }
-  interface Command {
-    command: string
-  }
-  interface MailVerifyCode {
-    username: string
-  }
-  interface VerifyCode {
-    username: string
-    verifyCode: string
-  }
   interface Account {
     username: string
     password: string
-  }
-}
-
-declare namespace Result {
-  interface Token {
-    token: string
   }
 }

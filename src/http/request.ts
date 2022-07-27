@@ -20,7 +20,7 @@ function request() {
         locale,
         token
       }
-      console.log(getServer)
+      console.log(getServer + api)
       console.log(params)
       console.log(headers)
       const text = await invoke<string>('http', { method, url: getServer + api, params, headers })

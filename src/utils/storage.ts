@@ -53,7 +53,7 @@ export async function loadSettings() {
       server = {
         protocol: 'https',
         ip: '127.0.0.1',
-        username: ''
+        uid: ''
       }
       await setSettings('server', server)
     }
@@ -64,6 +64,12 @@ export async function loadSettings() {
       await setSettings('token', token)
     }
 
+    let adminToken = (await getSettings('adminToken')) as string | null
+    if (adminToken === null) {
+      adminToken = ''
+      await setSettings('adminToken', adminToken)
+    }
+
     let locale = (await getSettings('locale')) as Settings['locale'] | null
     if (!locale) {
       locale = 'zh-CN'
@@ -71,7 +77,7 @@ export async function loadSettings() {
     }
 
     const settingsStore = useSettingsStore()
-    settingsStore.initSettings({ server, token, locale })
+    settingsStore.initSettings({ server, token, adminToken, locale })
   } catch {
     window.$message?.error('load settings failed')
   }

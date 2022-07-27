@@ -1,11 +1,12 @@
 interface Settings {
   server: Server
-  token: string | null
+  token: string
+  adminToken: string
   locale: 'zh-CN' | 'en-US'
 }
 
 interface Server {
   protocol: 'http' | 'https'
   ip: string
-  username: string
+  uid: string
 }

@@ -1,29 +1,29 @@
 import request from '@/http/request'
 
-export async function adminAuth(params: Param.AdminAuth) {
-  return await request.get<Result.Token>('/plugin/admin/auth', params)
+export async function adminAuth(adminVoucher: string) {
+  return await request.get<string>('/plugin/admin/auth', { adminVoucher })
 }
 
 export async function adminCreateAccount(params: Param.Account) {
-  return await request.get<Result.Token>('/plugin/admin/createAccount', params)
+  return await request.get('/plugin/admin/createAccount', params)
 }
 
-export async function adminCommand(params: Param.Command) {
-  return await request.get('/plugin/admin/command', params)
+export async function adminCommand(command: string) {
+  return await request.get('/plugin/admin/command', { command })
 }
 
-export async function mailVerifyCode(params: Param.MailVerifyCode) {
-  return await request.get('/plugin/mail/verifyCode', params)
+export async function mailVerifyCode(uid: string) {
+  return await request.get('/plugin/mail/verifyCode', { uid })
 }
 
-export async function playerAuthByVerifyCode(params: Param.VerifyCode) {
-  return await request.get<Result.Token>('/plugin/player/authByVerifyCode', params)
+export async function playerAuthByVerifyCode(uid: string, verifyCode: string) {
+  return await request.get<string>('/plugin/player/authByVerifyCode', { uid, verifyCode })
 }
 
-export async function playerAuthByPassword(params: Param.Account) {
-  return await request.get<Result.Token>('/plugin/player/authByPassword', params)
+export async function playerAuthByPassword(uid: string, password: string) {
+  return await request.get<string>('/plugin/player/authByPassword', { uid, password })
 }
 
-export async function playerCommand(params: Param.Command) {
-  return await request.get('/plugin/player/command', params)
+export async function playerCommand(command: string) {
+  return await request.get('/plugin/player/command', { command })
 }
