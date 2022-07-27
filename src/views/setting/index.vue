@@ -50,10 +50,10 @@
         </template>
       </n-popconfirm>
       <n-form-item v-if="authWay" ref="verifyCodeItemRef" :show-label="false" :rule="verifyCodeRule">
-        <n-input placeholder="请输入验证码" />
+        <n-input v-model:value="verifyCode" placeholder="请输入验证码" />
       </n-form-item>
       <n-form-item v-else ref="passwordItemRef" :show-label="false" :rule="passwordRule">
-        <n-input placeholder="请输入密码" type="password" />
+        <n-input v-model:value="password" placeholder="请输入密码" type="password" />
       </n-form-item>
       <n-button @click="handlePlayerAuth">
         <template #icon>
@@ -67,11 +67,10 @@
       <span>管理员凭证会在服务端加载插件后打印出来，或者在配置文件里找到</span>
     </my-divider>
     <n-space>
-      <n-form-item :show-label="false">
-        <n-input placeholder="请输入管理员凭证" type="password" autosize class="w-24rem" />
+      <n-form-item ref="adminVoucherItemRef" :show-label="false" :rule="adminVoucherRule">
+        <n-input v-model:value="adminVoucher" placeholder="请输入管理员凭证" type="password" autosize class="w-24rem" />
       </n-form-item>
-
-      <n-button>
+      <n-button @click="handleAdminAuth">
         <template #icon>
           <icon-line-md-confirm />
         </template>
@@ -113,7 +112,7 @@
 <script setup lang="ts">
   import type { FormInst, FormItemInst, FormRules, FormItemRule } from 'naive-ui'
   import { useSettingsStore } from '@/store'
-  import { adminCommand, mailVerifyCode } from '@/http'
+  import { mailVerifyCode, playerAuthByVerifyCode, playerAuthByPassword, adminAuth, adminCommand } from '@/http'
 
   const settingsStore = useSettingsStore()
   const { server, updateServer } = settingsStore
@@ -158,22 +157,29 @@
     }, 1000)
   }
 
-  function sendVerifyCode() {
-    serverFormRef.value?.validate(async err => {
-      if (err) {
-        return
-      }
-      const result = await mailVerifyCode({ username: server.username })
-      console.log(result)
+  function checkService() {
+    serverFormRef.value?.validate(err => {
+      if (err) return false
+      else return true
     })
+    return false
   }
 
+  async function sendVerifyCode() {
+    if (checkService()) {
+      const result = await mailVerifyCode({ username: server.username })
+      console.log(result)
+    }
+  }
+
+  const verifyCode = ref<string>('')
   const verifyCodeItemRef = ref<FormItemInst | null>(null)
   const verifyCodeRule: FormItemRule = {
     required: true,
     message: '请输入验证码',
     trigger: ['input', 'blur']
   }
+  const password = ref<string>('')
   const passwordItemRef = ref<FormItemInst | null>(null)
   const passwordRule: FormItemRule = {
     required: true,
@@ -182,10 +188,44 @@
   }
 
   async function handlePlayerAuth() {
+    if (!checkService) return
     if (authWay.value) {
-      verifyCodeItemRef.value?.validate()
+      verifyCodeItemRef.value?.validate().then(async () => {
+        const result = await playerAuthByVerifyCode({ username: server.username, verifyCode: verifyCode.value })
+        const token = result?.data.token
+        if (token) {
+          settingsStore.updateToken(token)
+        }
+      })
+    } else {
+      passwordItemRef.value?.validate().then(async () => {
+        const result = await playerAuthByPassword({ username: server.username, password: password.value })
+        const token = result?.data.token
+        if (token) {
+          settingsStore.updateToken(token)
+        }
+      })
     }
   }
+
+  const adminVoucher = ref<string>('')
+  const adminVoucherItemRef = ref<FormItemInst | null>(null)
+  const adminVoucherRule: FormItemRule = {
+    required: true,
+    message: '请输入管理员凭证',
+    trigger: ['input', 'blur']
+  }
+
+  function handleAdminAuth() {
+    verifyCodeItemRef.value?.validate().then(async () => {
+      const result = await adminAuth({ adminVoucher: adminVoucher.value })
+      const token = result?.data.token
+      if (token) {
+        settingsStore.updateToken(token)
+      }
+    })
+  }
+
   interface Account {
     username: string
     password: string
@@ -208,7 +248,7 @@
   const command = ref('')
 
   async function handleSend() {
-    const result = await adminCommand({ command: command.value })
+    const result = await ad({ command: command.value })
     console.log(result)
   }
 </script>
