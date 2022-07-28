@@ -15,6 +15,7 @@ declare module '@vue/runtime-core' {
     IconLineMdQuestionCircle: typeof import('~icons/line-md/question-circle')['default']
     IconLineMdRotate270: typeof import('~icons/line-md/rotate270')['default']
     IconLineMdSunRisingLoop: typeof import('~icons/line-md/sun-rising-loop')['default']
+    MyButton: typeof import('./../components/MyButton.vue')['default']
     MyDivider: typeof import('./../components/MyDivider.vue')['default']
     MySelect: typeof import('./../components/MySelect.vue')['default']
     NaiveProvider: typeof import('./../components/NaiveProvider.vue')['default']

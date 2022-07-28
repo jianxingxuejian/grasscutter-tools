@@ -9,12 +9,12 @@ export default [
   Icons({
     autoInstall: true,
     compiler: 'vue3',
+    scale: 1,
+    defaultClass: 'inline-block',
     customCollections: {
       // 加载自定义图标
       custom: FileSystemIconLoader('src/assets/icons')
-    },
-    scale: 1,
-    defaultClass: 'inline-block'
+    }
   }),
   Components({
     dirs: ['src/components'],
@@ -22,6 +22,8 @@ export default [
     directives: true,
     dts: 'src/types/components.d.ts',
     types: [{ from: 'vue-router', names: ['RouterLink', 'RouterView'] }],
+    include: [/\.vue$/, /\.vue\?vue/],
+    exclude: [/[\\/]node_modules[\\/]/],
     resolvers: [
       NaiveUiResolver(),
       IconsResolver({
@@ -31,9 +33,9 @@ export default [
     ]
   }),
   AutoImport({
-    include: [/\.vue$/, /\.vue\?vue/, /\.ts$/],
     imports: ['vue', 'vue-router', 'pinia'],
     dts: 'src/types/auto-import.d.ts',
+    include: [/\.vue$/, /\.vue\?vue/, /\.ts$/],
     eslintrc: {
       enabled: true,
       filepath: './.eslintrc-auto-import.json'

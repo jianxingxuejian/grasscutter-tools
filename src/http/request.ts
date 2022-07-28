@@ -27,9 +27,7 @@ function request() {
       console.log(text)
       const result: ApiResult<T> = JSON.parse(text)
       const { code, msg } = result
-      if (code === 200) {
-        window.$message?.success(msg)
-      } else {
+      if (code != 200) {
         window.$message?.error(msg)
       }
       return result

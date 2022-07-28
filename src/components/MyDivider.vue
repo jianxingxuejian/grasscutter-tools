@@ -1,4 +1,4 @@
-<!-- 二次封装n-divider组件 -->
+<!-- 分割线+标题+图标 -->
 <template>
   <n-divider class="mb-2! mt-0!" :dashed="dashed">
     <span v-if="!dashed" class="text-5 font-bold">{{ title }}</span>
