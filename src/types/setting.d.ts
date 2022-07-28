@@ -1,7 +1,7 @@
 interface Settings {
   server: Server
   token: string
-  adminToken: string
+  admin_token: string
   locale: 'zh-CN' | 'en-US'
 }
 

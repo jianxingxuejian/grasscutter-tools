@@ -20,14 +20,6 @@
           <span>保存配置</span>
         </template>
       </my-button>
-      <!-- <n-tooltip>
-        <template #trigger>
-          <n-button text @click="updateServer">
-            <icon-line-md-edit-twotone class="text-8" />
-          </n-button>
-        </template>
-        <span>保存配置</span>
-      </n-tooltip> -->
     </n-form>
 
     <my-divider title="玩家认证">
@@ -42,34 +34,13 @@
           <span>更换验证方式</span>
         </template>
       </my-button>
-      <!-- <n-tooltip>
-        <template #trigger>
-          <n-button text @click="handleChangeAuthWay">
-            <icon-line-md-rotate-270 class="text-8" :class="{ 'animate-spin': loadingChange }" />
-          </n-button>
-        </template>
-        <span>更换验证方式</span>
-      </n-tooltip> -->
 
-      <my-button v-if="authWay" text="发送验证码" :loading="loadingSend" @click="sendVerifyCode">
+      <my-button v-if="authWay" text="发送验证码" @click-async="sendVerifyCode">
         <icon-line-md-email />
         <template #popconfirm>
           <span>是否发送验证码邮件？</span>
         </template>
       </my-button>
-      <!-- <n-popconfirm v-if="authWay" :show-icon="false" @positive-click="sendVerifyCode">
-        <template #trigger>
-          <n-button :loading="loadingSend">
-            <template #icon>
-              <icon-line-md-email />
-            </template>
-            发送验证码
-          </n-button>
-        </template>
-        <template #default>
-          <span>是否发送验证码邮件？</span>
-        </template>
-      </n-popconfirm> -->
       <n-form-item v-if="authWay" ref="verifyCodeRef" :show-label="false" :rule="verifyCodeRule">
         <n-input v-model:value="verifyCode" placeholder="请输入验证码" />
       </n-form-item>
@@ -78,15 +49,9 @@
         <n-input v-model:value="password" placeholder="请输入密码" type="password" />
       </n-form-item>
 
-      <my-button name="认证" :loading="loadingPlayerAuth" @click="handlePlayerAuth">
+      <my-button name="认证" @click-async="handlePlayerAuth">
         <icon-line-md-confirm />
       </my-button>
-      <!-- <n-button @click="handlePlayerAuth">
-        <template #icon>
-          <icon-line-md-confirm />
-        </template>
-        认证
-      </n-button> -->
     </n-space>
 
     <my-divider title="管理员认证">
@@ -97,15 +62,9 @@
       <n-form-item ref="adminVoucherRef" :show-label="false" :rule="adminVoucherRule">
         <n-input v-model:value="adminVoucher" placeholder="请输入管理员凭证" type="password" autosize class="w-24rem" />
       </n-form-item>
-      <my-button name="认证" :loading="loadingAdminAuth" @click="handleAdminAuth">
+      <my-button name="认证" @click-async="handleAdminAuth">
         <icon-line-md-confirm />
       </my-button>
-      <!-- <n-button @click="handleAdminAuth">
-        <template #icon>
-          <icon-line-md-confirm />
-        </template>
-        认证
-      </n-button> -->
     </n-space>
 
     <my-divider title="创建带有密码的账号" dashed />
@@ -116,7 +75,7 @@
       <n-form-item label="密码" path="password">
         <n-input v-model:value="account.password" />
       </n-form-item>
-      <n-button :loading="loadingCreateAccount" @click="handleCreateAccount">
+      <n-button @click="handleCreateAccount">
         <template #icon>
           <icon-line-md-plus />
         </template>
@@ -135,8 +94,15 @@
 <script setup lang="ts">
   import type { FormInst, FormItemInst, FormRules, FormItemRule } from 'naive-ui'
   import { useSettingsStore } from '@/store'
-  import { mailVerifyCode, playerAuthByVerifyCode, playerAuthByPassword, adminAuth, adminCreateAccount } from '@/http'
-  import MyButton from '../../components/MyButton.vue'
+  import {
+    mailVerifyCode,
+    playerAuthByVerifyCode,
+    playerAuthByPassword,
+    adminAuth,
+    adminCreateAccount,
+    adminCommand
+  } from '@/http'
+  import { testIP } from '@/utils'
 
   const settingsStore = useSettingsStore()
   const { server, updateServer } = settingsStore
@@ -153,11 +119,7 @@
       validator(_rule, value) {
         if (!value) {
           return new Error('请输入服务器IP地址')
-        } else if (
-          !/^((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])(?::(?:[0-9]|[1-9][0-9]{1,3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]))?$/.test(
-            value
-          )
-        ) {
+        } else if (!testIP(value)) {
           return new Error('请输入正确的IP地址')
         }
         return true
@@ -197,17 +159,14 @@
     return check
   }
 
-  const loadingSend = ref(false)
   async function sendVerifyCode() {
-    loadingSend.value = true
     const check = await checkService()
     if (check) {
       const result = await mailVerifyCode(server.uid)
-      if (result) {
+      if (result?.code === 200) {
         window.$message?.success('邮件发送成功，请前往游戏邮箱查收')
       }
     }
-    loadingSend.value = false
   }
 
   const verifyCode = ref<string>('')
@@ -232,30 +191,24 @@
     trigger: ['input', 'blur']
   }
 
-  const loadingPlayerAuth = ref(false)
   async function handlePlayerAuth() {
-    console.log(verifyCode.value)
     const check = await checkService()
     if (!check) return
-    loadingPlayerAuth.value = true
+    let result: ApiResult<string> | undefined
     if (authWay.value) {
-      verifyCodeRef.value?.validate().then(async () => {
-        const result = await playerAuthByVerifyCode(server.uid, verifyCode.value)
-        const token = result?.data
-        if (token) {
-          settingsStore.updateToken(token)
-        }
+      await verifyCodeRef.value?.validate().then(async () => {
+        result = await playerAuthByVerifyCode(server.uid, verifyCode.value)
       })
     } else {
-      passwordRef.value?.validate().then(async () => {
-        const result = await playerAuthByPassword(server.uid, password.value)
-        const token = result?.data
-        if (token) {
-          settingsStore.updateToken(token)
-        }
+      await passwordRef.value?.validate().then(async () => {
+        result = await playerAuthByPassword(server.uid, password.value)
       })
     }
-    loadingPlayerAuth.value = false
+    const token = result?.data
+    if (token) {
+      window.$message?.success('认证成功')
+      settingsStore.updateToken(token)
+    }
   }
 
   const adminVoucher = ref<string>('')
@@ -266,21 +219,18 @@
         return new Error('请填写管理员凭证')
       }
     },
-    trigger: ['input', 'blur']
+    trigger: ['input']
   }
 
-  const loadingAdminAuth = ref(false)
   async function handleAdminAuth() {
-    loadingAdminAuth.value = true
-    await verifyCodeRef.value?.validate().then(async () => {
+    await adminVoucherRef.value?.validate().then(async () => {
       const result = await adminAuth(adminVoucher.value)
       const token = result?.data
       if (token) {
         window.$message?.success('验证成功')
-        settingsStore.updateToken(token)
+        settingsStore.updateAdminToken(token)
       }
     })
-    loadingAdminAuth.value = false
   }
 
   interface Account {
@@ -306,9 +256,7 @@
     }
   }
 
-  const loadingCreateAccount = ref(false)
   async function handleCreateAccount() {
-    loadingCreateAccount.value = true
     await accountRef.value?.validate(async err => {
       if (!err) {
         const result = await adminCreateAccount(account)
@@ -317,7 +265,6 @@
         }
       }
     })
-    loadingCreateAccount.value = false
   }
 
   const command = ref('')
@@ -325,7 +272,7 @@
   const loadingCommand = ref(false)
   async function handleAdminCommand() {
     loadingCommand.value = true
-    const result = await adminAuth(command.value)
+    const result = await adminCommand(command.value)
     console.log(result)
     loadingCommand.value = false
   }

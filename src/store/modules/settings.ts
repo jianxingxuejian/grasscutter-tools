@@ -10,7 +10,7 @@ export const useSettingsStore = defineStore('settings-store', {
     initSettings(settings: Settings) {
       this.server = settings.server
       this.token = settings.token
-      this.adminToken = settings.adminToken
+      this.admin_token = settings.admin_token
       this.locale = settings.locale
     },
     async updateServer() {
@@ -20,9 +20,9 @@ export const useSettingsStore = defineStore('settings-store', {
       this.token = token
       await setSettings('token', token)
     },
-    async updateAdminToken(adminToken: string) {
-      this.adminToken = adminToken
-      await setSettings('adminToken', adminToken)
+    async updateAdminToken(admin_token: string) {
+      this.admin_token = admin_token
+      await setSettings('admin_token', admin_token)
     },
     async updateLocale() {
       console.log(this.locale)

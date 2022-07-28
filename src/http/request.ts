@@ -15,10 +15,11 @@ function request() {
 
   async function http<T>(method: Method, api: string, params?: any) {
     try {
-      const { getServer, locale, token } = settingsStore
+      const { getServer, locale, token, admin_token } = settingsStore
       const headers = {
         locale,
-        token
+        token,
+        admin_token
       }
       console.log(getServer + api)
       console.log(params)

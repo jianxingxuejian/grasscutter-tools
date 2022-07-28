@@ -21,10 +21,13 @@ pub async fn request(
         _ => reqwest::Method::GET,
     };
 
+    println!("{}", headers.admin_token);
+
     let result = client
         .request(method, url)
         .header("locale", headers.locale)
         .header("token", headers.token)
+        .header("admin_token", headers.admin_token)
         .json(&params)
         .send()
         .await?
@@ -37,4 +40,5 @@ pub async fn request(
 pub struct Headers {
     pub locale: String,
     pub token: String,
+    pub admin_token: String,
 }

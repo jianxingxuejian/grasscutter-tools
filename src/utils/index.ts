@@ -1,4 +1,5 @@
 export * from './common'
 export * from './msg'
+export * from './regex'
 export * from './route'
 export * from './storage'

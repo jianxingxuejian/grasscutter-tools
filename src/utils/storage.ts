@@ -64,10 +64,10 @@ export async function loadSettings() {
       await setSettings('token', token)
     }
 
-    let adminToken = (await getSettings('adminToken')) as string | null
-    if (adminToken === null) {
-      adminToken = ''
-      await setSettings('adminToken', adminToken)
+    let admin_token = (await getSettings('admin_token')) as string | null
+    if (admin_token === null) {
+      admin_token = ''
+      await setSettings('admin_token', admin_token)
     }
 
     let locale = (await getSettings('locale')) as Settings['locale'] | null
@@ -77,7 +77,7 @@ export async function loadSettings() {
     }
 
     const settingsStore = useSettingsStore()
-    settingsStore.initSettings({ server, token, adminToken, locale })
+    settingsStore.initSettings({ server, token, admin_token, locale })
   } catch {
     window.$message?.error('load settings failed')
   }
