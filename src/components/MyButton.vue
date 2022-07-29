@@ -1,8 +1,8 @@
 <!-- 按钮+图标+悬浮信息文字or弹出确认 -->
 <template>
-  <n-popconfirm v-if="$slots.popconfirm" :show-icon="false" @positive-click="click">
+  <n-popconfirm v-if="$slots.popconfirm" :show-icon="false" @positive-click="clickDebounced">
     <template #trigger>
-      <n-button :loading="debounce">
+      <n-button :loading="loading">
         <template #icon>
           <slot></slot>
         </template>
@@ -14,7 +14,7 @@
 
   <n-tooltip v-else-if="$slots.tooltip">
     <template #trigger>
-      <n-button text :loading="debounce" @click="click">
+      <n-button text :loading="loading" @click="clickDebounced">
         <template #icon>
           <slot></slot>
         </template>
@@ -24,7 +24,7 @@
     <slot name="tooltip"></slot>
   </n-tooltip>
 
-  <n-button v-else :loading="debounce" @click="click">
+  <n-button v-else :loading="loading" @click="clickDebounced">
     <template #icon>
       <slot></slot>
     </template>
@@ -33,26 +33,33 @@
 </template>
 
 <script setup lang="ts">
-  import { refDebounced } from '@vueuse/core'
+  import { useDebounceFn } from '@vueuse/core'
 
   const props = defineProps<{
     /** 按钮文本 */
     text?: string
+    /** 异步点击事件 */
+    onClickAsync?: () => Promise<void>
     /** 点击事件 */
-    onClick?: (() => Promise<void>) | (() => void)
+    onClick?: () => void
   }>()
 
+  const TIMEOUT = 100
   const loading = ref(false)
-  const debounce = refDebounced(loading, 100)
+
+  const clickDebounced = useDebounceFn(click, TIMEOUT)
 
   async function click() {
     if (props.onClick) {
+      props.onClick()
+    }
+
+    if (props.onClickAsync) {
       const timeout = setTimeout(() => {
         loading.value = true
-      }, 100)
-
+      }, TIMEOUT)
       try {
-        await props.onClick()
+        await props.onClickAsync()
         // eslint-disable-next-line no-empty
       } catch (err) {
       } finally {

@@ -35,7 +35,7 @@
         </template>
       </my-button>
 
-      <my-button v-if="authWay" text="发送验证码" @click="sendVerifyCode">
+      <my-button v-if="authWay" text="发送验证码" @click-async="sendVerifyCode">
         <icon-line-md-email />
         <template #popconfirm>
           <span>是否发送验证码邮件？</span>
@@ -49,7 +49,7 @@
         <n-input v-model:value="password" placeholder="请输入密码" type="password" />
       </n-form-item>
 
-      <my-button name="认证" @click="handlePlayerAuth">
+      <my-button name="认证" @click-async="handlePlayerAuth">
         <icon-line-md-confirm />
       </my-button>
     </n-space>
@@ -62,7 +62,7 @@
       <n-form-item ref="adminVoucherRef" :show-label="false" :rule="adminVoucherRule">
         <n-input v-model:value="adminVoucher" placeholder="请输入管理员凭证" type="password" autosize class="w-24rem" />
       </n-form-item>
-      <my-button name="认证" @click="handleAdminAuth">
+      <my-button name="认证" @click-async="handleAdminAuth">
         <icon-line-md-confirm />
       </my-button>
     </n-space>
