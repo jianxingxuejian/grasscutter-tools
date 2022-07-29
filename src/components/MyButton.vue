@@ -1,8 +1,8 @@
 <!-- 按钮+图标+悬浮信息文字or弹出确认 -->
 <template>
-  <n-popconfirm v-if="$slots.popconfirm" :show-icon="false" @positive-click="clickDebounced">
+  <n-popconfirm v-if="$slots.popconfirm" :show-icon="false" @positive-click="clickDebounce">
     <template #trigger>
-      <n-button :loading="loading">
+      <n-button :loading="loading" v-bind="$attrs">
         <template #icon>
           <slot></slot>
         </template>
@@ -14,7 +14,7 @@
 
   <n-tooltip v-else-if="$slots.tooltip">
     <template #trigger>
-      <n-button text :loading="loading" @click="clickDebounced">
+      <n-button text :loading="loading" v-bind="$attrs" @click="clickDebounce">
         <template #icon>
           <slot></slot>
         </template>
@@ -24,7 +24,7 @@
     <slot name="tooltip"></slot>
   </n-tooltip>
 
-  <n-button v-else :loading="loading" @click="clickDebounced">
+  <n-button v-else :loading="loading" v-bind="$attrs" @click="clickDebounce">
     <template #icon>
       <slot></slot>
     </template>
@@ -44,10 +44,9 @@
     onClick?: () => void
   }>()
 
-  const TIMEOUT = 100
   const loading = ref(false)
 
-  const clickDebounced = useDebounceFn(click, TIMEOUT)
+  const clickDebounce = useDebounceFn(click, 500)
 
   async function click() {
     if (props.onClick) {
@@ -55,19 +54,13 @@
     }
 
     if (props.onClickAsync) {
-      const timeout = setTimeout(() => {
-        loading.value = true
-      }, TIMEOUT)
+      loading.value = true
       try {
         await props.onClickAsync()
         // eslint-disable-next-line no-empty
       } catch (err) {
       } finally {
-        if (!loading.value) {
-          clearTimeout(timeout)
-        } else {
-          loading.value = false
-        }
+        loading.value = false
       }
     }
   }

@@ -1,7 +1,6 @@
 <template>
   <div class="px-10 flex-col items-center">
     <my-divider title="服务器配置" />
-
     <n-form ref="serverRef" label-placement="left" inline :model="server" :rules="serverRules" class="flex-center">
       <n-form-item label="服务器" path="ip">
         <n-input-group>
@@ -26,7 +25,6 @@
       <span>邮箱验证会发送一封验证码邮件到游戏，请前往查收</span><br />
       <span>密码验证需要该账号已设定密码，目前为明文对比</span>
     </my-divider>
-
     <n-space>
       <my-button @click="handleChangeAuthWay">
         <icon-line-md-rotate-270 class="text-8" :class="{ 'animate-spin': loadingChange }" />
@@ -34,7 +32,6 @@
           <span>更换验证方式</span>
         </template>
       </my-button>
-
       <my-button v-if="authWay" text="发送验证码" @click-async="sendVerifyCode">
         <icon-line-md-email />
         <template #popconfirm>
@@ -44,11 +41,9 @@
       <n-form-item v-if="authWay" ref="verifyCodeRef" :show-label="false" :rule="verifyCodeRule">
         <n-input v-model:value="verifyCode" placeholder="请输入验证码" />
       </n-form-item>
-
       <n-form-item v-else ref="passwordRef" :show-label="false" :rule="passwordRule">
         <n-input v-model:value="password" placeholder="请输入密码" type="password" />
       </n-form-item>
-
       <my-button name="认证" @click-async="handlePlayerAuth">
         <icon-line-md-confirm />
       </my-button>
@@ -57,7 +52,6 @@
     <my-divider title="管理员认证">
       <span>管理员凭证会在服务端加载插件后打印出来，或者在配置文件里找到</span>
     </my-divider>
-
     <n-space>
       <n-form-item ref="adminVoucherRef" :show-label="false" :rule="adminVoucherRule">
         <n-input v-model:value="adminVoucher" placeholder="请输入管理员凭证" type="password" autosize class="w-24rem" />
@@ -86,7 +80,7 @@
     <my-divider title="管理员控制台" dashed />
     <div class="flex w-full items-center">
       <n-input v-model:value="command" type="textarea" />
-      <n-button type="primary" class="ml-10" :loading="loadingCommand" @click="handleAdminCommand"> 发送 </n-button>
+      <my-button type="primary" class="ml-10" text="发送" @click-async="handleAdminCommand" />
     </div>
   </div>
 </template>
@@ -269,11 +263,8 @@
 
   const command = ref('')
 
-  const loadingCommand = ref(false)
   async function handleAdminCommand() {
-    loadingCommand.value = true
     const result = await adminCommand(command.value)
     console.log(result)
-    loadingCommand.value = false
   }
 </script>
