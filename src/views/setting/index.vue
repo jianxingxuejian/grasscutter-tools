@@ -69,12 +69,9 @@
       <n-form-item label="密码" path="password">
         <n-input v-model:value="account.password" />
       </n-form-item>
-      <n-button @click="handleCreateAccount">
-        <template #icon>
-          <icon-line-md-plus />
-        </template>
-        创建
-      </n-button>
+      <my-button text="创建" @click-async="handleCreateAccount">
+        <icon-line-md-plus />
+      </my-button>
     </n-form>
 
     <my-divider title="管理员控制台" dashed />
@@ -251,12 +248,11 @@
   }
 
   async function handleCreateAccount() {
-    await accountRef.value?.validate(async err => {
-      if (!err) {
-        const result = await adminCreateAccount(account)
-        if (result) {
-          window.$message?.success('账号创建成功')
-        }
+    console.log(111)
+    await accountRef.value?.validate().then(async () => {
+      const result = await adminCreateAccount(account)
+      if (result) {
+        window.$message?.success('账号创建成功')
       }
     })
   }

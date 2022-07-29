@@ -1,6 +1,6 @@
 <!-- 按钮+图标+悬浮信息文字or弹出确认 -->
 <template>
-  <n-popconfirm v-if="$slots.popconfirm" :show-icon="false" @positive-click="clickDebounce">
+  <n-popconfirm v-if="$slots.popconfirm" :show-icon="false" @positive-click="clickThrottle">
     <template #trigger>
       <n-button :loading="loading" v-bind="$attrs">
         <template #icon>
@@ -14,7 +14,7 @@
 
   <n-tooltip v-else-if="$slots.tooltip">
     <template #trigger>
-      <n-button text :loading="loading" v-bind="$attrs" @click="clickDebounce">
+      <n-button text :loading="loading" v-bind="$attrs" @click="clickThrottle">
         <template #icon>
           <slot></slot>
         </template>
@@ -24,7 +24,7 @@
     <slot name="tooltip"></slot>
   </n-tooltip>
 
-  <n-button v-else :loading="loading" v-bind="$attrs" @click="clickDebounce">
+  <n-button v-else :loading="loading" v-bind="$attrs" @click="clickThrottle">
     <template #icon>
       <slot></slot>
     </template>
@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useDebounceFn } from '@vueuse/core'
+  import { useThrottleFn } from '@vueuse/core'
 
   const props = defineProps<{
     /** 按钮文本 */
@@ -46,7 +46,7 @@
 
   const loading = ref(false)
 
-  const clickDebounce = useDebounceFn(click, 500)
+  const clickThrottle = useThrottleFn(click, 1000)
 
   async function click() {
     if (props.onClick) {
@@ -54,13 +54,19 @@
     }
 
     if (props.onClickAsync) {
-      loading.value = true
+      const timeout = setTimeout(() => {
+        loading.value = true
+      }, 20)
       try {
         await props.onClickAsync()
         // eslint-disable-next-line no-empty
       } catch (err) {
       } finally {
-        loading.value = false
+        if (!loading.value) {
+          clearTimeout(timeout)
+        } else {
+          loading.value = false
+        }
       }
     }
   }
