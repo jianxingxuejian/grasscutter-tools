@@ -20,15 +20,6 @@ export const stats = [
   { value: 17, label: '治疗加成' }
 ]
 
-/** 部位列表 */
-export const positions = [
-  { value: 0, label: '生之花' },
-  { value: 1, label: '死之羽' },
-  { value: 2, label: '时之沙' },
-  { value: 3, label: '空之杯' },
-  { value: 4, label: '理之冠' }
-]
-
 /** 各个部位对应的主属性列表 */
 export const positionMainstats = [
   [{ value: 7, label: '生命值' }],
@@ -134,17 +125,8 @@ export const substatGears: Substat[][] = [
   ]
 ]
 
-/** 圣遗物 */
-interface ArtifactInfo {
-  id: number
-  name: string
-  img: string
-  description1: string
-  description2: string
-}
-
 /** 圣遗物列表 */
-export const artifacts: ArtifactInfo[] = [
+export const artifacts = [
   {
     id: 97514,
     name: '辰砂往生录',

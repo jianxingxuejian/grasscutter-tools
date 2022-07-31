@@ -30,13 +30,11 @@
       <div class="flex-center">
         <span class="shrink-0 text-lg">部位：</span>
         <n-radio-group v-model:value="currentPosition">
-          <n-radio-button
-            v-for="position in positions"
-            :key="position.value"
-            :value="position.value"
-            :label="position.label"
-            class="px-4!"
-          />
+          <n-radio-button :value="0" label="生之花" class="px-4!" />
+          <n-radio-button :value="1" label="死之羽" class="px-4!" />
+          <n-radio-button :value="2" label="时之沙" class="px-4!" />
+          <n-radio-button :value="3" label="空之杯" class="px-4!" />
+          <n-radio-button :value="4" label="理之冠" class="px-4!" />
         </n-radio-group>
         <span class="shrink-0 ml-8 text-lg">主属性：</span>
         <n-select v-model:value="currentMainstat" :options="mainstatOptions" @update:value="selectMainstat"> </n-select>
@@ -81,25 +79,25 @@
 </template>
 
 <script setup lang="ts">
-  import { stats, positions, positionMainstats, artifacts } from './constant'
+  import { stats, positionMainstats, artifacts } from './constant'
   import { getImageUrl } from '@/utils'
 
-  //左侧点击选择圣遗物
-  const artifactId = ref<number>(97514)
-  function selectArtifact(id: number) {
-    artifactId.value = id
+  interface Artifact {
+    id: number
   }
-  const artifactImg = computed(() => {
-    let artifact = artifacts.find(x => x.id == artifactId.value)
-    if (artifact) {
-      return getImageUrl(artifact.img)
-    }
-  })
+
+  const artifact = reactive({ id: artifacts[0].id } as Artifact)
+
+  //左侧点击选择圣遗物
+  function selectArtifact(id: number) {
+    artifact.id = id
+  }
+  const artifactImg = computed(() => getImageUrl(artifacts.find(x => x.id == artifact.id)?.img))
 
   /** 当前部位 */
   const currentPosition = ref(0)
   /** 5个部位对应的主属性数组 */
-  const positionMainstatArr = [7, 8, 3, 10, 0]
+  const positionMainstatArr = reactive([7, 8, 3, 10, 0])
   /** 可选主属性列表 */
   const mainstatOptions = computed(() => positionMainstats[currentPosition.value])
   /** 当前部位的主属性 */
@@ -117,14 +115,14 @@
   /** 可选副属性列表 */
   const substatOptions = computed(() => stats.slice(0, 10).filter(x => x.value != currentMainstat.value))
   /** 5个部位的副属性列表二维数组 */
-  const positionSubstats = ref<number[][]>([[], [], [], [], []])
+  const positionSubstats = reactive<number[][]>([[], [], [], [], []])
   /** 当前部位副属性已选id列表 */
   const currentSubstats = computed({
     get() {
-      return positionSubstats.value[currentPosition.value]
+      return positionSubstats[currentPosition.value]
     },
     set(value: number[]) {
-      positionSubstats.value[currentPosition.value] = value
+      positionSubstats[currentPosition.value] = value
     }
   })
 
@@ -137,5 +135,5 @@
   }
 
   /** 命令 */
-  const command = ref(' ')
+  const command = ref('')
 </script>
