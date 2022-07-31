@@ -8,9 +8,12 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     IconIonLanguage: typeof import('~icons/ion/language')['default']
+    IconLineMdAccountAdd: typeof import('~icons/line-md/account-add')['default']
+    IconLineMdChevronSmallTripleLeft: typeof import('~icons/line-md/chevron-small-triple-left')['default']
     IconLineMdConfirm: typeof import('~icons/line-md/confirm')['default']
     IconLineMdEditTwotone: typeof import('~icons/line-md/edit-twotone')['default']
     IconLineMdEmail: typeof import('~icons/line-md/email')['default']
+    IconLineMdPencil: typeof import('~icons/line-md/pencil')['default']
     IconLineMdPlus: typeof import('~icons/line-md/plus')['default']
     IconLineMdQuestionCircle: typeof import('~icons/line-md/question-circle')['default']
     IconLineMdRotate270: typeof import('~icons/line-md/rotate270')['default']

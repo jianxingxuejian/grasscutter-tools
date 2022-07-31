@@ -10,11 +10,11 @@
           <n-input v-model:value="server.ip" />
         </n-input-group>
       </n-form-item>
-      <n-form-item label="UID" path="uid">
-        <n-input v-model:value="server.uid" />
+      <n-form-item label="用户名" path="username">
+        <n-input v-model:value="server.username" />
       </n-form-item>
       <my-button @click="updateServer">
-        <icon-line-md-edit-twotone class="text-8" />
+        <icon-line-md-edit-twotone />
         <template #tooltip>
           <span>保存配置</span>
         </template>
@@ -27,7 +27,7 @@
     </my-divider>
     <n-space>
       <my-button @click="handleChangeAuthWay">
-        <icon-line-md-rotate-270 class="text-8" :class="{ 'animate-spin': loadingChange }" />
+        <icon-line-md-rotate-270 :class="{ 'animate-spin': loadingChange }" />
         <template #tooltip>
           <span>更换验证方式</span>
         </template>
@@ -44,7 +44,7 @@
       <n-form-item v-else ref="passwordRef" :show-label="false" :rule="passwordRule">
         <n-input v-model:value="password" placeholder="请输入密码" type="password" />
       </n-form-item>
-      <my-button name="认证" @click-async="handlePlayerAuth">
+      <my-button text="认证" @click-async="handlePlayerAuth">
         <icon-line-md-confirm />
       </my-button>
     </n-space>
@@ -56,7 +56,7 @@
       <n-form-item ref="adminVoucherRef" :show-label="false" :rule="adminVoucherRule">
         <n-input v-model:value="adminVoucher" placeholder="请输入管理员凭证" type="password" autosize class="w-24rem" />
       </n-form-item>
-      <my-button name="认证" @click-async="handleAdminAuth">
+      <my-button text="认证" @click-async="handleAdminAuth">
         <icon-line-md-confirm />
       </my-button>
     </n-space>
@@ -70,20 +70,23 @@
         <n-input v-model:value="account.password" />
       </n-form-item>
       <my-button text="创建" @click-async="handleCreateAccount">
-        <icon-line-md-plus />
+        <icon-line-md-account-add />
       </my-button>
     </n-form>
 
     <my-divider title="管理员控制台" dashed />
     <div class="flex w-full items-center">
       <n-input v-model:value="command" type="textarea" />
-      <my-button type="primary" class="ml-10" text="发送" @click-async="handleAdminCommand" />
+      <my-button type="primary" class="ml-10" text="发送" @click-async="handleAdminCommand">
+        <icon-line-md-chevron-small-triple-left />
+      </my-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
   import type { FormInst, FormItemInst, FormRules, FormItemRule } from 'naive-ui'
+  import { useThrottleFn } from '@vueuse/core'
   import { useSettingsStore } from '@/store'
   import {
     mailVerifyCode,
@@ -116,29 +119,22 @@
         return true
       }
     },
-    uid: {
+    username: {
       required: true,
-      trigger: ['input', 'blur'],
-      validator(_rule, value) {
-        if (!value) {
-          return new Error('请输入uid')
-        } else if (!/^\+?[1-9]\d*$/.test(value)) {
-          return new Error('请输入正确的uid')
-        }
-        return true
-      }
+      message: '请输入用户名',
+      trigger: ['input', 'blur']
     }
   }
 
   const loadingChange = ref(false)
   const authWay = ref(true)
-  function handleChangeAuthWay() {
+  const handleChangeAuthWay = useThrottleFn(function () {
     loadingChange.value = true
     authWay.value = !authWay.value
     setTimeout(() => {
       loadingChange.value = false
     }, 1000)
-  }
+  }, 1000)
 
   async function checkService() {
     let check = false
@@ -153,7 +149,7 @@
   async function sendVerifyCode() {
     const check = await checkService()
     if (check) {
-      const result = await mailVerifyCode(server.uid)
+      const result = await mailVerifyCode(server.username)
       if (result?.code === 200) {
         window.$message?.success('邮件发送成功，请前往游戏邮箱查收')
       }
@@ -188,11 +184,11 @@
     let result: ApiResult<string> | undefined
     if (authWay.value) {
       await verifyCodeRef.value?.validate().then(async () => {
-        result = await playerAuthByVerifyCode(server.uid, verifyCode.value)
+        result = await playerAuthByVerifyCode(server.username, verifyCode.value)
       })
     } else {
       await passwordRef.value?.validate().then(async () => {
-        result = await playerAuthByPassword(server.uid, password.value)
+        result = await playerAuthByPassword(server.username, password.value)
       })
     }
     const token = result?.data
@@ -251,7 +247,7 @@
     console.log(111)
     await accountRef.value?.validate().then(async () => {
       const result = await adminCreateAccount(account)
-      if (result) {
+      if (result?.code === 200) {
         window.$message?.success('账号创建成功')
       }
     })
@@ -260,7 +256,11 @@
   const command = ref('')
 
   async function handleAdminCommand() {
-    const result = await adminCommand(command.value)
-    console.log(result)
+    if (command.value.length > 0) {
+      const result = await adminCommand(command.value)
+      if (result?.code === 200) {
+        window.$message?.success(result.msg)
+      }
+    }
   }
 </script>

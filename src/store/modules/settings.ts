@@ -25,7 +25,6 @@ export const useSettingsStore = defineStore('settings-store', {
       await setSettings('admin_token', admin_token)
     },
     async updateLocale() {
-      console.log(this.locale)
       await setSettings('locale', this.locale)
     }
   }

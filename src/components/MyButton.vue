@@ -14,11 +14,8 @@
 
   <n-tooltip v-else-if="$slots.tooltip">
     <template #trigger>
-      <n-button text :loading="loading" v-bind="$attrs" @click="clickThrottle">
-        <template #icon>
-          <slot></slot>
-        </template>
-        <span>{{ text }}</span>
+      <n-button text :loading="loading" v-bind="$attrs" class="text-8" @click="clickThrottle">
+        <slot></slot>
       </n-button>
     </template>
     <slot name="tooltip"></slot>

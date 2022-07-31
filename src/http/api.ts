@@ -12,16 +12,16 @@ export async function adminCommand(command: string) {
   return await request.get('/plugin/admin/command', { command })
 }
 
-export async function mailVerifyCode(uid: string) {
-  return await request.get('/plugin/mail/verifyCode', { uid })
+export async function mailVerifyCode(username: string) {
+  return await request.get('/plugin/mail/verifyCode', { username })
 }
 
-export async function playerAuthByVerifyCode(uid: string, verifyCode: string) {
-  return await request.get<string>('/plugin/player/authByVerifyCode', { uid, verifyCode })
+export async function playerAuthByVerifyCode(username: string, verifyCode: string) {
+  return await request.get<string>('/plugin/player/authByVerifyCode', { username, verifyCode })
 }
 
-export async function playerAuthByPassword(uid: string, password: string) {
-  return await request.get<string>('/plugin/player/authByPassword', { uid, password })
+export async function playerAuthByPassword(username: string, password: string) {
+  return await request.get<string>('/plugin/player/authByPassword', { username, password })
 }
 
 export async function playerCommand(command: string) {

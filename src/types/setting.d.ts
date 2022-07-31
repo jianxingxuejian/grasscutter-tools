@@ -8,5 +8,5 @@ interface Settings {
 interface Server {
   protocol: 'http' | 'https'
   ip: string
-  uid: string
+  username: string
 }

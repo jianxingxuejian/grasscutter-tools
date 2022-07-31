@@ -25,13 +25,16 @@ function request() {
       console.log(params)
       console.log(headers)
       const text = await invoke<string>('http', { method, url: getServer + api, params, headers })
-      console.log(text)
-      const result: ApiResult<T> = JSON.parse(text)
-      const { code, msg } = result
-      if (code != 200) {
-        window.$message?.error(msg)
+      if (text) {
+        console.log(text)
+        const result: ApiResult<T> = JSON.parse(text)
+        const { code, msg } = result
+        if (code != 200) {
+          window.$message?.error(msg)
+        }
+        return result
       }
-      return result
+      return text
     } catch (e) {
       console.log(e)
       window.$message?.error('网络错误')

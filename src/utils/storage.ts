@@ -53,7 +53,7 @@ export async function loadSettings() {
       server = {
         protocol: 'https',
         ip: '127.0.0.1',
-        uid: ''
+        username: ''
       }
       await setSettings('server', server)
     }

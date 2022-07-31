@@ -46,7 +46,7 @@
       labelPaddingHorizontal: '0 0.5rem 0 0',
       feedbackHeightMedium: '1.2rem',
       feedbackFontSizeMedium: '0.8rem',
-      feedbackPadding: '0.2rem 0 0 0'
+      feedbackPadding: '0.2rem 0 0 0.2rem'
     },
     Menu: {
       fontSize: '1.25rem'
@@ -68,7 +68,6 @@
       })
     },
     Tag: {
-      fontSizeMedium: '20px',
       padding: '0 0.3rem',
       closeIconSizeMedium: '0.8rem',
       closeMargin: '0 0 0 0.2rem'
