@@ -72,15 +72,18 @@
         <n-input type="textarea" size="large" :value="command" />
       </div>
       <div class="flex-center">
-        <n-button type="primary"> 生成圣遗物 </n-button>
+        <n-button type="primary" @click="sendCommand"> 生成圣遗物 </n-button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+  import { useI18n } from 'vue-i18n'
   import { stats, positionMainstats, artifacts } from './constant'
   import { getImageUrl } from '@/utils'
+
+  const { t } = useI18n()
 
   interface Artifact {
     itemId: number
@@ -141,4 +144,19 @@
   }
 
   const command = ref('')
+  function sendCommand() {
+    console.log(t('hello'))
+  }
 </script>
+
+<i18n lang="json" locale="zh-CN">
+{
+  "hello": "hello world!"
+}
+</i18n>
+
+<i18n lang="json" locale="en-US">
+{
+  "hello": "hello world!"
+}
+</i18n>

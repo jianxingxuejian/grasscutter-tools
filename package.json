@@ -22,6 +22,7 @@
   "devDependencies": {
     "@iconify/json": "^2.1.86",
     "@iconify/vue": "^3.2.1",
+    "@intlify/eslint-plugin-vue-i18n": "^2.0.0",
     "@intlify/unplugin-vue-i18n": "^0.5.0",
     "@tauri-apps/cli": "^1.0.5",
     "@typescript-eslint/eslint-plugin": "^5.31.0",

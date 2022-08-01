@@ -15,12 +15,24 @@
   const settingsStore = useSettingsStore()
 
   const locale = computed(() => {
-    const locale = settingsStore.locale
-    return locale === 'zh-CN' ? zhCN : enUS
+    switch (settingsStore.locale) {
+      case 'zh-CN':
+        return zhCN
+      case 'en-US':
+        return enUS
+      default:
+        return zhCN
+    }
   })
   const dateLocale = computed(() => {
-    const locale = settingsStore.locale
-    return locale === 'zh-CN' ? dateZhCN : dateEnUS
+    switch (settingsStore.locale) {
+      case 'zh-CN':
+        return dateZhCN
+      case 'en-US':
+        return dateEnUS
+      default:
+        return dateZhCN
+    }
   })
 
   //naive-ui全分辨率适配，由于没有全部适配rem，部分需要转px

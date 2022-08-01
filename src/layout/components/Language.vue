@@ -7,6 +7,7 @@
 </template>
 
 <script setup lang="ts">
+  import { useI18n } from 'vue-i18n'
   import { useSettingsStore } from '@/store'
 
   const languageOptions = [
@@ -16,4 +17,7 @@
 
   const settingsStore = useSettingsStore()
   const { updateLocale } = settingsStore
+
+  const { locale } = useI18n({ useScope: 'global' })
+  watchEffect(() => (locale.value = settingsStore.locale))
 </script>
