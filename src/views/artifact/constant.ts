@@ -22,7 +22,7 @@ export const stats = [
 
 /** 各个部位对应的主属性列表 */
 export const positionMainstats = [
-  [{ value: 7, label: '生命值' }],
+  [{ value: 7, label: stats[7].label }],
   [{ value: 8, label: '攻击力' }],
   [
     { value: 3, label: '攻击力%' },

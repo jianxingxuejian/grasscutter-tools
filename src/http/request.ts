@@ -34,7 +34,6 @@ function request() {
         }
         return result
       }
-      return text
     } catch (e) {
       console.log(e)
       window.$message?.error('网络错误')

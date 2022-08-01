@@ -83,16 +83,22 @@
   import { getImageUrl } from '@/utils'
 
   interface Artifact {
-    id: number
+    itemId: number
+    mainId: number
+    subs: {
+      itemId: number
+      count: number
+    }[]
+    level: number
   }
 
-  const artifact = reactive({ id: artifacts[0].id } as Artifact)
+  const artifact = reactive({ itemId: artifacts[0].id }) as Artifact
 
   //左侧点击选择圣遗物
   function selectArtifact(id: number) {
-    artifact.id = id
+    artifact.itemId = id
   }
-  const artifactImg = computed(() => getImageUrl(artifacts.find(x => x.id == artifact.id)?.img))
+  const artifactImg = computed(() => getImageUrl(artifacts.find(x => x.id == artifact.itemId)?.img))
 
   /** 当前部位 */
   const currentPosition = ref(0)
@@ -134,6 +140,5 @@
     }
   }
 
-  /** 命令 */
   const command = ref('')
 </script>
