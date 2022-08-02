@@ -2,13 +2,13 @@
   <div class="flex-row select-none">
     <!--左侧圣遗物列表选择-->
     <div class="w-20% of-scroll grid grid-cols-2 gap-2 p-2">
-      <div v-for="item in artifacts" :key="item.id">
+      <div v-for="(item, index) in artifacts" :key="index">
         <n-popover :delay="300" :keep-alive-on-hover="false" class="w-25rem">
           <template #trigger>
             <img
               class="w-full rd-3 transition hover:scale-110 cursor-pointer"
-              :src="getImageUrl(item.img)"
-              @click="selectArtifact(item.id)"
+              :src="item.img"
+              @click="selectArtifact(item.itemIds, item.img)"
             />
           </template>
           <template #header>
@@ -29,7 +29,7 @@
       <!--顶部圣遗物部位和主属性选择-->
       <div class="flex-center">
         <span class="shrink-0 text-lg">部位：</span>
-        <n-radio-group v-model:value="currentPosition">
+        <n-radio-group v-model:value="artifact.position">
           <n-radio-button :value="0" label="生之花" class="px-4!" />
           <n-radio-button :value="1" label="死之羽" class="px-4!" />
           <n-radio-button :value="2" label="时之沙" class="px-4!" />
@@ -62,7 +62,7 @@
       <div class="h-50 flex-around">
         <div class="flex-col items-center">
           <n-button type="success" :disabled="currentSubstats.length != 4" class="h-6 w-15"> 生成 </n-button>
-          <img class="h-40 w-40 mt-2" :src="artifactImg" />
+          <img class="h-40 w-40 mt-2" :src="artifact.img" />
         </div>
         <div class="">123</div>
         <div>123</div>
@@ -85,8 +85,12 @@
 
   const { t } = useI18n()
 
+  artifacts.forEach(item => (item.img = getImageUrl(item.img)))
+
   interface Artifact {
-    itemId: number
+    itemIds: number[]
+    img: string
+    position: 0 | 1 | 2 | 3 | 4
     mainId: number
     subs: {
       itemId: number
@@ -95,27 +99,25 @@
     level: number
   }
 
-  const artifact = reactive({ itemId: artifacts[0].id }) as Artifact
+  const artifact = reactive({ itemIds: artifacts[0].itemIds, img: artifacts[0].img, position: 0 }) as Artifact
 
   //左侧点击选择圣遗物
-  function selectArtifact(id: number) {
-    artifact.itemId = id
+  function selectArtifact(itemIds: number[], img: string) {
+    artifact.itemIds = itemIds
+    artifact.img = img
   }
-  const artifactImg = computed(() => getImageUrl(artifacts.find(x => x.id == artifact.itemId)?.img))
 
-  /** 当前部位 */
-  const currentPosition = ref(0)
   /** 5个部位对应的主属性数组 */
   const positionMainstatArr = reactive([7, 8, 3, 10, 0])
   /** 可选主属性列表 */
-  const mainstatOptions = computed(() => positionMainstats[currentPosition.value])
+  const mainstatOptions = computed(() => positionMainstats[artifact.position])
   /** 当前部位的主属性 */
   const currentMainstat = computed({
     get() {
-      return positionMainstatArr[currentPosition.value]
+      return positionMainstatArr[artifact.position]
     },
     set(value: number) {
-      positionMainstatArr[currentPosition.value] = value
+      positionMainstatArr[artifact.position] = value
     }
   })
 
@@ -128,10 +130,10 @@
   /** 当前部位副属性已选id列表 */
   const currentSubstats = computed({
     get() {
-      return positionSubstats[currentPosition.value]
+      return positionSubstats[artifact.position]
     },
     set(value: number[]) {
-      positionSubstats[currentPosition.value] = value
+      positionSubstats[artifact.position] = value
     }
   })
 
