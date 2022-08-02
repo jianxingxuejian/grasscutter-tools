@@ -1,5 +1,5 @@
 <template>
-  <n-config-provider :locale="locale" :date-locale="dateLocale" :theme-overrides="themeOverrides">
+  <n-config-provider :locale="locale" :date-locale="dateLocale" :theme-overrides="themeOverrides" :theme="theme">
     <naive-provider>
       <router-view />
     </naive-provider>
@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
   import { useEventListener } from '@vueuse/core'
-  import { zhCN, enUS, dateZhCN, dateEnUS, darkTheme } from 'naive-ui'
+  import { zhCN, enUS, dateZhCN, dateEnUS, lightTheme, darkTheme } from 'naive-ui'
   import { useAppStore, useSettingsStore } from '@/store'
 
   const appStore = useAppStore()
@@ -32,6 +32,16 @@
         return dateEnUS
       default:
         return dateZhCN
+    }
+  })
+  const theme = computed(() => {
+    switch (settingsStore.theme) {
+      case 'light':
+        return lightTheme
+      case 'dark':
+        return darkTheme
+      default:
+        return lightTheme
     }
   })
 

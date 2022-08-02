@@ -3,6 +3,7 @@ interface Settings {
   token: string
   admin_token: string
   locale: 'zh-CN' | 'en-US'
+  theme: 'light' | 'dark'
 }
 
 interface Server {

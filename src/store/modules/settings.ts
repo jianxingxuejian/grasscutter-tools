@@ -12,6 +12,7 @@ export const useSettingsStore = defineStore('settings-store', {
       this.token = settings.token
       this.admin_token = settings.admin_token
       this.locale = settings.locale
+      this.theme = settings.theme
     },
     async updateServer() {
       await setSettings('server', this.server)

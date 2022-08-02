@@ -76,8 +76,14 @@ export async function loadSettings() {
       await setSettings('locale', locale)
     }
 
+    let theme = (await getSettings('theme')) as Settings['theme'] | null
+    if (!theme) {
+      theme = 'light'
+      await setSettings('theme', theme)
+    }
+
     const settingsStore = useSettingsStore()
-    settingsStore.initSettings({ server, token, admin_token, locale })
+    settingsStore.initSettings({ server, token, admin_token, locale, theme })
   } catch {
     window.$message?.error('load settings failed')
   }
