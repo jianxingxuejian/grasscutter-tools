@@ -11,3 +11,5 @@ interface Server {
   ip: string
   username: string
 }
+
+type LocaleModule = Record<string, { default: unknown }>

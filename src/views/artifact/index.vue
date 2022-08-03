@@ -80,12 +80,15 @@
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
-  import { stats, positionMainstats, artifacts } from './constant'
+  import { positionMainstats, artifacts } from './constant'
   import { getImageUrl } from '@/utils'
 
-  const { t } = useI18n()
+  const { tm } = useI18n()
 
   artifacts.forEach(item => (item.img = getImageUrl(item.img)))
+
+  const stats = tm('stats')
+  console.log(stats)
 
   interface Artifact {
     itemIds: number[]
@@ -147,13 +150,13 @@
 
   const command = ref('')
   function sendCommand() {
-    console.log(t('hello'))
+    console.log('hello')
   }
 </script>
 
-<i18n lang="json" locale="zh-CN">
+<i18n lang="json5" locale="zh-CN">
 {
-  "hello": "hello world!"
+  hello: ['hello world!', '123']
 }
 </i18n>
 
