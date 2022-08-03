@@ -83,22 +83,14 @@
   import { positionMainstats, artifacts } from './constant'
   import { getImageUrl } from '@/utils'
 
-  const { tm } = useI18n()
+  const { t } = useI18n()
 
   artifacts.forEach(item => (item.img = getImageUrl(item.img)))
-
-  const stats = tm('stats')
-  console.log(stats)
 
   interface Artifact {
     itemIds: number[]
     img: string
     position: 0 | 1 | 2 | 3 | 4
-    mainId: number
-    subs: {
-      itemId: number
-      count: number
-    }[]
     level: number
   }
 
@@ -110,10 +102,17 @@
     artifact.img = img
   }
 
-  /** 5个部位对应的主属性数组 */
-  const positionMainstatArr = reactive([7, 8, 3, 10, 0])
+  /** 全部属性列表 */
+  const statIds = [
+    30960, 30950, 50880, 50990, 50980, 50970, 15003, 15001, 15005, 10960, 50950, 50960, 50940, 50930, 50910, 50920,
+    50890, 30940
+  ]
+  const stats = ref(statIds.map(id => ({ value: id, label: t(id) })))
+
+  /** 5个部位对应的主属性id数组 */
+  const positionMainstatArr = reactive([15001, 15003, 50990, 50950, 30960])
   /** 可选主属性列表 */
-  const mainstatOptions = computed(() => positionMainstats[artifact.position])
+  const mainstatOptions = computed(() => positionMainstats[artifact.position].map(id => stats.value[id]))
   /** 当前部位的主属性 */
   const currentMainstat = computed({
     get() {
@@ -127,7 +126,7 @@
   /** 词条档次 */
   const gear = ref(3)
   /** 可选副属性列表 */
-  const substatOptions = computed(() => stats.slice(0, 10).filter(x => x.value != currentMainstat.value))
+  const substatOptions = computed(() => stats.value.slice(0, 10).filter(x => x.value != currentMainstat.value))
   /** 5个部位的副属性列表二维数组 */
   const positionSubstats = reactive<number[][]>([[], [], [], [], []])
   /** 当前部位副属性已选id列表 */
@@ -154,9 +153,26 @@
   }
 </script>
 
-<i18n lang="json5" locale="zh-CN">
+<i18n lang="json" locale="zh-CN">
 {
-  hello: ['hello world!', '123']
+  "30960": "暴击率",
+  "30950": "暴击伤害",
+  "50880": "元素精通",
+  "50990": "攻击力%",
+  "50980": "生命值%",
+  "50970": "防御力%",
+  "15003": "攻击力",
+  "15001": "生命值",
+  "15005": "防御力",
+  "10960": "元素充能效率",
+  "50950": "雷元素伤害加成",
+  "50960": "火元素伤害加成",
+  "50940": "冰元素伤害加成",
+  "50930": "水元素伤害加成",
+  "50910": "岩元素伤害加成",
+  "50920": "风元素伤害加成",
+  "50890": "物理伤害加成",
+  "30940": "治疗加成"
 }
 </i18n>
 
