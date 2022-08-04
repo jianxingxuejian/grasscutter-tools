@@ -80,12 +80,12 @@
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
-  import { positionMainstats, artifacts } from './constant'
+  import { positionMainstats, artifactInfo } from './constant'
   import { getImageUrl } from '@/utils'
 
   const { t } = useI18n()
 
-  artifacts.forEach(item => (item.img = getImageUrl(item.img)))
+  artifactInfo.forEach(item => (item.img = getImageUrl(item.img)))
 
   interface Artifact {
     itemIds: number[]
@@ -94,7 +94,7 @@
     level: number
   }
 
-  const artifact = reactive({ itemIds: artifacts[0].itemIds, img: artifacts[0].img, position: 0 }) as Artifact
+  const artifact = reactive({ itemIds: artifactInfo[0].itemIds, img: artifactInfo[0].img, position: 0 }) as Artifact
 
   //左侧点击选择圣遗物
   function selectArtifact(itemIds: number[], img: string) {
@@ -107,7 +107,7 @@
     30960, 30950, 50880, 50990, 50980, 50970, 15003, 15001, 15005, 10960, 50950, 50960, 50940, 50930, 50910, 50920,
     50890, 30940
   ]
-  const stats = ref(statIds.map(id => ({ value: id, label: t(id) })))
+  const stats = computed(() => statIds.map(id => ({ value: id, label: t(id) })))
 
   /** 5个部位对应的主属性id数组 */
   const positionMainstatArr = reactive([15001, 15003, 50990, 50950, 30960])
@@ -178,6 +178,23 @@
 
 <i18n lang="json" locale="en-US">
 {
-  "hello": "hello world!"
+  "30960": "",
+  "30950": "",
+  "50880": "",
+  "50990": "%",
+  "50980": "%",
+  "50970": "%",
+  "15003": "",
+  "15001": "",
+  "15005": "",
+  "10960": "",
+  "50950": "",
+  "50960": "",
+  "50940": "",
+  "50930": "",
+  "50910": "",
+  "50920": "",
+  "50890": "",
+  "30940": ""
 }
 </i18n>

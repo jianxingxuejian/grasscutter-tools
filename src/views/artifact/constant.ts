@@ -72,7 +72,7 @@ export const substatGears = [
 ]
 
 /** 圣遗物列表 */
-export const artifacts = [
+export const artifactInfo = [
   {
     itemIds: [97544, 97524, 97554, 97514, 97534],
     name: '辰砂往生录',
