@@ -14,8 +14,6 @@ declare namespace Route {
 
   /** 路由配置 */
   interface Config extends Base {
-    /** 标题 */
-    title?: string
     /** 图标 */
     icon?: string | import('vue').FunctionalComponent
     /** 排序 */
@@ -38,8 +36,6 @@ declare namespace Route {
 
   /** 路由元数据 */
   interface Meta {
-    /** 标题 */
-    title?: string
     /** 图标 */
     icon?: () => import('vue').VNodeChild
     /** 是否为根节点 */
@@ -47,7 +43,7 @@ declare namespace Route {
   }
 
   /** 菜单 */
-  interface Menu {
+  type Menu = {
     key: string
     label: string
     path?: string

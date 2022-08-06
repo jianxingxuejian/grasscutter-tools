@@ -1,8 +1,8 @@
 <!-- 按钮+图标+悬浮信息文字or弹出确认 -->
 <template>
-  <n-popconfirm v-if="$slots.popconfirm" :show-icon="false" @positive-click="clickThrottle">
+  <n-popconfirm v-if="$slots.popconfirm" :show-icon="false" @positive-click="ckick">
     <template #trigger>
-      <n-button :loading="loading" v-bind="$attrs">
+      <n-button :text="!text" :loading="loading" v-bind="$attrs">
         <template #icon>
           <slot></slot>
         </template>
@@ -14,14 +14,14 @@
 
   <n-tooltip v-else-if="$slots.tooltip">
     <template #trigger>
-      <n-button text :loading="loading" v-bind="$attrs" class="text-8" @click="clickThrottle">
+      <n-button :text="!text" :loading="loading" v-bind="$attrs" class="text-8" @click="ckick">
         <slot></slot>
       </n-button>
     </template>
     <slot name="tooltip"></slot>
   </n-tooltip>
 
-  <n-button v-else :loading="loading" v-bind="$attrs" @click="clickThrottle">
+  <n-button v-else :text="!text" :loading="loading" v-bind="$attrs" @click="ckick">
     <template #icon>
       <slot></slot>
     </template>
@@ -43,13 +43,7 @@
 
   const loading = ref(false)
 
-  const clickThrottle = useThrottleFn(click, 1000)
-
-  async function click() {
-    if (props.onClick) {
-      props.onClick()
-    }
-
+  async function clickAsync() {
     if (props.onClickAsync) {
       const timeout = setTimeout(() => {
         loading.value = true
@@ -66,5 +60,14 @@
         }
       }
     }
+  }
+
+  const clickThrottle = useThrottleFn(clickAsync, 1000)
+
+  function ckick() {
+    if (props.onClick) {
+      props.onClick()
+    }
+    clickThrottle()
   }
 </script>

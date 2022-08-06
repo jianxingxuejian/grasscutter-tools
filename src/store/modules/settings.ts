@@ -27,6 +27,9 @@ export const useSettingsStore = defineStore('settings-store', {
     },
     async updateLocale() {
       await setSettings('locale', this.locale)
+    },
+    async updateTheme() {
+      await setSettings('theme', this.theme)
     }
   }
 })

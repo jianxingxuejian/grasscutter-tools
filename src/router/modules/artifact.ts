@@ -5,9 +5,8 @@ const routes: Route.Config = {
   name: 'artifact',
   redirect: '/artifact/index',
   component: () => import('@/layout/index.vue'),
-  title: '圣遗物',
   icon: IconCustomArtifact,
-  sort: 3,
+  sort: 2,
   isRoot: true,
   children: [
     {

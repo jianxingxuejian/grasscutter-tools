@@ -7,5 +7,4 @@ body,
 #app {
   /* scrollbar-gutter: stable; */
   overflow-y: overlay;
-  overflow-x: hidden;
 }

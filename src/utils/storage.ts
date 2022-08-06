@@ -7,7 +7,6 @@ export async function setSettings(key: string, value: any) {
   try {
     await store.set(key, value)
     await saveSettings()
-    window.$message?.success('settings saved')
   } catch {
     window.$message?.error('set settings failed')
   }

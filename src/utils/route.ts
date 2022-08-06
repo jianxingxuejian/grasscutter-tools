@@ -18,46 +18,18 @@ function transformConfigToRoute(configs: Route.Config[]): Route.RecordRaw[] {
   const routes: Route.RecordRaw[] = []
   configs.sort((next, pre) => Number(next?.sort) - Number(pre?.sort))
   configs.forEach(item => {
-    const { name, path, redirect, component, title, icon, isRoot, children } = item
+    const { name, path, redirect, component, icon, isRoot, children } = item
     const route: Route.RecordRaw = {
       name,
       path,
       redirect,
       component,
-      meta: { title, icon: transformIcon(icon), isRoot },
+      meta: { icon: transformIcon(icon), isRoot },
       children: children && transformConfigToRoute(children)
     }
     routes.push(route)
   })
   return routes
-}
-
-/** 路由转换为菜单 */
-export function transformRouteToMenu(routes: Route.RecordRaw[], parentPath?: string): Route.Menu[] {
-  const menus: Route.Menu[] = []
-  routes.forEach(route => {
-    /** 当子路由仅有一个时，以该子路由作为菜单 */
-    if (route.meta?.isRoot && route.children && route.children.length == 1) {
-      const child = route.children[0]
-      const menu: Route.Menu = {
-        key: child.name,
-        label: route.meta?.title || child.meta?.title || '',
-        path: route.path + '/' + child.path,
-        icon: route.meta?.icon || child.meta?.icon
-      }
-      menus.push(menu)
-    } else {
-      const menu: Route.Menu = {
-        key: route.name,
-        label: route.meta?.title || '',
-        path: parentPath ? parentPath + '/' + route.path : route.path,
-        icon: route.meta?.icon,
-        children: route.children && transformRouteToMenu(route.children, route.path)
-      }
-      menus.push(menu)
-    }
-  })
-  return menus
 }
 
 /** 转换图标 */

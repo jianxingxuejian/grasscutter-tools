@@ -2,5 +2,7 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": ["source.fixAll.eslint"],
   "npm.packageManager": "pnpm",
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "i18n-ally.localesPaths": ["src/i18n", "src/i18n/locales"],
+  "i18n-ally.enabledFrameworks": ["vue-sfc", "vue"]
 }
