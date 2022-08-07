@@ -1,7 +1,7 @@
 <template>
   <div class="flex-center flex-col gap-5 text-5">
     <span>{{ t('t1') }}null</span>
-    <span>{{ t('t2') }}1.0.1</span>
+    <span>{{ t('t2') }}1.0.2</span>
     <div>
       <span>{{ t('t3') }}</span>
       <n-a href="https://github.com/jianxingxuejian/grasscutter-tools" target="_blank">
