@@ -61,9 +61,6 @@
       <!-- 中间圣遗物展示和强化 -->
       <div class="h-60 flex-evenly">
         <div class="flex-col items-center">
-          <n-button type="success" :disabled="currentSubstats.length != 4" class="h-6 w-16" @click="handleCreate">
-            {{ t('t6') }}
-          </n-button>
           <img class="h-45 w-45 mt-2" :src="artifact.img" />
         </div>
         <div class="w-60">
@@ -88,7 +85,7 @@
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
-  import { groupBy } from 'lodash-es'
+  import { groupBy, difference, remove } from 'lodash-es'
   import { positionMainstats, substatGears, artifactInfo } from './constant'
   import { getImageUrl } from '@/utils'
   import { playerCommand } from '@/http'
@@ -160,33 +157,37 @@
     }
   })
 
-  /** 选择主属性后，删除副属性中的相同属性 */
-  // function selectMainstat(value: number) {
-  //   let index = currentSubstats.value.findIndex(x => x == value)
-  //   if (index != -1) {
-  //     currentSubstats.value.splice(index, 1)
-  //   }
-  // }
-
-  /** 生成圣遗物 */
-  function handleCreate() {
-    artifact.levels[position.value] = 0
-    artifact.substats[position.value].length = 0
-    for (let i = 0; i < 4; i++) {
-      const { id, value } = substatGears[currentSubstats.value[i]][gear.value]
-      artifact.substats[position.value].push({ itemId: id, value })
+  //监测副属性变化
+  watch(
+    () => [positionSubstats[position.value], position.value] as [number[], number],
+    (newVal, oldVal) => {
+      if (newVal[1] == oldVal[1]) {
+        const [a, b] = [newVal[0], oldVal[0]]
+        if (a.length > b.length) {
+          const diff = difference(a, b)
+          diff.forEach(i => {
+            const { id, value } = substatGears[i][gear.value]
+            artifact.substats[position.value].push({ itemId: id, value })
+          })
+        } else {
+          const diff = difference(b, a)
+          remove(artifact.substats[position.value], x =>
+            diff.includes(substatGears.findIndex(a => a.map(b => b.id).includes(x.itemId)))
+          )
+        }
+      }
     }
-  }
+  )
 
-  /** 展示的圣遗物文本 */
+  /** 展示的圣遗物副属性 */
   const show = computed(() => {
     const group = groupBy(artifact.substats[position.value], a =>
       substatGears.findIndex(b => b.map(b => b.id).includes(a.itemId))
     )
-    return Object.entries(group).map(([k, v]) => {
-      let text = t(stats.value[Number(k)].value)
-      let number = v.reduce((a, b) => a + b.value, 0)
-      return ['2', '6', '7', '8'].includes(k)
+    return currentSubstats.value.map(i => {
+      let text = t(stats.value[i].value)
+      let number = group[i].reduce((a, b) => a + b.value, 0)
+      return [2, 6, 7, 8].includes(i)
         ? text + '+' + Math.floor(number)
         : text.replace('%', '') + '+' + (number * 100).toFixed(1) + '%'
     })
@@ -200,6 +201,7 @@
     artifact.substats[position.value].push({ itemId: id, value })
   }
 
+  /** 命令文本 */
   const command = computed(
     () =>
       '/give ' +
@@ -233,7 +235,6 @@
   "t3": "主属性：",
   "t4": "词条：",
   "t5": "档次：",
-  "t6": "生成",
   "t7": "执行",
   "t8": "请选择4个初始词条",
   "30960": "暴击率",
@@ -269,7 +270,6 @@
   "t3": "Mainstat：",
   "t4": "Substats：",
   "t5": "Gear：",
-  "t6": "Create",
   "t7": "Execute",
   "t8": "Please select 4 initial substats",
   "30960": "CRIT Rate",
