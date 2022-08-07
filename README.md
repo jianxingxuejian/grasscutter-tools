@@ -1,3 +1,6 @@
+![](https://cdn.jsdelivr.net/gh/jianxingxuejian/grasscutter-tools/img/1.png)
+![](https://cdn.jsdelivr.net/gh/jianxingxuejian/grasscutter-tools/img/2.png)
+
 ## Usage
 
-use with a [plugin](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.0.0)
+use with the [plugin](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.0.0)
