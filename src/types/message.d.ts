@@ -2,5 +2,11 @@ interface Message {
   route: {
     [key: string]: string
   }
-  item: any[]
+  item: Item[]
+}
+
+type Item = {
+  value: number | string
+  label: string
+  children?: Item[]
 }

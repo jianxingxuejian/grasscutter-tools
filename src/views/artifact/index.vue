@@ -75,7 +75,7 @@
       <!-- 底部命令语句 -->
       <div class="flex w-full items-center">
         <n-input :value="command" type="textarea" size="large" />
-        <my-button type="primary" class="ml-4" :text="t('t7')" @click="sendCommand">
+        <my-button type="primary" class="ml-4" :text="t('t7')" @click-async="sendCommand">
           <icon-line-md-chevron-small-triple-left />
         </my-button>
       </div>
