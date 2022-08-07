@@ -49,7 +49,7 @@
 
   async function sendCommand() {
     const result = await playerCommand(command.value.slice(1))
-    if (result?.msg) {
+    if (result?.code === 200) {
       window.$message?.success(result.msg)
     }
   }
