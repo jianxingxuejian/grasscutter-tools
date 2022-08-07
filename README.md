@@ -4,8 +4,10 @@
 
 ## Usage
 
-Use with the [plugin](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.1.0)
-If you have any questions or want to add features, please create an issue
+Use with the [plugin](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.1.0).
 
-配合[插件](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.1.0)使用
-有什么疑问或者想添加功能请提issue
+If you have any questions or want to add features, please create an issue.
+
+配合[这个插件](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.1.0)使用。
+
+有什么疑问或者想添加功能请提issue。
