@@ -6,6 +6,7 @@
         clearable
         filterable
         expand-trigger="hover"
+        check-strategy="child"
         :options="itemOptions"
         class="grow"
       />
