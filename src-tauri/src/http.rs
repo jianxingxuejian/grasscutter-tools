@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 pub async fn request(
     method: String,
     url: String,
-    params: serde_json::Value,
+    params: Option<serde_json::Value>,
     headers: Headers,
 ) -> Result<String, reqwest::Error> {
     let client = reqwest::Client::builder()

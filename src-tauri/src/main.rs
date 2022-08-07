@@ -10,7 +10,7 @@ mod mitm;
 async fn http(
     method: String,
     url: String,
-    params: serde_json::Value,
+    params: Option<serde_json::Value>,
     headers: http::Headers,
 ) -> Result<String, String> {
     let result = http::request(method, url, params, headers).await;

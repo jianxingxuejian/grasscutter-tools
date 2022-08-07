@@ -36,3 +36,7 @@ export async function playerCommand(command: string) {
   }
   return await request.get('/plugin/player/command', { command })
 }
+
+export async function levelUpAllSkill() {
+  return await request.get('/plugin/player/levelUpAllSkill')
+}
