@@ -1,3 +1,4 @@
+![](https://cdn.jsdelivr.net/gh/jianxingxuejian/grasscutter-tools/img/1.png)
 ![](https://cdn.jsdelivr.net/gh/jianxingxuejian/grasscutter-tools/img/2.png)
 
 ## Usage
