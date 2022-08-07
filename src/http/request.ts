@@ -1,5 +1,7 @@
 import { invoke } from '@tauri-apps/api/tauri'
 import { useSettingsStore } from '@/store'
+import { showErrorMsg } from '@/utils'
+import i18n from '@/i18n'
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS'
 
@@ -30,13 +32,13 @@ function request() {
         const result: ApiResult<T> = JSON.parse(text)
         const { code, msg } = result
         if (code != 200) {
-          window.$message?.error(msg)
+          showErrorMsg(code, msg)
         }
         return result
       }
     } catch (e) {
-      console.log(e)
-      window.$message?.error('网络错误')
+      const message = i18n.global.locale.value === 'zh-CN' ? '网络错误' : 'Network error'
+      showErrorMsg(100, message)
     }
   }
 

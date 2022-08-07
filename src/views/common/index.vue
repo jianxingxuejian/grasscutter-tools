@@ -27,17 +27,20 @@
   const q = ref(15)
 
   async function handleEditSkill() {
+    let result
     await Promise.all([
       playerCommand('talent n ' + n.value),
       playerCommand('talent e ' + e.value),
-      playerCommand('talent q ' + q.value)
+      (result = await playerCommand('talent q ' + q.value))
     ])
-    window.$message?.success(t('t3'))
+    if (result?.code === 200) {
+      window.$message?.success(t('t3'))
+    }
   }
 
   async function handleLevelUpAllSkill() {
     const result = await levelUpAllSkill()
-    if (result?.msg) {
+    if (result?.code === 200) {
       window.$message?.success(result.msg)
     }
   }
