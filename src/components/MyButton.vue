@@ -16,6 +16,7 @@
     <template #trigger>
       <n-button :text="!text" :loading="loading" v-bind="$attrs" class="text-8" @click="ckick">
         <slot></slot>
+        <span class="text-4">{{ text }}</span>
       </n-button>
     </template>
     <slot name="tooltip"></slot>

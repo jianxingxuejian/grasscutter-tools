@@ -11,7 +11,12 @@
           <span>{{ t('tt1') }}</span>
         </template>
       </my-button>
-      <my-button :text="t('t2')" @click="handleLevelUpAllSkill" />
+      <n-divider vertical />
+      <my-button :text="t('t2')" @click="handleLevelUpAllSkill">
+        <template #tooltip>
+          <span>{{ t('tt2') }}</span>
+        </template>
+      </my-button>
     </n-space>
   </div>
 </template>
@@ -22,9 +27,9 @@
 
   const { t } = useI18n()
 
-  const n = ref(15)
-  const e = ref(15)
-  const q = ref(15)
+  const n = ref(10)
+  const e = ref(10)
+  const q = ref(10)
 
   async function handleEditSkill() {
     let result
@@ -49,17 +54,19 @@
 <i18n locale="zh-CN" lang="json">
 {
   "t1": "修改当前人物技能等级",
-  "t2": "升满所有人物技能",
+  "t2": "一键升级",
   "t3": "操作成功",
-  "tt1": "进行修改"
+  "tt1": "进行修改",
+  "tt2": "一键升级所有角色的等级、技能等级，需要重新进入游戏"
 }
 </i18n>
 
 <i18n locale="en-US" lang="json">
 {
   "t1": "change current avatar skill level",
-  "t2": "level up all avatar skills",
+  "t2": "one key level-up",
   "t3": "success",
-  "tt1": "level up"
+  "tt1": "level up",
+  "tt2": "level up all avatar level and skills, need to relogin"
 }
 </i18n>
