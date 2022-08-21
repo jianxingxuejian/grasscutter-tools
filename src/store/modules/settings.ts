@@ -2,7 +2,14 @@ import { defineStore } from 'pinia'
 import { setSettings } from '@/utils'
 
 export const useSettingsStore = defineStore('settings-store', {
-  state: () => ({} as Settings),
+  state: () =>
+    ({
+      server: {
+        protocol: 'https',
+        ip: '127.0.0.1',
+        username: ''
+      }
+    } as Settings),
   getters: {
     getServer: state => `${state.server.protocol}://${state.server.ip}`
   },

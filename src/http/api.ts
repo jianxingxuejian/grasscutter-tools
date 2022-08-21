@@ -38,7 +38,6 @@ export async function levelUpAllSkill() {
 }
 
 export async function getProps() {
-  if (!checkToken()) return
   return await request.get<Props>('/plugin/player/getProps')
 }
 
