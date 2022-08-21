@@ -31,29 +31,43 @@
 </template>
 
 <script setup lang="ts">
+  import type { Ref } from 'vue'
+  import { useSlots } from 'vue'
   import { useThrottleFn } from '@vueuse/core'
 
   const props = defineProps<{
     /** 按钮文本 */
     text?: string
     /** 异步点击事件 */
-    onClickAsync?: () => Promise<void>
+    onClickAsync?: () => Promise<void | ApiResult<null>> | undefined
     /** 点击事件 */
     onClick?: () => void
   }>()
 
-  const loading = ref(false)
+  let loading: Ref<boolean>
+  if (useSlots().default) {
+    loading = ref(false)
+  }
 
   async function clickAsync() {
-    if (props.onClickAsync) {
-      const timeout = setTimeout(() => {
+    if (!props.onClickAsync) return
+
+    let timeout
+    if (loading) {
+      timeout = setTimeout(() => {
         loading.value = true
       }, 20)
-      try {
-        await props.onClickAsync()
-        // eslint-disable-next-line no-empty
-      } catch (err) {
-      } finally {
+    }
+
+    try {
+      const result = await props.onClickAsync()
+      if (result?.code == 200) {
+        window.$message?.success(result.msg)
+      }
+      // eslint-disable-next-line no-empty
+    } catch (err) {
+    } finally {
+      if (loading) {
         if (!loading.value) {
           clearTimeout(timeout)
         } else {
@@ -65,9 +79,9 @@
 
   const clickThrottle = useThrottleFn(clickAsync, 1000)
 
-  function ckick() {
+  async function ckick() {
     if (props.onClick) {
-      props.onClick()
+      await props.onClick()
     }
     clickThrottle()
   }

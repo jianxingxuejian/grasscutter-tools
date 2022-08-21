@@ -1,10 +1,6 @@
 <template>
   <div class="flex-center">
-    <icon-line-md-sun-rising-loop
-      v-if="settingsStore.theme === 'light'"
-      class="text-8 outline-unset cursor-pointer"
-      @click="handleDark"
-    />
+    <icon-line-md-sun-rising-loop v-if="settingsStore.theme === 'light'" class="text-8 outline-unset cursor-pointer" @click="handleDark" />
     <icon-line-md-moon-twotone v-else class="text-8 outline-unset cursor-pointer" @click="handleLight" />
   </div>
 </template>

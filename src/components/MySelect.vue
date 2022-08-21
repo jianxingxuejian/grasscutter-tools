@@ -37,9 +37,7 @@
         //状态为未禁选且数量大于等于最大值
         if (!disabled.value && props.value.length >= props.maxSelectCount) {
           //获取所有的下拉框，zIndex最大的即为当前激活的下拉框
-          const parents = Array.from(
-            document.getElementsByClassName('v-binder-follower-container') as HTMLCollectionOf<HTMLElement>
-          )
+          const parents = Array.from(document.getElementsByClassName('v-binder-follower-container') as HTMLCollectionOf<HTMLElement>)
           const max = parents.reduce((prev, next) => {
             return prev.style.zIndex > next.style.zIndex ? prev : next
           })

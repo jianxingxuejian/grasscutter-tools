@@ -28,15 +28,31 @@ export async function playerAuthByPassword(username: string, password: string) {
 }
 
 export async function playerCommand(command: string) {
-  if (!useSettingsStore().token) {
-    const message = i18n.global.locale.value === 'zh-CN' ? '请先进行玩家验证' : 'Please auth player first'
-    window.$message?.error(message)
-    router.push('/setting/index')
-    return
-  }
+  if (!checkToken()) return
   return await request.get('/plugin/player/command', { command })
 }
 
 export async function levelUpAllSkill() {
+  if (!checkToken()) return
   return await request.get('/plugin/player/levelUpAllSkill')
+}
+
+export async function getProps() {
+  if (!checkToken()) return
+  return await request.get<Props>('/plugin/player/getProps')
+}
+
+export async function cdr() {
+  if (!checkToken()) return
+  return await request.get('/plugin/player/cdr')
+}
+
+function checkToken() {
+  if (!useSettingsStore().token) {
+    const message = i18n.global.locale.value === 'zh-CN' ? '请先进行玩家验证' : 'Please auth player first'
+    window.$message?.error(message)
+    router.push('/setting/index')
+    return false
+  }
+  return true
 }

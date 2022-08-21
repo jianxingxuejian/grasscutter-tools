@@ -7,6 +7,7 @@ const message: Message = {
     setting: '设置',
     about: '关于'
   },
+  weather: ['晴天', '多云', '雨', '雷雨', '雪', '雾', '其它'],
   item: [
     {
       value: 'character',

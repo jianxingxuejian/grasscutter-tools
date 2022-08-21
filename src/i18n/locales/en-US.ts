@@ -7,10 +7,11 @@ const message: Message = {
     setting: 'Setting',
     about: 'About'
   },
+  weather: ['sunny', 'cloudy', 'rain', 'thunderstorm', 'snow', 'mist', 'other'],
   item: [
     {
       value: 'character',
-      label: '角色',
+      label: 'character',
       children: [
         { value: 1002, label: '神里绫华' },
         { value: 1003, label: '琴' },

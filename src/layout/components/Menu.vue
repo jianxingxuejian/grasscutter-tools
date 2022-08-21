@@ -1,6 +1,5 @@
 <template>
-  <n-menu class="select-none" mode="horizontal" :value="activeKey" :options="menus" @update:value="handleUpdateMenu">
-  </n-menu>
+  <n-menu class="select-none" mode="horizontal" :value="activeKey" :options="menus" @update:value="handleUpdateMenu" />
 </template>
 
 <script setup lang="ts">

@@ -62,6 +62,9 @@
       iconMarginMedium: '0.25rem',
       iconSizeMedium: '1.5rem'
     },
+    Divider: {
+      color: 'rgb(236,236,242)'
+    },
     Form: {
       labelFontSizeLeftMedium: '1rem',
       labelFontSizeLeftLarge: '1.2rem',
@@ -69,6 +72,9 @@
       feedbackHeightMedium: '1.2rem',
       feedbackFontSizeMedium: '0.8rem',
       feedbackPadding: '0.2rem 0 0 0.2rem'
+    },
+    Input: {
+      paddingMedium: '0 1rem'
     },
     Menu: {
       fontSize: '1.25rem'
@@ -88,6 +94,13 @@
         const fontSize = appStore.fontSize
         return fontSize + 'px ' + fontSize * 1.5 + 'px'
       })
+    },
+    Switch: {
+      buttonHeightMedium: '1.4rem',
+      buttonWidthMedium: '1.4rem',
+      buttonWidthPressedMedium: '1.8rem',
+      railHeightMedium: '1.6rem',
+      railWidthMedium: '3.5rem'
     },
     Tag: {
       padding: '0 0.3rem',

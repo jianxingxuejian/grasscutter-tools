@@ -14,3 +14,13 @@ declare namespace Param {
     password: string
   }
 }
+
+interface Props {
+  inGodMode: boolean
+  unLimitedStamina: boolean
+  unLimitedEnergy: boolean
+  worldLevel: number
+  bpLevel: number
+  towerLevel: number
+  playerLevel: number
+}

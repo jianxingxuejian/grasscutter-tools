@@ -90,14 +90,7 @@
   import { useI18n } from 'vue-i18n'
   import { useThrottleFn } from '@vueuse/core'
   import { useSettingsStore } from '@/store'
-  import {
-    mailVerifyCode,
-    playerAuthByVerifyCode,
-    playerAuthByPassword,
-    adminAuth,
-    adminCreateAccount,
-    adminCommand
-  } from '@/http'
+  import { mailVerifyCode, playerAuthByVerifyCode, playerAuthByPassword, adminAuth, adminCreateAccount, adminCommand } from '@/http'
   import { testIP } from '@/utils'
 
   const { t } = useI18n()

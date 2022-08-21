@@ -2,6 +2,7 @@ interface Message {
   route: {
     [key: string]: string
   }
+  weather: string[]
   item: Item[]
 }
 

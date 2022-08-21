@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    IconIconParkTwotoneUnlock: typeof import('~icons/icon-park-twotone/unlock')['default']
     IconIonLanguage: typeof import('~icons/ion/language')['default']
     IconLineMdAccountAdd: typeof import('~icons/line-md/account-add')['default']
     IconLineMdChevronSmallTripleLeft: typeof import('~icons/line-md/chevron-small-triple-left')['default']
@@ -23,7 +24,9 @@ declare module '@vue/runtime-core' {
     IconLineMdSunRisingLoop: typeof import('~icons/line-md/sun-rising-loop')['default']
     MyButton: typeof import('./../components/MyButton.vue')['default']
     MyDivider: typeof import('./../components/MyDivider.vue')['default']
+    MyInputGroup: typeof import('./../components/MyInputGroup.vue')['default']
     MySelect: typeof import('./../components/MySelect.vue')['default']
+    MySwitch: typeof import('./../components/MySwitch.vue')['default']
     NA: typeof import('naive-ui')['NA']
     NaiveProvider: typeof import('./../components/NaiveProvider.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
@@ -57,6 +60,7 @@ declare module '@vue/runtime-core' {
     NSelect: typeof import('naive-ui')['NSelect']
     NSpace: typeof import('naive-ui')['NSpace']
     NSpin: typeof import('naive-ui')['NSpin']
+    NSwitch: typeof import('naive-ui')['NSwitch']
     NText: typeof import('naive-ui')['NText']
     NTooltip: typeof import('naive-ui')['NTooltip']
     NTreeSelect: typeof import('naive-ui')['NTreeSelect']

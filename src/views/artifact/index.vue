@@ -123,8 +123,7 @@
   }
 
   const statIds = [
-    30960, 30950, 50880, 50990, 50980, 50970, 15003, 15001, 15005, 10960, 50950, 50960, 50940, 50930, 50910, 50920,
-    50900, 50890, 30940
+    30960, 30950, 50880, 50990, 50980, 50970, 15003, 15001, 15005, 10960, 50950, 50960, 50940, 50930, 50910, 50920, 50900, 50890, 30940
   ]
   /** 属性列表 */
   const stats = computed(() => statIds.map(id => ({ value: id, label: t(id) })))
@@ -144,9 +143,7 @@
   const gear = ref(3)
 
   //副属性选择
-  const substatOptions = computed(() =>
-    stats.value.slice(0, 10).map((stat, index) => ({ value: index, label: stat.label }))
-  )
+  const substatOptions = computed(() => stats.value.slice(0, 10).map((stat, index) => ({ value: index, label: stat.label })))
   const positionSubstats = reactive<number[][]>([[], [], [], [], []])
   const currentSubstats = computed({
     get() {
@@ -171,9 +168,7 @@
           })
         } else {
           const diff = difference(b, a)
-          remove(artifact.substats[position.value], x =>
-            diff.includes(substatGears.findIndex(a => a.map(b => b.id).includes(x.itemId)))
-          )
+          remove(artifact.substats[position.value], x => diff.includes(substatGears.findIndex(a => a.map(b => b.id).includes(x.itemId))))
         }
       }
     }
@@ -181,15 +176,11 @@
 
   /** 展示的圣遗物副属性 */
   const show = computed(() => {
-    const group = groupBy(artifact.substats[position.value], a =>
-      substatGears.findIndex(b => b.map(b => b.id).includes(a.itemId))
-    )
+    const group = groupBy(artifact.substats[position.value], a => substatGears.findIndex(b => b.map(b => b.id).includes(a.itemId)))
     return currentSubstats.value.map(i => {
       let text = t(stats.value[i].value)
       let number = group[i].reduce((a, b) => a + b.value, 0)
-      return [2, 6, 7, 8].includes(i)
-        ? text + '+' + Math.floor(number)
-        : text.replace('%', '') + '+' + (number * 100).toFixed(1) + '%'
+      return [2, 6, 7, 8].includes(i) ? text + '+' + Math.floor(number) : text.replace('%', '') + '+' + (number * 100).toFixed(1) + '%'
     })
   })
 
