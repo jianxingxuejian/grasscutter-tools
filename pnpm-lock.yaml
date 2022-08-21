@@ -18,9 +18,9 @@ specifiers:
   eslint-plugin-vue: ^9.3.0
   lodash-es: ^4.17.21
   naive-ui: ^2.32.2
-  pinia: ^2.0.19
+  pinia: ^2.0.20
   prettier: ^2.7.1
-  sass: ^1.54.4
+  sass: ^1.54.5
   tauri-plugin-store-api: github:tauri-apps/tauri-plugin-store#dev
   typescript: ^4.7.4
   unocss: ^0.45.8
@@ -38,7 +38,7 @@ dependencies:
   '@vueuse/core': 9.1.0_vue@3.2.37
   axios: 0.27.2
   lodash-es: 4.17.21
-  pinia: 2.0.19_j6bzmzd4ujpabbp5objtwxyjp4
+  pinia: 2.0.20_j6bzmzd4ujpabbp5objtwxyjp4
   tauri-plugin-store-api: github.com/tauri-apps/tauri-plugin-store/67530781d86b73fae4ee03c17f43c76f09ae3400
   vue: 3.2.37
   vue-i18n: 9.2.2_vue@3.2.37
@@ -59,13 +59,13 @@ devDependencies:
   eslint-plugin-vue: 9.3.0_eslint@8.22.0
   naive-ui: 2.32.2_vue@3.2.37
   prettier: 2.7.1
-  sass: 1.54.4
+  sass: 1.54.5
   typescript: 4.7.4
   unocss: 0.45.8_vite@3.0.9
   unplugin-auto-import: 0.11.2_3wfpyx4dwyezeeatxtwoszqqzi
   unplugin-icons: 0.14.8_vite@3.0.9
   unplugin-vue-components: 0.22.4_vite@3.0.9+vue@3.2.37
-  vite: 3.0.9_sass@1.54.4
+  vite: 3.0.9_sass@1.54.5
   vue-tsc: 0.40.1_typescript@4.7.4
 
 packages:
@@ -794,7 +794,7 @@ packages:
       '@unocss/scope': 0.45.8
       '@unocss/transformer-directives': 0.45.8
       magic-string: 0.26.2
-      vite: 3.0.9_sass@1.54.4
+      vite: 3.0.9_sass@1.54.5
     dev: true
 
   /@vitejs/plugin-vue/3.0.3_vite@3.0.9+vue@3.2.37:
@@ -804,7 +804,7 @@ packages:
       vite: ^3.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 3.0.9_sass@1.54.4
+      vite: 3.0.9_sass@1.54.5
       vue: 3.2.37
     dev: true
 
@@ -1711,12 +1711,12 @@ packages:
     resolution: {integrity: sha512-dm9s5Pw7Jc0GvMYbshN6zchCA9RgQlzzEZX3vylR9IqFfS8XciblUXOKfW6SiuJ0e13eDYZoZV5wdrev7P3Nwg==}
     engines: {node: ^10.12.0 || >=12.0.0}
     dependencies:
-      flatted: 3.2.6
+      flatted: 3.2.7
       rimraf: 3.0.2
     dev: true
 
-  /flatted/3.2.6:
-    resolution: {integrity: sha512-0sQoMh9s0BYsm+12Huy/rkKxVu4R1+r96YX5cG44rHV0pQ6iC3Q+mkoMFaGWObMFYQxCVT+ssG1ksneA2MI9KQ==}
+  /flatted/3.2.7:
+    resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
 
   /follow-redirects/1.15.1:
@@ -2264,8 +2264,8 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /pinia/2.0.19_j6bzmzd4ujpabbp5objtwxyjp4:
-    resolution: {integrity: sha512-Q/UQrmFLDMdlCkLfM5rGw1Ug0A7dy0G7NtBusMQSK+TNjf3CV/pO0RqblNIfuurWl42byTjM6HIemCWOfo8KXA==}
+  /pinia/2.0.20_j6bzmzd4ujpabbp5objtwxyjp4:
+    resolution: {integrity: sha512-fdHHumXW/0U5HhxmY1emo3I4z85p8NJPdbtFQSlmJXFe3ktuF0pYNVgVtk2q+j2zCtTufY763xzaEMx0t6T59g==}
     peerDependencies:
       '@vue/composition-api': ^1.4.0
       typescript: '>=4.4.4'
@@ -2389,8 +2389,8 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
-  /sass/1.54.4:
-    resolution: {integrity: sha512-3tmF16yvnBwtlPrNBHw/H907j8MlOX8aTBnlNX1yrKx24RKcJGPyLhFUwkoKBKesR3unP93/2z14Ll8NicwQUA==}
+  /sass/1.54.5:
+    resolution: {integrity: sha512-p7DTOzxkUPa/63FU0R3KApkRHwcVZYC0PLnLm5iyZACyp15qSi32x7zVUhRdABAATmkALqgGrjCJAcWvobmhHw==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
@@ -2725,7 +2725,7 @@ packages:
     dependencies:
       acorn: 8.8.0
       chokidar: 3.5.3
-      vite: 3.0.9_sass@1.54.4
+      vite: 3.0.9_sass@1.54.5
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.4.4
     dev: true
@@ -2749,7 +2749,7 @@ packages:
     dependencies:
       acorn: 8.8.0
       chokidar: 3.5.3
-      vite: 3.0.9_sass@1.54.4
+      vite: 3.0.9_sass@1.54.5
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.4.4
     dev: true
@@ -2777,7 +2777,7 @@ packages:
       vue: 3.2.37
     dev: true
 
-  /vite/3.0.9_sass@1.54.4:
+  /vite/3.0.9_sass@1.54.5:
     resolution: {integrity: sha512-waYABTM+G6DBTCpYAxvevpG50UOlZuynR0ckTK5PawNVt7ebX6X7wNXHaGIO6wYYFXSM7/WcuFuO2QzhBB6aMw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -2800,7 +2800,7 @@ packages:
       postcss: 8.4.16
       resolve: 1.22.1
       rollup: 2.77.3
-      sass: 1.54.4
+      sass: 1.54.5
     optionalDependencies:
       fsevents: 2.3.2
     dev: true

@@ -177,7 +177,7 @@
   "t22": "无CD",
   "tt1": "一键升级所有角色等级、技能、命座、好感度",
   "tt2": "请选择清理的选项",
-  "tt3": "当前队伍的冷却缩减置为100%"
+  "tt3": "所有角色的冷却缩减置为100%"
 }
 </i18n>
 
@@ -203,14 +203,14 @@
   "t14": "weather",
   "t15": "lock weather",
   "t16": "lock time",
-  "t17": "current avatar",
+  "t17": "Current Avatar",
   "t18": "skill level",
   "t19": "avatar level",
   "t20": "promote",
   "t21": "fetter",
   "t22": "no CD",
   "tt1": "level up all avatar level, skill, promote, fetter",
-  "tt2": "Please select the option to clean",
-  "tt3": "Current team's cooldown reduction is set to 100%"
+  "tt2": "please select the option to clean",
+  "tt3": "all avatars cooldown reduction set to 100%"
 }
 </i18n>

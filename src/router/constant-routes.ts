@@ -2,7 +2,7 @@ const routes: Route.RecordRaw[] = [
   {
     path: '/',
     name: 'home',
-    redirect: '/artifact',
+    redirect: '/common',
     component: () => import('@/layout/index.vue')
   }
 ]
