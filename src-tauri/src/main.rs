@@ -21,16 +21,6 @@ async fn http(
     Ok(result)
 }
 
-// #[tauri::command]
-// fn mitm_run(port: String){
-
-// }
-
-// #[tauri::command]
-// fn mitm_shutdown(){
-
-// }
-
 use tauri_plugin_store::PluginBuilder;
 
 fn main() {

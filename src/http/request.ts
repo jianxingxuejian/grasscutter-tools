@@ -23,12 +23,8 @@ function request() {
         token,
         admin_token
       }
-      console.log(getServer + api)
-      console.log(params)
-      console.log(headers)
       const text = await invoke<string>('http', { method, url: getServer + api, params, headers })
       if (text) {
-        console.log(text)
         const result: ApiResult<T> = JSON.parse(text)
         const { code, msg } = result
         if (code != 200) {
