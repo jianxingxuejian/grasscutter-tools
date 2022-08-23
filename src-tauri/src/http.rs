@@ -21,8 +21,6 @@ pub async fn request(
         _ => reqwest::Method::GET,
     };
 
-    println!("{}", headers.admin_token);
-
     let result = client
         .request(method, url)
         .header("locale", headers.locale)
