@@ -108,13 +108,13 @@
     levels: number[]
   }
 
-  const artifact = reactive({
+  const artifact = reactive<Artifact>({
     itemIds: artifactInfo[0].itemIds,
     img: artifactInfo[0].img,
     mainstats: [15001, 15003, 50990, 50950, 30960],
     substats: [[], [], [], [], []],
     levels: [0, 0, 0, 0, 0]
-  } as Artifact)
+  })
 
   /** 左侧选择圣遗物 */
   function handleSelect(itemIds: number[], img: string) {
