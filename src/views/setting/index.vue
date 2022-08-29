@@ -145,11 +145,11 @@
 
   async function sendVerifyCode() {
     const check = await checkService()
-    if (check) {
-      const result = await mailVerifyCode(server.username)
-      if (result?.code === 200) {
-        window.$message?.success(t('m1'))
-      }
+    if (!check) return
+
+    const result = await mailVerifyCode(server.username)
+    if (result?.code === 200) {
+      window.$message?.success(t('m1'))
     }
   }
 
@@ -178,6 +178,7 @@
   async function handlePlayerAuth() {
     const check = await checkService()
     if (!check) return
+
     let result: ApiResult<string> | undefined
     if (authWay.value) {
       await verifyCodeRef.value?.validate().then(async () => {
