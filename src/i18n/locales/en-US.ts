@@ -3,7 +3,7 @@ const message: Message = {
     common: 'Common',
     artifact: 'Artifact',
     item: 'Item',
-    mail: 'Mail',
+    mod: 'Mod',
     setting: 'Setting',
     about: 'About'
   },

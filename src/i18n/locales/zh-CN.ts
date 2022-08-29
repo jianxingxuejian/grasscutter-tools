@@ -3,7 +3,7 @@ const message: Message = {
     common: '常用',
     artifact: '圣遗物',
     item: '物品',
-    mail: '邮件',
+    mod: 'Mod',
     setting: '设置',
     about: '关于'
   },

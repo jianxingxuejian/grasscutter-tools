@@ -1,16 +1,16 @@
 const routes: Route.Config = {
-  path: '/mail',
-  name: 'mail',
-  redirect: '/mail/index',
+  path: '/mod',
+  name: 'mod',
+  redirect: '/mod/index',
   component: () => import('@/layout/index.vue'),
-  icon: 'mdi:email-edit-outline',
+  icon: 'mdi:account-edit-outline',
   sort: 4,
   isRoot: true,
   children: [
     {
       path: 'index',
-      name: 'mail_index',
-      component: () => import('@/views/mail/index.vue')
+      name: 'mod_index',
+      component: () => import('@/views/mod/index.vue')
     }
   ]
 }

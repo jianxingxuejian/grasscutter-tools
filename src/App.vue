@@ -9,13 +9,13 @@
 <script setup lang="ts">
   import { useEventListener } from '@vueuse/core'
   import { zhCN, enUS, dateZhCN, dateEnUS, lightTheme, darkTheme } from 'naive-ui'
-  import { useAppStore, useSettingsStore } from '@/store'
+  import { useAppStore, useSettingStore } from '@/store'
 
   const appStore = useAppStore()
-  const settingsStore = useSettingsStore()
+  const settingStore = useSettingStore()
 
   const locale = computed(() => {
-    switch (settingsStore.locale) {
+    switch (settingStore.locale) {
       case 'zh-CN':
         return zhCN
       case 'en-US':
@@ -25,7 +25,7 @@
     }
   })
   const dateLocale = computed(() => {
-    switch (settingsStore.locale) {
+    switch (settingStore.locale) {
       case 'zh-CN':
         return dateZhCN
       case 'en-US':
@@ -35,7 +35,7 @@
     }
   })
   const theme = computed(() => {
-    switch (settingsStore.theme) {
+    switch (settingStore.theme) {
       case 'light':
         return lightTheme
       case 'dark':

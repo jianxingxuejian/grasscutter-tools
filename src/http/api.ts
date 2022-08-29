@@ -1,5 +1,5 @@
 import request from '@/http/request'
-import { useSettingsStore } from '@/store'
+import { useSettingStore } from '@/store'
 import router from '@/router'
 import i18n from '@/i18n'
 
@@ -47,7 +47,7 @@ export async function cdr() {
 }
 
 function checkToken() {
-  if (!useSettingsStore().token) {
+  if (!useSettingStore().token) {
     const message = i18n.global.locale.value === 'zh-CN' ? '请先进行玩家验证' : 'Please auth player first'
     window.$message?.error(message)
     router.push('/setting/index')

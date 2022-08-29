@@ -3,6 +3,7 @@
     windows_subsystem = "windows"
 )]
 
+mod file;
 mod http;
 mod mitm;
 

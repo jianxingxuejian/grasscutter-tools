@@ -1,22 +1,13 @@
 <template>
-  <div class="flex-center">
-    <icon-line-md-sun-rising-loop v-if="settingsStore.theme === 'light'" class="text-8 outline-unset cursor-pointer" @click="handleDark" />
-    <icon-line-md-moon-twotone v-else class="text-8 outline-unset cursor-pointer" @click="handleLight" />
+  <div class="flex-center" @click="updateTheme">
+    <icon-line-md-sun-rising-loop v-if="settingStore.theme === 'light'" class="text-8 outline-unset cursor-pointer" />
+    <icon-line-md-moon-twotone v-else class="text-8 outline-unset cursor-pointer" />
   </div>
 </template>
 
 <script setup lang="ts">
-  import { useSettingsStore } from '@/store'
+  import { useSettingStore } from '@/store'
 
-  const settingsStore = useSettingsStore()
-  const { updateTheme } = settingsStore
-
-  function handleDark() {
-    settingsStore.theme = 'dark'
-    updateTheme()
-  }
-  function handleLight() {
-    settingsStore.theme = 'light'
-    updateTheme()
-  }
+  const settingStore = useSettingStore()
+  const { updateTheme } = settingStore
 </script>

@@ -1,18 +1,18 @@
 import { Store } from 'tauri-plugin-store-api'
-import { useSettingsStore } from '@/store'
+import { useSettingStore } from '@/store'
 
 const store = new Store('.settings')
 
-export async function setSettings(key: string, value: any) {
+export async function setSetting(key: string, value: any) {
   try {
     await store.set(key, value)
-    await saveSettings()
+    await saveSetting()
   } catch {
     window.$message?.error('set settings failed')
   }
 }
 
-export async function getSettings<T>(key: string) {
+export async function getSetting<T>(key: string) {
   try {
     return await store.get<T>(key)
   } catch {
@@ -20,7 +20,7 @@ export async function getSettings<T>(key: string) {
   }
 }
 
-export async function saveSettings() {
+export async function saveSetting() {
   try {
     await store.save()
   } catch {
@@ -44,45 +44,18 @@ export async function clear() {
   }
 }
 
-export async function loadSettings() {
+export async function loadSetting() {
   try {
     await store.load()
-    let server = (await getSettings('server')) as Settings['server'] | null
-    if (!server) {
-      server = {
-        protocol: 'https',
-        ip: '127.0.0.1',
-        username: ''
-      }
-      await setSettings('server', server)
-    }
+    let server = await getSetting<Setting['server']>('server')
+    let token = await getSetting<Setting['token']>('token')
+    let admin_token = await getSetting<Setting['admin_token']>('admin_token')
+    let locale = await getSetting<Setting['locale']>('locale')
+    let theme = await getSetting<Setting['theme']>('theme')
+    const mod_path = await getSetting<Setting['mod_path']>('mod_path')
 
-    let token = (await getSettings('token')) as string | null
-    if (token === null) {
-      token = ''
-      await setSettings('token', token)
-    }
-
-    let admin_token = (await getSettings('admin_token')) as string | null
-    if (admin_token === null) {
-      admin_token = ''
-      await setSettings('admin_token', admin_token)
-    }
-
-    let locale = (await getSettings('locale')) as Settings['locale'] | null
-    if (!locale) {
-      locale = 'zh-CN'
-      await setSettings('locale', locale)
-    }
-
-    let theme = (await getSettings('theme')) as Settings['theme'] | null
-    if (!theme) {
-      theme = 'light'
-      await setSettings('theme', theme)
-    }
-
-    const settingsStore = useSettingsStore()
-    settingsStore.initSettings({ server, token, admin_token, locale, theme })
+    const settingStore = useSettingStore()
+    settingStore.initSettings({ server, token, admin_token, locale, theme, mod_path })
   } catch {
     window.$message?.error('load settings failed')
   }

@@ -89,14 +89,14 @@
   import type { FormInst, FormItemInst, FormRules, FormItemRule } from 'naive-ui'
   import { useI18n } from 'vue-i18n'
   import { useThrottleFn } from '@vueuse/core'
-  import { useSettingsStore } from '@/store'
+  import { useSettingStore } from '@/store'
   import { mailVerifyCode, playerAuthByVerifyCode, playerAuthByPassword, adminAuth, adminCreateAccount, adminCommand } from '@/http'
   import { testIP } from '@/utils'
 
   const { t } = useI18n()
 
-  const settingsStore = useSettingsStore()
-  const { server, updateServer } = settingsStore
+  const settingStore = useSettingStore()
+  const { server, updateServer } = settingStore
 
   const protocolOptions = [
     { label: 'http', value: 'http' },
@@ -191,7 +191,7 @@
     const token = result?.data
     if (token) {
       window.$message?.success(t('m2'))
-      settingsStore.updateToken(token)
+      settingStore.updateToken(token)
     }
   }
 
@@ -212,7 +212,7 @@
       const token = result?.data
       if (token) {
         window.$message?.success(t('m3'))
-        settingsStore.updateAdminToken(token)
+        settingStore.updateAdminToken(token)
       }
     })
   }

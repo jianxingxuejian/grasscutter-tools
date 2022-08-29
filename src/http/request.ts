@@ -1,12 +1,12 @@
 import { invoke } from '@tauri-apps/api/tauri'
-import { useSettingsStore } from '@/store'
+import { useSettingStore } from '@/store'
 import { showErrorMsg } from '@/utils'
 import i18n from '@/i18n'
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS'
 
 function request() {
-  const settingsStore = useSettingsStore()
+  const settingStore = useSettingStore()
 
   async function get<T = null>(api: string, params?: any) {
     return await http<T>('GET', api, params)
@@ -17,7 +17,7 @@ function request() {
 
   async function http<T>(method: Method, api: string, params?: any) {
     try {
-      const { getServer, locale, token, admin_token } = settingsStore
+      const { getServer, locale, token, admin_token } = settingStore
       const headers = {
         locale,
         token,
