@@ -64,6 +64,7 @@ dependencies = [
  "tauri-build",
  "tauri-plugin-store",
  "tokio",
+ "walkdir",
 ]
 
 [[package]]

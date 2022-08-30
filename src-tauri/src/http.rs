@@ -1,5 +1,20 @@
 use serde::{Deserialize, Serialize};
 
+#[tauri::command]
+pub async fn http(
+    method: String,
+    url: String,
+    params: Option<serde_json::Value>,
+    headers: Headers,
+) -> Result<String, String> {
+    let result = request(method, url, params, headers).await;
+    let result = match result {
+        Ok(result) => result,
+        Err(err) => err.to_string(),
+    };
+    Ok(result)
+}
+
 pub async fn request(
     method: String,
     url: String,
