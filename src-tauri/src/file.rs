@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 use std::ffi::OsStr;
+use std::fs;
 use std::fs::File;
 use std::io::Read;
 use std::io::Write;
@@ -39,4 +40,28 @@ pub async fn get_mod_list(path: String) -> HashMap<String, String> {
         }
     }
     map
+}
+
+#[tauri::command]
+pub fn rename(path: String, new_path: String) -> Result<(), String> {
+    let path = check_path(&path)?;
+    fs::rename(path, new_path).map_err(|e| e.to_string())?;
+    Ok(())
+}
+
+#[tauri::command]
+pub fn write_file(path: String, contents: String) -> Result<(), String> {
+    let path = check_path(&path)?;
+    let file = File::create(path).map_err(|e| e.to_string())?;
+    file.write_all(contents.as_bytes())
+        .map_err(|e| e.to_string())?;
+    Ok(())
+}
+
+fn check_path(path: &String) -> Result<&Path, String> {
+    let path = Path::new(path);
+    if !path.exists() {
+        return Err("File doesn't exist".to_string());
+    }
+    Ok(path)
 }
