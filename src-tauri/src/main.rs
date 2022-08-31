@@ -8,13 +8,18 @@ mod http;
 
 use tauri_plugin_store::PluginBuilder;
 
-use crate::file::get_mod_list;
+use crate::file::{get_mod_list, rename, write_file};
 use crate::http::http;
 
 fn main() {
     tauri::Builder::default()
         .plugin(PluginBuilder::default().build())
-        .invoke_handler(tauri::generate_handler![http, get_mod_list])
+        .invoke_handler(tauri::generate_handler![
+            http,
+            get_mod_list,
+            rename,
+            write_file
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
