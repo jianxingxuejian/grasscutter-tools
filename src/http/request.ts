@@ -9,13 +9,13 @@ function request() {
   const settingStore = useSettingStore()
 
   async function get<T = null>(api: string, params?: any) {
-    return await http<T>('GET', api, params)
+    return await request<T>('GET', api, params)
   }
   async function post<T = null>(api: string, params?: any) {
-    return await http<T>('POST', api, params)
+    return await request<T>('POST', api, params)
   }
 
-  async function http<T>(method: Method, api: string, params?: any) {
+  async function request<T>(method: Method, api: string, params?: any) {
     try {
       const { getServer, locale, token, admin_token } = settingStore
       const headers = {
