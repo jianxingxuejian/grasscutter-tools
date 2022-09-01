@@ -1,8 +1,10 @@
 import { defineConfig, presetUno } from 'unocss'
+import transformerVariantGroup from '@unocss/transformer-variant-group'
 
 export default defineConfig({
   exclude: ['node_modules', '.git', 'dist'],
   presets: [presetUno()],
+  transformers: [transformerVariantGroup()],
   shortcuts: {
     'flex-col': 'flex flex-col',
     'flex-row': 'flex flex-row',

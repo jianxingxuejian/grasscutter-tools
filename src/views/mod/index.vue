@@ -7,19 +7,28 @@
       <n-input-number v-model:value="width" />
       <n-input-number v-model:value="height" />
     </n-space>
-    <n-grid cols="s:4 m:5 l:6 xl:7 2xl:8" responsive="screen" class="p-2">
+    <n-grid cols="s:5 m:6 l:7 xl:8 2xl:9" responsive="screen" class="p-2">
       <n-gi v-for="item in modList" :key="item.path" class="h-auto p-2 flex-col" :style="style">
-        <n-input v-model:value="item.name" round />
-        <n-image
-          lazy
-          preview-disabled
-          :src="item.images[0]"
-          :intersection-observer-options="{
-            root: '#app'
-          }"
-          class="rd-3"
-          @error="loadLocalImg(item)"
-        />
+        <n-input v-model:value="item.name" round size="small" class="text-center" />
+        <n-input v-model:value="item.submitter.name" round size="small" class="text-center" />
+        <div class="grow relative hover:(cursor-pointer opacity-50 transition-opacity-300)">
+          <div class="absolute h-full w-full flex-col flex-center z1 opacity-0 hover:(opacity-100 transition-opacity-300)">
+            <n-checkbox class="" />
+            <n-button text class="w-30% h-30%">
+              <icon-material-symbols-folder-open-outline preserveAspectRatio="xMaxYMax meet" width="100%" height="100%" />
+            </n-button>
+          </div>
+          <n-image
+            lazy
+            preview-disabled
+            :src="item.images[0]"
+            :intersection-observer-options="{
+              root: '#app'
+            }"
+            class="rd-3 absolute z0"
+            @error="loadLocalImg(item, $event)"
+          />
+        </div>
       </n-gi>
     </n-grid>
     <div id="img-list" class="grid gap-8 of-auto"></div>
@@ -65,10 +74,20 @@
       const mod = JSON.parse(v)
       modList.value.push({ path: k, ...mod })
     })
-    console.log(modList.value)
   }
 
-  function loadLocalImg(mod: Mod) {
-    console.log(mod.path)
+  async function loadLocalImg(mod: Mod, event: Event) {
+    const url = await invoke<string>('read_local_img', { path: mod.path })
+    const img = event.target as HTMLImageElement
+    img.src = url
   }
+
+  getModList()
 </script>
+
+<style lang="scss" scoped>
+  .n-checkbox {
+  }
+  :deep(.n-checkbox .n-checkbox-box-wrapper) {
+  }
+</style>
