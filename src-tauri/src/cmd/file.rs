@@ -9,8 +9,7 @@ use std::io::Write;
 use std::path::Path;
 use walkdir::WalkDir;
 
-#[tauri::command]
-pub async fn get_mod_list(path: String) -> HashMap<String, String> {
+pub fn get_mod_list(path: String) -> HashMap<String, String> {
     let path = Path::new(&path);
     let ini = Some(OsStr::new("ini"));
     let mut map = HashMap::new();
@@ -44,52 +43,36 @@ pub async fn get_mod_list(path: String) -> HashMap<String, String> {
     map
 }
 
-#[tauri::command]
-pub fn rename(path: String, new_path: String) -> Result<(), String> {
-    let path = check_path(&path)?;
-    fs::rename(path, new_path).map_err(|e| e.to_string())?;
+pub fn rename(path: String, new_path: String) -> Result<(), Box<dyn Error>> {
+    let path = Path::new(&path);
+    fs::rename(path, new_path)?;
     Ok(())
 }
 
-#[tauri::command]
-pub fn write_file(path: String, contents: String) -> Result<(), String> {
-    let path = check_path(&path)?;
-    let mut file = File::create(path).map_err(|e| e.to_string())?;
-    file.write_all(contents.as_bytes())
-        .map_err(|e| e.to_string())?;
+pub fn write_file(path: String, contents: String) -> Result<(), Box<dyn Error>> {
+    let path = Path::new(&path);
+    let mut file = File::create(path)?;
+    file.write_all(contents.as_bytes())?;
     Ok(())
 }
 
-#[tauri::command]
-pub fn read_local_img(path: String) -> Result<String, ()> {
+pub fn read_local_img(path: String) -> Result<String, Box<dyn Error>> {
     let exts: Vec<&str> = vec!["png", "jpg", "jpeg"];
     let path = Path::new(&path);
     let mut contents = Vec::new();
-    let result = || -> Result<String, Box<dyn Error>> {
-        let dir = fs::read_dir(path)?;
-        for entry in dir {
-            let path = entry?.path();
-            if !path.is_file() {
-                continue;
-            }
-            let extension = path.extension().ok_or("")?.to_str().ok_or("")?;
-            if exts.contains(&extension) {
-                let mut file = File::open(&path)?;
-                file.read_to_end(&mut contents)?;
-                return Ok("data:image/".to_string()
-                    + &extension
-                    + ";base64,"
-                    + &encode(&contents));
-            }
-        }
-        return Error();
-    };
-}
 
-fn check_path(path: &String) -> Result<&Path, String> {
-    let path = Path::new(path);
-    if !path.exists() {
-        return Err("File doesn't exist".to_string());
+    let dir = fs::read_dir(path)?;
+    for entry in dir {
+        let path = entry?.path();
+        if !path.is_file() {
+            continue;
+        }
+        let extension = path.extension().ok_or("")?.to_str().ok_or("")?;
+        if exts.contains(&extension) {
+            let mut file = File::open(&path)?;
+            file.read_to_end(&mut contents)?;
+            return Ok("data:image/".to_string() + &extension + ";base64," + &encode(&contents));
+        }
     }
-    Ok(path)
+    return Err("Local_img not found".into());
 }

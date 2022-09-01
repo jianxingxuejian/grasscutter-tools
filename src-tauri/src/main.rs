@@ -3,20 +3,17 @@
     windows_subsystem = "windows"
 )]
 
-mod file;
-mod http;
-
 use tauri_plugin_store::PluginBuilder;
-
-use crate::file::{get_mod_list, rename, write_file};
-use crate::http::http;
+mod cmd;
+use crate::cmd::{get_mod_list, http, read_local_img, rename, write_file};
 
 fn main() {
     tauri::Builder::default()
         .plugin(PluginBuilder::default().build())
         .invoke_handler(tauri::generate_handler![
-            http,
             get_mod_list,
+            http,
+            read_local_img,
             rename,
             write_file
         ])
