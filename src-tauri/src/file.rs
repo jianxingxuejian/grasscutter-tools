@@ -1,4 +1,6 @@
+use base64::encode;
 use std::collections::HashMap;
+use std::error::Error;
 use std::ffi::OsStr;
 use std::fs;
 use std::fs::File;
@@ -52,10 +54,36 @@ pub fn rename(path: String, new_path: String) -> Result<(), String> {
 #[tauri::command]
 pub fn write_file(path: String, contents: String) -> Result<(), String> {
     let path = check_path(&path)?;
-    let file = File::create(path).map_err(|e| e.to_string())?;
+    let mut file = File::create(path).map_err(|e| e.to_string())?;
     file.write_all(contents.as_bytes())
         .map_err(|e| e.to_string())?;
     Ok(())
+}
+
+#[tauri::command]
+pub fn read_local_img(path: String) -> Result<String, ()> {
+    let exts: Vec<&str> = vec!["png", "jpg", "jpeg"];
+    let path = Path::new(&path);
+    let mut contents = Vec::new();
+    let result = || -> Result<String, Box<dyn Error>> {
+        let dir = fs::read_dir(path)?;
+        for entry in dir {
+            let path = entry?.path();
+            if !path.is_file() {
+                continue;
+            }
+            let extension = path.extension().ok_or("")?.to_str().ok_or("")?;
+            if exts.contains(&extension) {
+                let mut file = File::open(&path)?;
+                file.read_to_end(&mut contents)?;
+                return Ok("data:image/".to_string()
+                    + &extension
+                    + ";base64,"
+                    + &encode(&contents));
+            }
+        }
+        return Error();
+    };
 }
 
 fn check_path(path: &String) -> Result<&Path, String> {
