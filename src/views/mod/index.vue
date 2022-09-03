@@ -10,7 +10,7 @@
     </div>
     <setting-modal ref="settingRef" @update:mod-list="loadModList" />
     <n-grid cols="s:5 m:6 l:7 xl:8 2xl:9" responsive="screen" class="p-2">
-      <n-gi v-for="item in showList" :key="item.path" class="h-auto p-1 flex-col" :style="style">
+      <n-gi v-for="(item, index) in showList" :key="index" class="h-auto p-1 flex-col" :style="style">
         <n-input v-model:value="item.name" size="small" class="text-center" @change="writeFile(item)" />
         <n-input v-model:value="item.submitter.name" size="small" class="text-center" @change="writeFile(item)" />
         <div class="grow relative hover:(cursor-pointer opacity-50 transition-opacity-300)">
@@ -92,6 +92,7 @@
   }
 
   async function loadLocalImg(mod: Mod, event: Event) {
+    if (/(http|https):\/\/([\w.]+\/?)\S*/.test(mod.images[0])) return
     const url = await read_local_img(mod.path)
     const img = event.target as HTMLImageElement
     img.src = url
