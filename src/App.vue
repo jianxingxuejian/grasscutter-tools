@@ -9,7 +9,7 @@
 <script setup lang="ts">
   import { useEventListener } from '@vueuse/core'
   import { zhCN, enUS, dateZhCN, dateEnUS, lightTheme, darkTheme } from 'naive-ui'
-  import { useAppStore, useSettingStore } from '@/store'
+  import { useAppStore, useSettingStore } from '@/stores'
 
   const appStore = useAppStore()
   const settingStore = useSettingStore()

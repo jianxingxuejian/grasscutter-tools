@@ -1,16 +1,18 @@
 interface Setting {
-  server: Server
+  server: {
+    protocol: 'http' | 'https'
+    ip: string
+    username: string
+  }
   token: string
   admin_token: string
   locale: 'zh-CN' | 'en-US'
   theme: 'light' | 'dark'
-  mod_path: string
-}
-
-interface Server {
-  protocol: 'http' | 'https'
-  ip: string
-  username: string
+  mod: {
+    path: string
+    width: number
+    height: number
+  }
 }
 
 type LocaleModule = Record<string, { default: unknown }>

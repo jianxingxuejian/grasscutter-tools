@@ -12,21 +12,32 @@ export const useSettingStore = defineStore('setting-store', {
     admin_token: '',
     locale: 'zh-CN',
     theme: 'light',
-    mod_path: ''
+    mod: {
+      path: '',
+      width: 9,
+      height: 16
+    }
   }),
   getters: {
     getServer: state => `${state.server.protocol}://${state.server.ip}`,
     getModPath: state => {
-      if (state.mod_path) {
-        const path = state.mod_path.replace(/\\/g, '/')
-        return path.substring(0, path.lastIndexOf('/') + 1) + 'Mods/'
+      if (state.mod.path) {
+        const path = state.mod.path.replace(/\\/g, '/')
+        return path.slice(0, path.lastIndexOf('/') + 1) + 'Mods/'
       }
     }
   },
   actions: {
     initSettings(settings: NullablePartial<Setting>) {
       this.$patch(state => {
-        Object.assign(state, settings)
+        let key: keyof Setting
+        for (key in settings) {
+          const value = settings[key]
+          if (value) {
+            //@ts-ignore
+            state[key] = value
+          }
+        }
       })
     },
     async updateServer() {
@@ -54,8 +65,8 @@ export const useSettingStore = defineStore('setting-store', {
       }
     },
     async updateModPath(modPath: string) {
-      this.mod_path = modPath
-      await setSetting('mod_path', this.mod_path)
+      this.mod.path = modPath
+      await setSetting('mod', this.mod)
     }
   }
 })

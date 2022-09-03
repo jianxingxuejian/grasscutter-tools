@@ -5,9 +5,11 @@ const routes: Route.Config = {
   name: 'artifact',
   redirect: '/artifact/index',
   component: () => import('@/layout/index.vue'),
-  icon: IconCustomArtifact,
-  sort: 2,
-  isRoot: true,
+  meta: {
+    sort: 2,
+    isRoot: true,
+    icon: IconCustomArtifact
+  },
   children: [
     {
       path: 'index',

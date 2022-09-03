@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     IconIconParkTwotoneUnlock: typeof import('~icons/icon-park-twotone/unlock')['default']
+    IconIcOutlineSettings: typeof import('~icons/ic/outline-settings')['default']
     IconIonLanguage: typeof import('~icons/ion/language')['default']
     IconLineMdAccountAdd: typeof import('~icons/line-md/account-add')['default']
     IconLineMdChevronSmallTripleLeft: typeof import('~icons/line-md/chevron-small-triple-left')['default']
@@ -24,6 +25,8 @@ declare module '@vue/runtime-core' {
     IconLineMdSunRisingLoop: typeof import('~icons/line-md/sun-rising-loop')['default']
     IconMaterialSymbolsFolderOpenOutline: typeof import('~icons/material-symbols/folder-open-outline')['default']
     MyButton: typeof import('./../components/MyButton.vue')['default']
+    MyCheckbox: typeof import('./../components/MyCheckbox.vue')['default']
+    MyCheckBox: typeof import('./../components/MyCheckBox.vue')['default']
     MyDivider: typeof import('./../components/MyDivider.vue')['default']
     MyInputGroup: typeof import('./../components/MyInputGroup.vue')['default']
     MySelect: typeof import('./../components/MySelect.vue')['default']
@@ -34,6 +37,7 @@ declare module '@vue/runtime-core' {
     NCascader: typeof import('naive-ui')['NCascader']
     NCheckbox: typeof import('naive-ui')['NCheckbox']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
+    NDialog: typeof import('naive-ui')['NDialog']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
     NDivider: typeof import('naive-ui')['NDivider']
     NForm: typeof import('naive-ui')['NForm']
@@ -56,6 +60,7 @@ declare module '@vue/runtime-core' {
     NLoadingBarProvider: typeof import('naive-ui')['NLoadingBarProvider']
     NMenu: typeof import('naive-ui')['NMenu']
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
+    NModal: typeof import('naive-ui')['NModal']
     NNotificationProvider: typeof import('naive-ui')['NNotificationProvider']
     NPopconfirm: typeof import('naive-ui')['NPopconfirm']
     NPopover: typeof import('naive-ui')['NPopover']

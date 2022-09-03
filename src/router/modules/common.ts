@@ -3,9 +3,11 @@ const routes: Route.Config = {
   name: 'common',
   redirect: '/common/index',
   component: () => import('@/layout/index.vue'),
-  icon: 'material-symbols:dashboard-customize-outline',
-  sort: 1,
-  isRoot: true,
+  meta: {
+    sort: 1,
+    isRoot: true,
+    icon: 'material-symbols:dashboard-customize-outline'
+  },
   children: [
     {
       path: 'index',

@@ -48,7 +48,7 @@
         <span class="text-4">{{ t('t14') }}</span>
         <div class="flex">
           <n-cascader v-model:value="weather" filterable expand-trigger="hover" check-strategy="child" :options="weatherOptions" />
-          <my-button :text="t('t10')" @click="handleWeatherUpdate" />
+          <my-button :text="t('t10')" @click-async="handleWeatherUpdate" />
         </div>
         <my-switch v-model="data.lockWeather" :text="t('t15')" command="prop is_weather_locked" />
         <my-switch v-model="data.lockGameTime" :text="t('t16')" command="prop is_game_time_locked" />

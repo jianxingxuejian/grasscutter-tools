@@ -1,5 +1,5 @@
 import { invoke } from '@tauri-apps/api/tauri'
-import { useSettingStore } from '@/store'
+import { useSettingStore } from '@/stores'
 import { showErrorMsg } from '@/utils'
 import i18n from '@/i18n'
 
@@ -16,6 +16,7 @@ function request() {
   }
 
   async function request<T>(method: Method, api: string, params?: any) {
+    console.log('test')
     try {
       const { getServer, locale, token, admin_token } = settingStore
       const headers = {

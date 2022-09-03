@@ -28,10 +28,6 @@ export default defineConfig(env => {
         }
       }
     },
-    build: {
-      outDir: 'dist',
-      brotliSize: false,
-      sourcemap: false
-    }
+    build: {}
   }
 })

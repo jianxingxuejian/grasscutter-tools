@@ -9,7 +9,7 @@
       :style="{ width: max.toString().length + 5 + 'rem' }"
       @update:value="$emit('update:modelValue', $event)"
     />
-    <my-button :text="text" :disabled="disable" @click="onClick" />
+    <my-button :text="text" :disabled="disable" @click-async="onClick" />
   </n-input-group>
 </template>
 

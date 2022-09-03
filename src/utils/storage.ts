@@ -1,5 +1,5 @@
 import { Store } from 'tauri-plugin-store-api'
-import { useSettingStore } from '@/store'
+import { useSettingStore } from '@/stores'
 
 const store = new Store('.settings')
 
@@ -47,15 +47,15 @@ export async function clear() {
 export async function loadSetting() {
   try {
     await store.load()
-    let server = await getSetting<Setting['server']>('server')
-    let token = await getSetting<Setting['token']>('token')
-    let admin_token = await getSetting<Setting['admin_token']>('admin_token')
-    let locale = await getSetting<Setting['locale']>('locale')
-    let theme = await getSetting<Setting['theme']>('theme')
-    const mod_path = await getSetting<Setting['mod_path']>('mod_path')
+    const server = await getSetting<Setting['server']>('server')
+    const token = await getSetting<Setting['token']>('token')
+    const admin_token = await getSetting<Setting['admin_token']>('admin_token')
+    const locale = await getSetting<Setting['locale']>('locale')
+    const theme = await getSetting<Setting['theme']>('theme')
+    const mod = await getSetting<Setting['mod']>('mod')
 
     const settingStore = useSettingStore()
-    settingStore.initSettings({ server, token, admin_token, locale, theme, mod_path })
+    settingStore.initSettings({ server, token, admin_token, locale, theme, mod })
   } catch {
     window.$message?.error('load settings failed')
   }

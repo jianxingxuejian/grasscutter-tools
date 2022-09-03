@@ -1,5 +1,5 @@
 import request from '@/http/request'
-import { useSettingStore } from '@/store'
+import { useSettingStore } from '@/stores'
 import router from '@/router'
 import i18n from '@/i18n'
 

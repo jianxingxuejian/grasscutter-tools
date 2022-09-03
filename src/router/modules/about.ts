@@ -3,9 +3,11 @@ const routes: Route.Config = {
   name: 'about',
   redirect: '/about/index',
   component: () => import('@/layout/index.vue'),
-  icon: 'icon-park-outline:info',
-  sort: 6,
-  isRoot: true,
+  meta: {
+    sort: 6,
+    isRoot: true,
+    icon: 'icon-park-outline:info'
+  },
   children: [
     {
       path: 'index',

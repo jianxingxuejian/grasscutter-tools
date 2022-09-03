@@ -3,9 +3,11 @@ const routes: Route.Config = {
   name: 'mod',
   redirect: '/mod/index',
   component: () => import('@/layout/index.vue'),
-  icon: 'mdi:account-edit-outline',
-  sort: 4,
-  isRoot: true,
+  meta: {
+    sort: 4,
+    isRoot: true,
+    icon: 'mdi:account-edit-outline'
+  },
   children: [
     {
       path: 'index',

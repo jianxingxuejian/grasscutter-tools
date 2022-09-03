@@ -89,7 +89,7 @@
   import type { FormInst, FormItemInst, FormRules, FormItemRule } from 'naive-ui'
   import { useI18n } from 'vue-i18n'
   import { useThrottleFn } from '@vueuse/core'
-  import { useSettingStore } from '@/store'
+  import { useSettingStore } from '@/stores'
   import { mailVerifyCode, playerAuthByVerifyCode, playerAuthByPassword, adminAuth, adminCreateAccount, adminCommand } from '@/http'
   import { testIP } from '@/utils'
 

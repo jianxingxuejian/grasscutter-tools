@@ -12,7 +12,7 @@
   const menus = computed(() => transformRouteToMenu(modules))
 
   /** 路由转换为菜单 */
-  function transformRouteToMenu(routes: Route.RecordRaw[], parentPath?: string): Route.Menu[] {
+  function transformRouteToMenu(routes: Route.RecordRaw[]): Route.Menu[] {
     const menus: Route.Menu[] = []
     routes.forEach(route => {
       const { name } = route
@@ -24,7 +24,6 @@
         const menu: Route.Menu = {
           key: child.name,
           label,
-          path: route.path + '/' + child.path,
           icon: route.meta?.icon || child.meta?.icon
         }
         menus.push(menu)
@@ -32,9 +31,8 @@
         const menu: Route.Menu = {
           key: route.name,
           label,
-          path: parentPath ? parentPath + '/' + route.path : route.path,
           icon: route.meta?.icon,
-          children: route.children && transformRouteToMenu(route.children, route.path)
+          children: route.children && transformRouteToMenu(route.children)
         }
         menus.push(menu)
       }
@@ -45,12 +43,10 @@
   const router = useRouter()
   const route = useRoute()
 
-  // 根据路由找到当前菜单项
-  const activeKey = computed(() => {
-    return route.name as string
-  })
+  const activeKey = computed(() => route.name as string)
 
   function handleUpdateMenu(_key: string, item: MenuOption) {
-    router.push(item.path as string)
+    const menuItem = item as Route.Menu
+    router.push({ name: menuItem.key })
   }
 </script>

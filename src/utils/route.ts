@@ -14,17 +14,18 @@ export function transformModeleToRoute(module: Route.Module): Route.RecordRaw[] 
 }
 
 /** 路由配置转换为路由记录 */
-function transformConfigToRoute(configs: Route.Config[]): Route.RecordRaw[] {
+function transformConfigToRoute(configs: Route.Config[] | Optional<Route.Config, 'meta'>[]): Route.RecordRaw[] {
   const routes: Route.RecordRaw[] = []
-  configs.sort((next, pre) => Number(next?.sort) - Number(pre?.sort))
+  configs.sort((next, pre) => Number(next?.meta?.sort) - Number(pre?.meta?.sort))
   configs.forEach(item => {
-    const { name, path, redirect, component, icon, isRoot, children } = item
+    const { meta, children, ...base } = item
+    const { icon, ...other } = meta || {}
     const route: Route.RecordRaw = {
-      name,
-      path,
-      redirect,
-      component,
-      meta: { icon: transformIcon(icon), isRoot },
+      ...base,
+      meta: {
+        icon: transformIcon(icon),
+        ...other
+      },
       children: children && transformConfigToRoute(children)
     }
     routes.push(route)
@@ -33,7 +34,7 @@ function transformConfigToRoute(configs: Route.Config[]): Route.RecordRaw[] {
 }
 
 /** 转换图标 */
-function transformIcon(icon?: Route.Config['icon'], size?: number | string, color?: string): undefined | (() => VNode) {
+function transformIcon(icon?: Route.Config['meta']['icon'], size?: number | string, color?: string): undefined | (() => VNode) {
   if (!icon) {
     return undefined
   }

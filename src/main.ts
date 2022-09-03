@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { setupStore } from './store'
+import { setupStore } from './stores'
 import { setupRouter } from './router'
 import { setupI18n } from './i18n'
 import { loadSetting } from '@/utils'

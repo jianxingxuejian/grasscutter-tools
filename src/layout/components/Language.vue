@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
-  import { useSettingStore } from '@/store'
+  import { useSettingStore } from '@/stores'
 
   const languageOptions = [
     { label: '中文', value: 'zh-CN' },

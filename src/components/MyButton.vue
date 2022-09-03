@@ -39,7 +39,7 @@
     /** 按钮文本 */
     text?: string
     /** 异步点击事件 */
-    onClickAsync?: () => Promise<void | ApiResult<null>> | undefined
+    onClickAsync?: () => Promise<void | ApiResult<null>> | void | undefined
     /** 点击事件 */
     onClick?: () => void
   }>()
@@ -81,7 +81,7 @@
 
   async function ckick() {
     if (props.onClick) {
-      await props.onClick()
+      props.onClick()
     }
     clickThrottle()
   }

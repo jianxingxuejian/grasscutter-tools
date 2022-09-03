@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-  import { useSettingStore } from '@/store'
+  import { useSettingStore } from '@/stores'
 
   const settingStore = useSettingStore()
   const { updateTheme } = settingStore
