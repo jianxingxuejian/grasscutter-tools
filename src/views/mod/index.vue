@@ -1,49 +1,61 @@
 <template>
-  <div>
+  <div class="flex-col">
     <div class="flex-center">
       <n-space>
-        <n-input v-model:value="keyword" @input="filterAndSort" />
+        <n-input v-model:value="keyword" clearable @input="filterAndSort" />
         <my-button @click="settingRef?.show">
           <icon-ic-outline-settings />
         </my-button>
+        <my-button @click="filterAndSort">
+          <icon-line-md-rotate-270 :class="{ 'animate-spin': loadingChange }" />
+        </my-button>
       </n-space>
+      <setting-modal ref="settingRef" @update:mod-list="loadModList" />
     </div>
-    <setting-modal ref="settingRef" @update:mod-list="loadModList" />
-    <n-grid cols="s:5 m:6 l:7 xl:8 2xl:9" responsive="screen" class="p-2">
-      <n-gi v-for="(item, index) in showList" :key="index" class="h-auto p-1 flex-col" :style="style">
-        <n-input v-model:value="item.name" size="small" class="text-center" @change="writeFile(item)" />
-        <n-input v-model:value="item.submitter.name" size="small" class="text-center" @change="writeFile(item)" />
-        <div class="grow relative hover:(cursor-pointer opacity-50 transition-opacity-300)">
-          <div class="absolute h-full w-full flex-col flex-center z1 opacity-0 hover:(opacity-100 transition-opacity-300)">
-            <n-checkbox
-              :checked="item.enabled"
-              class="w-25% h-auto aspect-ratio-1"
-              @click="handleCheck(item)"
-              @mouseleave="filterAndSort"
-            />
-            <n-button text class="w-30% h-30%">
-              <icon-material-symbols-folder-open-outline
-                preserveAspectRatio="xMaxYMax meet"
-                width="100%"
-                height="100%"
-                @click="open_dir(item.path)"
-              />
-            </n-button>
-          </div>
-          <n-image
-            lazy
-            preview-disabled
-            object-fit="contain"
-            :src="item.images[0]"
-            :intersection-observer-options="{
-              root: '#app'
-            }"
-            class="rd-1 absolute z0 h-full w-full justify-center"
-            @error="loadLocalImg(item, $event)"
+    <div class="of-auto">
+      <n-grid cols="s:5 m:6 l:7 xl:8 2xl:9" responsive="screen" class="px-4">
+        <n-gi v-for="(item, index) in showList" :key="index" class="h-auto p-1 flex-col" :style="style">
+          <n-input
+            v-show="settingStore.mod.showName"
+            v-model:value="item.name"
+            size="small"
+            class="text-center"
+            @change="write_file(item)"
           />
-        </div>
-      </n-gi>
-    </n-grid>
+          <n-input
+            v-show="settingStore.mod.showAuthor"
+            v-model:value="item.submitter.name"
+            size="small"
+            class="text-center"
+            @change="write_file(item)"
+          />
+          <div class="grow relative hover:(cursor-pointer opacity-50 transition-opacity-300)">
+            <div class="absolute h-full w-full flex-col flex-center z1 opacity-0 hover:(opacity-100 transition-opacity-300)">
+              <n-checkbox :checked="item.enabled" class="w-25% h-auto aspect-ratio-1" @click="handleCheck(item)" />
+              <n-button text class="w-30% h-30%">
+                <icon-material-symbols-folder-open-outline
+                  preserveAspectRatio="xMaxYMax meet"
+                  width="100%"
+                  height="100%"
+                  @click="open_dir(item.path)"
+                />
+              </n-button>
+            </div>
+            <n-image
+              lazy
+              preview-disabled
+              object-fit="contain"
+              :src="item.images[0]"
+              :intersection-observer-options="{
+                root: '#app'
+              }"
+              class="rd-1 absolute z0 h-full w-full justify-center p-1 border-slate-200 border-width-1"
+              @error="loadLocalImg(item, $event)"
+            />
+          </div>
+        </n-gi>
+      </n-grid>
+    </div>
   </div>
 </template>
 
@@ -62,14 +74,11 @@
 
   const style = computed(() => `aspect-ratio: ${settingStore.mod.width}/${settingStore.mod.height}`)
 
-  async function writeFile(mod: Mod) {
-    await write_file(mod)
-    filterAndSort()
-  }
-
+  const loadingChange = ref(false)
   function filterAndSort() {
+    loadingChange.value = true
     showList.value = modList.value
-      .filter(item => item.name && (item.name.includes(keyword.value) || item.submitter.name.includes(keyword.value)))
+      .filter(item => item.name.includes(keyword.value) || item.submitter.name.includes(keyword.value))
       .sort((next, pre) => {
         if (next.enabled && !pre.enabled) {
           return -1
@@ -78,6 +87,9 @@
         }
         return 0
       })
+    setTimeout(() => {
+      loadingChange.value = false
+    }, 1000)
   }
 
   async function handleCheck(mod: Mod) {

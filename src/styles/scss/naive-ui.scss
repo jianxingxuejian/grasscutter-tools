@@ -12,6 +12,15 @@
   padding: 0 2rem 1.5rem 2rem;
 }
 
+.n-input .n-input__suffix {
+  margin-left: 0;
+}
+
+.n-input .n-input__suffix .n-base-icon,
+.n-input .n-input__prefix .n-base-icon {
+  font-size: 1rem;
+}
+
 .n-menu-item-content__icon {
   width: auto !important;
   font-size: 2rem !important;

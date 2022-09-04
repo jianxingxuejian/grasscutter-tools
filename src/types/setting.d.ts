@@ -12,6 +12,8 @@ interface Setting {
     path: string
     width: number
     height: number
+    showName: boolean
+    showAuthor: boolean
   }
 }
 

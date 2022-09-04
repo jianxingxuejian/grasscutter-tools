@@ -15,7 +15,9 @@ export const useSettingStore = defineStore('setting-store', {
     mod: {
       path: '',
       width: 9,
-      height: 16
+      height: 16,
+      showName: true,
+      showAuthor: true
     }
   }),
   getters: {

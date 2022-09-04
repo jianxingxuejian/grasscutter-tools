@@ -14,8 +14,14 @@
         <span>{{ t('t2') }}</span>
         <n-input-number v-model:value="settingStore.mod.width" class="w-50" />
         <n-input-number v-model:value="settingStore.mod.height" class="w-50" />
-        <n-button type="success" @click="updateModPath()">{{ t('b2') }}</n-button>
       </n-space>
+      <n-space>
+        <span>{{ t('t3') }}</span>
+        <n-switch v-model:value="settingStore.mod.showName" />
+        <span>{{ t('t4') }}</span>
+        <n-switch v-model:value="settingStore.mod.showAuthor" />
+      </n-space>
+      <n-button type="success" @click="updateModPath()">{{ t('b2') }}</n-button>
     </div>
   </n-modal>
 </template>
@@ -73,6 +79,8 @@
 {
   "t1": "Mod设置",
   "t2": "图片长宽比",
+  "t3": "显示名字",
+  "t4": "显示作者",
   "b1": "选择",
   "b2": "保存",
   "tt1": "请选择你的3DMigoto Loader.exe"
@@ -83,6 +91,8 @@
 {
   "t1": "Mod Setting",
   "t2": "Image Aspect Ratio",
+  "t3": "show name",
+  "t4": "show author",
   "b1": "select",
   "b2": "save",
   "tt1": "Please select your 3DMigoto Loader.exe"
