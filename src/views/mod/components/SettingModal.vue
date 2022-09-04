@@ -55,6 +55,20 @@
   })
 </script>
 
+<style lang="scss" scoped>
+  .n-base-close {
+    font-size: 2rem;
+  }
+  .n-base-close::before {
+    height: 2rem;
+    width: 2rem;
+  }
+  .n-base-close.n-base-close--absolute {
+    height: 2rem;
+    width: 2rem;
+  }
+</style>
+
 <i18n locale="zh-CN" lang="json">
 {
   "t1": "Mod设置",
