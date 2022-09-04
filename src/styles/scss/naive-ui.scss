@@ -3,10 +3,31 @@
   text-align: center;
 }
 
+.n-card > .n-card-header {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+.n-card > .n-card__content {
+  padding: 0 2rem 1.5rem 2rem;
+}
+
+.n-base-close {
+  font-size: 2rem;
+}
+.n-base-close::before {
+  height: 2rem;
+  width: 2rem;
+}
+.n-base-close.n-base-close--absolute {
+  height: 2rem;
+  width: 2rem;
+}
+
 .n-menu-item-content__icon {
   width: auto !important;
   font-size: 2rem !important;
-  margin-right: 0.4rem !important;
+  margin-right: 0.3rem !important;
 }
 
 .n-base-selection-tag-wrapper {

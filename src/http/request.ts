@@ -16,7 +16,6 @@ function request() {
   }
 
   async function request<T>(method: Method, api: string, params?: any) {
-    console.log('test')
     try {
       const { getServer, locale, token, admin_token } = settingStore
       const headers = {

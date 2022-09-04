@@ -15,7 +15,12 @@
         <n-input v-model:value="item.submitter.name" size="small" class="text-center" @change="writeFile(item)" />
         <div class="grow relative hover:(cursor-pointer opacity-50 transition-opacity-300)">
           <div class="absolute h-full w-full flex-col flex-center z1 opacity-0 hover:(opacity-100 transition-opacity-300)">
-            <n-checkbox :checked="item.enabled" class="w-25% h-auto aspect-ratio-1" @click="handleCheck(item)" />
+            <n-checkbox
+              :checked="item.enabled"
+              class="w-25% h-auto aspect-ratio-1"
+              @click="handleCheck(item)"
+              @mouseleave="filterAndSort"
+            />
             <n-button text class="w-30% h-30%">
               <icon-material-symbols-folder-open-outline
                 preserveAspectRatio="xMaxYMax meet"
@@ -55,9 +60,7 @@
   const showList = ref<Mod[]>([])
   const keyword = ref('')
 
-  const width = ref(9)
-  const height = ref(16)
-  const style = computed(() => `aspect-ratio: ${width.value}/${height.value}`)
+  const style = computed(() => `aspect-ratio: ${settingStore.mod.width}/${settingStore.mod.height}`)
 
   async function writeFile(mod: Mod) {
     await write_file(mod)

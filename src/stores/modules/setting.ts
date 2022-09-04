@@ -64,8 +64,10 @@ export const useSettingStore = defineStore('setting-store', {
         await setSetting('theme', 'light')
       }
     },
-    async updateModPath(modPath: string) {
-      this.mod.path = modPath
+    async updateModPath(path?: string) {
+      if (path) {
+        this.mod.path = path
+      }
       await setSetting('mod', this.mod)
     }
   }
