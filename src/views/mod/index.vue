@@ -38,7 +38,7 @@
             :intersection-observer-options="{
               root: '#app'
             }"
-            class="rd-1 absolute z0 h-full w-full"
+            class="rd-1 absolute z0 h-full w-full justify-center"
             @error="loadLocalImg(item, $event)"
           />
         </div>
