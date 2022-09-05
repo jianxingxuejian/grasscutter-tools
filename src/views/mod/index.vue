@@ -1,7 +1,7 @@
 <template>
   <div class="flex-col">
     <div class="flex-center">
-      <n-space>
+      <n-space class="items-center">
         <n-input v-model:value="keyword" clearable />
         <my-button @click="settingRef?.show">
           <icon-ic-outline-settings />
@@ -9,6 +9,7 @@
         <my-button @click="listSort">
           <icon-line-md-rotate-270 :class="{ 'animate-spin': loadingChange }" />
         </my-button>
+        <span>{{ enabledNum + '/' + modList.length }}</span>
       </n-space>
       <setting-modal ref="settingRef" @update:mod-list="loadModList" />
     </div>
@@ -73,6 +74,7 @@
     modList.value.filter(item => item.name.includes(keyword.value) || item.submitter.name.includes(keyword.value))
   )
   const keyword = ref('')
+  const enabledNum = computed(() => modList.value.filter(item => item.enabled).length)
 
   const style = computed(() => `aspect-ratio: ${settingStore.mod.width}/${settingStore.mod.height}`)
 
