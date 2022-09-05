@@ -2,11 +2,11 @@
   <div class="flex-col">
     <div class="flex-center">
       <n-space>
-        <n-input v-model:value="keyword" clearable @input="filterAndSort" />
+        <n-input v-model:value="keyword" clearable />
         <my-button @click="settingRef?.show">
           <icon-ic-outline-settings />
         </my-button>
-        <my-button @click="filterAndSort">
+        <my-button @click="listSort">
           <icon-line-md-rotate-270 :class="{ 'animate-spin': loadingChange }" />
         </my-button>
       </n-space>
@@ -45,12 +45,12 @@
               lazy
               preview-disabled
               object-fit="contain"
-              :src="item.images[0]"
+              :src="item.src"
               :intersection-observer-options="{
                 root: '#app'
               }"
               class="rd-1 absolute z0 h-full w-full justify-center p-1 border-slate-200 border-width-1"
-              @error="loadLocalImg(item, $event)"
+              @error="loadLocalImg(item)"
             />
           </div>
         </n-gi>
@@ -69,28 +69,14 @@
   const settingStore = useSettingStore()
 
   const modList = ref<Mod[]>([])
-  const showList = ref<Mod[]>([])
+  const showList = computed(() =>
+    modList.value.filter(item => item.name.includes(keyword.value) || item.submitter.name.includes(keyword.value))
+  )
   const keyword = ref('')
 
   const style = computed(() => `aspect-ratio: ${settingStore.mod.width}/${settingStore.mod.height}`)
 
   const loadingChange = ref(false)
-  function filterAndSort() {
-    loadingChange.value = true
-    showList.value = modList.value
-      .filter(item => item.name.includes(keyword.value) || item.submitter.name.includes(keyword.value))
-      .sort((next, pre) => {
-        if (next.enabled && !pre.enabled) {
-          return -1
-        } else if (next.enabled == pre.enabled) {
-          return next.name.localeCompare(pre.name, settingStore.locale)
-        }
-        return 0
-      })
-    setTimeout(() => {
-      loadingChange.value = false
-    }, 1000)
-  }
 
   async function handleCheck(mod: Mod) {
     const { enabled, path } = mod
@@ -106,23 +92,34 @@
     mod.enabled = !enabled
   }
 
-  async function loadLocalImg(mod: Mod, event: Event) {
-    if (/(http|https):\/\/([\w.]+\/?)\S*/.test(mod.images[0])) return
-    const url = await read_local_img(mod.path)
-    const img = event.target as HTMLImageElement
-    img.src = url
+  async function loadLocalImg(mod: Mod) {
+    if (/(http|https):\/\/([\w.]+\/?)\S*/.test(mod.src)) return
+    mod.src = await read_local_img(mod.path)
   }
 
   async function loadModList() {
     modList.value = []
-    showList.value = []
     try {
       modList.value = await get_mod_list(settingStore.getModPath)
-      showList.value = modList.value
-      filterAndSort()
+      listSort()
     } catch (e) {
       window.$message?.warning("didn't found mods path")
     }
+  }
+
+  function listSort() {
+    loadingChange.value = true
+    modList.value.sort((next, pre) => {
+      if (next.enabled && !pre.enabled) {
+        return -1
+      } else if (next.enabled == pre.enabled) {
+        return next.name.localeCompare(pre.name, settingStore.locale)
+      }
+      return 0
+    })
+    setTimeout(() => {
+      loadingChange.value = false
+    }, 1000)
   }
 
   loadModList()

@@ -17,7 +17,7 @@ export async function get_mod_list(path?: string) {
   const mod_list = await invoke<Record<string, string>>('get_mod_list', { path })
   Object.entries(mod_list).forEach(([k, v]) => {
     const mod = JSON.parse(v)
-    modList.push({ path: k.replace(/\\/g, '/'), enabled: !k.includes('DISABLED_'), ...mod })
+    modList.push({ path: k.replace(/\\/g, '/'), enabled: !k.includes('DISABLED_'), src: mod.images[0], ...mod })
   })
   return modList
 }
