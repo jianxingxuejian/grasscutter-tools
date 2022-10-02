@@ -4,7 +4,7 @@ import router from '@/router'
 import i18n from '@/i18n'
 
 export async function adminAuth(adminVoucher: string) {
-  return await request.get<string>('/plugin/admin/auth', { adminVoucher })
+  return await request.get<string>(`/plugin/admin/auth?adminVoucher=${adminVoucher}`)
 }
 
 export async function adminCreateAccount(params: Param.Account) {
@@ -12,11 +12,11 @@ export async function adminCreateAccount(params: Param.Account) {
 }
 
 export async function adminCommand(command: string) {
-  return await request.get('/plugin/admin/command', { command })
+  return await request.get(`/plugin/admin/command?command=${command}`)
 }
 
 export async function mailVerifyCode(username: string) {
-  return await request.get('/plugin/mail/verifyCode', { username })
+  return await request.get(`/plugin/mail/verifyCode?username=${username}`)
 }
 
 export async function playerAuthByVerifyCode(username: string, verifyCode: string) {
@@ -29,7 +29,7 @@ export async function playerAuthByPassword(username: string, password: string) {
 
 export async function playerCommand(command: string) {
   if (!checkToken()) return
-  return await request.get('/plugin/player/command', { command })
+  return await request.get(`/plugin/player/command?command=${command}`)
 }
 
 export async function levelUpAllSkill() {
