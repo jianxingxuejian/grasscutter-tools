@@ -57,7 +57,7 @@ pub fn write_file(path: String, contents: String) -> Result<(), Box<dyn Error>> 
 }
 
 pub fn read_local_img(path: String) -> Result<String, Box<dyn Error>> {
-    let exts: Vec<&str> = vec!["png", "jpg", "jpeg"];
+    let exts: Vec<&str> = vec!["png", "jpg", "jpeg", "jfif"];
     let path = Path::new(&path);
     let mut contents = Vec::new();
 
