@@ -91,10 +91,10 @@
 {
   "t1": "Mod Setting",
   "t2": "Image Aspect Ratio",
-  "t3": "show name",
-  "t4": "show author",
-  "b1": "select",
-  "b2": "save",
+  "t3": "Show Name",
+  "t4": "Show Author",
+  "b1": "Select",
+  "b2": "Save",
   "tt1": "Please select your 3DMigoto Loader.exe"
 }
 </i18n>
