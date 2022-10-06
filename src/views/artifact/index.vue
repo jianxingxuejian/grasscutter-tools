@@ -86,13 +86,15 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { groupBy, difference, remove } from 'lodash-es'
-  import { positionMainstats, substatGears, artifactInfo } from './constant'
+  import { positionMainstats, substatGears } from './constant'
   import { getImageUrl } from '@/utils'
   import { playerCommand } from '@/http'
 
-  const { t } = useI18n()
+  const { t, tm } = useI18n()
 
-  artifactInfo.forEach(item => (item.img = getImageUrl(item.img)))
+  const artifactInfo = computed(() =>
+    (tm('artifactInfo') as Message['artifactInfo']).map(item => ({ ...item, img: getImageUrl(item.img) }))
+  )
 
   /** 部位 */
   const position = ref<number>(0)
@@ -109,8 +111,8 @@
   }
 
   const artifact = reactive<Artifact>({
-    itemIds: artifactInfo[0].itemIds,
-    img: artifactInfo[0].img,
+    itemIds: artifactInfo.value[0].itemIds,
+    img: artifactInfo.value[0].img,
     mainstats: [15001, 15003, 50990, 50950, 30960],
     substats: [[], [], [], [], []],
     levels: [0, 0, 0, 0, 0]

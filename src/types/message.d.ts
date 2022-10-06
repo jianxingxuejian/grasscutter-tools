@@ -2,6 +2,13 @@ interface Message {
   route: {
     [key: string]: string
   }
+  artifactInfo: {
+    itemIds: [number, number, number, number, number]
+    name: string
+    img: string
+    description1: string
+    description2: string
+  }[]
   weather: string[]
   item: Item[]
 }
