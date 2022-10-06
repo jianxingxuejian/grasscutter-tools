@@ -3,7 +3,7 @@ interface Message {
     [key: string]: string
   }
   artifactInfo: {
-    itemIds: [number, number, number, number, number]
+    itemIds: number[]
     name: string
     img: string
     description1: string
