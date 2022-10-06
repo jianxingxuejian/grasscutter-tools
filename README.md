@@ -1,30 +1,61 @@
-![](https://cdn.jsdelivr.net/gh/jianxingxuejian/grasscutter-tools/img/101.png)
-![](https://cdn.jsdelivr.net/gh/jianxingxuejian/grasscutter-tools/img/102.png)
-![](https://cdn.jsdelivr.net/gh/jianxingxuejian/grasscutter-tools/img/103.png)
-![](https://cdn.jsdelivr.net/gh/jianxingxuejian/grasscutter-tools/img/104.png)
-![](https://cdn.jsdelivr.net/gh/jianxingxuejian/grasscutter-tools/img/105.png)
+<h1 align="center">Grasscutter Tools</h1>
+
+English | [简体中文](README_zh-CN.md)
+
+![](img/a001.png)
+![](img/a101.png)
+![](img/a201.png)
+![](img/a301.png)
+![](img/a401.png)
+
+[![GitHub license](https://img.shields.io/github/license/jianxingxuejian/grasscutter-tools)](https://github.com/jianxingxuejian/grasscutter-tools/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/jianxingxuejian/grasscutter-tools)](https://github.com/jianxingxuejian/grasscutter-tools/stargazers)
+[![Github All Releases](https://img.shields.io/github/downloads/jianxingxuejian/grasscutter-tools/total.svg)](https://github.com/jianxingxuejian/grasscutter-tools/releases)
+[![Github All Releases](https://img.shields.io/github/v/release/jianxingxuejian/grasscutter-tools)](https://github.com/jianxingxuejian/grasscutter-tools/releases)
 
 ## Features
 
-1. Common Command(常用指令)
-2. Create Artifacts(快速生成圣遗物)
-3. Item Category Search(物品分类检索)
-4. Manage your mods. It’s compatible with **[Cultivation](https://github.com/Grasscutters/Cultivation)** and better support for other mods not in gamebanana. It will recursively traverse the folder and generate the modinfo.json file, and when there is no online image, it will try to read any of the local images under the folder. You can edit the mod info easily.(管理本地 mod，兼容 Cultivation 并且对不在 gamebanana 网站的 mod 提供更好的支持，它会递归遍历文件夹，生成 modinfo.json 文件，当没有在线图片时，会尝试读取文件夹下的任意一张本地图片。可以快速修改 mod 信息)
+- [x] Common Command
+- [x] Create Artifacts
+- [x] Item Category Search
+- [x] Manage mods
+- [x] Admin Console
+- [ ] Automatic Updates
+- [ ] Launche
+- [ ] Quest List
 
 ## Usage
 
-Use with the [plugin](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.4.0).
+Need to Server use with the [plugin](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.4.0).
 
 Before you use the client, you should complete the easy certification first(send a verification code via in-game mailbox to your game to complete the verification within 1 minute or verify with the password of the game account). If you are the server owner, you can use the Server-Console on it after completing the admin certification.
 
 If you have any questions or want to add features, please open an issue.
 
-Build with Tauri, front-end tech stack: Vue3 + Vite3 + Typescript + Naive-ui + Unocss + Vue I18n
+## Download
 
-配合[这个插件](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.4.0)使用。
+Windows platform download the msi file，mac platform download the dmg file，linux platform download the deb file，Please [go here](https://github.com/jianxingxuejian/grasscutter-tools/releases) to download the latest version.
 
-使用客户端之前需要完成简单的账号认证(向你的游戏发送验证码邮件然后在 1 分钟之内完成验证或者用该游戏账号的密码验证)。服务端拥有者可以完成管理员认证然后使用管理员控制台，效果与服务器控制台相同。
+## Development
 
-有什么疑问或者想添加功能请提 issue。
+Build with Tauri, front-end tech stack: Vue3 + Vite3 + Typescript + Naive-ui + Unocss + Vue I18n.
 
-使用 Tauri 构建，前端技术栈：Vue3 + Vite3 + Typescript + Naive-ui + Unocss + Vue I18n
+**Node** and **Rust** environments are required for development, and package manager use **pnpm**.
+
+Install dependencies：
+
+```shell
+pnpm install
+```
+
+Run：
+
+```shell
+pnpm tauri dev
+```
+
+Please go to the [Tauri](https://github.com/tauri-apps/tauri) project for more information.
+
+## Contribute
+
+Contributions of any kind are welcome！
