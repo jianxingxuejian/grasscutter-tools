@@ -12,7 +12,7 @@ export const artifactIds = [
     img: 'artifact/chensha_120.png'
   },
   {
-    itemIds: [98443, 98423, 98453, 98514, 98534],
+    itemIds: [98544, 98524, 98554, 98514, 98534],
     img: 'artifact/yuxiang_120.png'
   },
   {
@@ -32,7 +32,7 @@ export const artifactIds = [
     img: 'artifact/zhuiyi_120.png'
   },
   {
-    itemIds: [91444, 91424, 91454, 91414, 91434],
+    itemIds: [91544, 91524, 91554, 91514, 91534],
     img: 'artifact/qianyan_120.png'
   },
   {
