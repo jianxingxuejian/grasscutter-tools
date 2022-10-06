@@ -6,16 +6,16 @@
 
 ## Features
 
-1. common command(常用指令)
-2. generater artifact quicklly(快速生成圣遗物)
-3. item category search(物品分类检索)
-4. manage your mods, it’s compatible with **[Cultivation](https://github.com/Grasscutters/Cultivation)** and better support for other mods not in gamebanana, it will recursively traverse the folder and generate the modinfo.json file, and when there is no online image, it will try to read any of the local images under the folder. you can edit the mod info easily(管理本地 mod，兼容 Cultivation 并且对不在 gamebanana 网站的 mod 提供更好的支持，它会递归遍历文件夹，生成 modinfo.json 文件，当没有在线图片时，会尝试读取文件夹下的任意一张本地图片。可以快速修改 mod 信息)
+1. Common Command(常用指令)
+2. Create Artifacts(快速生成圣遗物)
+3. Item Category Search(物品分类检索)
+4. Manage your mods. It’s compatible with **[Cultivation](https://github.com/Grasscutters/Cultivation)** and better support for other mods not in gamebanana. It will recursively traverse the folder and generate the modinfo.json file, and when there is no online image, it will try to read any of the local images under the folder. You can edit the mod info easily.(管理本地 mod，兼容 Cultivation 并且对不在 gamebanana 网站的 mod 提供更好的支持，它会递归遍历文件夹，生成 modinfo.json 文件，当没有在线图片时，会尝试读取文件夹下的任意一张本地图片。可以快速修改 mod 信息)
 
 ## Usage
 
 Use with the [plugin](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.4.0).
 
-before use the clinet, you should complete the easy certification first(send a verification code email to your game to complete the verification within 1 minute or verify with the password of the game account). If you are the server owner, you can use sever-console on it after complete the admin certification.
+Before you use the client, you should complete the easy certification first(send a verification code via in-game mailbox to your game to complete the verification within 1 minute or verify with the password of the game account). If you are the server owner, you can use the Server-Console on it after completing the admin certification.
 
 If you have any questions or want to add features, please open an issue.
 

@@ -66,9 +66,9 @@
 
 <i18n locale="en-US" lang="json">
 {
-  "t1": "num",
-  "t2": "lv",
-  "t3": "refinement",
+  "t1": "Num",
+  "t2": "Lv",
+  "t3": "Refinement",
   "b1": "Execute"
 }
 </i18n>
