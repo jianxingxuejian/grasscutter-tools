@@ -7,6 +7,7 @@
         filterable
         expand-trigger="hover"
         check-strategy="child"
+        :placeholder="t('t4')"
         :options="itemOptions"
         class="grow"
       />
@@ -60,6 +61,7 @@
   "t1": "数量",
   "t2": "等级",
   "t3": "精炼",
+  "t4": "输入关键字搜索",
   "b1": "执行"
 }
 </i18n>
@@ -69,6 +71,7 @@
   "t1": "Num",
   "t2": "Lv",
   "t3": "Refinement",
+  "t4": "Enter a keyword to search",
   "b1": "Execute"
 }
 </i18n>
