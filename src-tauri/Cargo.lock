@@ -55,7 +55,7 @@ checksum = "98161a4e3e2184da77bb14f02184cdd111e83bbbcc9979dfee3c44b9a85f5602"
 
 [[package]]
 name = "app"
-version = "1.4.0"
+version = "1.4.1"
 dependencies = [
  "base64",
  "reqwest",

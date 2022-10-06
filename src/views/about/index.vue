@@ -1,7 +1,7 @@
 <template>
   <div class="flex-center flex-col gap-5 text-5">
     <span>{{ t('t1') }}null</span>
-    <span>{{ t('t2') }}1.4.0</span>
+    <span>{{ t('t2') }}1.4.1</span>
     <span>{{ t('t3') }}1.4.0</span>
     <div>
       <span>{{ t('t4') }}</span>
