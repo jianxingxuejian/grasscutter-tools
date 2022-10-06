@@ -38,7 +38,7 @@
 
   const { t, tm } = useI18n()
 
-  const itemOptions: Item[] = tm('item')
+  const itemOptions = computed<Item[]>(() => tm('item'))
   const item = ref(null)
 
   const x = ref(1)
