@@ -22,6 +22,8 @@ English | [简体中文](README_zh-CN.md)
 - [x] Admin Console
 - [ ] Automatic Updates
 - [ ] Launcher
+- [ ] Weather List
+- [ ] Spawn List
 - [ ] Quest List
 
 ## Usage
