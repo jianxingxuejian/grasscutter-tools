@@ -49,8 +49,7 @@
       "csp": null
     },
     "updater": {
-      "active": true,
-      "endpoints": ["https://github.com/jianxingxuejian/grasscutter-tools/releases/download/updater/update.json"]
+      "active": false
     },
     "windows": [
       {
