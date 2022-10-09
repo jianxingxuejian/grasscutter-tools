@@ -4,7 +4,11 @@
 
 ### Features
 
+- Add system proxy switch
+
 ### Fixes
+
+- Fix the wrong artifact id
 
 ------
 
