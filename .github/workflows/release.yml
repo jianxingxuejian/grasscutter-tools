@@ -18,6 +18,11 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Pnpm setup
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
 
       - name: Node.js setup
         uses: actions/setup-node@v2
@@ -29,11 +34,6 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-          
-      - name: Pnpm setup
-        uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7
           
       - name: Install dependencies (ubuntu only)
         if: matrix.platform == 'ubuntu-latest'
