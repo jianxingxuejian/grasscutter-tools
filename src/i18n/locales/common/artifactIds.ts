@@ -16,7 +16,7 @@ export const artifactIds = [
     img: 'artifact/yuxiang_120.png'
   },
   {
-    itemIds: [95544, 95524, 95453, 95514, 95534],
+    itemIds: [95544, 95524, 95554, 95514, 95534],
     img: 'artifact/huaguan_120.png'
   },
   {
@@ -28,7 +28,7 @@ export const artifactIds = [
     img: 'artifact/jueyuan_120.png'
   },
   {
-    itemIds: [93544, 93524, 93453, 93514, 93534],
+    itemIds: [93544, 93524, 93554, 93514, 93534],
     img: 'artifact/zhuiyi_120.png'
   },
   {
@@ -44,7 +44,7 @@ export const artifactIds = [
     img: 'artifact/pinglei_120.png'
   },
   {
-    itemIds: [80544, 80524, 80454, 80514, 80534],
+    itemIds: [80544, 80524, 80554, 80514, 80534],
     img: 'artifact/monv_120.png'
   },
   {
@@ -60,7 +60,7 @@ export const artifactIds = [
     img: 'artifact/shaonv_120.png'
   },
   {
-    itemIds: [75544, 75524, 75454, 75514, 75534],
+    itemIds: [75544, 75524, 75554, 75514, 75534],
     img: 'artifact/jiaodou_120.png'
   },
   {
