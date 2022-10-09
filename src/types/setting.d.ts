@@ -15,6 +15,10 @@ interface Setting {
     showName: boolean
     showAuthor: boolean
   }
+  proxy: {
+    enable: boolean
+    port?: number
+  }
 }
 
 type LocaleModule = Record<string, { default: unknown }>

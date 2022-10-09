@@ -5,10 +5,20 @@ pub async fn request(
     url: String,
     params: Option<serde_json::Value>,
     headers: Headers,
+    proxy: Proxy,
 ) -> Result<String, reqwest::Error> {
-    let client = reqwest::Client::builder()
-        .danger_accept_invalid_certs(true)
-        .build()?;
+    let mut builder = reqwest::Client::builder();
+
+    if proxy.enable {
+        if let Some(port) = proxy.port {
+            let proxy = reqwest::Proxy::http(format!("{}{}", "127.0.0.1:", port))?;
+            builder = builder.proxy(proxy);
+        }
+    } else {
+        builder = builder.no_proxy();
+    }
+
+    let client = builder.danger_accept_invalid_certs(true).build()?;
 
     let method = match method.as_str() {
         "GET" => reqwest::Method::GET,
@@ -39,4 +49,10 @@ pub struct Headers {
     pub locale: String,
     pub token: String,
     pub admin_token: String,
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct Proxy {
+    pub enable: bool,
+    pub port: Option<u16>,
 }

@@ -18,6 +18,9 @@ export const useSettingStore = defineStore('setting-store', {
       height: 16,
       showName: true,
       showAuthor: true
+    },
+    proxy: {
+      enable: false
     }
   }),
   getters: {

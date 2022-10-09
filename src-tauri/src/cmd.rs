@@ -21,8 +21,9 @@ pub async fn http(
     url: String,
     params: Option<serde_json::Value>,
     headers: http::Headers,
+    proxy: http::Proxy,
 ) -> CmdResult<String> {
-    let result = http::request(method, url, params, headers).await;
+    let result = http::request(method, url, params, headers, proxy).await;
     wrap_result!(result)
 }
 

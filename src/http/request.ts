@@ -17,13 +17,13 @@ function request() {
 
   async function request<T>(method: Method, api: string, params?: any) {
     try {
-      const { getServer, locale, token, admin_token } = settingStore
+      const { getServer, locale, token, admin_token, proxy } = settingStore
       const headers = {
         locale,
         token,
         admin_token
       }
-      const text = await invoke<string>('http', { method, url: getServer + api, params, headers })
+      const text = await invoke<string>('http', { method, url: getServer + api, params, headers, proxy })
       if (text) {
         const result: ApiResult<T> = JSON.parse(text)
         const { code, msg } = result
