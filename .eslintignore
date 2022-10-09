@@ -15,3 +15,4 @@ pnpm-lock.yaml
 src/types/components.d.ts
 src/types/auto-import.d.ts
 .eslintrc-auto-import.json
+/src-tauri
