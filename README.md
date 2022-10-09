@@ -21,7 +21,7 @@ English | [简体中文](README_zh-CN.md)
 - [x] Manage mods
 - [x] Admin Console
 - [ ] Automatic Updates
-- [ ] Launche
+- [ ] Launcher
 - [ ] Quest List
 
 ## Usage
