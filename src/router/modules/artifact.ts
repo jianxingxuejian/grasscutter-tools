@@ -6,7 +6,7 @@ const routes: Route.Config = {
   redirect: '/artifact/index',
   component: () => import('@/layout/index.vue'),
   meta: {
-    sort: 2,
+    sort: 3,
     isRoot: true,
     icon: IconCustomArtifact
   },

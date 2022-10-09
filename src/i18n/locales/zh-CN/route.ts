@@ -1,4 +1,5 @@
 export const route: Message['route'] = {
+  launcher: '启动器',
   common: '常用',
   artifact: '圣遗物',
   item: '物品',

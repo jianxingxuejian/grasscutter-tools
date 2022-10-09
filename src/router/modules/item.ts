@@ -6,7 +6,7 @@ const routes: Route.Config = {
   redirect: '/item/index',
   component: () => import('@/layout/index.vue'),
   meta: {
-    sort: 3,
+    sort: 4,
     isRoot: true,
     icon: IconCustomThing
   },

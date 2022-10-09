@@ -74,6 +74,10 @@ export const useSettingStore = defineStore('setting-store', {
         this.mod.path = path
       }
       await setSetting('mod', this.mod)
+    },
+    async updateProxy(proxy: Setting['proxy']) {
+      this.proxy = proxy
+      await setSetting('proxy', this.proxy)
     }
   }
 })

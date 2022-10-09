@@ -1,4 +1,5 @@
 export const route: Message['route'] = {
+  launcher: 'Launcher',
   common: 'Common',
   artifact: 'Artifact',
   item: 'Item',

@@ -4,7 +4,7 @@ const routes: Route.Config = {
   redirect: '/common/index',
   component: () => import('@/layout/index.vue'),
   meta: {
-    sort: 1,
+    sort: 2,
     isRoot: true,
     icon: 'material-symbols:dashboard-customize-outline'
   },
