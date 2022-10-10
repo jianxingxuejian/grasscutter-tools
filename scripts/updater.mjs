@@ -70,15 +70,18 @@ export async function updater() {
     const asset = updateRelease.assets.find(item => item.name.includes(locale))
 
     const read = fs.readFileSync(logPath, 'utf-8').split('\n')
-    const changelog = read
-      .slice(
-        read.findIndex(item => /^## [v[\d.]+/.test(item)),
-        read.findIndex(item => /^---/.test(item))
-      )
-      .filter(item => item)
-      .join('\n')
-    updateData.changelog = changelog
-
+    const changelog = []
+    let count = 0
+    for (const line of read) {
+      if (count > 1) break
+      if (line.startsWith('##') || line.startsWith('-')) {
+        changelog.push(line)
+      }
+      if (/^## [v[\d.]+/.test(line)) {
+        count++
+      }
+    }
+    updateData.changelog = changelog.join('/n')
     if (asset) {
       await github.rest.repos.deleteReleaseAsset({ ...options, asset_id: asset.id })
     }
@@ -97,8 +100,10 @@ async function getSignature(url) {
     method: 'GET',
     headers: { 'Content-Type': 'application/octet-stream' }
   })
-  console.log(await response.text())
-  return response.text()
+  const text = await response.text()
+  console.log(url)
+  console.log(text)
+  return text
 }
 
 updater().catch(console.error)
