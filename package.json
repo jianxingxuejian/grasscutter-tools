@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "check": "vue-tsc --noEmit --skipLibCheck",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .eslintignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .eslintignore",
+    "updater": "node scripts/updater.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.1.0",
@@ -16,6 +17,7 @@
     "axios": "^1.1.2",
     "lodash-es": "^4.17.21",
     "pinia": "^2.0.23",
+    "snarkdown": "^2.0.0",
     "tauri-plugin-store-api": "github:tauri-apps/tauri-plugin-store#dev",
     "vue": "^3.2.40",
     "vue-i18n": "^9.2.2",

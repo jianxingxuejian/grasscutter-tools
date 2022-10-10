@@ -26,6 +26,7 @@ specifiers:
   pinia: ^2.0.23
   prettier: ^2.7.1
   sass: ^1.55.0
+  snarkdown: ^2.0.0
   tauri-plugin-store-api: github:tauri-apps/tauri-plugin-store#dev
   typescript: ^4.8.4
   unocss: ^0.45.28
@@ -44,6 +45,7 @@ dependencies:
   axios: 1.1.2
   lodash-es: 4.17.21
   pinia: 2.0.23_bfjwoga25wxjazzogo7o372nwq
+  snarkdown: 2.0.0
   tauri-plugin-store-api: github.com/tauri-apps/tauri-plugin-store/4326f75446b8b9e0cb9904c65f258b81e23e544e
   vue: 3.2.40
   vue-i18n: 9.2.2_vue@3.2.40
@@ -2715,6 +2717,10 @@ packages:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
     dev: true
+
+  /snarkdown/2.0.0:
+    resolution: {integrity: sha512-MgL/7k/AZdXCTJiNgrO7chgDqaB9FGM/1Tvlcenenb7div6obaDATzs16JhFyHHBGodHT3B7RzRc5qk8pFhg3A==}
+    dev: false
 
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
