@@ -68,25 +68,27 @@ export async function updater() {
     }
 
     const asset = updateRelease.assets.find(item => item.name.includes(locale))
-    if (asset) {
-      const read = fs.readFileSync(logPath, 'utf-8').split('\n')
-      const changelog = read
-        .slice(
-          read.findIndex(item => /^## v[\d.]+/.test(item)),
-          read.findIndex(item => /^------/.test(item))
-        )
-        .filter(item => item)
-        .join('\n')
-      updateData.changelog = changelog
 
+    const read = fs.readFileSync(logPath, 'utf-8').split('\n')
+    const changelog = read
+      .slice(
+        read.findIndex(item => /^## v[\d.]+/.test(item)),
+        read.findIndex(item => /^------/.test(item))
+      )
+      .filter(item => item)
+      .join('\n')
+    updateData.changelog = changelog
+
+    if (asset) {
       await github.rest.repos.deleteReleaseAsset({ ...options, asset_id: asset.id })
-      await github.rest.repos.uploadReleaseAsset({
-        ...options,
-        release_id: updateRelease.id,
-        name: `update_${locale}.json`,
-        data: JSON.stringify(updateData)
-      })
     }
+
+    await github.rest.repos.uploadReleaseAsset({
+      ...options,
+      release_id: updateRelease.id,
+      name: `update_${locale}.json`,
+      data: JSON.stringify(updateData)
+    })
   })
 }
 
