@@ -12,7 +12,7 @@ export async function updater() {
 
   const options = { owner: context.repo.owner, repo: context.repo.repo }
   const github = getOctokit(process.env.GITHUB_TOKEN)
-  const { tag_name, published_at } = (await github.rest.repos.getLatestRelease(...options)).data
+  const { tag_name, published_at } = (await github.rest.repos.getLatestRelease({ ...options })).data
   const downloadUrl = 'https://github.com/jianxingxuejian/grasscutter-tools/releases/download/' + tag_name + '/'
   const version = tag_name.slice(1)
 
