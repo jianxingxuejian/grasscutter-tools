@@ -2,13 +2,15 @@
 
 ## [1.4.3] - 2022-10-10
 
-### Features
+### Fixed
 
-- Test
+- Test1
+- Test2
 
-### Fixes
+### Added
 
-- Test
+- Test1
+- Test2
 
 ---
 
