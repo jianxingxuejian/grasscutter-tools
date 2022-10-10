@@ -44,10 +44,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install
         
+      - name: Get version from tag
+        id: tag_name
+        run: |
+          echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
+        shell: bash
+        
       - name: Get changelog
         id: changelog_reader
         uses: mindsers/changelog-reader-action@v2
         with:
+          version: ${{ steps.tag_name.outputs.current_version }}
           path: ./CHANGELOG.en-US.md
         
       - name: Build and release the app
