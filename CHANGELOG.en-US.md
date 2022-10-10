@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.3] - 2022-10-10
+
+### Features
+
+- Test
+
+### Fixes
+
+- Test
+
+---
+
 ## [1.4.2] - 2022-10-10
 
 ### Features
@@ -11,13 +23,3 @@
 - Fix the wrong artifact id
 
 ---
-
-## [1.4.3] - 2022-10-10
-
-### Features
-
-- Test
-
-### Fixes
-
-- Test
