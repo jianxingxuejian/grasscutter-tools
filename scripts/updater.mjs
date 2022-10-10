@@ -50,7 +50,7 @@ export async function updater() {
   const updateData = {
     version: tag_name,
     pub_date: published_at,
-    notes,
+    notes: JSON.stringify(notes),
     platforms: {
       win64: {
         url: downloadUrl_win,
