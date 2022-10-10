@@ -18,57 +18,57 @@ jobs:
 
     steps:
     - name: Get version from tag
-        id: tag_name
-        run: |
-          echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
-        shell: bash
+      id: tag_name
+      run: |
+        echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
+      shell: bash
 
-      - name: Checkout
-        uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v3
 
-      - name: Get changelog
-        id: changelog_reader
-        uses: mindsers/changelog-reader-action@v2
-        with:
-          validation_level: warn
-          validation_depth: 10
-          version: ${{ steps.tag_name.outputs.current_version }}
-          path: ./CHANGELOG.en-US.md
+    - name: Get changelog
+      id: changelog_reader
+      uses: mindsers/changelog-reader-action@v2
+      with:
+        validation_level: warn
+        validation_depth: 10
+        version: ${{ steps.tag_name.outputs.current_version }}
+        path: ./CHANGELOG.en-US.md
 
-      - name: Pnpm setup
-        uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7
+    - name: Pnpm setup
+      uses: pnpm/action-setup@v2.2.2
+      with:
+        version: 7
 
-      - name: Node.js setup
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
-          cache: 'pnpm'
+    - name: Node.js setup
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
+        cache: 'pnpm'
 
-      - name: Rust setup
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
+    - name: Rust setup
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
 
-      - name: Install dependencies (ubuntu only)
-        if: matrix.platform == 'ubuntu-latest'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libgtk-3-dev webkit2gtk-4.0 libappindicator3-dev librsvg2-dev patchelf
+    - name: Install dependencies (ubuntu only)
+      if: matrix.platform == 'ubuntu-latest'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgtk-3-dev webkit2gtk-4.0 libappindicator3-dev librsvg2-dev patchelf
 
-      - name: Install dependencies
-        run: pnpm install
+    - name: Install dependencies
+      run: pnpm install
 
-      - name: Build and release the app
-        uses: tauri-apps/tauri-action@v0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
-          TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
-        with:
-          tagName: v__VERSION__ # tauri-action replaces \_\_VERSION\_\_ with the app version
-          releaseName: 'v__VERSION__'
-          releaseBody: ${{ steps.changelog_reader.outputs.changes }}
-          releaseDraft: true
-          prerelease: false
+    - name: Build and release the app
+      uses: tauri-apps/tauri-action@v0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+        TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
+      with:
+        tagName: v__VERSION__ # tauri-action replaces \_\_VERSION\_\_ with the app version
+        releaseName: 'v__VERSION__'
+        releaseBody: ${{ steps.changelog_reader.outputs.changes }}
+        releaseDraft: true
+        prerelease: false
