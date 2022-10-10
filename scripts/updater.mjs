@@ -101,9 +101,15 @@ async function getSignature(url) {
     headers: { 'Content-Type': 'application/octet-stream' }
   })
   const text = await response.text()
-  console.log(url)
-  console.log(text)
   return text
 }
 
-updater().catch(console.error)
+for (let i = 0; i < 3; i++) {
+  try {
+    await updater()
+  } catch (err) {
+    console.log(err)
+    continue
+  }
+  break
+}
