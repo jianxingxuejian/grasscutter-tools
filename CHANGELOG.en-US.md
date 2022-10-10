@@ -1,21 +1,28 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [1.1.0] - 2019-02-15
+## [1.4.3] - 2022-10-10
 
 ### Added
 
-- Danish translation from [@frederikspang](https://github.com/frederikspang).
-- Georgian translation from [@tatocaster](https://github.com/tatocaster).
-- Changelog inconsistency section in Bad Practices
+- Test
 
-### Changed
+### Fixed
 
-- Fixed typos in Italian translation from [@lorenzo-arena](https://github.com/lorenzo-arena).
-- Fixed typos in Indonesian translation from [@ekojs](https://github.com/ekojs).
+- Test
 
+---
 
+## [1.4.2] - 2022-10-10
+
+### Added
+
+- Add system proxy switch
+
+### Fixed
+
+- Fix the wrong artifact id
+
+---
+
+[1.4.3]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.2...v1.4.3
+[1.4.2]: https://github.com/jianxingxuejian/grasscutter-tools/releases/tag/v1.4.2
