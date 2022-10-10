@@ -17,11 +17,11 @@ export async function updater() {
   const version = tag_name.slice(1)
 
   const downloadUrl_win = downloadUrl + `grasscutter-tools_${version}_x64_en-US.msi.zip`
-  const signature_win = getSignature(downloadUrl_win)
+  const signature_win = await getSignature(downloadUrl_win)
   const downloadUrl_darwin = downloadUrl + 'grasscutter-tools.app.tar.gz'
-  const signature_darwin = getSignature(downloadUrl_darwin)
+  const signature_darwin = await getSignature(downloadUrl_darwin)
   const download_linux = downloadUrl + `grasscutter-tools_${version}_amd64.AppImage.tar.gz`
-  const signature_linux = getSignature(download_linux)
+  const signature_linux = await getSignature(download_linux)
 
   const updateData = {
     version: tag_name,
@@ -97,7 +97,7 @@ async function getSignature(url) {
     method: 'GET',
     headers: { 'Content-Type': 'application/octet-stream' }
   })
-
+  console.log(await response.text())
   return response.text()
 }
 
