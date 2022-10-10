@@ -1,4 +1,4 @@
-# CHANGELOG
+# Changelog
 
 ## [v1.4.2] - 2022-10-10
 
