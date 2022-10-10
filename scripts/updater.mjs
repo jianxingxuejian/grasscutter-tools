@@ -26,7 +26,7 @@ export async function updater() {
   const updateData = {
     version: tag_name,
     pub_date: published_at,
-    changelog: '',
+    notes: '',
     platforms: {
       win64: {
         url: downloadUrl_win,
@@ -81,7 +81,7 @@ export async function updater() {
         count++
       }
     }
-    updateData.changelog = changelog.join('/n')
+    updateData.notes = changelog.join('/n')
     if (asset) {
       await github.rest.repos.deleteReleaseAsset({ ...options, asset_id: asset.id })
     }
