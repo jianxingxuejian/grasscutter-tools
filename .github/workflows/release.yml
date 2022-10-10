@@ -54,6 +54,7 @@ jobs:
         id: changelog_reader
         uses: mindsers/changelog-reader-action@v2
         with:
+          validation_depth: 2
           version: ${{ steps.tag_name.outputs.current_version }}
           path: ./CHANGELOG.en-US.md
         
