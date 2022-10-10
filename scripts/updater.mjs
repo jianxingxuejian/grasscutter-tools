@@ -25,13 +25,12 @@ export async function updater() {
       if (count > 1) break
       if (line.startsWith('##') || line.startsWith('-')) {
         changelog.push(line)
-      }
-      if (/^## [v[\d.]+/.test(line)) {
+      } else if (/^## [v[\d.]+/.test(line)) {
         count++
       }
     }
 
-    notes[locale] = changelog.join('/n')
+    notes[locale] = changelog.join('\n')
   })
 
   const options = { owner: context.repo.owner, repo: context.repo.repo }
