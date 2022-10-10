@@ -72,8 +72,8 @@ export async function updater() {
     const read = fs.readFileSync(logPath, 'utf-8').split('\n')
     const changelog = read
       .slice(
-        read.findIndex(item => /^## v[\d.]+/.test(item)),
-        read.findIndex(item => /^------/.test(item))
+        read.findIndex(item => /^## [v[\d.]+/.test(item)),
+        read.findIndex(item => /^---/.test(item))
       )
       .filter(item => item)
       .join('\n')
