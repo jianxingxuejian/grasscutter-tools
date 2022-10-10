@@ -16,8 +16,7 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { useSettingStore } from '@/stores'
-  import { checkUpdate, installUpdate } from '@tauri-apps/api/updater'
-  import { relaunch } from '@tauri-apps/api/process'
+  import { checkUpdate } from '@tauri-apps/api/updater'
   import { Updater } from './components'
 
   const { t } = useI18n()
@@ -30,10 +29,7 @@
   async function handleCheckUpdate() {
     try {
       const { shouldUpdate, manifest } = await checkUpdate()
-      console.log(shouldUpdate)
-      console.log(manifest?.body)
       if (shouldUpdate && manifest?.body) {
-        console.log(JSON.parse(manifest.body)['zh-CN'])
         updaterRef.value?.open(JSON.parse(manifest.body)['zh-CN'])
       }
     } catch (error) {
