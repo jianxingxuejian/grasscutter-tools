@@ -2,21 +2,21 @@
 
 ## [1.4.3] - 2022-10-10
 
-### Added
+### Features
 
 - Test
 
-### Fixed
+### Bug Fixes
 
 - Test
 
 ## [1.4.2] - 2022-10-10
 
-### Added
+### Features
 
 - Add system proxy switch
 
-### Fixed
+### Bug Fixes
 
 - Fix the wrong artifact id
 
