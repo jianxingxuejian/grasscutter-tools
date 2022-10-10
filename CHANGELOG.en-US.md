@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## v1.4.2
+## [v1.4.2] - 2022-10-10
 
 ### Features
 
@@ -10,5 +10,4 @@
 
 - Fix the wrong artifact id
 
-------
-
+---
