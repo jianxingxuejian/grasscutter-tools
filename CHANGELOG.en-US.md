@@ -11,3 +11,13 @@
 - Fix the wrong artifact id
 
 ---
+
+## [1.4.3] - 2022-10-10
+
+### Features
+
+- Test
+
+### Fixes
+
+- Test
