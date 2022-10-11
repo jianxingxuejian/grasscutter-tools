@@ -9,7 +9,13 @@ interface Message {
     description1: string
     description2: string
   }[]
-  weather: string[]
+  weather: {
+    type: string[]
+    item: {
+      value: number | string
+      label: string
+    }[]
+  }
   item: Item[]
 }
 

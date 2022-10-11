@@ -117,7 +117,7 @@
   })
 
   const weatherOptions = computed(() => {
-    const arr: Message['weather'] = tm('weather')
+    const arr: Message['weather']['type'] = tm('weather.type')
     return arr.map((x, i) => ({
       value: x,
       label: x,
