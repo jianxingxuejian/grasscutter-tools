@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "grasscutter-tools",
-    "version": "1.4.3"
+    "version": "1.4.1"
   },
   "tauri": {
     "allowlist": {
@@ -51,7 +51,7 @@
     "updater": {
       "active": true,
       "dialog": false,
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEM0NjhDQkRFQzE1MEU0MUUKUldRZTVGREIzc3RveE9oUHp2NzFNTUo2WCsrWUF2OHZsTlY1RUtLK1NrQjRWbEV0dm5ydDhhcUEK",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDVCNzY2OUIxQjc0QTVDRDcKUldUWFhFcTNzV2wyVzZqQnV0KzhqUjJrK2h4WkJBemVSU0VvQ1RUTUIrQVBIb3VUTjMycUhySVQK",
       "endpoints": ["https://github.com/jianxingxuejian/grasscutter-tools/releases/download/updater/update.json"]
     },
     "windows": [
