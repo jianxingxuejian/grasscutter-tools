@@ -53,7 +53,7 @@
 
 ## 下载
 
-windows 平台下载.msi 文件，mac 平台下载.dmg 文件，linux 平台下载.deb 文件，请前往[此处](https://github.com/jianxingxuejian/grasscutter-tools/releases)下载最新版本。
+windows 平台下载 msi 文件，mac 平台下载 app.tar.gz 或者 dmg 文件，linux 平台下载 deb 或者 AppImage 文件，请前往[此处](https://github.com/jianxingxuejian/grasscutter-tools/releases)下载最新版本。
 
 ## 开发
 
