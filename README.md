@@ -53,7 +53,7 @@ If you have any questions or want to add features, please open an issue.
 
 ## Download
 
-Windows platform download the msi file，mac platform download the dmg file，linux platform download the deb file，Please [go here](https://github.com/jianxingxuejian/grasscutter-tools/releases) to download the latest version.
+Windows platform download the msi file，mac platform download the app.tar.gz or dmg file，linux platform download the deb or AppImage file，Please [go here](https://github.com/jianxingxuejian/grasscutter-tools/releases) to download the latest version.
 
 ## Development
 
