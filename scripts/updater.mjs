@@ -10,6 +10,29 @@ export async function updater() {
     throw new Error('GITHUB_TOKEN is required')
   }
 
+  const notes = {}
+
+  i18nList.forEach(async locale => {
+    const logPath = path.join(process.cwd(), `CHANGELOG.${locale}.md`)
+    if (!(await fs.pathExists(logPath))) {
+      throw new Error(`could not found CHANGELOG.${locale}.md`)
+    }
+
+    const read = fs.readFileSync(logPath, 'utf-8').split('\n')
+    const changelog = []
+    let count = 0
+    for (const line of read) {
+      if (count > 1) break
+      if (line.startsWith('##') || line.startsWith('-')) {
+        changelog.push(line)
+      } else if (/^## [v[\d.]+/.test(line)) {
+        count++
+      }
+    }
+
+    notes[locale] = changelog.join('\n')
+  })
+
   const options = { owner: context.repo.owner, repo: context.repo.repo }
   const github = getOctokit(process.env.GITHUB_TOKEN)
   const { tag_name, published_at } = (await github.rest.repos.getLatestRelease({ ...options })).data
@@ -17,16 +40,16 @@ export async function updater() {
   const version = tag_name.slice(1)
 
   const downloadUrl_win = downloadUrl + `grasscutter-tools_${version}_x64_en-US.msi.zip`
-  const signature_win = getSignature(downloadUrl_win)
+  const signature_win = await getSignature(downloadUrl_win)
   const downloadUrl_darwin = downloadUrl + 'grasscutter-tools.app.tar.gz'
-  const signature_darwin = getSignature(downloadUrl_darwin)
+  const signature_darwin = await getSignature(downloadUrl_darwin)
   const download_linux = downloadUrl + `grasscutter-tools_${version}_amd64.AppImage.tar.gz`
-  const signature_linux = getSignature(download_linux)
+  const signature_linux = await getSignature(download_linux)
 
   const updateData = {
     version: tag_name,
     pub_date: published_at,
-    changelog: '',
+    notes: JSON.stringify(notes),
     platforms: {
       win64: {
         url: downloadUrl_win,
@@ -60,35 +83,16 @@ export async function updater() {
   }
 
   const { data: updateRelease } = await github.rest.repos.getReleaseByTag({ ...options, tag: 'updater' })
+  const asset = updateRelease.assets.find(item => item.name.includes('update'))
+  if (asset) {
+    await github.rest.repos.deleteReleaseAsset({ ...options, asset_id: asset.id })
+  }
 
-  i18nList.forEach(async locale => {
-    const logPath = path.join(process.cwd(), `CHANGELOG.${locale}.md`)
-    if (!(await fs.pathExists(logPath))) {
-      throw new Error(`could not found CHANGELOG.${locale}.md`)
-    }
-
-    const asset = updateRelease.assets.find(item => item.name.includes(locale))
-
-    const read = fs.readFileSync(logPath, 'utf-8').split('\n')
-    const changelog = read
-      .slice(
-        read.findIndex(item => /^## [v[\d.]+/.test(item)),
-        read.findIndex(item => /^---/.test(item))
-      )
-      .filter(item => item)
-      .join('\n')
-    updateData.changelog = changelog
-
-    if (asset) {
-      await github.rest.repos.deleteReleaseAsset({ ...options, asset_id: asset.id })
-    }
-
-    await github.rest.repos.uploadReleaseAsset({
-      ...options,
-      release_id: updateRelease.id,
-      name: `update_${locale}.json`,
-      data: JSON.stringify(updateData)
-    })
+  await github.rest.repos.uploadReleaseAsset({
+    ...options,
+    release_id: updateRelease.id,
+    name: `update.json`,
+    data: JSON.stringify(updateData)
   })
 }
 
@@ -97,8 +101,16 @@ async function getSignature(url) {
     method: 'GET',
     headers: { 'Content-Type': 'application/octet-stream' }
   })
-
-  return response.text()
+  const text = await response.text()
+  return text
 }
 
-updater().catch(console.error)
+for (let i = 0; i < 3; i++) {
+  try {
+    await updater()
+  } catch (err) {
+    console.log(err)
+    continue
+  }
+  break
+}
