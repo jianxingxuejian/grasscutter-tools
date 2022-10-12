@@ -28,6 +28,9 @@
 
   async function handleCheckUpdate() {
     try {
+      // const test =
+      //   '## [1.4.3] - 2022-10-10\n### Features\n- Test\n- Test\n- Test\n- Test\n- Test\n- Test\n### Bug Fixes\n- Test\n## [1.4.2] - 2022-10-10\n### Features\n- Add system proxy switch\n### Bug Fixes\n- Fix the wrong artifact id'
+      // updaterRef.value?.open(test)
       const { shouldUpdate, manifest } = await checkUpdate()
       if (shouldUpdate && manifest?.body) {
         updaterRef.value?.open(JSON.parse(manifest.body)['zh-CN'])

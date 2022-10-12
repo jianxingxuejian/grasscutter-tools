@@ -22,14 +22,14 @@ export async function updater() {
     const changelog = []
     let count = 0
     for (const line of read) {
+      if (/^## [v[\d.]+/.test(line)) {
+        count++
+      }
       if (count > 1) break
       if (line.startsWith('##') || line.startsWith('-')) {
         changelog.push(line)
-      } else if (/^## [v[\d.]+/.test(line)) {
-        count++
       }
     }
-
     notes[locale] = changelog.join('\n')
   })
 
