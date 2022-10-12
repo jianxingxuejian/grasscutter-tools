@@ -21,9 +21,9 @@ English | [简体中文](README_zh-CN.md)
 - [x] Item Category Search
 - [x] Manage mods
 - [x] Admin Console
-- [ ] Automatic Updates
-- [ ] Launcher
-- [ ] Weather List
+- [ ] Launcher(TODO)
+- [ ] Weather List(TODO)
+- [ ] Mod Download Online
 - [ ] Spawn List
 - [ ] Quest List
 
