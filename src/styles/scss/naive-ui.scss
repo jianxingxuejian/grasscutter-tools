@@ -69,3 +69,13 @@
 .n-popover:not(.n-popover--raw):not(.n-popover--scrollable):not(.n-popover--show-header-or-footer) {
   padding: 0.5rem 1rem;
 }
+
+.n-notification-container .n-notification .n-notification__avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 2.5rem;
+}
+
+.n-notification-container .n-notification.n-notification--show-avatar .n-notification-main {
+  margin-left: 3rem;
+}

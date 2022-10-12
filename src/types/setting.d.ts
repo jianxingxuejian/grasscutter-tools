@@ -19,6 +19,9 @@ interface Setting {
     enable: boolean
     port?: number
   }
+  update: {
+    lastCheckTime?: number
+  }
 }
 
 type LocaleModule = Record<string, { default: unknown }>

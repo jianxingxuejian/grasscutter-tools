@@ -1,7 +1,7 @@
 <template>
   <n-loading-bar-provider>
     <n-dialog-provider>
-      <n-notification-provider>
+      <n-notification-provider placement="bottom-right">
         <n-message-provider>
           <slot></slot>
           <naive-provider-content />

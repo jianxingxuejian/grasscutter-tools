@@ -21,7 +21,8 @@ export const useSettingStore = defineStore('setting-store', {
     },
     proxy: {
       enable: false
-    }
+    },
+    update: {}
   }),
   getters: {
     getServer: state => `${state.server.protocol}://${state.server.ip}`,
@@ -78,6 +79,10 @@ export const useSettingStore = defineStore('setting-store', {
     async updateProxy(proxy: Setting['proxy']) {
       this.proxy = proxy
       await setSetting('proxy', this.proxy)
+    },
+    async updateCheckTime(lastCheckTime: number) {
+      this.update.lastCheckTime = lastCheckTime
+      await setSetting('update', this.update)
     }
   }
 })

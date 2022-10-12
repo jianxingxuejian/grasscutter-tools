@@ -54,9 +54,10 @@ export async function loadSetting() {
     const theme = await getSetting<Setting['theme']>('theme')
     const mod = await getSetting<Setting['mod']>('mod')
     const proxy = await getSetting<Setting['proxy']>('proxy')
+    const update = await getSetting<Setting['update']>('update')
 
     const settingStore = useSettingStore()
-    settingStore.initSettings({ server, token, admin_token, locale, theme, mod, proxy })
+    settingStore.initSettings({ server, token, admin_token, locale, theme, mod, proxy, update })
   } catch {
     window.$message?.error('load settings failed')
   }

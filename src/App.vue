@@ -86,6 +86,15 @@
       iconSize: '1.4rem',
       iconMargin: '0 0.5rem 0 0'
     },
+    Notification: {
+      closeMargin: '1rem 0.75rem',
+      closeSize: '2rem',
+      closeIconSize: '1.5rem',
+      width: '25rem',
+      padding: '1rem',
+      titleFontSize: '1.5rem',
+      descriptionFontSize: '0.8rem'
+    },
     Popconfirm: {
       fontSize: '1rem'
     },
