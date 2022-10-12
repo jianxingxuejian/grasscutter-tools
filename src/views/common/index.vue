@@ -6,11 +6,18 @@
         <my-button :text="t('t2')" @click-async="playerCommand('setprop unlockmap 1')">
           <icon-icon-park-twotone-unlock />
         </my-button>
-        <my-button :text="t('t3')" @click-async="levelUpAllSkill">
-          <template #tooltip>
-            <span>{{ t('tt1') }}</span>
+        <n-popconfirm :show-icon="false">
+          <template #trigger>
+            <n-button>{{ t('t3') }}</n-button>
           </template>
-        </my-button>
+          <template #action>
+            <my-button :text="t('t7-1')" @click-async="levelUpAll(0)" />
+            <my-button :text="t('t19')" @click-async="levelUpAll(1)" />
+            <my-button :text="t('t18')" @click-async="levelUpAll(2)" />
+            <my-button :text="t('t21')" @click-async="levelUpAll(3)" />
+          </template>
+          {{ t('tt1') }}
+        </n-popconfirm>
         <my-switch v-model="data.inGodMode" :text="t('t4')" command="prop god" />
         <my-switch v-model="data.unLimitedStamina" :text="t('t5')" command="prop ns" />
         <my-switch v-model="data.unLimitedEnergy" :text="t('t6')" command="prop ue" />
@@ -78,7 +85,7 @@
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
-  import { playerCommand, levelUpAllSkill, getProps, cdr } from '@/http'
+  import { playerCommand, levelUpAll, getProps, cdr } from '@/http'
   import { weatherIds } from './weather'
 
   const { t, tm } = useI18n()

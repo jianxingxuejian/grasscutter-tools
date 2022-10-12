@@ -32,9 +32,9 @@ export function playerCommand(command: string) {
   return request.get(`/plugin/player/command?command=${command}`)
 }
 
-export function levelUpAllSkill() {
+export function levelUpAll(type: number) {
   if (!checkToken()) return
-  return request.get('/plugin/player/levelUpAllSkill')
+  return request.get(`/plugin/player/levelUpAll?type=${type}`)
 }
 
 export function getProps() {
