@@ -3,47 +3,47 @@ import { useSettingStore } from '@/stores'
 import router from '@/router'
 import i18n from '@/i18n'
 
-export async function adminAuth(adminVoucher: string) {
-  return await request.get<string>(`/plugin/admin/auth?adminVoucher=${adminVoucher}`)
+export function adminAuth(adminVoucher: string) {
+  return request.get<string>(`/plugin/admin/auth?adminVoucher=${adminVoucher}`)
 }
 
-export async function adminCreateAccount(params: Param.Account) {
-  return await request.get('/plugin/admin/createAccount', params)
+export function adminCreateAccount(params: Param.Account) {
+  return request.get('/plugin/admin/createAccount', params)
 }
 
-export async function adminCommand(command: string) {
-  return await request.get(`/plugin/admin/command?command=${command}`)
+export function adminCommand(command: string) {
+  return request.get(`/plugin/admin/command?command=${command}`)
 }
 
-export async function mailVerifyCode(username: string) {
-  return await request.get(`/plugin/mail/verifyCode?username=${username}`)
+export function mailVerifyCode(username: string) {
+  return request.get(`/plugin/mail/verifyCode?username=${username}`)
 }
 
-export async function playerAuthByVerifyCode(username: string, verifyCode: string) {
-  return await request.get<string>('/plugin/player/authByVerifyCode', { username, verifyCode })
+export function playerAuthByVerifyCode(username: string, verifyCode: string) {
+  return request.get<string>('/plugin/player/authByVerifyCode', { username, verifyCode })
 }
 
-export async function playerAuthByPassword(username: string, password: string) {
-  return await request.get<string>('/plugin/player/authByPassword', { username, password })
+export function playerAuthByPassword(username: string, password: string) {
+  return request.get<string>('/plugin/player/authByPassword', { username, password })
 }
 
-export async function playerCommand(command: string) {
+export function playerCommand(command: string) {
   if (!checkToken()) return
-  return await request.get(`/plugin/player/command?command=${command}`)
+  return request.get(`/plugin/player/command?command=${command}`)
 }
 
-export async function levelUpAllSkill() {
+export function levelUpAllSkill() {
   if (!checkToken()) return
-  return await request.get('/plugin/player/levelUpAllSkill')
+  return request.get('/plugin/player/levelUpAllSkill')
 }
 
-export async function getProps() {
-  return await request.get<Props>('/plugin/player/getProps')
+export function getProps() {
+  return request.get<Props>('/plugin/player/getProps')
 }
 
-export async function cdr() {
+export function cdr() {
   if (!checkToken()) return
-  return await request.get('/plugin/player/cdr')
+  return request.get('/plugin/player/cdr')
 }
 
 function checkToken() {
