@@ -1,14 +1,16 @@
 # Changelog
 
-## [1.4.3] - 2022-10-10
+## [1.4.3] - 2022-10-12
 
 ### Features
 
-- Test
+- Add software version check and upgrade function
+
+- modify levelUpAll to be optional(requires plugin upgrade to v1.4.1)
 
 ### Bug Fixes
 
-- Test
+- FetterLevel level-up now is immediately
 
 ## [1.4.2] - 2022-10-10
 
