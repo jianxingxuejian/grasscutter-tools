@@ -19,7 +19,7 @@ export async function updater() {
     }
 
     const read = fs.readFileSync(logPath, 'utf-8').split('\n')
-    const changelog = []
+    const changelog: string[] = []
     let count = 0
     for (const line of read) {
       if (/^## [v[\d.]+/.test(line)) {
@@ -96,7 +96,7 @@ export async function updater() {
   })
 }
 
-async function getSignature(url) {
+async function getSignature(url: string) {
   const response = await fetch(url + '.sig', {
     method: 'GET',
     headers: { 'Content-Type': 'application/octet-stream' }

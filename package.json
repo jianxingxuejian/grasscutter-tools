@@ -9,7 +9,8 @@
     "tauri": "tauri",
     "check": "vue-tsc --noEmit --skipLibCheck",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .eslintignore",
-    "updater": "node scripts/updater.mjs"
+    "updater": "tsx scripts/updater.ts",
+    "parse": "tsx scripts/parseJSON.ts"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.1.0",
@@ -44,6 +45,7 @@
     "node-fetch": "^3.2.10",
     "prettier": "^2.7.1",
     "sass": "^1.55.0",
+    "tsx": "^3.10.1",
     "typescript": "^4.8.4",
     "unocss": "^0.45.28",
     "unplugin-auto-import": "^0.11.2",

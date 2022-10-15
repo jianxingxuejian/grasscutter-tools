@@ -54,7 +54,14 @@
       <n-space class="items-center">
         <span class="text-4">{{ t('t14') }}</span>
         <div class="flex">
-          <n-cascader v-model:value="weather" filterable expand-trigger="hover" check-strategy="child" :options="weatherOptions" />
+          <n-cascader
+            v-model:value="weather"
+            filterable
+            expand-trigger="hover"
+            check-strategy="child"
+            :options="weatherOptions"
+            class="w-100"
+          />
           <my-button :text="t('t10')" @click-async="handleWeatherUpdate" />
         </div>
         <my-switch v-model="data.lockWeather" :text="t('t15')" command="prop is_weather_locked" />
@@ -86,7 +93,6 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { playerCommand, levelUpAll, getProps, cdr } from '@/http'
-  import { weatherIds } from './weather'
 
   const { t, tm } = useI18n()
 
@@ -123,20 +129,13 @@
     fetterLevel: 0
   })
 
-  const weatherOptions = computed(() => {
-    const arr: Message['weather']['type'] = tm('weather.type')
-    return arr.map((x, i) => ({
-      value: x,
-      label: x,
-      children: weatherIds[i].map(y => ({ value: i + '_' + y, label: y.toString() }))
-    }))
-  })
+  const weatherOptions = computed<Message['weather']>(() => tm('weather'))
   const weather = ref<string | null>(null)
 
   async function handleWeatherUpdate() {
     if (!weather.value) return
     const [type, id] = weather.value.split('_')
-    const command = `w ${['sunny', 'cloudy', 'rain', 'thunderstorm', 'snow', 'mist', ''][Number(type)]} ${id}`
+    const command = `w ${['sunny', 'cloudy', 'rain', 'thunderstorm', 'snow', 'mist'][Number(type)]} ${id}`
     const result = await playerCommand(command)
     if (result?.code === 200) {
       window.$message?.success(result.msg)
