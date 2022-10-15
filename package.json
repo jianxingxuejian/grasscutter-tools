@@ -1,5 +1,6 @@
 {
   "name": "grasscutter-tools",
+  "type": "module",
   "private": true,
   "version": "1.4.3",
   "scripts": {
