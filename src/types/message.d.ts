@@ -11,6 +11,7 @@ interface Message {
   }[]
   weather: Item[]
   item: Item[]
+  monster: Item[]
 }
 
 type Item = {

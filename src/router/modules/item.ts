@@ -1,4 +1,4 @@
-import IconCustomThing from '~icons/custom/thing'
+// import IconCustomThing from '~icons/custom/thing'
 
 const routes: Route.Config = {
   path: '/item',
@@ -8,7 +8,7 @@ const routes: Route.Config = {
   meta: {
     sort: 4,
     isRoot: true,
-    icon: IconCustomThing
+    icon: 'carbon:smoothing'
   },
   children: [
     {

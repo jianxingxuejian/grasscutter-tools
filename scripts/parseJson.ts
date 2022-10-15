@@ -17,8 +17,8 @@ interface WeatherJSON {
   sceneId: number
 }
 
-const read = fs.readFileSync('scripts/WeatherExcelConfigData.json', 'utf-8')
-const weatherJson: WeatherJSON[] = JSON.parse(read)
+const readWeather = fs.readFileSync('scripts/WeatherExcelConfigData.json', 'utf-8')
+const weatherJson: WeatherJSON[] = JSON.parse(readWeather)
 const weatherObj: Record<number, string> = {}
 weatherJson.forEach(({ areaId, profileName }) => {
   weatherObj[areaId] = profileName.replace('Data/Environment/EnviroSystemProfile/', '').replace('/ESP', '').replace('ESP_', '')
@@ -56,3 +56,15 @@ const weather = sortedUniq([
 weather.forEach((item, index) => console.log(difference(item, weatherIds[index])))
 
 fs.writeFile('scripts/weatherIds.json', JSON.stringify(weather))
+
+interface MonsterJSON extends Record<string, unknown> {
+  id: number
+  monsterName: string
+}
+
+const readMonster = fs.readFileSync('scripts/MonsterExcelConfigData.json', 'utf-8')
+const monsterJson: MonsterJSON[] = JSON.parse(readMonster)
+const monsterObj: Record<number, string> = {}
+monsterJson.sort((a, b) => a.id - b.id).forEach(({ id, monsterName }) => (monsterObj[id] = monsterName))
+
+fs.writeFile('scripts/monster.json', JSON.stringify(monsterObj))
