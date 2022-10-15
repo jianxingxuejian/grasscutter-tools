@@ -93,7 +93,7 @@
       width: '25rem',
       padding: '1rem',
       titleFontSize: '1.5rem',
-      descriptionFontSize: '0.8rem'
+      descriptionFontSize: '1rem'
     },
     Popconfirm: {
       fontSize: '1rem'

@@ -81,6 +81,16 @@
     version.value = await getVersion()
     checkUpdateTime()
   })
+
+  // function test() {
+  //   update.value = true
+  //   updateInfo.value = '## [1.4.3] - 2022-10-12\n### Features\n- Test\n- Test\n### Bug Fixes\n- Test'
+  //   window.$notification?.error({
+  //     title: t('n1'),
+  //     description: 'err',
+  //     content: t('n2')
+  //   })
+  // }
 </script>
 
 <i18n locale="zh-CN" lang="json">
