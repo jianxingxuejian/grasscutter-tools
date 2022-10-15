@@ -1,5 +1,13 @@
 # 变更日志
 
+## [1.4.4] - 2022-10-10
+
+### 特性
+
+- 用天气 json 文件中的名字替换 id
+
+- 增加怪物列表(由脚本生成，因此暂时还没有翻译)
+
 ## [1.4.3] - 2022-10-10
 
 ### 特性
@@ -22,5 +30,6 @@
 
 - 修正错误的圣遗物 id
 
+[1.4.4]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.3...v1.4.4
 [1.4.3]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/jianxingxuejian/grasscutter-tools/releases/tag/v1.4.2
