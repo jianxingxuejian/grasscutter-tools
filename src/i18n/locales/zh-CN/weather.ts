@@ -727,5 +727,3 @@ export const weather: Message['weather'] = type.map((x, i) => ({
   label: x,
   children: weatherIds[i].map(y => ({ value: i + '_' + y, label: item[y] + `(${y})` }))
 }))
-
-console.log(weather)
