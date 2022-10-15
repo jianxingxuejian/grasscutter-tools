@@ -2,7 +2,7 @@
 
 ## [1.4.4] - 2022-10-16
 
-### 特性
+### Features
 
 - Replace the id with the name in the weather json file
 

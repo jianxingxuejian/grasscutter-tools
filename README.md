@@ -22,9 +22,8 @@ English | [简体中文](README_zh-CN.md)
 - [x] Manage mods
 - [x] Admin Console
 - [ ] Launcher(TODO)
-- [ ] Weather List(TODO)
-- [ ] Mod Download Online
-- [ ] Spawn List
+- [ ] Mod Download Online(TODO)
+- [ ] Spawn List(Need translate or retouch)
 - [ ] Quest List
 
 ## Usage
@@ -77,4 +76,5 @@ Please go to the [Tauri](https://github.com/tauri-apps/tauri) project for more i
 
 ## Contribute
 
-Contributions of any kind are welcome！
+This project has been refactored several times and only recently started, I will focus on the code writing and optimization, so I won't pay too much attention to the translation and retouching part, and I hope someone can help me with this work.
+Feel free to point out any questions about code quality, UI design, etc. It would be great if you could create a pull request.
