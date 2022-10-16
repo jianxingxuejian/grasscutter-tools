@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.5] - 2022-10-16
+
+### Features
+
+- The monster list is modified to include groups, with ids for easy searching
+
 ## [1.4.4] - 2022-10-16
 
 ### Features
@@ -30,6 +36,7 @@
 
 - Fix the wrong artifact id
 
+[1.4.5]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.4...v1.4.5
 [1.4.4]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.3...v1.4.4
 [1.4.3]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.2...v1.4.3
 [1.4.2]: https://github.com/jianxingxuejian/grasscutter-tools/releases/tag/v1.4.2
