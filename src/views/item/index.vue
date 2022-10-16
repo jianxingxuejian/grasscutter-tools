@@ -35,7 +35,7 @@
 
     <span class="flex-center text-5 font-bold mb-5">{{ t('t6') }}</span>
     <div class="flex-evenly gap-x-5">
-      <n-select
+      <n-cascader
         v-model:value="monster"
         clearable
         filterable
