@@ -30,7 +30,13 @@
     try {
       loading.value = true
       await installUpdate()
-      window.$dialog?.success({ title: '安装成功', onPositiveClick: async () => await relaunch() })
+      window.$dialog?.success({
+        title: t('t4'),
+        content: t('t5'),
+        negativeText: t('t2'),
+        positiveText: t('t6'),
+        onPositiveClick: () => relaunch()
+      })
     } catch (error) {
       window.$notification?.error({
         title: t('n1'),
@@ -75,6 +81,9 @@
   "t1": "发现新版本！",
   "t2": "取消",
   "t3": "升级",
+  "t4": "安装成功",
+  "t5": "是否重新启动",
+  "t6": "重新启动",
   "n1": "安装更新包失败",
   "n2": "请尝试重试，如果多次失败则检查网络情况或者在Github提个issue"
 }
@@ -85,6 +94,10 @@
   "t1": "Discover the new version!",
   "t2": "Cancle",
   "t3": "Update",
+  "t4": "Install success",
+  "t5": "Whether to relaunch",
+  "t6": "Reluanch",
+  "t7": "确定",
   "n1": "Failed to install update package",
   "n2": "Please try to retry, if it fails several times, check the network situation or open an issue in Github"
 }
