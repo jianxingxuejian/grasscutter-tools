@@ -30,7 +30,7 @@
     try {
       loading.value = true
       await installUpdate()
-      await relaunch()
+      window.$dialog?.success({ title: '安装成功', onPositiveClick: async () => await relaunch() })
     } catch (error) {
       window.$notification?.error({
         title: t('n1'),
