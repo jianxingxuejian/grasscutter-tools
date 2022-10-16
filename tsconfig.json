@@ -21,6 +21,6 @@
     },
     "types": ["vite/client", "node", "unplugin-icons/types/vue", "naive-ui/volar"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "build/**/*.ts", "vite.config.ts"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "build/**/*.ts", "vite.config.ts", "scripts/**/*.ts"],
   "exclude": ["dist", "node_modules"]
 }

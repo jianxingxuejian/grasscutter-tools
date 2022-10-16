@@ -1,6 +1,7 @@
 import fs from 'fs-extra'
 import { groupBy, sortedUniq, difference } from 'lodash-es'
 import { weatherIds } from '../src/i18n/locales/common'
+import { item_monster } from '../src/i18n/locales/en-US/monster'
 
 type Climate = 'CLIMATE_SUNNY' | 'CLIMATE_CLOUDY' | 'CLIMATE_RAIN' | 'CLIMATE_THUNDERSTORM' | 'CLIMATE_MIST'
 
@@ -57,14 +58,35 @@ weather.forEach((item, index) => console.log(difference(item, weatherIds[index])
 
 fs.writeFile('scripts/weatherIds.json', JSON.stringify(weather))
 
+type MonsterType = 'MONSTER_ORDINARY' | 'MONSTER_BOSS' | 'MONSTER_ENV_ANIMAL' | 'MONSTER_FISH' | 'MONSTER_PARTNER'
 interface MonsterJSON extends Record<string, unknown> {
   id: number
   monsterName: string
+  type: MonsterType
+  ai: string
 }
 
 const readMonster = fs.readFileSync('scripts/MonsterExcelConfigData.json', 'utf-8')
 const monsterJson: MonsterJSON[] = JSON.parse(readMonster)
-const monsterObj: Record<number, string> = {}
-monsterJson.sort((a, b) => a.id - b.id).forEach(({ id, monsterName }) => (monsterObj[id] = monsterName))
-
+const monsterObj: Record<MonsterType, Record<number, string>> = {
+  MONSTER_ORDINARY: {},
+  MONSTER_BOSS: {},
+  MONSTER_ENV_ANIMAL: {},
+  MONSTER_FISH: {},
+  MONSTER_PARTNER: {}
+}
+Object.entries(
+  groupBy(
+    monsterJson.sort((a, b) => a.id - b.id),
+    'type'
+  )
+).forEach(([k, v]) => v.forEach(({ id, monsterName }) => (monsterObj[k as MonsterType][id] = monsterName)))
 fs.writeFile('scripts/monster.json', JSON.stringify(monsterObj))
+
+const diff_id_monster = difference(
+  monsterJson.map(item => item.id),
+  Object.values(item_monster)
+    .map(item => Object.keys(item).map(item => Number(item)))
+    .flat()
+)
+console.log(monsterJson.filter(item => diff_id_monster.includes(item.id)).map(({ id, monsterName, type }) => ({ id, monsterName, type })))
