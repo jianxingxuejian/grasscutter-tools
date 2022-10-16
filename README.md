@@ -19,12 +19,12 @@ English | [简体中文](README_zh-CN.md)
 - [x] Common Command
 - [x] Create Artifacts
 - [x] Item Category Search
+- [x] Quest List
 - [x] Manage mods
 - [x] Admin Console
 - [ ] Launcher(TODO)
 - [ ] Mod Download Online(TODO)
 - [ ] Spawn List(Need translate or retouch)
-- [ ] Quest List
 
 ## Usage
 

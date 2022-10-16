@@ -1,5 +1,11 @@
 # 变更日志
 
+## [1.4.6] - 2022-10-17
+
+### 特性
+
+- 增加任务列表
+
 ## [1.4.5] - 2022-10-16
 
 ### 特性
@@ -36,6 +42,7 @@
 
 - 修正错误的圣遗物 id
 
+[1.4.6]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.5...v1.4.6
 [1.4.5]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.4...v1.4.5
 [1.4.4]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.3...v1.4.4
 [1.4.3]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.2...v1.4.3

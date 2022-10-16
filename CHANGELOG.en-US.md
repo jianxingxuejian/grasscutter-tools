@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.6] - 2022-10-17
+
+### Features
+
+- Add Quest list
+
 ## [1.4.5] - 2022-10-16
 
 ### Features
@@ -36,6 +42,7 @@
 
 - Fix the wrong artifact id
 
+[1.4.6]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.5...v1.4.6
 [1.4.5]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.4...v1.4.5
 [1.4.4]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.3...v1.4.4
 [1.4.3]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.2...v1.4.3
