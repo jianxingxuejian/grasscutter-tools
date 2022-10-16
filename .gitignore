@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 .VSCodeCounter
+/scripts/Grasscutter_Resources
+/scripts/target
