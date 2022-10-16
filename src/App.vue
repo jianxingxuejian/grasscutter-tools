@@ -98,6 +98,9 @@
     Popconfirm: {
       fontSize: '1rem'
     },
+    Radio: {
+      radioSizeMedium: '1.5rem'
+    },
     Space: {
       gapMedium: computed(() => {
         const fontSize = appStore.fontSize

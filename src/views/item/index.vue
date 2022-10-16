@@ -77,7 +77,7 @@
   const command_item = computed(() => `/give ${item.value} x${x_item.value} lv${lv_item.value} r${r_item.value}`)
 
   const monsterOptions = computed<Message['monster']>(() => tm('monster'))
-  console.log(monsterOptions.value)
+
   const monster = ref('')
   const x_monster = ref(1)
   const lv_monster = ref(90)

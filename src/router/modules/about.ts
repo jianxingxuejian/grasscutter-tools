@@ -4,7 +4,7 @@ const routes: Route.Config = {
   redirect: '/about/index',
   component: () => import('@/layout/index.vue'),
   meta: {
-    sort: 7,
+    sort: 8,
     isRoot: true,
     icon: 'icon-park-outline:info'
   },

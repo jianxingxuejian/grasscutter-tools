@@ -12,10 +12,20 @@ interface Message {
   weather: Item[]
   item: Item[]
   monster: Item[]
+  quest: QuestItem[]
 }
 
 type Item = {
   value: number | string
   label: string
   children?: Item[]
+}
+
+type QuestItem = {
+  value: number | string
+  label: string
+  hidden?: true
+  test?: true
+  unreleased?: true
+  children?: QuestItem[]
 }

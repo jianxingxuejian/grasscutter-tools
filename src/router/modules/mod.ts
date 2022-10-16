@@ -4,7 +4,7 @@ const routes: Route.Config = {
   redirect: '/mod/index',
   component: () => import('@/layout/index.vue'),
   meta: {
-    sort: 5,
+    sort: 6,
     isRoot: true,
     icon: 'mdi:account-edit-outline'
   },
