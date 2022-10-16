@@ -10,7 +10,7 @@ export async function updater() {
     throw new Error('GITHUB_TOKEN is required')
   }
 
-  const notes = {}
+  const notes: Record<string, string> = {}
 
   i18nList.forEach(async locale => {
     const logPath = path.join(process.cwd(), `CHANGELOG.${locale}.md`)
