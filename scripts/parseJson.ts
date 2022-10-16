@@ -1,7 +1,7 @@
 import fs from 'fs-extra'
 import { groupBy, sortedUniq, difference } from 'lodash-es'
 import { weatherIds } from '../src/i18n/locales/common'
-import { item_monster } from '../src/i18n/locales/en-US/monster'
+import { item_monster, MonsterType } from '../src/i18n/locales/en-US/monster'
 
 type Climate = 'CLIMATE_SUNNY' | 'CLIMATE_CLOUDY' | 'CLIMATE_RAIN' | 'CLIMATE_THUNDERSTORM' | 'CLIMATE_MIST'
 
@@ -58,7 +58,6 @@ weather.forEach((item, index) => console.log(difference(item, weatherIds[index])
 
 fs.writeFile('scripts/weatherIds.json', JSON.stringify(weather))
 
-type MonsterType = 'MONSTER_ORDINARY' | 'MONSTER_BOSS' | 'MONSTER_ENV_ANIMAL' | 'MONSTER_FISH' | 'MONSTER_PARTNER'
 interface MonsterJSON extends Record<string, unknown> {
   id: number
   monsterName: string
