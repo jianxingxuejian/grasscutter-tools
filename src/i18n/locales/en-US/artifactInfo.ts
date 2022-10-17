@@ -2,9 +2,9 @@ import { artifactIds } from '../common/artifactIds'
 
 export const artifactInfo: Message['artifactInfo'] = [
   {
-    name: '深林的记忆',
-    description1: '获得15%草元素伤害加成。',
-    description2: '元素战技或元素爆发命中敌人后，使命中目标的草元素抗性降低30%，持续8秒。装备者处于队伍后台时，依然能触发该效果。'
+    name: 'Deepwood Memories',
+    description1: 'Dendro DMG Bonus +15%.',
+    description2: 'After Elemental Skills or Bursts hit opponents, the targets Dendro RES will be decreased by 30% for 8s. This effect can be triggered even if the equipping character is not on the field.'
   },
   {
     name: '饰金之梦',
