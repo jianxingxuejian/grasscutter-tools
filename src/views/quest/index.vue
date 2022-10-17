@@ -74,7 +74,7 @@
 
 <i18n locale="en-US" lang="json">
 {
-  "t1": "Quest",
+  "t1": "Quests",
   "t2": "Enter a keyword to search",
   "b1": "Execute"
 }
