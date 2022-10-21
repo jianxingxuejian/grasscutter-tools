@@ -3,38 +3,38 @@ import questInfo from './questInfo.json?raw'
 export type QuestType = 'WQ' | 'IQ' | 'LQ'
 
 export type QuestInfo = {
-  value: number
+  id: number
   type: QuestType
   hidden?: true
   test?: true
   unreleased?: true
-  titleTextMapHash: number
-  descTextMapHash?: number
+  titleHash?: number
+  descHash?: number
   children?: {
-    value: number
+    subId: number
     order: number
     hidden?: true
     test?: true
     unreleased?: true
-    descTextMapHash?: number
+    descHash?: number
   }[]
 }
 
 const questInfos: QuestInfo[] = JSON.parse(questInfo)
 
 export function parseQuestItem(questItem: Record<string, string>, tags: string[]) {
-  return questInfos.map(({ value, titleTextMapHash, descTextMapHash, children, ...other }) => ({
+  return questInfos.map(({ id, titleHash, descHash, children, ...other }) => ({
     ...other,
-    value,
-    label: `${value} ` + questItem[titleTextMapHash] || '',
-    desc: descTextMapHash && questItem[descTextMapHash],
-    children: children?.map(({ value, order, hidden, test, unreleased, descTextMapHash }) => ({
-      value,
+    value: id,
+    label: `${id}  ` + (titleHash && questItem[titleHash]) || '',
+    desc: descHash && questItem[descHash],
+    children: children?.map(({ subId, order, hidden, test, unreleased, descHash }) => ({
+      value: subId,
       label:
         order +
         '. ' +
-        ((descTextMapHash && questItem[descTextMapHash]) || '') +
-        `(${value})` +
+        ((descHash && questItem[descHash]) || '') +
+        ` (${subId})` +
         (hidden ? ` [${tags[0]}]` : '') +
         (test ? ` [${tags[1]}]` : '') +
         (unreleased ? ` [${tags[2]}]` : '')
