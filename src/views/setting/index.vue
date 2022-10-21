@@ -91,7 +91,7 @@
   import { useThrottleFn } from '@vueuse/core'
   import { useSettingStore } from '@/stores'
   import { mailVerifyCode, playerAuthByVerifyCode, playerAuthByPassword, adminAuth, adminCreateAccount, adminCommand } from '@/http'
-  import { testIP } from '@/utils'
+  import { testUrlOrIP } from '@/utils'
 
   const { t } = useI18n()
 
@@ -110,7 +110,7 @@
       validator(_rule, value) {
         if (!value) {
           return new Error(t('r1-1'))
-        } else if (!testIP(value)) {
+        } else if (!testUrlOrIP(value)) {
           return new Error(t('r1-2'))
         }
         return true
