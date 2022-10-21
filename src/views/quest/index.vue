@@ -17,9 +17,9 @@
       <n-input v-model:value="command" />
       <n-radio-group v-model:value="status" class="shrink-0 ml-10">
         <n-space class="flex-center">
-          <span>开始</span>
+          <span>{{ t('t3') }}</span>
           <n-radio value="add" />
-          <span>结束</span>
+          <span>{{ t('t4') }}</span>
           <n-radio value="finish" />
         </n-space>
       </n-radio-group>
@@ -68,6 +68,8 @@
 {
   "t1": "任务",
   "t2": "输入关键字搜索",
+  "t3": "开始",
+  "t4": "结束",
   "b1": "执行"
 }
 </i18n>
@@ -76,6 +78,8 @@
 {
   "t1": "Quests",
   "t2": "Enter a keyword to search",
+  "t3": "Start",
+  "t4": "Finish",
   "b1": "Execute"
 }
 </i18n>
