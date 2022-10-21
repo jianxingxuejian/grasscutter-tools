@@ -20,7 +20,7 @@ export const artifactIds = [
     img: 'artifact/huaguan_120.png'
   },
   {
-    itemIds: [96544, 96524, 96554, 96514, 96433],
+    itemIds: [96544, 96524, 96554, 96514, 96534],
     img: 'artifact/hairan_120.png'
   },
   {
@@ -36,7 +36,7 @@ export const artifactIds = [
     img: 'artifact/qianyan_120.png'
   },
   {
-    itemIds: [92544, 92524, 92454, 92514, 92534],
+    itemIds: [92544, 92524, 92554, 92514, 92534],
     img: 'artifact/cangbai_120.png'
   },
   {
