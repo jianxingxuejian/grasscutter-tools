@@ -191,7 +191,7 @@
 {
   "t1": "General Settings",
   "t2": "Unlock Map",
-  "t3": "level-up all",
+  "t3": "Level-up All",
   "t4": "God Mode",
   "t5": "Unlimited Stamina",
   "t6": "Unlimited Energy",

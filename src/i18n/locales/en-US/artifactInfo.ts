@@ -2,131 +2,131 @@ import { artifactIds } from '../common/artifactIds'
 
 export const artifactInfo: Message['artifactInfo'] = [
   {
-    name: '深林的记忆',
-    description1: '获得15%草元素伤害加成。',
-    description2: '元素战技或元素爆发命中敌人后，使命中目标的草元素抗性降低30%，持续8秒。装备者处于队伍后台时，依然能触发该效果。'
+    name: 'Deepwood Memories',
+    description1: 'Dendro DMG Bonus +15%.',
+    description2: 'After Elemental Skills or Bursts hit opponents, the targets Dendro RES will be decreased by 30% for 8s. This effect can be triggered even if the equipping character is not on the field.'
   },
   {
-    name: '饰金之梦',
-    description1: '元素精通提高80点。',
+    name: 'Gilded Dreams',
+    description1: 'Elemental Mastery +80.',
     description2:
-      '触发元素反应后的8秒内，会根据队伍内其他角色的元素类型，使装备者获得强化：队伍中每存在1个和装备者同类元素的角色，攻击力提升14%；每存在1个和装备者不同元素类型的角色，元素精通提升50点。上述每类效果至多计算3个角色。该效果每8秒至多触发一次。装备者处于队伍后台时，依然能触发该效果。'
+      'Within 8s of triggering an Elemental Reaction, the character equipping this will obtain buffs based on the Elemental Type of the other party members. ATK is increased by 14% for each party member whose Elemental Type is the same as the equipping character, and Elemental Mastery is increased by 50 for every party member with a different Elemental Type. Each of the aforementioned buffs will count up to 3 characters. This effect can be triggered once every 8s. The character who equips this can still trigger its effects when not on the field.'
   },
   {
-    name: '辰砂往生录',
-    description1: '攻击力提高18%。',
+    name: 'Vermillion Hereafter',
+    description1: 'ATK +18%.',
     description2:
-      '施放元素爆发后，将产生持续16秒的「潜光」效果：攻击力提升8%；并在角色的生命值降低时，攻击力进一步提升10%，至多通过这种方式提升4次，每0.8秒至多触发一次。「潜光」效果将在角色退场时消失；持续期间再次施放元素爆发，将移除原有的「潜光」。'
+      'After using an Elemental Burst, this character will gain the Nascent Light effect, increasing their ATK by 8% for 16s. When the characters HP decreases, their ATK will further increase by 10%. This further increase can occur this way a maximum of 4 times. This effect can be triggered once every 0.8s. Nascent Light will be dispelled when the character leaves the field. If an Elemental Burst is used again during the duration of Nascent Light, the original Nascent Light will be dispelled.'
   },
   {
-    name: '来歆余响',
-    description1: '攻击力提高18%。',
+    name: 'Echoes of an Offering',
+    description1: 'ATK +18%.',
     description2:
-      '普通攻击命中敌人时，有36%概率触发「幽谷祝祀」：普通攻击造成的伤害提高，伤害提高值为攻击力的70%，该效果将在普通攻击造成伤害后的0.05秒后清除。普通攻击未触发「幽谷祝祀」时，会使下次触发概率提升20%；0.2秒内至多判定1次触发与否。'
+      'When Normal Attacks hit opponents, there is a 36% chance that it will trigger Valley Rite, which will increase Normal Attack DMG by 70% of ATK. This effect will be dispelled 0.05s after a Normal Attack deals DMG. If a Normal Attack fails to trigger Valley Rite, the odds of it triggering the next time will increase by 20%. This trigger can occur once every 0.2s.'
   },
   {
-    name: '华馆梦醒形骸记',
-    description1: '防御力提高30%。',
+    name: 'Husk of Opulent Dreams',
+    description1: 'DEF +30%',
     description2:
-      '装备此圣遗物套装的角色在以下情况下，将获得「问答」效果：在场上用岩元素攻击命中敌人后获得一层，每0.3秒至多触发一次；在队伍后台中，每3秒获得一层。问答至多叠加4层，每层能提供6%防御力与6%岩元素伤害加成。每6秒,若未获得问答效果，将损失一层。'
+      'A character equipped with this Artifact set will obtain the Curiosity effect in the following conditions: When on the field, the character gains 1 stack after hitting an opponent with a Geo attack, triggering a maximum of once every 0.3s. When off the field, the character gains 1 stack every 3s. Curiosity can stack up to 4 times, each providing 6% DEF and a 6% Geo DMG Bonus. When 6 seconds pass without gaining a Curiosity stack, 1 stack is lost.'
   },
   {
-    name: '海染砗磲',
-    description1: '治疗加成提高15%。',
+    name: 'Ocean-Hued Clam',
+    description1: 'Healing Bonus +15%.',
     description2:
-      '装备此圣遗物套装的角色对队伍中的角色进行治疗时，将产生持续3秒的海染泡沫，记录治疗的生命值回复量（包括溢出值）。持续时间结束时，海染泡沫将会爆炸，对周围的敌人造成90%累计回复量的伤害（该伤害结算方式同感电、超导等元素反应，但不受元素精通、等级或反应伤害加成效果影响）。每3.5秒至多产生一个海染泡沫；海染泡沫至多记录30000点回复量，含溢出部分的治疗量；自己的队伍中同时至多存在一个海染泡沫。装备此圣遗物套装的角色处于队伍后台时；依然能触发该效果。'
+      'When the character equipping this artifact set heals a character in the party, a Sea-Dyed Foam will appear for 3 seconds, accumulating the amount of HP recovered from healing (including overflow healing). At the end of the duration, the Sea-Dyed Foam will explode, dealing DMG to nearby opponents based on 90% of the accumulated healing. (This DMG is calculated similarly to Reactions such as Electro-Charged, and Superconduct, but is not affected by Elemental Mastery, Character Levels, or Reaction DMG Bonuses). Only one Sea-Dyed Foam can be produced every 3.5 seconds. Each Sea-Dyed Foam can accumulate up to 30,000 HP (including overflow healing). There can be no more than one Sea-Dyed Foam active at any given time. This effect can still be triggered even when the character who is using this artifact set is not on the field.'
   },
   {
-    name: '绝缘之旗印',
-    description1: '元素充能效率提高20%。',
-    description2: '基于元素充能效率的25%，提高元素爆发造成的伤害。至多通过这种方式获得75%提升。'
+    name: 'Emblem of Severed Fate',
+    description1: 'Energy Recharge +20%',
+    description2: 'Increases Elemental Burst DMG by 25% of Energy Recharge. A maximum of 75% bonus DMG can be obtained in this way.'
   },
   {
-    name: '追忆之注连',
-    description1: '攻击力提高18%。',
+    name: 'Shimenawas Reminiscence',
+    description1: 'ATK +18%.',
     description2:
-      '释放元素战技时，如果角色的元素能量高于或等于15点，则会流失15点元素能量，使接下来的10秒内，普通攻击、重击、下落攻击造成的伤害提高50%，持续期间内效果不会再次触发。'
+      'When casting an Elemental Skill, if the character has 15 or more Energy, they lose 15 Energy and Normal/Charged/Plunging Attack DMG is increased by 50% for 10s. This effect will not trigger again during that duration.'
   },
   {
-    name: '千岩牢固',
-    description1: '生命值提升20%',
+    name: 'Tenacity of the Millelith',
+    description1: 'HP increased by 20%.',
     description2:
-      '元素战技命中敌人后，使队伍中附近的所有角色攻击力提升20%，护盾强效提升30%，持续3秒。该效果每0.5秒至多触发一次。装备此圣遗物套装的角色处于队伍后台时，依然能触发该效果。'
+      'When an Elemental Skill hits an opponent, the ATK of all nearby party members is increased by 20% and their Shield Strength is increased by 30% for 3s. This effect can be triggered once every 0.5s. This effect can still be triggered even when the character who is using this artifact set is not on the field.'
   },
   {
-    name: '苍白之火',
-    description1: '造成的物理伤害提高25%。',
-    description2: '元素战技命中敌人后，攻击力提升9%。该效果持续7秒，至多叠加2层，每0.3秒至多触发一次。叠满2层时，2件套的效果提升100%。'
+    name: 'Pale Flame',
+    description1: 'Physical DMG is increased by 25%.',
+    description2: 'When an Elemental Skill hits an opponent, ATK is increased by 9% for 7s. This effect stacks up to 2 times and can be triggered once every 0.3s. Once 2 stacks are reached, the 2-set effect is increased by 100%.'
   },
   {
-    name: '平息鸣雷的尊者',
-    description1: '雷元素抗性提高40%。',
-    description2: '对处于雷元素影响下的敌人造成的伤害提升35%。'
+    name: 'Thundersoother',
+    description1: 'Electro RES increased by 40%.',
+    description2: 'Increases DMG against opponents affected by Electro by 35%.'
   },
   {
-    name: '炽烈的炎之魔女',
-    description1: '获得15%火元素伤害加成。',
+    name: 'Crimson Witch of Flames',
+    description1: 'Pyro DMG Bonus +15%',
     description2:
-      '超载、燃烧反应造成的伤害提升40%，蒸发、融化反应的加成系数提高15%。施放元素战技后的10秒内，二件套的效果提高50%，该效果最多叠加3次。'
+      'Increases Overloaded and Burning, and Burgeon DMG by 40%. Increases Vaporize and Melt DMG by 15%. Using Elemental Skill increases the 2-Piece Set Bonus by 50% of its starting value for 10s. Max 3 stacks.'
   },
   {
-    name: '流浪大地的乐团',
-    description1: '元素精通提高80点。',
-    description2: '装备该圣遗物套装的角色为法器、弓箭角色时，角色重击造成的伤害提高35%。'
+    name: 'Wanderers Troupe',
+    description1: 'Increases Elemental Mastery by 80.',
+    description2: 'Increases Charged Attack DMG by 35% if the character uses a Catalyst or a Bow.'
   },
   {
-    name: '染血的骑士道',
-    description1: '造成的物理伤害提高25%。',
-    description2: '击败敌人后的10秒内，施放重击时不消耗体力，且造成的伤害提升50%。'
+    name: 'Bloodstained Chivalry',
+    description1: 'Physical DMG +25%',
+    description2: 'After defeating an opponent, increases Charged Attack DMG by 50%, and reduces its Stamina cost to 0 for 10s.'
   },
   {
-    name: '被怜爱的少女',
-    description1: '角色造成的治疗效果提升15%。',
-    description2: '施放元素战技或元素爆发后的10秒内，队伍中所有角色受治疗效果加成提高20%。'
+    name: 'Maiden Beloved',
+    description1: 'Character Healing Effectiveness +15%',
+    description2: 'Using an Elemental Skill or Burst increases healing received by all party members by 20% for 10s.'
   },
   {
-    name: '角斗士的终幕礼',
-    description1: '攻击力提高18%。',
-    description2: '装备该圣遗物套装的角色为单手剑、双手剑、长柄武器角色时，角色普通攻击造成的伤害提高35%。'
+    name: 'Gladiators Finale',
+    description1: 'ATK +18%.',
+    description2: 'If the wielder of this artifact set uses a Sword, Claymore or Polearm, increases their Normal Attack DMG by 35%.'
   },
   {
-    name: '渡过烈火的贤人',
-    description1: '火元素抗性提高40%。',
-    description2: '对处于火元素影响下的敌人造成的伤害提升35%。'
+    name: 'Lavawalker',
+    description1: 'Pyro RES increased by 40%.',
+    description2: 'Increases DMG against opponents affected by Pyro by 35%.'
   },
   {
-    name: '悠古的磐岩',
-    description1: '获得15%岩元素伤害加成。',
-    description2: '获得元素反应形成的晶片时，队伍中所有角色获得35%对应元素伤害加成，持续10秒。同时只能通过该效果获得一种元素伤害加成。'
+    name: 'Archaic Petra',
+    description1: 'Gain a 15% Geo DMG Bonus.',
+    description2: 'Upon obtaining an Elemental Shard created through a Crystallize Reaction, all party members gain a 35% DMG Bonus for that particular element for 10s. Only one form of Elemental DMG Bonus can be gained in this manner at any one time.'
   },
   {
-    name: '如雷的盛怒',
-    description1: '获得15%雷元素伤害加成。',
-    description2: '超载、感电、超导反应造成的伤害提升40%。触发这些元素反应时，元素战技冷却时间减少1秒。该效果每0.8秒最多触发一次。'
+    name: 'Thundering Fury',
+    description1: 'Electro DMG Bonus +15%',
+    description2: 'Increases DMG caused by Overloaded, Electro-Charged, Superconduct, and Hyperbloom by 40%, and the DMG Bonus conferred by Aggravate is increased by 20%. When Quicken or the aforementioned Elemental Reactions are triggered, Elemental Skill CD is decreased by 1s. Can only occur once every 0.8s.'
   },
   {
-    name: '沉沦之心',
-    description1: '获得15%水元素伤害加成。',
-    description2: '施放元素战技后的15秒内，普通攻击与重击造成的伤害提高30%。'
+    name: 'Heart of Depth',
+    description1: 'Hydro DMG Bonus +15%',
+    description2: 'After using Elemental Skill, increases Normal Attack and Charged Attack DMG by 30% for 15s.'
   },
   {
-    name: '逆飞的流星',
-    description1: '护盾强效提高35%。',
-    description2: '处于护盾庇护下时，额外获得40%普通攻击和重击伤害加成。'
+    name: 'Retracing Bolide',
+    description1: 'Increases Shield Strength by 35%.',
+    description2: 'While protected by a shield, gain an additional 40% Normal and Charged Attack DMG.'
   },
   {
-    name: '昔日宗室之仪',
-    description1: '元素爆发造成的伤害提升20％。',
-    description2: '释放元素爆发后，队伍中所有角色攻击力提升20％，持续12秒，该效果不可叠加。'
+    name: 'Noblesse Oblige',
+    description1: 'Elemental Burst DMG +20%',
+    description2: 'Using an Elemental Burst increases all party members ATK by 20% for 12s. This effect cannot stack.'
   },
   {
-    name: '翠绿之影',
-    description1: '获得15%风元素伤害加成。',
-    description2: '扩散反应造成的伤害提升60%。根据扩散的元素类型，降低受到影响的敌人40%的对应元素抗性，持续10秒。'
+    name: 'Viridescent Venerer',
+    description1: 'Anemo DMG Bonus +15%',
+    description2: 'Increases Swirl DMG by 60%. Decreases opponents Elemental RES to the element infused in the Swirl by 40% for 10s.'
   },
   {
-    name: '冰风迷途的勇士',
-    description1: '获得15%冰元素伤害加成。',
-    description2: '攻击处于冰元素影响下的敌人时，暴击率提高20%；若敌人处于冻结状态下，则暴击率额外提高20%。'
+    name: 'Blizzard Strayer',
+    description1: 'Cryo DMG Bonus +15%',
+    description2: 'When a character attacks an opponent affected by Cryo, their CRIT Rate is increased by 20%. If the opponent is Frozen, CRIT Rate is increased by an additional 20%.'
   }
 ].map((item, index) => ({ ...item, ...artifactIds[index] }))

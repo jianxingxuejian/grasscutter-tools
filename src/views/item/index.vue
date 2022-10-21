@@ -118,8 +118,8 @@
   "t2": "Lv",
   "t3": "Refinement",
   "t4": "Enter a keyword to search",
-  "t5": "Thing",
-  "t6": "Moster",
+  "t5": "Give",
+  "t6": "Spawn",
   "b1": "Execute"
 }
 </i18n>
