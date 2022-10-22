@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.4.7] - 2022-10-22
+
+### Features
+
+- Add scene list and tp command
+
+- Improve some text translation and modification
+
+- Clear Inventory function adds parameters
+
+- Server address support domain name, add history list
+
+### Bug Fixes
+
+- Fix part of the wrong artifact id
+
+- Fix some missing text tips
+
 ## [1.4.6] - 2022-10-17
 
 ### Features
@@ -42,6 +60,7 @@
 
 - Fix the wrong artifact id
 
+[1.4.7]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.6...v1.4.7
 [1.4.6]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.5...v1.4.6
 [1.4.5]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.4...v1.4.5
 [1.4.4]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.3...v1.4.4

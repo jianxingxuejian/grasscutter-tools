@@ -1,5 +1,21 @@
 # 变更日志
 
+## [1.4.7] - 2022-10-22
+
+### 特性
+
+- 添加场景列表与传送指令
+
+- 清理背包功能增加参数
+
+- 服务器地址支持域名，增加历史列表
+
+### 修复 Bug
+
+- 修正部分错误的圣遗物 id
+
+- 修复部分丢失的文字提示
+
 ## [1.4.6] - 2022-10-17
 
 ### 特性
@@ -42,6 +58,7 @@
 
 - 修正错误的圣遗物 id
 
+[1.4.7]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.6...v1.4.7
 [1.4.6]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.5...v1.4.6
 [1.4.5]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.4...v1.4.5
 [1.4.4]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.3...v1.4.4
