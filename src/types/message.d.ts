@@ -13,6 +13,7 @@ interface Message {
   item: Item[]
   monster: Item[]
   quest: QuestItem[]
+  scene: Item[]
 }
 
 type Item = {
