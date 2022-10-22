@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@actions/github": "^5.1.1",
-    "@iconify/json": "^2.1.125",
+    "@iconify/json": "^2.1.126",
     "@iconify/vue": "^4.0.0",
     "@intlify/eslint-plugin-vue-i18n": "^2.0.0",
     "@intlify/unplugin-vue-i18n": "^0.7.0",
@@ -37,7 +37,7 @@
     "@typescript-eslint/parser": "^5.40.1",
     "@vitejs/plugin-basic-ssl": "^0.1.2",
     "@vitejs/plugin-vue": "^3.1.2",
-    "eslint": "^8.25.0",
+    "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.6.0",
