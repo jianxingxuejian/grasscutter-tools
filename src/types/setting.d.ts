@@ -3,6 +3,7 @@ interface Setting {
     protocol: 'http' | 'https'
     ip: string
     username: string
+    history: string[]
   }
   token: string
   admin_token: string

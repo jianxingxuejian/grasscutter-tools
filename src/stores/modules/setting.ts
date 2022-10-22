@@ -6,7 +6,8 @@ export const useSettingStore = defineStore('setting-store', {
     server: {
       protocol: 'https',
       ip: '127.0.0.1',
-      username: ''
+      username: '',
+      history: []
     },
     token: '',
     admin_token: '',
@@ -47,6 +48,18 @@ export const useSettingStore = defineStore('setting-store', {
       })
     },
     async updateServer() {
+      const history = this.server.history
+      const ip = this.server.ip
+
+      if (!history.includes(ip)) {
+        history.unshift(ip)
+        if (history.length > 10) {
+          history.length = 10
+        }
+      } else if (history[0] != ip) {
+        this.server.history = [ip].concat(history.filter(item => item != ip))
+      }
+
       await setSetting('server', this.server)
     },
     async updateToken(token: string) {
