@@ -29,10 +29,26 @@
             <n-button>{{ t('t7') }}</n-button>
           </template>
           <template #action>
-            <my-button :text="t('t7-1')" @click-async="playerCommand('clear all')" />
-            <my-button :text="t('t7-2')" @click-async="playerCommand('clear wp')" />
-            <my-button :text="t('t7-3')" @click-async="playerCommand('clear art')" />
-            <my-button :text="t('t7-4')" @click-async="playerCommand('clear mat')" />
+            <div class="flex-col gap-y-2">
+              <n-space class="items-center">
+                <span>{{ t('t23') }}</span>
+                <n-input-number v-model:value="maxLv" :min="0" :max="90" class="w-35" />
+              </n-space>
+              <n-space class="items-center">
+                <span>{{ t('t24') }}</span>
+                <n-input-number v-model:value="maxRefinement" :min="0" :max="5" class="w-30" />
+              </n-space>
+              <n-space class="items-center">
+                <span>{{ t('t25') }}</span>
+                <n-rate v-model:value="maxRarity" />
+              </n-space>
+              <div class="flex-center">
+                <my-button :text="t('t7-1')" @click-async="playerCommand('clear all' + cleanParam)" />
+                <my-button :text="t('t7-2')" @click-async="playerCommand('clear wp' + cleanParam)" />
+                <my-button :text="t('t7-3')" @click-async="playerCommand('clear art' + cleanParam)" />
+                <my-button :text="t('t7-4')" @click-async="playerCommand('clear mat' + cleanParam)" />
+              </div>
+            </div>
           </template>
           {{ t('tt2') }}
         </n-popconfirm>
@@ -129,6 +145,11 @@
     fetterLevel: 0
   })
 
+  const maxLv = ref(1)
+  const maxRefinement = ref(1)
+  const maxRarity = ref(4)
+  const cleanParam = computed(() => ` lv${maxLv.value} r${maxRefinement.value} ${maxRarity.value}*`)
+
   const weatherOptions = computed<Message['weather']>(() => tm('weather'))
   const weather = ref<string | null>(null)
 
@@ -181,6 +202,9 @@
   "t20": "命座",
   "t21": "好感度",
   "t22": "无CD",
+  "t23": "最大等级：",
+  "t24": "最大精炼：",
+  "t25": "最大星级：",
   "tt1": "一键升级所有角色等级、技能、命座、好感度",
   "tt2": "请选择清理的选项",
   "tt3": "所有角色的冷却缩减置为100%"
@@ -215,6 +239,9 @@
   "t20": "Constellation",
   "t21": "Friendship",
   "t22": "No CD",
+  "t23": "Max Level:",
+  "t24": "Max Refinement:",
+  "t25": "Max Rarity:",
   "tt1": "Level up all avatar, level, talents, constellation, friendship",
   "tt2": "Please select an option",
   "tt3": "All avatars cooldown reduction set to 100%"

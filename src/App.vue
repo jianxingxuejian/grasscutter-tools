@@ -101,6 +101,9 @@
     Radio: {
       radioSizeMedium: '1.5rem'
     },
+    Rate: {
+      sizeMedium: '1.5rem'
+    },
     Space: {
       gapMedium: computed(() => {
         const fontSize = appStore.fontSize
