@@ -4,7 +4,8 @@ export const artifactInfo: Message['artifactInfo'] = [
   {
     name: 'Deepwood Memories',
     description1: 'Dendro DMG Bonus +15%.',
-    description2: 'After Elemental Skills or Bursts hit opponents, the targets Dendro RES will be decreased by 30% for 8s. This effect can be triggered even if the equipping character is not on the field.'
+    description2:
+      'After Elemental Skills or Bursts hit opponents, the targets Dendro RES will be decreased by 30% for 8s. This effect can be triggered even if the equipping character is not on the field.'
   },
   {
     name: 'Gilded Dreams',
@@ -56,7 +57,8 @@ export const artifactInfo: Message['artifactInfo'] = [
   {
     name: 'Pale Flame',
     description1: 'Physical DMG is increased by 25%.',
-    description2: 'When an Elemental Skill hits an opponent, ATK is increased by 9% for 7s. This effect stacks up to 2 times and can be triggered once every 0.3s. Once 2 stacks are reached, the 2-set effect is increased by 100%.'
+    description2:
+      'When an Elemental Skill hits an opponent, ATK is increased by 9% for 7s. This effect stacks up to 2 times and can be triggered once every 0.3s. Once 2 stacks are reached, the 2-set effect is increased by 100%.'
   },
   {
     name: 'Thundersoother',
@@ -97,12 +99,14 @@ export const artifactInfo: Message['artifactInfo'] = [
   {
     name: 'Archaic Petra',
     description1: 'Gain a 15% Geo DMG Bonus.',
-    description2: 'Upon obtaining an Elemental Shard created through a Crystallize Reaction, all party members gain a 35% DMG Bonus for that particular element for 10s. Only one form of Elemental DMG Bonus can be gained in this manner at any one time.'
+    description2:
+      'Upon obtaining an Elemental Shard created through a Crystallize Reaction, all party members gain a 35% DMG Bonus for that particular element for 10s. Only one form of Elemental DMG Bonus can be gained in this manner at any one time.'
   },
   {
     name: 'Thundering Fury',
     description1: 'Electro DMG Bonus +15%',
-    description2: 'Increases DMG caused by Overloaded, Electro-Charged, Superconduct, and Hyperbloom by 40%, and the DMG Bonus conferred by Aggravate is increased by 20%. When Quicken or the aforementioned Elemental Reactions are triggered, Elemental Skill CD is decreased by 1s. Can only occur once every 0.8s.'
+    description2:
+      'Increases DMG caused by Overloaded, Electro-Charged, Superconduct, and Hyperbloom by 40%, and the DMG Bonus conferred by Aggravate is increased by 20%. When Quicken or the aforementioned Elemental Reactions are triggered, Elemental Skill CD is decreased by 1s. Can only occur once every 0.8s.'
   },
   {
     name: 'Heart of Depth',
@@ -127,6 +131,7 @@ export const artifactInfo: Message['artifactInfo'] = [
   {
     name: 'Blizzard Strayer',
     description1: 'Cryo DMG Bonus +15%',
-    description2: 'When a character attacks an opponent affected by Cryo, their CRIT Rate is increased by 20%. If the opponent is Frozen, CRIT Rate is increased by an additional 20%.'
+    description2:
+      'When a character attacks an opponent affected by Cryo, their CRIT Rate is increased by 20%. If the opponent is Frozen, CRIT Rate is increased by an additional 20%.'
   }
 ].map((item, index) => ({ ...item, ...artifactIds[index] }))
