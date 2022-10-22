@@ -17,9 +17,9 @@
             </div>
           </template>
           <div class="text-sm">
-            <span>二件套：{{ item.description1 }}</span>
+            <span>{{ t('t9') + item.description1 }}</span>
             <br />
-            <span>四件套：{{ item.description2 }}</span>
+            <span>{{ t('t10') + item.description2 }}</span>
           </div>
         </n-popover>
       </div>
@@ -230,6 +230,8 @@
   "t5": "档次：",
   "t7": "执行",
   "t8": "请选择4个初始词条",
+  "t9": "二件套：",
+  "t10": "四件套：",
   "30960": "暴击率",
   "30950": "暴击伤害",
   "50880": "元素精通",
@@ -265,6 +267,8 @@
   "t5": "Gear：",
   "t7": "Execute",
   "t8": "Please select 4 initial substats",
+  "t9": "2-Piece Set: ",
+  "t10": "4-Piece Set: ",
   "30960": "CRIT Rate",
   "30950": "CRIT DMG",
   "50880": "EM",
