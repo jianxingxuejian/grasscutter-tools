@@ -2,14 +2,14 @@
   <div class="flex-col">
     <div class="flex-center mb-1">
       <n-space class="items-center">
+        <my-button v-if="currentPage === 0" @click="listSort">
+          <icon-material-symbols-rotate-right :class="{ 'animate-spin': loadingSort }" />
+        </my-button>
         <n-input v-model:value="keyword" clearable />
         <my-button @click="settingRef?.show">
           <icon-ic-outline-settings />
         </my-button>
-        <my-button v-if="currentPage === 0" @click="listSort">
-          <icon-material-symbols-rotate-right :class="{ 'animate-spin': loadingSort }" />
-        </my-button>
-        <span v-if="currentPage === 0">{{ num }}</span>
+        <span v-if="currentPage === 0" class="text-4">{{ num }}</span>
         <n-a class="text-4" @click="currentPage ^= 1"> {{ currentText }} </n-a>
       </n-space>
       <setting-modal ref="settingRef" />
