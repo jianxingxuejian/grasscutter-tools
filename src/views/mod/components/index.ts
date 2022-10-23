@@ -1,3 +1,5 @@
+import ModDownload from './ModDownload.vue'
+import ModLocal from './ModLocal.vue'
 import SettingModal from './SettingModal.vue'
 
-export { SettingModal }
+export { ModDownload, ModLocal, SettingModal }

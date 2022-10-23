@@ -1,139 +1,68 @@
 <template>
   <div class="flex-col">
-    <div class="flex-center">
+    <div class="flex-center mb-1">
       <n-space class="items-center">
         <n-input v-model:value="keyword" clearable />
         <my-button @click="settingRef?.show">
           <icon-ic-outline-settings />
         </my-button>
-        <my-button @click="listSort">
-          <icon-line-md-rotate-270 :class="{ 'animate-spin': loadingChange }" />
+        <my-button v-if="currentPage === 0" @click="listSort">
+          <icon-material-symbols-rotate-right :class="{ 'animate-spin': loadingSort }" />
         </my-button>
-        <span>{{ enabledNum + '/' + modList.length }}</span>
+        <span v-if="currentPage === 0">{{ num }}</span>
+        <n-a class="text-4" @click="currentPage ^= 1"> {{ currentText }} </n-a>
       </n-space>
-      <setting-modal ref="settingRef" @update:mod-list="loadModList" />
+      <setting-modal ref="settingRef" />
     </div>
-    <div class="of-auto">
-      <n-grid cols="s:5 m:6 l:7 xl:8 2xl:9" responsive="screen" class="px-4">
-        <n-gi v-for="(item, index) in showList" :key="index" class="h-auto p-1 flex-col" :style="style">
-          <n-input
-            v-show="settingStore.mod.showName"
-            v-model:value="item.name"
-            size="small"
-            class="text-center"
-            @change="write_file(item)"
-          />
-          <n-input
-            v-show="settingStore.mod.showAuthor"
-            v-model:value="item.submitter.name"
-            size="small"
-            class="text-center"
-            @change="write_file(item)"
-          />
-          <div class="grow relative hover:(cursor-pointer opacity-50 transition-opacity-300)">
-            <div class="absolute h-full w-full flex-col flex-center z1 opacity-0 hover:(opacity-100 transition-opacity-300)">
-              <n-checkbox :checked="item.enabled" class="w-25% h-auto aspect-ratio-1" @click="handleCheck(item)" />
-              <n-button text class="w-30% h-30%">
-                <icon-material-symbols-folder-open-outline
-                  preserveAspectRatio="xMaxYMax meet"
-                  width="100%"
-                  height="100%"
-                  @click="open_dir(item.path)"
-                />
-              </n-button>
-            </div>
-            <n-image
-              lazy
-              preview-disabled
-              object-fit="contain"
-              :src="item.src"
-              :intersection-observer-options="{
-                root: '#app'
-              }"
-              class="rd-1 absolute z0 h-full w-full justify-center p-1 border-slate-200 border-width-1"
-              @error="loadLocalImg(item)"
-            />
-          </div>
-        </n-gi>
-      </n-grid>
-    </div>
+    <transition name="fade-slide" mode="out-in">
+      <keep-alive>
+        <mod-local v-if="currentPage === 0" ref="localRef" :keyword="keyword" @update:num="updateNum" />
+        <mod-download v-else ref="downloadRef" />
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { SettingModal } from './components'
-  import { useSettingStore } from '@/stores'
-  import { get_mod_list, read_local_img, open_dir, rename, write_file } from '@/utils'
+  import { useI18n } from 'vue-i18n'
+  import { SettingModal, ModDownload, ModLocal } from './components'
+
+  const { t } = useI18n()
+
+  const componentsInfo = reactive([computed(() => t('t1')), computed(() => t('t2'))])
+  const currentPage = ref(0)
+  const currentText = computed(() => componentsInfo[currentPage.value].value)
 
   const settingRef = ref<InstanceType<typeof SettingModal>>()
-
-  const settingStore = useSettingStore()
-
-  const modList = ref<Mod[]>([])
-  const showList = computed(() =>
-    modList.value.filter(item => item.name.includes(keyword.value) || item.submitter.name.includes(keyword.value))
-  )
+  const localRef = ref<InstanceType<typeof ModLocal>>()
+  const downloadRef = ref<InstanceType<typeof ModDownload>>()
   const keyword = ref('')
-  const enabledNum = computed(() => modList.value.filter(item => item.enabled).length)
-
-  const style = computed(() => `aspect-ratio: ${settingStore.mod.width}/${settingStore.mod.height}`)
-
-  const loadingChange = ref(false)
-
-  async function handleCheck(mod: Mod) {
-    const { enabled, path } = mod
-    const index = path.lastIndexOf('/') + 1
-    let newPath
-    if (enabled) {
-      newPath = path.slice(0, index) + 'DISABLED_' + path.slice(index)
-    } else {
-      newPath = path.replace('DISABLED_', '')
-    }
-    await rename(path, newPath)
-    mod.path = newPath
-    mod.enabled = !enabled
-  }
-
-  async function loadLocalImg(mod: Mod) {
-    if (/(http|https):\/\/([\w.]+\/?)\S*/.test(mod.src)) return
-    mod.src = await read_local_img(mod.path)
-  }
-
-  async function loadModList() {
-    modList.value = []
-    try {
-      modList.value = await get_mod_list(settingStore.getModPath)
-      listSort()
-    } catch (e) {
-      window.$message?.warning("didn't found mods path")
-    }
-  }
+  const loadingSort = ref(false)
+  const num = ref('0/0')
 
   function listSort() {
-    loadingChange.value = true
-    modList.value.sort((next, pre) => {
-      if (next.enabled && !pre.enabled) {
-        return -1
-      } else if (next.enabled == pre.enabled) {
-        return next.name.localeCompare(pre.name, settingStore.locale)
-      }
-      return 0
-    })
+    loadingSort.value = true
+    localRef.value?.listSort()
     setTimeout(() => {
-      loadingChange.value = false
+      loadingSort.value = false
     }, 1000)
   }
 
-  loadModList()
+  function updateNum(value: string) {
+    num.value = value
+  }
 </script>
 
-<style scoped lang="scss">
-  :deep(.n-checkbox .n-checkbox-box) {
-    height: 100%;
-    width: 100%;
-  }
-  :deep(.n-checkbox .n-checkbox-box-wrapper) {
-    height: 100%;
-    width: 100%;
-  }
-</style>
+<i18n locale="zh-CN" lang="json">
+{
+  "t1": "在线mod下载",
+  "t2": "本地mod管理"
+}
+</i18n>
+
+<i18n locale="en-US" lang="json">
+{
+  "t1": "Online Mods Download",
+  "t2": "Local Mods Manage"
+}
+</i18n>
