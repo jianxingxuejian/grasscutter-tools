@@ -32,6 +32,21 @@
   margin-right: 0.3rem !important;
 }
 
+.n-dropdown-menu .n-dropdown-option {
+  .n-dropdown-option-body {
+    font-size: 1.25rem;
+  }
+
+  .n-dropdown-option-body::before {
+    left: 0.25rem;
+    right: 0.25rem;
+  }
+}
+
+.n-dropdown-menu:not(.n-dropdown-menu--scrollable) {
+  padding: 0.25rem 0;
+}
+
 .n-base-selection-tag-wrapper {
   padding: 0 0 0 0.5rem;
   .n-tag {
