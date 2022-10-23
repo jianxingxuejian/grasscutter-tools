@@ -104,6 +104,10 @@
     Rate: {
       sizeMedium: '1.5rem'
     },
+    Slider: {
+      railHeight: '0.25rem',
+      handleSize: '1.125rem'
+    },
     Space: {
       gapMedium: computed(() => {
         const fontSize = appStore.fontSize

@@ -63,12 +63,16 @@
         <div class="flex-col items-center">
           <img class="h-45 w-45 mt-2" :src="artifact.img" />
         </div>
-        <div class="w-60">
+        <div class="w-70">
           <div v-for="(item, index) in show" :key="index" class="flex-between">
             <span class="text-5">{{ item }}</span>
             <my-button @click="handleEnhance(index)">
               <icon-line-md-plus-circle />
             </my-button>
+          </div>
+          <div class="flex-between">
+            <span class="shrink-0 mr-4 text-lg">{{ t('t11') }}</span>
+            <n-slider v-model:value="level" :max="20" />
           </div>
         </div>
       </div>
@@ -133,12 +137,8 @@
   //主属性选择
   const mainstatOptions = computed(() => positionMainstats[position.value].map(id => stats.value[id]))
   const currentMainstat = computed({
-    get() {
-      return artifact.mainstats[position.value]
-    },
-    set(value: number) {
-      artifact.mainstats[position.value] = value
-    }
+    get: () => artifact.mainstats[position.value],
+    set: (value: number) => (artifact.mainstats[position.value] = value)
   })
 
   /** 词条档次 */
@@ -148,12 +148,8 @@
   const substatOptions = computed(() => stats.value.slice(0, 10).map((stat, index) => ({ value: index, label: stat.label })))
   const positionSubstats = reactive<number[][]>([[], [], [], [], []])
   const currentSubstats = computed({
-    get() {
-      return positionSubstats[position.value]
-    },
-    set(value: number[]) {
-      positionSubstats[position.value] = value
-    }
+    get: () => positionSubstats[position.value],
+    set: (value: number[]) => (positionSubstats[position.value] = value)
   })
 
   //监测副属性变化
@@ -194,6 +190,11 @@
     artifact.substats[position.value].push({ itemId: id, value })
   }
 
+  const level = computed({
+    get: () => artifact.levels[position.value],
+    set: (value: number) => (artifact.levels[position.value] = value)
+  })
+
   /** 命令文本 */
   const command = computed(
     () =>
@@ -232,6 +233,7 @@
   "t8": "请选择4个初始词条",
   "t9": "二件套：",
   "t10": "四件套：",
+  "t11": "调整等级：",
   "30960": "暴击率",
   "30950": "暴击伤害",
   "50880": "元素精通",
@@ -269,6 +271,7 @@
   "t8": "Please select 4 initial substats",
   "t9": "2-Piece Set: ",
   "t10": "4-Piece Set: ",
+  "t11": "Adjustment Lv:",
   "30960": "CRIT Rate",
   "30950": "CRIT DMG",
   "50880": "EM",
