@@ -13,8 +13,8 @@
   "tauri": {
     "allowlist": {
       "http": {
-        "all": true,
-        "request": true
+        "request": true,
+        "scope": ["https://gamebanana.com/**"]
       },
       "all": true
     },
