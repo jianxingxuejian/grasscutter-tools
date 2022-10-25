@@ -1,5 +1,15 @@
 # 变更日志
 
+## [1.4.8] - 2022-10-26
+
+### 特性
+
+- 新增圣遗物等级调整
+
+- 完善部分翻译
+
+- 在线 mod(测试)
+
 ## [1.4.7] - 2022-10-22
 
 ### 特性
@@ -58,6 +68,7 @@
 
 - 修正错误的圣遗物 id
 
+[1.4.8]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.7...v1.4.8
 [1.4.7]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.6...v1.4.7
 [1.4.6]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.5...v1.4.6
 [1.4.5]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.4...v1.4.5

@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.4.8] - 2022-10-26
+
+### Features
+
+- Add artifact adjustment lv
+
+- Improve some translation
+
+- Online Mod(test)
+
 ## [1.4.7] - 2022-10-22
 
 ### Features
@@ -60,6 +70,7 @@
 
 - Fix the wrong artifact id
 
+[1.4.8]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.7...v1.4.8
 [1.4.7]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.6...v1.4.7
 [1.4.6]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.5...v1.4.6
 [1.4.5]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.4...v1.4.5
