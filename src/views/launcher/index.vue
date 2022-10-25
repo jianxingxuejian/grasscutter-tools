@@ -108,7 +108,7 @@
 <i18n locale="en-US" lang="json">
 {
   "t1": "Proxy System",
-  "m1": "The current version is the latest",
+  "m1": "This is the latest version",
   "n1": "Failed to get update information",
   "n2": "Please retry manually by clicking on the version number tab, if it fails several times then check the network situation or open an issue in Github",
   "n3": "Discover the new version",

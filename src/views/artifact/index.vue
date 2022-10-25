@@ -271,7 +271,7 @@
   "t8": "Please select 4 initial substats",
   "t9": "2-Piece Set: ",
   "t10": "4-Piece Set: ",
-  "t11": "Adjustment Lv:",
+  "t11": "Set Artifact LVL:",
   "30960": "CRIT Rate",
   "30950": "CRIT DMG",
   "50880": "EM",
