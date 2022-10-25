@@ -91,14 +91,14 @@
 
 <i18n locale="en-US" lang="json">
 {
-  "t1": "Discover the new version!",
-  "t2": "Cancle",
+  "t1": "New version Discovered!",
+  "t2": "Cancel",
   "t3": "Update",
-  "t4": "Install success",
+  "t4": "Install Sucessful",
   "t5": "Whether to relaunch",
-  "t6": "Reluanch",
+  "t6": "Relaunch",
   "t7": "确定",
   "n1": "Failed to install update package",
-  "n2": "Please try to retry, if it fails several times, check the network situation or open an issue in Github"
+  "n2": "Please try again, if it fails several times, check the network situation or open an issue in Github"
 }
 </i18n>

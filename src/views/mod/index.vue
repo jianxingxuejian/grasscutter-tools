@@ -1,6 +1,6 @@
 <template>
   <div class="flex-col">
-    <div class="flex-center mb-1">
+    <div class="flex-center mb-1 mb-1">
       <n-space class="items-center">
         <my-button v-if="currentPage === 0" @click="listSort">
           <icon-material-symbols-rotate-right :class="{ 'animate-spin': loadingSort }" />
