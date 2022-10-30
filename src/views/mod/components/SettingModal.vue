@@ -41,9 +41,6 @@
   const { updateModPath } = settingStore
 
   const showModal = ref(false)
-  if (!settingStore.mod.path) {
-    showModal.value = true
-  }
 
   async function handleSelectPath() {
     const newPath = await select_file()
@@ -56,8 +53,15 @@
   function show() {
     showModal.value = true
   }
+
+  function showWarning() {
+    showModal.value = true
+    window.$message?.warning(t('tt1'))
+  }
+
   defineExpose({
-    show
+    show,
+    showWarning
   })
 </script>
 

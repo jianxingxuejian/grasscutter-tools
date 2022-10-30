@@ -35,3 +35,7 @@ export async function write_file(mod: Mod) {
   const contents = JSON.stringify({ id, name, images, submitter })
   await invoke('write_file', { path: path + '/modinfo.json', contents })
 }
+
+export async function download(url: string, path: string) {
+  await invoke('download', { url, path })
+}
