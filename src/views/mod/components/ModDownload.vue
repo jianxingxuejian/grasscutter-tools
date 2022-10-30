@@ -7,8 +7,12 @@
         class="flex-col items-center aspect-ratio-14/17 border-slate-400 border-1 bg-black/10"
       >
         <div class="flex-col items-center text-2 text-center font-bold">
-          <span class="cursor-pointer hover:(underline decoration-teal-400)" @click="open(item.url)">{{ item.name }}</span>
-          <span class="cursor-pointer hover:(underline decoration-teal-400)" @click="open(item.authorUrl)">{{ item.author }}</span>
+          <span class="cursor-pointer hover:(underline decoration-teal-400)" @click="open(item.url)">{{
+            item.name
+          }}</span>
+          <span class="cursor-pointer hover:(underline decoration-teal-400)" @click="open(item.authorUrl)">{{
+            item.author
+          }}</span>
         </div>
         <div
           class="w-full grow bg-center bg-no-repeat hover:(cursor-pointer opacity-75 transition-opacity-500)"
@@ -168,7 +172,11 @@
       })
       if (status === 200) {
         showDropdown.value = true
-        installOptions.value = data._aFiles.map(({ _idRow, _sDownloadUrl, _sFile }) => ({ id: _idRow, url: _sDownloadUrl, name: _sFile }))
+        installOptions.value = data._aFiles.map(({ _idRow, _sDownloadUrl, _sFile }) => ({
+          id: _idRow,
+          url: _sDownloadUrl,
+          name: _sFile
+        }))
       }
     } catch (error) {
       window.$message?.error('网络错误')

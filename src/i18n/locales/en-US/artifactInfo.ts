@@ -40,7 +40,8 @@ export const artifactInfo: Message['artifactInfo'] = [
   {
     name: 'Emblem of Severed Fate',
     description1: 'Energy Recharge +20%',
-    description2: 'Increases Elemental Burst DMG by 25% of Energy Recharge. A maximum of 75% bonus DMG can be obtained in this way.'
+    description2:
+      'Increases Elemental Burst DMG by 25% of Energy Recharge. A maximum of 75% bonus DMG can be obtained in this way.'
   },
   {
     name: 'Shimenawas Reminiscence',
@@ -79,7 +80,8 @@ export const artifactInfo: Message['artifactInfo'] = [
   {
     name: 'Bloodstained Chivalry',
     description1: 'Physical DMG +25%',
-    description2: 'After defeating an opponent, increases Charged Attack DMG by 50%, and reduces its Stamina cost to 0 for 10s.'
+    description2:
+      'After defeating an opponent, increases Charged Attack DMG by 50%, and reduces its Stamina cost to 0 for 10s.'
   },
   {
     name: 'Maiden Beloved',
@@ -89,7 +91,8 @@ export const artifactInfo: Message['artifactInfo'] = [
   {
     name: 'Gladiators Finale',
     description1: 'ATK +18%.',
-    description2: 'If the wielder of this artifact set uses a Sword, Claymore or Polearm, increases their Normal Attack DMG by 35%.'
+    description2:
+      'If the wielder of this artifact set uses a Sword, Claymore or Polearm, increases their Normal Attack DMG by 35%.'
   },
   {
     name: 'Lavawalker',
@@ -126,7 +129,8 @@ export const artifactInfo: Message['artifactInfo'] = [
   {
     name: 'Viridescent Venerer',
     description1: 'Anemo DMG Bonus +15%',
-    description2: 'Increases Swirl DMG by 60%. Decreases opponents Elemental RES to the element infused in the Swirl by 40% for 10s.'
+    description2:
+      'Increases Swirl DMG by 60%. Decreases opponents Elemental RES to the element infused in the Swirl by 40% for 10s.'
   },
   {
     name: 'Blizzard Strayer',

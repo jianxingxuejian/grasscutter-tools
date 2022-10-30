@@ -34,7 +34,11 @@ function transformConfigToRoute(configs: Route.Config[] | Optional<Route.Config,
 }
 
 /** 转换图标 */
-function transformIcon(icon?: Route.Config['meta']['icon'], size?: number | string, color?: string): undefined | (() => VNode) {
+function transformIcon(
+  icon?: Route.Config['meta']['icon'],
+  size?: number | string,
+  color?: string
+): undefined | (() => VNode) {
   if (!icon) {
     return undefined
   }

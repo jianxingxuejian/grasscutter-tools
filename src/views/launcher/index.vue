@@ -2,7 +2,9 @@
   <div class="flex-col px-10 gap-y-4">
     <div class="flex-center">
       <span class="text-8 flex-center">Grasscutter-Tools</span>
-      <n-tag type="success" size="large" class="ml-2 cursor-pointer" @click="checkUpdateTime(true)"> v{{ version }} </n-tag>
+      <n-tag type="success" size="large" class="ml-2 cursor-pointer" @click="checkUpdateTime(true)">
+        v{{ version }}
+      </n-tag>
     </div>
     <updater ref="updaterRef" />
     <n-space class="flex-center">

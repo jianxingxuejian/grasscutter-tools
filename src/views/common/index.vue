@@ -58,7 +58,14 @@
             <span>{{ t('tt3') }}</span>
           </template>
         </my-button>
-        <my-input-group v-model="data.playerLevel" :label="t('t9')" :text="t('t10')" :min="1" :max="60" command="prop player_level" />
+        <my-input-group
+          v-model="data.playerLevel"
+          :label="t('t9')"
+          :text="t('t10')"
+          :min="1"
+          :max="60"
+          command="prop player_level"
+        />
       </n-space>
 
       <n-space>
@@ -100,7 +107,13 @@
           <n-input-number :value="data.avatarLevel" :show-button="false" disabled />
         </n-input-group>
         <my-input-group v-model="data.constellation" :label="t('t20')" :text="t('t10')" :max="6" command="setConst" />
-        <my-input-group v-model="data.fetterLevel" :label="t('t21')" :text="t('t10')" :max="10" command="setFetterLevel" />
+        <my-input-group
+          v-model="data.fetterLevel"
+          :label="t('t21')"
+          :text="t('t10')"
+          :max="10"
+          command="setFetterLevel"
+        />
       </n-space>
     </div>
   </div>

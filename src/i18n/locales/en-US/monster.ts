@@ -1,4 +1,9 @@
-export type MonsterType = 'MONSTER_ORDINARY' | 'MONSTER_BOSS' | 'MONSTER_ENV_ANIMAL' | 'MONSTER_FISH' | 'MONSTER_PARTNER'
+export type MonsterType =
+  | 'MONSTER_ORDINARY'
+  | 'MONSTER_BOSS'
+  | 'MONSTER_ENV_ANIMAL'
+  | 'MONSTER_FISH'
+  | 'MONSTER_PARTNER'
 const monsterTypeRecord: Record<MonsterType, string> = {
   MONSTER_ORDINARY: 'Monster',
   MONSTER_BOSS: 'Boss',

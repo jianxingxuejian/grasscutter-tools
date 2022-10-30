@@ -18,7 +18,13 @@
     </div>
     <transition name="fade-slide" mode="out-in">
       <keep-alive>
-        <mod-local v-if="currentPage === 0" ref="localRef" :mod-list="modList" :keyword="keyword" @update:num="updateNum" />
+        <mod-local
+          v-if="currentPage === 0"
+          ref="localRef"
+          :mod-list="modList"
+          :keyword="keyword"
+          @update:num="updateNum"
+        />
         <mod-download
           v-else
           ref="downloadRef"

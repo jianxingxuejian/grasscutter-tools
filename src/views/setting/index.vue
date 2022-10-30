@@ -100,7 +100,14 @@
   import IconDelete from '~icons/mdi/delete-forever-outline'
   import { MyButton } from '@/components'
   import { useSettingStore } from '@/stores'
-  import { mailVerifyCode, playerAuthByVerifyCode, playerAuthByPassword, adminAuth, adminCreateAccount, adminCommand } from '@/http'
+  import {
+    mailVerifyCode,
+    playerAuthByVerifyCode,
+    playerAuthByPassword,
+    adminAuth,
+    adminCreateAccount,
+    adminCommand
+  } from '@/http'
   import { testUrlOrIP } from '@/utils'
 
   const { t } = useI18n()

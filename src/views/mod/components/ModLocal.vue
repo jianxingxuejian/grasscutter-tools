@@ -1,6 +1,11 @@
 <template>
   <n-grid cols="s:5 m:6 l:7 xl:8 2xl:9" responsive="screen" class="px-4 of-auto">
-    <n-gi v-for="(item, index) in showList" :key="index" class="h-auto m-0.5 flex-col border-slate-400 border-1" :style="style">
+    <n-gi
+      v-for="(item, index) in showList"
+      :key="index"
+      class="h-auto m-0.5 flex-col border-slate-400 border-1"
+      :style="style"
+    >
       <n-input
         v-show="settingStore.mod.showName"
         v-model:value="item.name"
@@ -18,7 +23,9 @@
         @change="write_file(item)"
       />
       <div class="grow relative bg-black/10 hover:(cursor-pointer opacity-50 transition-opacity-300)">
-        <div class="absolute h-full w-full flex-col flex-center z1 opacity-0 hover:(opacity-100 transition-opacity-300)">
+        <div
+          class="absolute h-full w-full flex-col flex-center z1 opacity-0 hover:(opacity-100 transition-opacity-300)"
+        >
           <n-checkbox :checked="item.enabled" class="w-25% h-auto aspect-ratio-1" @click="handleCheck(item)" />
           <n-button text class="w-30% h-30%">
             <icon-material-symbols-folder-open-outline
