@@ -56,6 +56,7 @@ pub async fn read_local_img(path: String) -> CmdResult<String> {
 
 #[tauri::command]
 pub async fn download(url: String, path: String) -> CmdResult {
-    let result = http::download(url, path).await;
+    http::download(url, &path).await.ok();
+    let result = file::unzip(&path);
     wrap_result!(result)
 }

@@ -1,8 +1,8 @@
 use serde::{Deserialize, Serialize};
 use std::error::Error;
-use std::fs::create_dir_all;
+use std::fs;
 use std::fs::File;
-use std::io::copy;
+use std::io;
 use std::io::Cursor;
 use std::path::Path;
 
@@ -50,36 +50,14 @@ pub async fn request(
     Ok(result)
 }
 
-pub async fn download(url: String, path: String) -> Result<(), Box<dyn Error>> {
+pub async fn download(url: String, path: &str) -> Result<(), Box<dyn Error>> {
     let response = reqwest::get(url).await?;
     let data = response.bytes().await?;
-    let path = Path::new(&path);
-    create_dir_all(path.parent().ok_or("")?)?;
+    let path = Path::new(path);
+    fs::create_dir_all(path.parent().ok_or("")?)?;
     let mut file = File::create(path)?;
     let mut content = Cursor::new(data);
-    copy(&mut content, &mut file)?;
-    let zip_file = File::open(path)?;
-    let mut archive = zip::ZipArchive::new(zip_file)?;
-    let target = path.with_extension("");
-    // println!("target: {}", target.display());
-    for i in 0..archive.len() {
-        let mut file = archive.by_index(i)?;
-        if file.is_dir() {
-            let target = target.join(Path::new(&file.name().replace("\\", "")));
-            // println!("target: {}", target.display());
-            create_dir_all(target)?;
-        } else {
-            let file_path = target.join(Path::new(file.name()));
-            // println!("file_path: {}", file_path.display());
-            create_dir_all(file_path.parent().ok_or("")?)?;
-            let mut target_file = if !file_path.exists() {
-                File::create(file_path)?
-            } else {
-                File::open(file_path)?
-            };
-            copy(&mut file, &mut target_file)?;
-        }
-    }
+    io::copy(&mut content, &mut file)?;
     Ok(())
 }
 

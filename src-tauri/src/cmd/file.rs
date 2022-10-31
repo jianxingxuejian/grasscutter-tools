@@ -4,8 +4,8 @@ use std::error::Error;
 use std::ffi::OsStr;
 use std::fs;
 use std::fs::File;
-use std::io::Read;
-use std::io::Write;
+use std::io;
+use std::io::{Read, Write};
 use std::path::Path;
 use walkdir::WalkDir;
 
@@ -75,4 +75,30 @@ pub fn read_local_img(path: String) -> Result<String, Box<dyn Error>> {
         }
     }
     return Err("Local_img not found".into());
+}
+
+pub fn unzip(path: &str) -> Result<(), Box<dyn Error>> {
+    let path = Path::new(path);
+    let zip_file = File::open(path)?;
+    let mut archive = zip::ZipArchive::new(zip_file)?;
+    let target = path.with_extension("");
+    for i in 0..archive.len() {
+        let mut file = archive.by_index(i)?;
+        if file.is_dir() {
+            let target = target.join(Path::new(&file.name().replace("\\", "")));
+            // println!("target: {}", target.display());
+            fs::create_dir_all(target)?;
+        } else {
+            let file_path = target.join(Path::new(file.name()));
+            // println!("file_path: {}", file_path.display());
+            fs::create_dir_all(file_path.parent().ok_or("")?)?;
+            let mut target_file = if !file_path.exists() {
+                File::create(file_path)?
+            } else {
+                File::open(file_path)?
+            };
+            io::copy(&mut file, &mut target_file)?;
+        }
+    }
+    Ok(())
 }
