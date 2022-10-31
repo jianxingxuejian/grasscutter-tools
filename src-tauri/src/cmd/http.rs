@@ -50,10 +50,9 @@ pub async fn request(
     Ok(result)
 }
 
-pub async fn download(url: String, path: &str) -> Result<(), Box<dyn Error>> {
+pub async fn download(url: String, path: &Path) -> Result<(), Box<dyn Error>> {
     let response = reqwest::get(url).await?;
     let data = response.bytes().await?;
-    let path = Path::new(path);
     fs::create_dir_all(path.parent().ok_or("")?)?;
     let mut file = File::create(path)?;
     let mut content = Cursor::new(data);

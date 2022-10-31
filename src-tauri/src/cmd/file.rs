@@ -77,8 +77,7 @@ pub fn read_local_img(path: String) -> Result<String, Box<dyn Error>> {
     return Err("Local_img not found".into());
 }
 
-pub fn unzip(path: &str) -> Result<(), Box<dyn Error>> {
-    let path = Path::new(path);
+pub fn unzip(path: &Path) -> Result<(), Box<dyn Error>> {
     let zip_file = File::open(path)?;
     let mut archive = zip::ZipArchive::new(zip_file)?;
     let target = path.with_extension("");
@@ -86,11 +85,9 @@ pub fn unzip(path: &str) -> Result<(), Box<dyn Error>> {
         let mut file = archive.by_index(i)?;
         if file.is_dir() {
             let target = target.join(Path::new(&file.name().replace("\\", "")));
-            // println!("target: {}", target.display());
             fs::create_dir_all(target)?;
         } else {
             let file_path = target.join(Path::new(file.name()));
-            // println!("file_path: {}", file_path.display());
             fs::create_dir_all(file_path.parent().ok_or("")?)?;
             let mut target_file = if !file_path.exists() {
                 File::create(file_path)?

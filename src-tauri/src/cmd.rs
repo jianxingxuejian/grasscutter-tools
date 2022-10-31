@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::path::Path;
 
 pub mod file;
 pub mod http;
@@ -56,7 +57,12 @@ pub async fn read_local_img(path: String) -> CmdResult<String> {
 
 #[tauri::command]
 pub async fn download(url: String, path: String) -> CmdResult {
-    http::download(url, &path).await.ok();
-    let result = file::unzip(&path);
+    let path = Path::new(&path);
+    http::download(url, path).await.ok();
+    let extension = path.extension().ok_or("")?.to_str().ok_or("")?;
+    let result = match extension {
+        "zip" => file::unzip(path),
+        _ => Err("Unsupported extension".into()),
+    };
     wrap_result!(result)
 }
