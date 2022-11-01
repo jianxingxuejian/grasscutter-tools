@@ -20,17 +20,38 @@
         ></div>
         <div class="w-full flex-evenly mt-0.5">
           <div class="flex-center">
-            <icon-icon-park-solid-like class="text-3 mr-0.5" />
+            <icon-icon-park-solid-like
+              class="w-3 mr-0.5"
+              preserveAspectRatio="xMaxYMax meet"
+              width="100%"
+              height="100%"
+            />
             <span class="text-2">{{ item.likeCount }}</span>
           </div>
           <div class="flex-center">
-            <icon-ic-baseline-remove-red-eye class="text-3 mr-0.5" />
+            <icon-ic-baseline-remove-red-eye
+              class="w-3 mr-0.5"
+              preserveAspectRatio="xMaxYMax meet"
+              width="100%"
+              height="100%"
+            />
             <span class="text-2">{{ item.viewCount }}</span>
           </div>
           <n-button v-if="item.install" text @click="handleInstallList(item.id)">
-            <icon-material-symbols-download class="text-4" />
+            <icon-material-symbols-download
+              class="w-5"
+              preserveAspectRatio="xMaxYMax meet"
+              width="100%"
+              height="100%"
+            />
           </n-button>
-          <icon-material-symbols-download-done v-else class="text-4" />
+          <icon-material-symbols-download-done
+            v-else
+            class="w-5"
+            preserveAspectRatio="xMaxYMax meet"
+            width="100%"
+            height="100%"
+          />
         </div>
       </div>
     </div>
