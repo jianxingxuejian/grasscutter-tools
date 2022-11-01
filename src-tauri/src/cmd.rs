@@ -59,7 +59,11 @@ pub async fn read_local_img(path: String) -> CmdResult<String> {
 pub async fn download(url: String, path: String) -> CmdResult {
     let path = Path::new(&path);
     http::download(url, path).await.ok();
-    let extension = path.extension().ok_or("")?.to_str().ok_or("")?;
+    let extension = path
+        .extension()
+        .ok_or("Extension error")?
+        .to_str()
+        .ok_or("Os to str error")?;
     let result = match extension {
         "zip" => file::unzip(path),
         "rar" => file::unrar(path),

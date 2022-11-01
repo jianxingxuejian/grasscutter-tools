@@ -11,12 +11,14 @@ use walkdir::WalkDir;
 
 #[derive(Debug)]
 pub enum MyError {
+    IOError,
     RarError,
 }
 
 impl fmt::Display for MyError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         match self {
+            MyError::IOError => write!(f, "IOError"),
             MyError::RarError => write!(f, "RarError"),
         }
     }
@@ -82,7 +84,11 @@ pub fn read_local_img(path: String) -> Result<String, Box<dyn Error>> {
         if !path.is_file() {
             continue;
         }
-        let extension = path.extension().ok_or("")?.to_str().ok_or("")?;
+        let extension = path
+            .extension()
+            .ok_or(MyError::IOError)?
+            .to_str()
+            .ok_or(MyError::IOError)?;
         if exts.contains(&extension) {
             let mut file = File::open(&path)?;
             file.read_to_end(&mut contents)?;
@@ -103,7 +109,7 @@ pub fn unzip(path: &Path) -> Result<(), Box<dyn Error>> {
             fs::create_dir_all(target)?;
         } else {
             let file_path = target.join(Path::new(file.name()));
-            fs::create_dir_all(file_path.parent().ok_or("")?)?;
+            fs::create_dir_all(file_path.parent().ok_or(MyError::IOError)?)?;
             let mut target_file = if !file_path.exists() {
                 File::create(file_path)?
             } else {
@@ -118,8 +124,12 @@ pub fn unzip(path: &Path) -> Result<(), Box<dyn Error>> {
 pub fn unrar(path: &Path) -> Result<(), Box<dyn Error>> {
     let target = path.with_extension("");
     fs::create_dir_all(&target)?;
-    let target = target.as_path().to_str().ok_or("")?.to_string();
-    let archive = unrar::Archive::new(path.to_str().ok_or("")?.to_string());
+    let target = target
+        .as_path()
+        .to_str()
+        .ok_or(MyError::IOError)?
+        .to_string();
+    let archive = unrar::Archive::new(path.to_str().ok_or(MyError::IOError)?.to_string());
 
     archive
         .extract_to(target)
