@@ -99,3 +99,12 @@ pub fn unzip(path: &Path) -> Result<(), Box<dyn Error>> {
     }
     Ok(())
 }
+
+pub fn unrar(path: &Path) -> Result<(), Box<dyn Error>> {
+    let target = path.with_extension("");
+    fs::create_dir_all(&target)?;
+    let target = target.as_path().to_str().ok_or("")?.to_string();
+    let archive = unrar::Archive::new(path.to_str().ok_or("")?.to_string());
+    archive.extract_to(target).unwrap().process().unwrap();
+    Ok(())
+}
