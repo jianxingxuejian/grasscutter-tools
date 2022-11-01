@@ -24,6 +24,7 @@ walkdir = "2"
 base64 = { version = "0.13.0" }
 zip = "0.6.3"
 unrar = "0.4.4"
+sevenz-rust = "0.1.4"
 
 [dependencies.tauri-plugin-store]
 git = "https://github.com/tauri-apps/tauri-plugin-store"

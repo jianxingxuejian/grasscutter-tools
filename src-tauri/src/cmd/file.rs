@@ -128,3 +128,10 @@ pub fn unrar(path: &Path) -> Result<(), Box<dyn Error>> {
         .map_err(|_| MyError::RarError)?;
     Ok(())
 }
+
+pub fn un7z(path: &Path) -> Result<(), Box<dyn Error>> {
+    let target = path.with_extension("");
+    fs::create_dir_all(&target)?;
+    sevenz_rust::decompress_file(path, target).expect("complete");
+    Ok(())
+}

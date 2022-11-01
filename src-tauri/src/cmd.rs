@@ -63,6 +63,7 @@ pub async fn download(url: String, path: String) -> CmdResult {
     let result = match extension {
         "zip" => file::unzip(path),
         "rar" => file::unrar(path),
+        "7z" => file::un7z(path),
         _ => Err("Unsupported extension".into()),
     };
     wrap_result!(result)
