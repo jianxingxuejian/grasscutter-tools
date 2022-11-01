@@ -2,12 +2,27 @@ use base64::encode;
 use std::collections::HashMap;
 use std::error::Error;
 use std::ffi::OsStr;
-use std::fs;
 use std::fs::File;
 use std::io;
 use std::io::{Read, Write};
 use std::path::Path;
+use std::{fmt, fs};
 use walkdir::WalkDir;
+
+#[derive(Debug)]
+pub enum MyError {
+    RarError,
+}
+
+impl fmt::Display for MyError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            MyError::RarError => write!(f, "RarError"),
+        }
+    }
+}
+
+impl Error for MyError {}
 
 pub fn get_mod_list(path: String) -> HashMap<String, String> {
     let path = Path::new(&path);
@@ -105,6 +120,11 @@ pub fn unrar(path: &Path) -> Result<(), Box<dyn Error>> {
     fs::create_dir_all(&target)?;
     let target = target.as_path().to_str().ok_or("")?.to_string();
     let archive = unrar::Archive::new(path.to_str().ok_or("")?.to_string());
-    archive.extract_to(target).unwrap().process().unwrap();
+
+    archive
+        .extract_to(target)
+        .map_err(|_| MyError::RarError)?
+        .process()
+        .map_err(|_| MyError::RarError)?;
     Ok(())
 }
