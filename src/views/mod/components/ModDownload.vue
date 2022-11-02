@@ -18,40 +18,28 @@
           class="w-full grow bg-center bg-no-repeat hover:(cursor-pointer opacity-75 transition-opacity-500)"
           :style="{ backgroundImage: `url(${item.images[0]})` }"
         ></div>
-        <div class="w-full flex-evenly mt-0.5">
+        <div class="w-full flex-evenly">
           <div class="flex-center">
-            <icon-icon-park-solid-like
-              class="w-3 mr-0.5"
-              preserveAspectRatio="xMaxYMax meet"
-              width="100%"
-              height="100%"
-            />
+            <icon-icon-park-solid-like preserveAspectRatio="xMaxYMax meet" width="25%" height="25%" class="mr-0.5" />
             <span class="text-2">{{ item.likeCount }}</span>
           </div>
           <div class="flex-center">
             <icon-ic-baseline-remove-red-eye
-              class="w-3 mr-0.5"
               preserveAspectRatio="xMaxYMax meet"
-              width="100%"
-              height="100%"
+              width="25%"
+              height="25%"
+              class="mr-0.5"
             />
             <span class="text-2">{{ item.viewCount }}</span>
           </div>
-          <n-button v-if="item.install" text @click="handleInstallList(item.id)">
-            <icon-material-symbols-download
-              class="w-5"
-              preserveAspectRatio="xMaxYMax meet"
-              width="100%"
-              height="100%"
-            />
-          </n-button>
-          <icon-material-symbols-download-done
-            v-else
-            class="w-5"
-            preserveAspectRatio="xMaxYMax meet"
-            width="100%"
-            height="100%"
-          />
+          <div class="flex-center">
+            <n-button v-if="item.install" text class="w-40%" @click="handleInstallList(item.id)">
+              <icon-material-symbols-download preserveAspectRatio="xMaxYMax meet" width="100%" height="100%" />
+            </n-button>
+            <n-button v-else text @click="handleInstallList(item.id)">
+              <icon-material-symbols-download-done preserveAspectRatio="xMaxYMax meet" width="100%" height="100%" />
+            </n-button>
+          </div>
         </div>
       </div>
     </div>
@@ -135,7 +123,7 @@
   async function getModDataBody() {
     try {
       const { status, data } = await fetch<ModDataBody>(
-        `https://gamebanana.com/apiv10/Mod/Index?_nPage=${pageIndex.value}&_nPerpage=20&_aFilters%5BGeneric_Game%5D=8552`,
+        `https://gamebanana.com/apiv10/Mod/Index?_nPage=${pageIndex.value}&_nPerpage=50&_aFilters%5BGeneric_Game%5D=8552`,
         { method: 'GET', timeout: 30 }
       )
       if (status === 200) {
