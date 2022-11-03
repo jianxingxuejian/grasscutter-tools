@@ -5081,7 +5081,9 @@
     "unreleased": true,
     "titleHash": 2396081975,
     "descHash": 1104013894,
-    "children": [{ "subId": 1202701, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 51365796 }]
+    "children": [
+      { "subId": 1202701, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 51365796 }
+    ]
   },
   {
     "id": 12028,
@@ -5741,7 +5743,9 @@
     "unreleased": true,
     "titleHash": 1456753023,
     "descHash": 3645260950,
-    "children": [{ "subId": 1902901, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 2579689540 }]
+    "children": [
+      { "subId": 1902901, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 2579689540 }
+    ]
   },
   {
     "id": 19030,
@@ -10734,7 +10738,9 @@
     "unreleased": true,
     "titleHash": 2100888273,
     "descHash": 3688500239,
-    "children": [{ "subId": 4000601, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 3695395086 }]
+    "children": [
+      { "subId": 4000601, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 3695395086 }
+    ]
   },
   {
     "id": 40007,
@@ -10759,7 +10765,9 @@
     "unreleased": true,
     "titleHash": 1167646129,
     "descHash": 3558254359,
-    "children": [{ "subId": 4000801, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 18898974 }]
+    "children": [
+      { "subId": 4000801, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 18898974 }
+    ]
   },
   {
     "id": 40009,
@@ -10769,7 +10777,9 @@
     "unreleased": true,
     "titleHash": 4199559649,
     "descHash": 3190966431,
-    "children": [{ "subId": 4000901, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 891319030 }]
+    "children": [
+      { "subId": 4000901, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 891319030 }
+    ]
   },
   {
     "id": 40010,
@@ -11239,7 +11249,9 @@
     "unreleased": true,
     "titleHash": 3153388559,
     "descHash": 3849888374,
-    "children": [{ "subId": 4003001, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 2169103196 }]
+    "children": [
+      { "subId": 4003001, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 2169103196 }
+    ]
   },
   {
     "id": 40031,
@@ -11469,7 +11481,9 @@
     "unreleased": true,
     "titleHash": 1954746447,
     "descHash": 595856798,
-    "children": [{ "subId": 4004601, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 364701740 }]
+    "children": [
+      { "subId": 4004601, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 364701740 }
+    ]
   },
   {
     "id": 40047,
@@ -18094,7 +18108,9 @@
     "unreleased": true,
     "titleHash": 4024611343,
     "descHash": 3645858790,
-    "children": [{ "subId": 7200201, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 3597050836 }]
+    "children": [
+      { "subId": 7200201, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 3597050836 }
+    ]
   },
   {
     "id": 72013,
@@ -19940,7 +19956,9 @@
     "test": true,
     "unreleased": true,
     "titleHash": 1978060311,
-    "children": [{ "subId": 7218001, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 2965514244 }]
+    "children": [
+      { "subId": 7218001, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 2965514244 }
+    ]
   },
   {
     "id": 72181,
@@ -20155,7 +20173,9 @@
     "unreleased": true,
     "titleHash": 2169637535,
     "descHash": 354424422,
-    "children": [{ "subId": 7219401, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 4033664668 }]
+    "children": [
+      { "subId": 7219401, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 4033664668 }
+    ]
   },
   {
     "id": 72195,
@@ -20496,7 +20516,9 @@
     "test": true,
     "unreleased": true,
     "titleHash": 914900759,
-    "children": [{ "subId": 7221701, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 2681685460 }]
+    "children": [
+      { "subId": 7221701, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 2681685460 }
+    ]
   },
   {
     "id": 72218,
@@ -20505,7 +20527,9 @@
     "test": true,
     "unreleased": true,
     "titleHash": 1439885591,
-    "children": [{ "subId": 7221801, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 3988983916 }]
+    "children": [
+      { "subId": 7221801, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 3988983916 }
+    ]
   },
   {
     "id": 72219,
@@ -21831,7 +21855,9 @@
     "unreleased": true,
     "titleHash": 4010532431,
     "descHash": 1069720086,
-    "children": [{ "subId": 7267301, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 1103009052 }]
+    "children": [
+      { "subId": 7267301, "order": 1, "hidden": true, "test": true, "unreleased": true, "descHash": 1103009052 }
+    ]
   },
   {
     "id": 72674,
