@@ -1,4 +1,7 @@
 interface Message {
+  global: {
+    [key: string]: string
+  }
   route: {
     [key: string]: string
   }
@@ -6,8 +9,8 @@ interface Message {
     itemIds: number[]
     name: string
     img: string
-    description1: string
-    description2: string
+    desc1: string
+    desc2: string
   }[]
   weather: Item[]
   item: Item[]

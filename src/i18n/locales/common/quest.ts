@@ -1,8 +1,8 @@
 import questInfo from './questInfo.json?raw'
 
-export type QuestType = 'WQ' | 'IQ' | 'LQ'
+type QuestType = 'WQ' | 'IQ' | 'LQ'
 
-export type QuestInfo = {
+type QuestInfo = {
   id: number
   type: QuestType
   hidden?: true

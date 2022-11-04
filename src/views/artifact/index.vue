@@ -17,9 +17,9 @@
             </div>
           </template>
           <div class="text-sm">
-            <span>{{ t('t9') + item.description1 }}</span>
+            <span>{{ t('t9') + item.desc1 }}</span>
             <br />
-            <span>{{ t('t10') + item.description2 }}</span>
+            <span>{{ t('t10') + item.desc2 }}</span>
           </div>
         </n-popover>
       </div>

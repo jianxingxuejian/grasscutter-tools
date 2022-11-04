@@ -1,11 +1,36 @@
-import { artifactInfo } from './artifactInfo'
+import { type MonsterType, transformItems } from '../common'
+import artifactInfoJson from './artifactInfo.json?raw'
+import { global } from './global'
 import { item } from './item'
-import { monster } from './monster'
-import { quest } from './quest'
+import monsterItemJson from './monsterItem.json?raw'
+import questItemJson from './questItem.json?raw'
 import { route } from './route'
-import { weather } from './weather'
-import { scene } from './scene'
+import sceneItemJson from './sceneItem.json?raw'
+import weatherItemJson from './weatherItem.json?raw'
 
-const message: Message = { artifactInfo, item, monster, quest, route, weather, scene }
+const monsterTypeDict: Record<MonsterType, string> = {
+  MONSTER_ORDINARY: 'Monster',
+  MONSTER_BOSS: 'Boss',
+  MONSTER_ENV_ANIMAL: 'Animal',
+  MONSTER_FISH: 'Fish',
+  MONSTER_PARTNER: 'Partner'
+}
+
+const questTags = ['hidden', 'test', 'unreleased']
+
+const weatherType = ['sunny', 'cloudy', 'rain', 'thunderstorm', 'snow', 'mist']
+
+const items = transformItems({
+  artifactInfoJson,
+  monsterItemJson,
+  monsterTypeDict,
+  questItemJson,
+  questTags,
+  sceneItemJson,
+  weatherItemJson,
+  weatherType
+})
+
+const message: Message = { global, route, item, ...items }
 
 export default message
