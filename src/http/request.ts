@@ -33,6 +33,7 @@ function request() {
         return result
       }
     } catch (e) {
+      // ignore-ts
       showErrorMsg(100, i18n.global.t('network error'))
     }
   }
