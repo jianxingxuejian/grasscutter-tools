@@ -17,9 +17,9 @@
             </div>
           </template>
           <div class="text-sm">
-            <span>{{ t('t9') + item.desc1 }}</span>
+            <span>{{ t('2set') + ': ' + item.desc1 }}</span>
             <br />
-            <span>{{ t('t10') + item.desc2 }}</span>
+            <span>{{ t('4set') + ': ' + item.desc2 }}</span>
           </div>
         </n-popover>
       </div>
@@ -28,34 +28,34 @@
     <div class="w-80% of-auto py-2 px-4 flex-col gap-y-4">
       <!-- 顶部圣遗物部位和主属性选择 -->
       <div class="flex-center">
-        <span class="shrink-0 text-lg">{{ t('t1') }}</span>
+        <span class="shrink-0 text-lg mr-2">{{ t('position') }}:</span>
         <n-radio-group v-model:value="position">
-          <n-radio-button :value="0" :label="t('t2-1')" class="px-4!" />
-          <n-radio-button :value="1" :label="t('t2-2')" class="px-4!" />
-          <n-radio-button :value="2" :label="t('t2-3')" class="px-4!" />
-          <n-radio-button :value="3" :label="t('t2-4')" class="px-4!" />
-          <n-radio-button :value="4" :label="t('t2-5')" class="px-4!" />
+          <n-radio-button :value="0" :label="t('flower')" class="px-4!" />
+          <n-radio-button :value="1" :label="t('plume')" class="px-4!" />
+          <n-radio-button :value="2" :label="t('sands')" class="px-4!" />
+          <n-radio-button :value="3" :label="t('goblet')" class="px-4!" />
+          <n-radio-button :value="4" :label="t('circlet')" class="px-4!" />
         </n-radio-group>
-        <span class="shrink-0 ml-8 text-lg">{{ t('t3') }}</span>
+        <span class="shrink-0 ml-8 text-lg mr-2">{{ t('mainstat') }}:</span>
         <n-select v-model:value="currentMainstat" :options="mainstatOptions"> </n-select>
       </div>
       <!-- 顶部初始词条和档次选择 -->
       <div class="flex-center">
-        <span class="shrink-0 text-lg">{{ t('t4') }}</span>
+        <span class="shrink-0 text-lg mr-2">{{ t('substats') }}:</span>
         <my-select
           v-model:value="currentSubstats"
           multiple
           clearable
-          :placeholder="t('t8')"
+          :placeholder="t('select 4')"
           :options="substatOptions"
           :max-select-count="4"
         />
-        <span class="shrink-0 ml-8 text-lg">{{ t('t5') }}</span>
+        <span class="shrink-0 ml-8 text-lg mr-2">{{ t('gear') }}:</span>
         <n-radio-group v-model:value="gear">
-          <n-radio-button label="1档" :value="0" class="px-3!" />
-          <n-radio-button label="2档" :value="1" class="px-3!" />
-          <n-radio-button label="3档" :value="2" class="px-3!" />
-          <n-radio-button label="4档" :value="3" class="px-3!" />
+          <n-radio-button label="1" :value="0" class="px-3!" />
+          <n-radio-button label="2" :value="1" class="px-3!" />
+          <n-radio-button label="3" :value="2" class="px-3!" />
+          <n-radio-button label="4" :value="3" class="px-3!" />
         </n-radio-group>
       </div>
       <!-- 中间圣遗物展示和强化 -->
@@ -71,7 +71,7 @@
             </my-button>
           </div>
           <div class="flex-between">
-            <span class="shrink-0 mr-4 text-lg">{{ t('t11') }}</span>
+            <span class="shrink-0 mr-4 text-lg">{{ t('set artifact lv') }}</span>
             <n-slider v-model:value="level" :max="20" />
           </div>
         </div>
@@ -79,7 +79,7 @@
       <!-- 底部命令语句 -->
       <div class="flex w-full items-center">
         <n-input :value="command" type="textarea" size="large" />
-        <my-button type="primary" class="ml-4" :text="t('t7')" @click-async="sendCommand">
+        <my-button type="primary" class="ml-4" :text="t('execute')" @click-async="sendCommand">
           <icon-line-md-chevron-small-triple-left />
         </my-button>
       </div>
@@ -229,20 +229,6 @@
 
 <i18n locale="zh-CN" lang="json">
 {
-  "t1": "部位：",
-  "t2-1": "生之花",
-  "t2-2": "死之羽",
-  "t2-3": "时之沙",
-  "t2-4": "空之杯",
-  "t2-5": "理之冠",
-  "t3": "主属性：",
-  "t4": "词条：",
-  "t5": "档次：",
-  "t7": "执行",
-  "t8": "请选择4个初始词条",
-  "t9": "二件套：",
-  "t10": "四件套：",
-  "t11": "调整等级：",
   "30960": "暴击率",
   "30950": "暴击伤害",
   "50880": "元素精通",
@@ -267,20 +253,6 @@
 
 <i18n locale="en-US" lang="json">
 {
-  "t1": "Position：",
-  "t2-1": "Flower",
-  "t2-2": "Plume",
-  "t2-3": "Sands",
-  "t2-4": "Goblet",
-  "t2-5": "Circlet",
-  "t3": "Mainstat：",
-  "t4": "Substats：",
-  "t5": "Gear：",
-  "t7": "Execute",
-  "t8": "Please select 4 initial substats",
-  "t9": "2-Piece Set: ",
-  "t10": "4-Piece Set: ",
-  "t11": "Set Artifact LVL:",
   "30960": "CRIT Rate",
   "30950": "CRIT DMG",
   "50880": "EM",

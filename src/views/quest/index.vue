@@ -1,6 +1,6 @@
 <template>
   <div class="px-10 flex-col">
-    <span class="flex-center text-5 font-bold mb-5">{{ t('t1') }}</span>
+    <span class="flex-center text-5 font-bold mb-5">{{ t('quests') }}</span>
     <div class="flex-evenly gap-x-5">
       <n-cascader
         v-model:value="quest"
@@ -8,7 +8,7 @@
         filterable
         expand-trigger="hover"
         check-strategy="child"
-        :placeholder="t('t2')"
+        :placeholder="t('to search')"
         :options="questOptions"
       />
     </div>
@@ -16,25 +16,25 @@
       <n-input v-model:value="command_quest" />
       <n-radio-group v-model:value="status" class="shrink-0 ml-10">
         <n-space class="flex-center">
-          <span>{{ t('t3') }}</span>
+          <span>{{ t('start') }}</span>
           <n-radio value="add" />
-          <span>{{ t('t4') }}</span>
+          <span>{{ t('finish') }}</span>
           <n-radio value="finish" />
         </n-space>
       </n-radio-group>
-      <my-button type="primary" class="ml-10" :text="t('b1')" @click-async="sendCommand(1)">
+      <my-button type="primary" class="ml-10" :text="t('execute')" @click-async="sendCommand(1)">
         <icon-line-md-chevron-small-triple-left />
       </my-button>
     </div>
 
-    <span class="flex-center text-5 font-bold mb-5">{{ t('t5') }}</span>
+    <span class="flex-center text-5 font-bold mb-5">{{ t('scenes') }}</span>
     <div class="flex-evenly gap-x-5">
       <n-select
         v-model:value="scene"
         clearable
         filterable
         expand-trigger="hover"
-        :placeholder="t('t2')"
+        :placeholder="t('to search')"
         :options="sceneOptions"
         class="grow"
       />
@@ -53,7 +53,7 @@
     </div>
     <div class="flex-center my-5">
       <n-input v-model:value="command_scene" />
-      <my-button type="primary" class="ml-10" :text="t('b1')" @click-async="sendCommand(2)">
+      <my-button type="primary" class="ml-10" :text="t('execute')" @click-async="sendCommand(2)">
         <icon-line-md-chevron-small-triple-left />
       </my-button>
     </div>
@@ -108,25 +108,3 @@
     }
   }
 </style>
-
-<i18n locale="zh-CN" lang="json">
-{
-  "t1": "任务",
-  "t2": "输入关键字搜索",
-  "t3": "开始",
-  "t4": "结束",
-  "t5": "场景",
-  "b1": "执行"
-}
-</i18n>
-
-<i18n locale="en-US" lang="json">
-{
-  "t1": "Quests",
-  "t2": "Enter a keyword to search",
-  "t3": "Start",
-  "t4": "Finish",
-  "t5": "Scenes",
-  "b1": "Execute"
-}
-</i18n>

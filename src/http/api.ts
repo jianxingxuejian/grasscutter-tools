@@ -48,8 +48,7 @@ export function cdr() {
 
 function checkToken() {
   if (!useSettingStore().token) {
-    const message = i18n.global.locale.value === 'zh-CN' ? '请先进行玩家验证' : 'Please auth player first'
-    window.$message?.error(message)
+    window.$message?.error(i18n.global.t('player auth first'))
     router.push('/setting/index')
     return false
   }

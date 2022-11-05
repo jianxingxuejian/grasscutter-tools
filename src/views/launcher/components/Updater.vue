@@ -3,11 +3,11 @@
     <n-card>
       <n-spin :show="loading">
         <div class="flex-col items-center">
-          <div class="text-5">{{ t('t1') }}</div>
+          <div class="text-5">{{ t('new ver discover') }}</div>
           <div id="content"></div>
           <n-space class="flex-center mt-4">
-            <n-button @click="showModal = false">{{ t('t2') }}</n-button>
-            <n-button type="success" @click="handleUpdate">{{ t('t3') }}</n-button>
+            <n-button @click="showModal = false">{{ t('cancel') }}</n-button>
+            <n-button type="success" @click="handleUpdate">{{ t('update') }}</n-button>
           </n-space>
         </div>
       </n-spin>
@@ -31,17 +31,17 @@
       loading.value = true
       await installUpdate()
       window.$dialog?.success({
-        title: t('t4'),
-        content: t('t5'),
-        negativeText: t('t2'),
-        positiveText: t('t6'),
+        title: t('install successful'),
+        content: t('whether relaunch'),
+        negativeText: t('cancel'),
+        positiveText: t('relaunch'),
         onPositiveClick: () => relaunch()
       })
     } catch (error) {
       window.$notification?.error({
-        title: t('n1'),
+        title: t('failed to update'),
         description: `error: ${error}`,
-        content: t('n2')
+        content: t('try again')
       })
     } finally {
       loading.value = false
@@ -75,30 +75,3 @@
     margin-left: 1.5rem;
   }
 </style>
-
-<i18n locale="zh-CN" lang="json">
-{
-  "t1": "发现新版本！",
-  "t2": "取消",
-  "t3": "升级",
-  "t4": "安装成功",
-  "t5": "是否重新启动",
-  "t6": "重新启动",
-  "n1": "安装更新包失败",
-  "n2": "请尝试重试，如果多次失败则检查网络情况或者在Github提个issue"
-}
-</i18n>
-
-<i18n locale="en-US" lang="json">
-{
-  "t1": "New version Discovered!",
-  "t2": "Cancel",
-  "t3": "Update",
-  "t4": "Install Sucessful",
-  "t5": "Whether to relaunch",
-  "t6": "Relaunch",
-  "t7": "确定",
-  "n1": "Failed to install update package",
-  "n2": "Please try again, if it fails several times, check the network situation or open an issue in Github"
-}
-</i18n>

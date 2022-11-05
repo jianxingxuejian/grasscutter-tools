@@ -1,16 +1,16 @@
 <template>
   <div class="flex-center flex-col gap-5 text-5">
-    <span>{{ t('t1') }}null</span>
-    <span>{{ t('t2') }}1.4.8</span>
-    <span>{{ t('t3') }}1.4.1</span>
+    <span>{{ t('auther') }}: null</span>
+    <span>{{ t('client ver') }}: 1.4.8</span>
+    <span>{{ t('plugin ver') }}: 1.4.1</span>
     <div>
-      <span>{{ t('t4') }}</span>
+      <span>{{ t('project addr') }}: </span>
       <n-a href="https://github.com/jianxingxuejian/grasscutter-tools" target="_blank">
         https://github.com/jianxingxuejian/grasscutter-tools
       </n-a>
     </div>
     <div>
-      <span>{{ t('t5') }}</span>
+      <span>{{ t('server plugin') }}: </span>
       <n-a href="https://github.com/jianxingxuejian/grasscutter-plugin" target="_blank">
         https://github.com/jianxingxuejian/grasscutter-plugin
       </n-a>
@@ -23,23 +23,3 @@
 
   const { t } = useI18n()
 </script>
-
-<i18n locale="zh-CN" lang="json">
-{
-  "t1": "作者：",
-  "t2": "客户端版本：",
-  "t3": "插件版本：",
-  "t4": "项目地址：",
-  "t5": "服务端所需插件："
-}
-</i18n>
-
-<i18n locale="en-US" lang="json">
-{
-  "t1": "Author：",
-  "t2": "Client version：",
-  "t3": "Plugin version：",
-  "t4": "Project address：",
-  "t5": "Server plugins："
-}
-</i18n>

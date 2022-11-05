@@ -33,8 +33,7 @@ function request() {
         return result
       }
     } catch (e) {
-      const message = i18n.global.locale.value === 'zh-CN' ? '网络错误' : 'Network error'
-      showErrorMsg(100, message)
+      showErrorMsg(100, i18n.global.t('network error'))
     }
   }
 
