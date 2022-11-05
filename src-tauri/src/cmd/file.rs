@@ -5,7 +5,7 @@ use std::ffi::OsStr;
 use std::fs::File;
 use std::io;
 use std::io::{Read, Write};
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use std::{fmt, fs};
 use walkdir::WalkDir;
 
@@ -29,6 +29,7 @@ impl Error for MyError {}
 pub fn get_mod_list(path: String) -> HashMap<String, String> {
     let path = Path::new(&path);
     let ini = Some(OsStr::new("ini"));
+    let merged = Some(OsStr::new("merged.ini"));
     let mut map = HashMap::new();
     for entry in WalkDir::new(path) {
         let result = || -> Option<(String, String)> {
@@ -36,19 +37,21 @@ pub fn get_mod_list(path: String) -> HashMap<String, String> {
             if entry.path().extension() != ini {
                 return None;
             }
-            let parent = entry.path().parent()?.parent()?;
-            let modinfo = parent.join("modinfo.json");
-            if modinfo.exists() {
-                let mut file = File::open(&modinfo).unwrap();
-                let mut info = String::new();
-                file.read_to_string(&mut info).unwrap();
-                return Some((parent.display().to_string(), info));
-            } else {
-                let info = "{\"id\":0,\"name\":\"\",\"images\":[],\"submitter\":{\"name\":\"\",\"url\":\"\"},\"nsfw\":false,\"likes\":0,\"views\":0,\"type\":\"Mod\"}";
-                let mut file = File::create(&modinfo).unwrap();
-                file.write(info.as_bytes()).ok();
-                return Some((parent.display().to_string(), info.to_string()));
+            if entry.path().file_name() == merged {
+                let parent = entry.path().parent()?;
+                if is_deep_merge(parent, ini) == Some(false) {
+                    let modinfo = parent.join("modinfo.json");
+                    return init_ini(modinfo, parent);
+                }
+                return None;
             }
+            let parent = entry.path().parent()?.parent()?;
+            let parent_merged = parent.join("merged.ini");
+            if parent_merged.exists() {
+                return None;
+            }
+            let modinfo = parent.join("modinfo.json");
+            return init_ini(modinfo, parent);
         };
         match result() {
             Some((k, v)) => {
@@ -58,6 +61,37 @@ pub fn get_mod_list(path: String) -> HashMap<String, String> {
         }
     }
     map
+}
+
+fn init_ini(modinfo: PathBuf, target: &Path) -> Option<(String, String)> {
+    if modinfo.exists() {
+        let mut file = File::open(&modinfo).ok()?;
+        let mut info = String::new();
+        file.read_to_string(&mut info).ok()?;
+        return Some((target.display().to_string(), info));
+    } else {
+        let info =
+            "{\"id\":0,\"name\":\"\",\"images\":[],\"submitter\":{\"name\":\"\",\"url\":\"\"}}";
+        let mut file = File::create(&modinfo).ok()?;
+        file.write(info.as_bytes()).ok();
+        return Some((target.display().to_string(), info.to_string()));
+    }
+}
+
+fn is_deep_merge(path: &Path, ini: Option<&OsStr>) -> Option<bool> {
+    let entries = fs::read_dir(path).ok()?;
+    for entry in entries {
+        let path = entry.ok()?.path();
+        if path.is_dir() {
+            let entries = fs::read_dir(path).ok()?;
+            for entry in entries {
+                if entry.ok()?.path().extension() == ini {
+                    return Some(false);
+                }
+            }
+        }
+    }
+    return Some(true);
 }
 
 pub fn rename(path: String, new_path: String) -> Result<(), Box<dyn Error>> {
