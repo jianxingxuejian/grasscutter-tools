@@ -1,7 +1,4 @@
 interface Message {
-  global: {
-    [key: string]: string
-  }
   route: {
     [key: string]: string
   }

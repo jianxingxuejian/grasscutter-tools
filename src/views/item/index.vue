@@ -69,14 +69,14 @@
 
   const { t, tm } = useI18n()
 
-  const itemOptions = computed<Item[]>(() => tm('item'))
+  const itemOptions = computed<Item[]>(() => tm('data.item'))
   const item = ref<string>()
   const x_item = ref(1)
   const lv_item = ref(90)
   const r_item = ref(5)
   const command_item = computed(() => `/give ${item.value || ''} x${x_item.value} lv${lv_item.value} r${r_item.value}`)
 
-  const monsterOptions = computed<Message['monster']>(() => tm('monster'))
+  const monsterOptions = computed<Message['monster']>(() => tm('data.monster'))
 
   const monster = ref<string>()
   const x_monster = ref(1)

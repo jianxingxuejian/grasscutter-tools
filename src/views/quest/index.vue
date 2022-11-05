@@ -67,7 +67,7 @@
   const { t, tm } = useI18n()
 
   const quest = ref<string>()
-  const questOptions = computed<QuestItem[]>(() => tm('quest'))
+  const questOptions = computed<QuestItem[]>(() => tm('data.quest'))
   const status = ref('add')
   const command_quest = computed(() => `/quest ${status.value} ${quest.value || ''}`)
 
@@ -75,7 +75,7 @@
   const x = ref('0')
   const y = ref('0')
   const z = ref('0')
-  const sceneOptions = computed<Item[]>(() => tm('scene'))
+  const sceneOptions = computed<Item[]>(() => tm('data.scene'))
   const command_scene = computed(() => `/tp ${x.value} ${y.value} ${z.value} ${scene.value || ''}`)
 
   async function sendCommand(index: number) {

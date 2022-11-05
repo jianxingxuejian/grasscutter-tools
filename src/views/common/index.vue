@@ -163,7 +163,7 @@
   const maxRarity = ref(4)
   const cleanParam = computed(() => ` lv${maxLv.value} r${maxRefinement.value} ${maxRarity.value}*`)
 
-  const weatherOptions = computed<Message['weather']>(() => tm('weather'))
+  const weatherOptions = computed<Message['weather']>(() => tm('data.weather'))
   const weather = ref<string | null>(null)
 
   async function handleWeatherUpdate() {

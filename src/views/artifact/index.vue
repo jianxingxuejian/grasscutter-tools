@@ -97,7 +97,7 @@
   const { t, tm } = useI18n()
 
   const artifactInfo = computed(() =>
-    (tm('artifactInfo') as Message['artifactInfo']).map(item => ({ ...item, img: getImageUrl(item.img) }))
+    (tm('data.artifactInfo') as Message['artifactInfo']).map(item => ({ ...item, img: getImageUrl(item.img) }))
   )
 
   /** 部位 */

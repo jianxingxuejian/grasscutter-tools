@@ -1,6 +1,5 @@
-import { type MonsterType, transformItems } from '../common'
+import { type MonsterType, transformItems } from '../common/transform'
 import artifactInfoJson from './artifactInfo.json?raw'
-import { global } from './global'
 import { item } from './item'
 import monsterItemJson from './monsterItem.json?raw'
 import questItemJson from './questItem.json?raw'
@@ -31,6 +30,6 @@ const items = transformItems({
   weatherType
 })
 
-const message: Message = { global, route, item, ...items }
+const message: Message = { route, item, ...items }
 
 export default message

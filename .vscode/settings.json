@@ -3,7 +3,13 @@
   "editor.codeActionsOnSave": ["source.fixAll.eslint"],
   "npm.packageManager": "pnpm",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "i18n-ally.localesPaths": ["src/i18n", "src/i18n/locales"],
+  "i18n-ally.localesPaths": ["src/i18n/locales"],
+  "i18n-ally.sourceLanguage": "en-US",
+  "i18n-ally.displayLanguage": "en-US",
+  "i18n-ally.enabledParsers": ["json"],
+  "i18n-ally.keystyle": "flat",
+  "i18n-ally.indent": 2,
+  "i18n-ally.tabStyle": "space",
   "i18n-ally.enabledFrameworks": ["vue-sfc", "vue"],
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer"

@@ -1,11 +1,11 @@
 import type { App } from 'vue'
 import { createI18n } from 'vue-i18n'
+import messages from '@intlify/unplugin-vue-i18n/messages'
 
-const module = import.meta.glob('./locales/*/index.ts', { eager: true }) as LocaleModule
-const messages: Record<string, any> = {}
-Object.keys(module).forEach(key => {
-  const locale = key.split('locales/').pop()?.replace('/index.ts', '') as string
-  messages[locale] = module[key].default
+const datas = import.meta.glob('./data/*/index.ts', { eager: true }) as LocaleModule
+Object.keys(datas).forEach(key => {
+  const locale = key.split('data/').pop()?.replace('/index.ts', '') as string
+  messages[locale].data = datas[key].default
 })
 
 const i18n = createI18n({

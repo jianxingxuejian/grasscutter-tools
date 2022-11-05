@@ -22,7 +22,7 @@
     const menus: Route.Menu[] = []
     routes.forEach(route => {
       const { name } = route
-      const routeMessage: Message['route'] = tm('route')
+      const routeMessage: Message['route'] = tm('data.route')
       const label = routeMessage[name]
       /** 当子路由仅有一个时，以该子路由作为菜单 */
       if (route.meta?.isRoot && route.children && route.children.length == 1) {
