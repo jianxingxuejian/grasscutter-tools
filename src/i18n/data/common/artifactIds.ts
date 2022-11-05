@@ -64,11 +64,11 @@ export const artifactIds = [
     img: 'artifact/jiaodou_120.png'
   },
   {
-    itemIds: [73544, 73524, 73514, 73554, 73534],
+    itemIds: [73544, 73524, 73554, 73514, 73534],
     img: 'artifact/duhuo_120.png'
   },
   {
-    itemIds: [88544, 88524, 88514, 88554, 88534],
+    itemIds: [88544, 88524, 88554, 88514, 88534],
     img: 'artifact/panyan_120.png'
   },
   {
@@ -80,7 +80,7 @@ export const artifactIds = [
     img: 'artifact/chenlun_120.jpg'
   },
   {
-    itemIds: [89544, 89524, 89514, 89554, 89534],
+    itemIds: [89544, 89524, 89554, 89514, 89534],
     img: 'artifact/nifei_120.png'
   },
   {
