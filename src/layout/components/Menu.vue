@@ -10,7 +10,6 @@
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
-  import type { MenuOption } from 'naive-ui/es/menu/src/interface'
   import modules from '@/router/modules'
 
   const { tm } = useI18n()
@@ -49,10 +48,9 @@
   const router = useRouter()
   const route = useRoute()
 
-  const activeKey = computed(() => route.name as string)
+  const activeKey = computed(() => route.matched[1].name as string)
 
-  function handleUpdateMenu(_key: string, item: MenuOption) {
-    const menuItem = item as Route.Menu
-    router.push({ name: menuItem.key })
+  function handleUpdateMenu(key: string) {
+    router.push({ name: key })
   }
 </script>

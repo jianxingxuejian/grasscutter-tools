@@ -65,6 +65,9 @@
     Divider: {
       color: 'rgb(236,236,242)'
     },
+    Drawer: {
+      titleFontSize: '1.5rem'
+    },
     Form: {
       labelFontSizeLeftMedium: '1rem',
       labelFontSizeLeftLarge: '1.2rem',
@@ -72,6 +75,9 @@
       feedbackHeightMedium: '1.2rem',
       feedbackFontSizeMedium: '0.8rem',
       feedbackPadding: '0.2rem 0 0 0.2rem'
+    },
+    Progress: {
+      railHeight: '0.5rem'
     },
     Input: {
       paddingMedium: '0 1rem'

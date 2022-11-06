@@ -1,27 +1,27 @@
 <template>
-  <n-modal v-model:show="showModal" preset="card" :title="t('t1')" :auto-focus="false" class="w-80%">
+  <n-modal v-model:show="showModal" preset="card" :title="t('mod settings')" :auto-focus="false" class="w-80%">
     <div class="flex-col items-center gap-y-5">
       <n-input-group>
         <n-input :value="settingStore.mod.path" />
         <n-tooltip>
           <template #trigger>
-            <n-button type="primary" @click="handleSelectPath"> {{ t('b1') }} </n-button>
+            <n-button type="primary" @click="handleSelectPath"> {{ t('select') }} </n-button>
           </template>
-          <span>{{ t('tt1') }}</span>
+          <span>{{ t('select 3dm') }}</span>
         </n-tooltip>
       </n-input-group>
       <n-space class="items-center">
-        <span>{{ t('t2') }}</span>
+        <span>{{ t('img aspect ratio') }}</span>
         <n-input-number v-model:value="settingStore.mod.width" class="w-50" />
         <n-input-number v-model:value="settingStore.mod.height" class="w-50" />
       </n-space>
       <n-space>
-        <span>{{ t('t3') }}</span>
+        <span>{{ t('show name') }}</span>
         <n-switch v-model:value="settingStore.mod.showName" />
-        <span>{{ t('t4') }}</span>
+        <span>{{ t('show name') }}</span>
         <n-switch v-model:value="settingStore.mod.showAuthor" />
       </n-space>
-      <n-button type="success" @click="updateModPath()">{{ t('b2') }}</n-button>
+      <n-button type="success" @click="updateModPath()">{{ t('save') }}</n-button>
     </div>
   </n-modal>
 </template>
@@ -31,12 +31,10 @@
   import { useSettingStore } from '@/stores'
   import { select_file } from '@/utils'
 
+  const emits = defineEmits<{ (e: 'update:modList'): void }>()
+  defineExpose({ show, showWarning })
+
   const { t } = useI18n()
-
-  const emits = defineEmits<{
-    (e: 'update:modList'): void
-  }>()
-
   const settingStore = useSettingStore()
   const { updateModPath } = settingStore
 
@@ -56,13 +54,8 @@
 
   function showWarning() {
     showModal.value = true
-    window.$message?.warning(t('tt1'))
+    window.$message?.warning(t('select 3dm'))
   }
-
-  defineExpose({
-    show,
-    showWarning
-  })
 </script>
 
 <style lang="scss" scoped>
@@ -78,27 +71,3 @@
     width: 2rem;
   }
 </style>
-
-<i18n locale="zh-CN" lang="json">
-{
-  "t1": "Mod设置",
-  "t2": "图片长宽比",
-  "t3": "显示名字",
-  "t4": "显示作者",
-  "b1": "选择",
-  "b2": "保存",
-  "tt1": "请选择你的3DMigoto Loader.exe"
-}
-</i18n>
-
-<i18n locale="en-US" lang="json">
-{
-  "t1": "Mod Setting",
-  "t2": "Image Aspect Ratio",
-  "t3": "Show Name",
-  "t4": "Show Author",
-  "b1": "Select",
-  "b2": "Save",
-  "tt1": "Please select your 3DMigoto Loader.exe"
-}
-</i18n>
