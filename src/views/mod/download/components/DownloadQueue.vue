@@ -11,32 +11,50 @@
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
-  import { modListPushKey } from '../../key'
+  import { useSettingStore } from '@/stores'
+  import { download } from '@/utils'
+  import { InstallOption } from '../interface'
 
   interface Download {
     id: number
     name: string
   }
 
-  defineEmits<{
-    (e: 'update:modelValue', value: number): void
+  defineProps<{
+    modelValue: boolean
+  }>()
+  const emits = defineEmits<{
+    (e: 'update:modelValue', value: boolean): void
   }>()
   defineExpose({ open, push })
 
   const { t } = useI18n()
 
-  const downloadQueue = ref<Download[]>([])
+  const settingStore = useSettingStore()
+
+  const downloadQueue = reactive<Download[]>([])
   const show = ref(false)
+
+  watchEffect(() => emits('update:modelValue', downloadQueue.length > 0))
 
   function open() {
     show.value = true
   }
 
-  const modListPush = inject(modListPushKey)
-
-  function push(data: Mod) {
-    if (modListPush) {
-      modListPush(data)
+  async function push(mod: InstallOption) {
+    const { id, url, name } = mod
+    try {
+      downloadQueue.push({ id, name })
+      const path = settingStore.getModPath + 'gamebanana/' + id + '/' + name
+      await download(url, path, mod)
+    } catch (error) {
+      console.log(error)
+      window.$message?.error(error as string)
+    } finally {
+      downloadQueue.splice(
+        downloadQueue.findIndex(item => item.id == mod.id),
+        1
+      )
     }
   }
 </script>

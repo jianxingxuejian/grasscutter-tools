@@ -16,8 +16,8 @@
     </div>
     <n-grid cols="s:5 m:6 l:7 xl:8 2xl:9" responsive="screen" class="px-4 of-auto">
       <n-gi
-        v-for="(item, index) in showList"
-        :key="index"
+        v-for="item in showList"
+        :key="item.path"
         class="h-auto m-0.5 flex-col border-slate-400 border-1"
         :style="style"
       >

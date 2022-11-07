@@ -1,10 +1,13 @@
-interface Mod {
+interface Mod extends ModBasic {
+  path: string
+  src: string
   enabled: boolean
   show?: boolean
-  path: string
+}
+
+interface ModBasic {
   id: number
   name: string
-  src: string
   images: string[]
   submitter: {
     name: string

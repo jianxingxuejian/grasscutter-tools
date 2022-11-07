@@ -14,7 +14,7 @@
         <n-a class="text-4" @click="emits('page:change', 0)"> {{ t('mods manage') }} </n-a>
       </n-space>
       <setting-modal ref="settingRef" />
-      <download-queue ref="downloadQueueRef" />
+      <download-queue ref="downloadQueueRef" v-model="downloading" />
     </div>
     <div ref="modListRef" class="of-auto">
       <div class="grid gap-1 py-1 px-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8">
@@ -50,7 +50,7 @@
               <span class="text-2">{{ item.viewCount }}</span>
             </div>
             <div class="flex-center">
-              <n-button text class="w-40%" @click="handleInstallList(item.id)">
+              <n-button text class="w-40%" @click="handleInstallList(item)">
                 <icon-material-symbols-download preserveAspectRatio="xMaxYMax meet" width="100%" height="100%" />
               </n-button>
             </div>
@@ -66,12 +66,12 @@
             class="w-full flex-center hover:(cursor-pointer bg-gray-400 duration-500)"
             @click="handleInstall(item)"
           >
-            <span>{{ item.name }}</span>
-            <n-button v-if="item.install" text class="w-40%" @click="handleInstall(item)">
-              <icon-material-symbols-download preserveAspectRatio="xMaxYMax meet" width="100%" height="100%" />
+            <span class="mr-2">{{ item.name }}</span>
+            <n-button v-if="item.isInstall" text>
+              <icon-material-symbols-download class="text-5" />
             </n-button>
-            <n-button v-else text class="w-40%">
-              <icon-material-symbols-download-done preserveAspectRatio="xMaxYMax meet" width="100%" height="100%" />
+            <n-button v-else text>
+              <icon-material-symbols-download-done class="text-5" />
             </n-button>
           </div>
         </div>
@@ -88,7 +88,6 @@
   import { SettingModal, DownloadQueue } from './components'
   import type { ModDataBody, ModData, ProfilePage, InstallOption } from './interface'
   import { useSettingStore } from '@/stores'
-  import { download } from '@/utils'
 
   const props = defineProps<{
     modList: Mod[]
@@ -150,7 +149,7 @@
   const installOptions = ref<InstallOption[]>([])
   const { x, y } = useMouse()
 
-  async function handleInstallList(id: number) {
+  async function handleInstallList(item: ModData) {
     if (!settingStore.mod.path) {
       settingRef.value?.showWarning()
       return
@@ -160,17 +159,21 @@
       positionY.value = y.value
     }, 150)
     try {
+      const { id, images, author, authorUrl } = item
       const { status, data } = await fetch<ProfilePage>(`https://gamebanana.com/apiv10/Mod/${id}/ProfilePage`, {
         method: 'GET',
         timeout: 30
       })
       if (status === 200) {
+        const submitter = { name: author, url: authorUrl }
         showDropdown.value = true
         installOptions.value = data._aFiles.map(({ _idRow, _sDownloadUrl, _sFile }) => ({
           id: _idRow,
           url: _sDownloadUrl,
           name: _sFile,
-          install: !modIds.value.includes(_idRow)
+          isInstall: !modIds.value.includes(_idRow),
+          images,
+          submitter
         }))
       }
     } catch (error) {
@@ -178,13 +181,12 @@
     }
   }
 
-  async function handleInstall(item: InstallOption) {
-    const { id, url, name } = item
-    try {
-      await download(url, settingStore.getModPath + 'gamebanana/' + id + '/' + name)
-    } catch (error) {
-      window.$message?.error(error as string)
+  async function handleInstall(mod: InstallOption) {
+    if (installOptions.value.length === 1) {
+      showDropdown.value = false
     }
+
+    await downloadQueueRef.value?.push(mod)
   }
 
   const handleClickoutside = () => (showDropdown.value = false)

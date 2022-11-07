@@ -21,7 +21,6 @@
   import ModDownload from './download/index.vue'
   import { useSettingStore } from '@/stores'
   import { get_mod_list } from '@/utils'
-  import { modListPushKey } from './key'
 
   const { t } = useI18n()
   const settingStore = useSettingStore()
@@ -36,17 +35,10 @@
       modList.value = await get_mod_list(settingStore.getModPath)
       listSort()
     } catch (e) {
-      console.log(e)
       window.$message?.warning(t('not found mod path'))
     }
   }
   loadModList()
-
-  function modListPush(mod: Mod) {
-    modList.value.push(mod)
-  }
-
-  provide(modListPushKey, modListPush)
 
   function listSort() {
     modList.value.sort((next, pre) => {
@@ -58,4 +50,10 @@
       return 0
     })
   }
+
+  watchEffect(() => {
+    if (currentPage.value === 0) {
+      loadModList()
+    }
+  })
 </script>

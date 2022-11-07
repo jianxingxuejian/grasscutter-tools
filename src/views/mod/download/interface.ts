@@ -41,5 +41,10 @@ export interface InstallOption {
   id: number
   name: string
   url: string
-  install: boolean
+  isInstall: boolean
+  images: string[]
+  submitter: {
+    name: string
+    url: string
+  }
 }

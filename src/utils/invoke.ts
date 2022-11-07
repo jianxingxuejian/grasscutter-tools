@@ -27,17 +27,17 @@ export function read_local_img(path: string) {
 }
 
 export function rename(path: string, newPath: string) {
-  invoke('rename', { path, newPath })
+  return invoke('rename', { path, newPath })
 }
 
 export function write_file(mod: Mod) {
   const { path, id, name, images, submitter } = mod
   const contents = JSON.stringify({ id, name, images, submitter })
-  invoke('write_file', { path: path + '/modinfo.json', contents })
+  return invoke('write_file', { path: path + '/modinfo.json', contents })
 }
 
-export function download(url: string, path: string, mod: Mod) {
+export function download(url: string, path: string, mod: ModBasic) {
   const { id, name, images, submitter } = mod
   const contents = JSON.stringify({ id, name, images, submitter })
-  invoke('download', { url, path, contents })
+  return invoke('download', { url, path, contents })
 }
