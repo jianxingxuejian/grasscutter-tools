@@ -11,6 +11,7 @@
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
+  import { modListPushKey } from '../../key'
 
   interface Download {
     id: number
@@ -31,7 +32,11 @@
     show.value = true
   }
 
-  function push(data: any) {
-    console.log(data)
+  const modListPush = inject(modListPushKey)
+
+  function push(data: Mod) {
+    if (modListPush) {
+      modListPush(data)
+    }
   }
 </script>

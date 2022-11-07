@@ -1,4 +1,6 @@
 use std::collections::HashMap;
+use std::error::Error;
+use std::fmt;
 use std::path::Path;
 
 pub mod file;
@@ -15,6 +17,23 @@ macro_rules! wrap_result {
         }
     };
 }
+
+#[derive(Debug)]
+pub enum MyError {
+    IOError,
+    RarError,
+}
+
+impl fmt::Display for MyError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            MyError::IOError => write!(f, "IOError"),
+            MyError::RarError => write!(f, "RarError"),
+        }
+    }
+}
+
+impl Error for MyError {}
 
 #[tauri::command]
 pub async fn http(
@@ -56,7 +75,7 @@ pub async fn read_local_img(path: String) -> CmdResult<String> {
 }
 
 #[tauri::command]
-pub async fn download(url: String, path: String) -> CmdResult {
+pub async fn download(url: String, path: String, contents: String) -> CmdResult {
     let path = Path::new(&path);
     http::download(url, path).await.ok();
     let extension = path
@@ -64,11 +83,19 @@ pub async fn download(url: String, path: String) -> CmdResult {
         .ok_or("Extension error")?
         .to_str()
         .ok_or("Os to str error")?;
-    let result = match extension {
+    match extension {
         "zip" => file::unzip(path),
         "rar" => file::unrar(path),
         "7z" => file::un7z(path),
         _ => Err("Unsupported extension".into()),
-    };
+    }
+    .ok();
+    let path = path
+        .with_extension("")
+        .join("modinfo.json")
+        .as_path()
+        .display()
+        .to_string();
+    let result = file::write_file(path, contents);
     wrap_result!(result)
 }

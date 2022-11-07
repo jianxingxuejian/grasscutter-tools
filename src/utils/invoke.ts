@@ -3,11 +3,11 @@ import { open } from '@tauri-apps/api/dialog'
 import { shell } from '@tauri-apps/api'
 import { invoke } from '@tauri-apps/api/tauri'
 
-export async function select_file<T extends OpenDialogOptions = OpenDialogOptions>(options?: T) {
+export function select_file<T extends OpenDialogOptions = OpenDialogOptions>(options?: T) {
   return open(options) as Promise<T['multiple'] extends true ? null | string[] : null | string>
 }
 
-export async function open_dir(path: string) {
+export function open_dir(path: string) {
   shell.open(path)
 }
 
@@ -22,20 +22,22 @@ export async function get_mod_list(path?: string) {
   return modList
 }
 
-export async function read_local_img(path: string) {
-  return await invoke<string>('read_local_img', { path })
+export function read_local_img(path: string) {
+  return invoke<string>('read_local_img', { path })
 }
 
-export async function rename(path: string, newPath: string) {
-  await invoke('rename', { path, newPath })
+export function rename(path: string, newPath: string) {
+  invoke('rename', { path, newPath })
 }
 
-export async function write_file(mod: Mod) {
+export function write_file(mod: Mod) {
   const { path, id, name, images, submitter } = mod
   const contents = JSON.stringify({ id, name, images, submitter })
-  await invoke('write_file', { path: path + '/modinfo.json', contents })
+  invoke('write_file', { path: path + '/modinfo.json', contents })
 }
 
-export async function download(url: string, path: string) {
-  await invoke('download', { url, path })
+export function download(url: string, path: string, mod: Mod) {
+  const { id, name, images, submitter } = mod
+  const contents = JSON.stringify({ id, name, images, submitter })
+  invoke('download', { url, path, contents })
 }

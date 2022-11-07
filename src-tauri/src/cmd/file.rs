@@ -2,29 +2,14 @@ use base64::encode;
 use std::collections::HashMap;
 use std::error::Error;
 use std::ffi::OsStr;
+use std::fs;
 use std::fs::File;
 use std::io;
 use std::io::{Read, Write};
 use std::path::{Path, PathBuf};
-use std::{fmt, fs};
 use walkdir::WalkDir;
 
-#[derive(Debug)]
-pub enum MyError {
-    IOError,
-    RarError,
-}
-
-impl fmt::Display for MyError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        match self {
-            MyError::IOError => write!(f, "IOError"),
-            MyError::RarError => write!(f, "RarError"),
-        }
-    }
-}
-
-impl Error for MyError {}
+use super::MyError;
 
 pub fn get_mod_list(path: String) -> HashMap<String, String> {
     let path = Path::new(&path);

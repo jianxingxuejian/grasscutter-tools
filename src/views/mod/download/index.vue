@@ -50,11 +50,8 @@
               <span class="text-2">{{ item.viewCount }}</span>
             </div>
             <div class="flex-center">
-              <n-button v-if="item.install" text class="w-40%" @click="handleInstallList(item.id)">
+              <n-button text class="w-40%" @click="handleInstallList(item.id)">
                 <icon-material-symbols-download preserveAspectRatio="xMaxYMax meet" width="100%" height="100%" />
-              </n-button>
-              <n-button v-else text class="w-40%" @click="handleInstallList(item.id)">
-                <icon-material-symbols-download-done preserveAspectRatio="xMaxYMax meet" width="100%" height="100%" />
               </n-button>
             </div>
           </div>
@@ -69,7 +66,13 @@
             class="w-full flex-center hover:(cursor-pointer bg-gray-400 duration-500)"
             @click="handleInstall(item)"
           >
-            {{ item.name }}
+            <span>{{ item.name }}</span>
+            <n-button v-if="item.install" text class="w-40%" @click="handleInstall(item)">
+              <icon-material-symbols-download preserveAspectRatio="xMaxYMax meet" width="100%" height="100%" />
+            </n-button>
+            <n-button v-else text class="w-40%">
+              <icon-material-symbols-download-done preserveAspectRatio="xMaxYMax meet" width="100%" height="100%" />
+            </n-button>
           </div>
         </div>
       </n-popover>
@@ -132,8 +135,7 @@
             authorUrl: _aSubmitter._sProfileUrl,
             viewCount: numberFormat(_nViewCount ?? 0),
             likeCount: numberFormat(_nLikeCount ?? 0),
-            images: _aPreviewMedia._aImages.map(({ _sBaseUrl, _sFile220 }) => _sBaseUrl + '/' + _sFile220),
-            install: !modIds.value.includes(_idRow)
+            images: _aPreviewMedia._aImages.map(({ _sBaseUrl, _sFile220 }) => _sBaseUrl + '/' + _sFile220)
           }))
         )
       }
@@ -167,7 +169,8 @@
         installOptions.value = data._aFiles.map(({ _idRow, _sDownloadUrl, _sFile }) => ({
           id: _idRow,
           url: _sDownloadUrl,
-          name: _sFile
+          name: _sFile,
+          install: !modIds.value.includes(_idRow)
         }))
       }
     } catch (error) {

@@ -24,7 +24,6 @@ export interface ModData {
   images: string[]
   viewCount: number | string
   likeCount: number | string
-  install: boolean
 }
 
 export interface ProfilePage {
@@ -40,6 +39,7 @@ export interface ProfilePage {
 
 export interface InstallOption {
   id: number
-  url: string
   name: string
+  url: string
+  install: boolean
 }
