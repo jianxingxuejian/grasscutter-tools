@@ -2,11 +2,11 @@
 
 [English](README.md) | 简体中文
 
-![](img/b001.png)
-![](img/b101.png)
-![](img/b201.png)
-![](img/b301.png)
-![](img/b401.png)
+![](docs/screenshot/b001.png)
+![](docs/screenshot/b101.png)
+![](docs/screenshot/b201.png)
+![](docs/screenshot/b301.png)
+![](docs/screenshot/b401.png)
 
 [![GitHub license](https://img.shields.io/github/license/jianxingxuejian/grasscutter-tools)](https://github.com/jianxingxuejian/grasscutter-tools/blob/main/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/jianxingxuejian/grasscutter-tools)](https://github.com/jianxingxuejian/grasscutter-tools/stargazers)
@@ -19,34 +19,19 @@
 - [x] 常用指令
 - [x] 快速生成圣遗物
 - [x] 物品分类检索
-- [x] 任务列表
-- [x] Mod 管理
+- [x] 怪物列表
+- [x] 任务/场景/传送
+- [x] 在线 Mod 下载和本地 Mod 管理
 - [x] 管理员控制台
 - [ ] 启动器(TODO)
-- [ ] Mod 在线下载(TODO)
-- [ ] 实体列表(需要翻译)
 
 ## 使用
 
-需要服务端配合[这个插件](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.4.1)使用。
+大部分功能需要服务端配合[这个插件](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.4.1)使用。
 
 使用客户端之前需要完成简单的账号认证(向你的游戏发送验证码邮件然后在 1 分钟之内完成验证或者用该游戏账号的密码验证)。服务端拥有者可以完成管理员认证然后使用管理员控制台，效果与服务器控制台相同。
 
-关于 mod，请前往 [GIMI](https://github.com/SilentNightSound/GI-Model-Importer) 项目了解基础知识，本项目 mod 功能的使用方法：选择 3DMigoto Loader.exe 文件，并确保 Mods 文件夹在同一级。结构如下：
-
-```
-|-- 3DMigoto Loader.exe
-|-- Mods
-    |-- 刻晴
-        |-- mod1
-            |-- KeqingMod
-                |-- Keqing.ini
-                |-- ...
-            |-- modinfo.json
-            |-- *.png/jpg/jpeg/jfif
-```
-
-可以进行任意的嵌套和命名，但要注意每个 mod 一定要在一个单独的文件夹下，不能跟其它 mod 放在一起。程序会读取所有 mod，**自动生成 modinfo.json 文件**，然后你可以放置一张图片(与 mod 文件夹同一级)让程序读取到，也可以修改 modinfo.json 文件的 images 字段来使用网络图片。进入 mod 页面刷新下，就能看到你的所有 mod，你可以调整图片的宽高比例，填写名字和作者，然后就可以使用关键字进行筛选。mod 浮窗上的复选框是用来选择是否加载这个 mod，取消勾选时 3dm 不会加载这个 mod。
+mod 相关功能的使用请看[这里](docs/mod_zh-CN.md)。
 
 有什么疑问或者想添加功能请提 issue。
 
@@ -76,5 +61,8 @@ pnpm tauri dev
 
 ## 贡献
 
-这个项目进行了数次重构，最近才起步，我会把工作重心放在代码编写以及优化上，所以翻译和润色部分我不会太关注，希望有人能帮我进行这项工作。
 欢迎指出任何关于代码质量，UI 设计等方面的问题，如果能提交 PR 就更好了。
+
+关于翻译，目前仅有简体中文和英语。如果想要翻译其它语言或者优化翻译，请前往 src/i18n/locales 文件夹，里面罗列了所有能支持的语言版本，然后提交 pr。
+
+游戏数据文本解析来自[gc-res-parse](https://github.com/jianxingxuejian/gc-res-parse)，大部分数据已经完成了国际化。

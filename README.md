@@ -2,11 +2,11 @@
 
 English | [简体中文](README_zh-CN.md)
 
-![](img/a001.png)
-![](img/a101.png)
-![](img/a201.png)
-![](img/a301.png)
-![](img/a401.png)
+![](docs/screenshot/a001.png)
+![](docs/screenshot/a101.png)
+![](docs/screenshot/a201.png)
+![](docs/screenshot/a301.png)
+![](docs/screenshot/a401.png)
 
 [![GitHub license](https://img.shields.io/github/license/jianxingxuejian/grasscutter-tools)](https://github.com/jianxingxuejian/grasscutter-tools/blob/main/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/jianxingxuejian/grasscutter-tools)](https://github.com/jianxingxuejian/grasscutter-tools/stargazers)
@@ -19,12 +19,11 @@ English | [简体中文](README_zh-CN.md)
 - [x] Common Command
 - [x] Create Artifacts
 - [x] Item Category Search
-- [x] Quest List
-- [x] Manage mods
+- [x] Spawn List
+- [x] Quest/Scene/TP
+- [x] Online Mod Download and Local Mod Management
 - [x] Admin Console
 - [ ] Launcher(TODO)
-- [ ] Mod Download Online(TODO)
-- [ ] Spawn List(Need translate or retouch)
 
 ## Usage
 
@@ -32,21 +31,7 @@ Need to Server use with the [plugin](https://github.com/jianxingxuejian/grasscut
 
 Before you use the client, you should complete the easy certification first(send a verification code via in-game mailbox to your game to complete the verification within 1 minute or verify with the password of the game account). If you are the server owner, you can use the Server-Console on it after completing the admin certification.
 
-About mods, please go to the [GIMI](https://github.com/SilentNightSound/GI-Model-Importer) project to understand the basics, how to use the mod function in this project: select the 3DMigoto Loader.exe file and make sure the Mods folder is at the same level. The document structure is as follows:
-
-```
-|-- 3DMigoto Loader.exe
-|-- Mods
-    |-- keqing
-        |-- mod1
-            |-- KeqingMod
-                |-- Keqing.ini
-                |-- ...
-            |-- modinfo.json
-            |-- *.png/jpg/jpeg/jfif
-```
-
-You can nest and name as many mods as you want, but be careful that each mod must be in a separate folder, not together with other mods. The program will read all mods and **automatically generate modinfo.json files**, then you can place a picture (at the same level as the mod folder) for the program to read, or you can modify the images field in the modinfo.json file to use network pictures. When you enter the mod page and refresh it, you can see all your mods, you can adjust the aspect ratio of the image, fill in the name and author, and then you can use the keywords to filter. the checkbox on the mod floating window is used to select whether to load the mod or not, when unchecked 3dm will not load the mod.
+About Mod please [go here](docs/mod.md).
 
 If you have any questions or want to add features, please open an issue.
 
@@ -76,5 +61,8 @@ Please go to the [Tauri](https://github.com/tauri-apps/tauri) project for more i
 
 ## Contribute
 
-This project has been refactored several times and only recently started, I will focus on the code writing and optimization, so I won't pay too much attention to the translation and retouching part, and I hope someone can help me with this work.
 Feel free to point out any questions about code quality, UI design, etc. It would be great if you could create a pull request.
+
+For translations, only Simplified Chinese and English are currently available. If you want to translate to other languages or optimize your translation, please go to the src/i18n/locales folder, which lists all supported languages, and submit pr.
+
+The game data text is parsing from [gc-res-parse](https://github.com/jianxingxuejian/gc-res-parse), and most of the data has been internationalized.
