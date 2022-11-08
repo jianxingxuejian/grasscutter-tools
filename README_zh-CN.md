@@ -2,11 +2,13 @@
 
 [English](README.md) | 简体中文
 
-![](docs/screenshot/b001.png)
-![](docs/screenshot/b101.png)
-![](docs/screenshot/b201.png)
-![](docs/screenshot/b301.png)
-![](docs/screenshot/b401.png)
+![](docs/screenshot/002_zh-CN.png)
+![](docs/screenshot/003_zh-CN.png)
+![](docs/screenshot/004_zh-CN.png)
+![](docs/screenshot/005_zh-CN.png)
+![](docs/screenshot/006a_zh-CN.png)
+![](docs/screenshot/006b_zh-CN.png)
+![](docs/screenshot/007_zh-CN.png)
 
 [![GitHub license](https://img.shields.io/github/license/jianxingxuejian/grasscutter-tools)](https://github.com/jianxingxuejian/grasscutter-tools/blob/main/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/jianxingxuejian/grasscutter-tools)](https://github.com/jianxingxuejian/grasscutter-tools/stargazers)
