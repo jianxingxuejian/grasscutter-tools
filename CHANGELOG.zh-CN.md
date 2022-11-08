@@ -1,5 +1,11 @@
 # 变更日志
 
+## [1.4.10] - 2022-11-09
+
+### 特性
+
+- 更新完整的人物、武器、材料数据
+
 ## [1.4.9] - 2022-11-08
 
 ### 特性
@@ -80,6 +86,7 @@
 
 - 修正错误的圣遗物 id
 
+[1.4.10]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.9...v1.4.10
 [1.4.9]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.8...v1.4.9
 [1.4.8]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.7...v1.4.8
 [1.4.7]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.6...v1.4.7

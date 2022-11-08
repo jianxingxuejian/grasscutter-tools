@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.4.10] - 2022-11-09
+
+### Features
+
+- Update complete character, weapon, and material data
+
 ## [1.4.9] - 2022-11-08
 
 ### Features
@@ -82,6 +88,7 @@
 
 - Fix the wrong artifact id
 
+[1.4.10]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.9...v1.4.10
 [1.4.9]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.8...v1.4.9
 [1.4.8]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.7...v1.4.8
 [1.4.7]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.6...v1.4.7
