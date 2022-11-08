@@ -1,5 +1,17 @@
 # 变更日志
 
+## [1.4.9] - 2022-11-08
+
+### 特性
+
+- 增加部分 3.2 版本的数据
+
+- 新增 mod 在线下载功能
+
+### 修复 Bug
+
+- 修正部分错误的圣遗物 id
+
 ## [1.4.8] - 2022-10-26
 
 ### 特性
@@ -68,6 +80,7 @@
 
 - 修正错误的圣遗物 id
 
+[1.4.9]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.8...v1.4.9
 [1.4.8]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.7...v1.4.8
 [1.4.7]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.6...v1.4.7
 [1.4.6]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.5...v1.4.6

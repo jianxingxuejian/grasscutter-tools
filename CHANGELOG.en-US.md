@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.9] - 2022-11-08
+
+### Features
+
+- Update some of the data from version 3.2
+
+- Add mod online download function
+
+### Bug Fixes
+
+- Fix part of the wrong artifact id
+
 ## [1.4.8] - 2022-10-26
 
 ### Features
@@ -70,6 +82,7 @@
 
 - Fix the wrong artifact id
 
+[1.4.9]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.8...v1.4.9
 [1.4.8]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.7...v1.4.8
 [1.4.7]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.6...v1.4.7
 [1.4.6]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.5...v1.4.6
