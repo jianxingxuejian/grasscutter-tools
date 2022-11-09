@@ -20,7 +20,7 @@ export default defineConfig(env => {
       port: 3000,
       host: true
     },
-    plugins: setupVitePlugins(),
+    plugins: setupVitePlugins(viteEnv),
     css: {
       preprocessorOptions: {
         scss: {
