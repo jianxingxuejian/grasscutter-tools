@@ -5,7 +5,7 @@ import modules from './modules'
 import constantRoutes from './constant-routes'
 
 const router = createRouter({
-  history: createWebHistory(''),
+  history: createWebHistory(import.meta.env.VITE_BASE_URL),
   routes: [...constantRoutes, ...modules] as RouteRecordRaw[]
 })
 
