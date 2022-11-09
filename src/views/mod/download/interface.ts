@@ -8,6 +8,7 @@ export interface ModDataBody {
     _sProfileUrl: string
     _nViewCount?: number
     _nLikeCount?: number
+    _sInitialVisibility: string
     _aPreviewMedia: {
       _aImages: { _sBaseUrl: string; _sFile220: string }[]
     }
@@ -24,6 +25,7 @@ export interface ModData {
   images: string[]
   viewCount: number | string
   likeCount: number | string
+  nsfw: boolean
 }
 
 export interface ProfilePage {

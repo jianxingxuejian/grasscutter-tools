@@ -33,6 +33,7 @@
           </div>
           <div
             class="w-full grow bg-center bg-no-repeat hover:(cursor-pointer opacity-75 transition-opacity-500)"
+            :class="{ 'blur-md': item.nsfw && settingStore.mod.nsfw }"
             :style="{ backgroundImage: `url(${item.images[0]})` }"
           ></div>
           <div class="w-full flex-evenly">
@@ -125,17 +126,30 @@
           isEnd.value = true
           return
         }
+        console.log(records)
         modDataList.value.push(
-          ...records.map(({ _idRow, _sName, _sProfileUrl, _aSubmitter, _nViewCount, _nLikeCount, _aPreviewMedia }) => ({
-            id: _idRow,
-            name: _sName,
-            url: _sProfileUrl,
-            author: _aSubmitter._sName,
-            authorUrl: _aSubmitter._sProfileUrl,
-            viewCount: numberFormat(_nViewCount ?? 0),
-            likeCount: numberFormat(_nLikeCount ?? 0),
-            images: _aPreviewMedia._aImages.map(({ _sBaseUrl, _sFile220 }) => _sBaseUrl + '/' + _sFile220)
-          }))
+          ...records.map(
+            ({
+              _idRow,
+              _sName,
+              _sProfileUrl,
+              _aSubmitter,
+              _nViewCount,
+              _nLikeCount,
+              _aPreviewMedia,
+              _sInitialVisibility
+            }) => ({
+              id: _idRow,
+              name: _sName,
+              url: _sProfileUrl,
+              author: _aSubmitter._sName,
+              authorUrl: _aSubmitter._sProfileUrl,
+              viewCount: numberFormat(_nViewCount ?? 0),
+              likeCount: numberFormat(_nLikeCount ?? 0),
+              nsfw: _sInitialVisibility !== 'show',
+              images: _aPreviewMedia._aImages.map(({ _sBaseUrl, _sFile220 }) => _sBaseUrl + '/' + _sFile220)
+            })
+          )
         )
       }
     } catch (error) {

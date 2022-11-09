@@ -15,6 +15,7 @@ interface Setting {
     height: number
     showName: boolean
     showAuthor: boolean
+    nsfw: boolean
   }
   proxy: {
     enable: boolean

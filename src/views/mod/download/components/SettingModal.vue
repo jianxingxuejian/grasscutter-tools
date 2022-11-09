@@ -10,6 +10,10 @@
           <span>{{ t('select 3dm') }}</span>
         </n-tooltip>
       </n-input-group>
+      <n-space>
+        <span>{{ t('open nsfw') }}</span>
+        <n-switch v-model:value="settingStore.mod.nsfw" />
+      </n-space>
       <n-button type="success" @click="updateModPath()">{{ t('save') }}</n-button>
     </div>
   </n-modal>

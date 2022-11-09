@@ -18,7 +18,8 @@ export const useSettingStore = defineStore('setting-store', {
       width: 9,
       height: 16,
       showName: true,
-      showAuthor: true
+      showAuthor: true,
+      nsfw: true
     },
     proxy: {
       enable: false
