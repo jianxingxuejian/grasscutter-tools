@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'url'
 import { defineConfig, loadEnv } from 'vite'
-import { setupVitePlugins } from './build'
+import { setupVitePlugins, sanitizeFileName } from './build'
 
 // https://vitejs.dev/config/
 export default defineConfig(env => {
@@ -20,7 +20,7 @@ export default defineConfig(env => {
       port: 3000,
       host: true
     },
-    plugins: setupVitePlugins(),
+    plugins: setupVitePlugins(viteEnv),
     css: {
       preprocessorOptions: {
         scss: {
@@ -28,6 +28,12 @@ export default defineConfig(env => {
         }
       }
     },
-    build: {}
+    build: {
+      rollupOptions: {
+        output: {
+          sanitizeFileName
+        }
+      }
+    }
   }
 })
