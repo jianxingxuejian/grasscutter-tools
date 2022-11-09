@@ -2,6 +2,7 @@ import request from '@/http/request'
 import { useSettingStore } from '@/stores'
 import router from '@/router'
 import i18n from '@/i18n'
+import isTauri from '@/utils/is-tauri'
 
 export function adminAuth(adminVoucher: string) {
   return request.get<string>(`/plugin/admin/auth?adminVoucher=${adminVoucher}`)
@@ -47,7 +48,7 @@ export function cdr() {
 }
 
 function checkToken() {
-  if (!useSettingStore().token) {
+  if (isTauri && !useSettingStore().token) {
     window.$message?.error(i18n.global.t('player auth first'))
     router.push('/setting/index')
     return false

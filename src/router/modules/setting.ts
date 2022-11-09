@@ -6,7 +6,8 @@ const routes: Route.Config = {
   meta: {
     sort: 7,
     isRoot: true,
-    icon: 'ic:outline-settings'
+    icon: 'ic:outline-settings',
+    hideInWeb: true
   },
   children: [
     {

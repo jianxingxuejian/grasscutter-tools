@@ -6,7 +6,8 @@ const routes: Route.Config = {
   meta: {
     sort: 2,
     isRoot: true,
-    icon: 'material-symbols:dashboard-customize-outline'
+    icon: 'material-symbols:dashboard-customize-outline',
+    hideInWeb: true
   },
   children: [
     {

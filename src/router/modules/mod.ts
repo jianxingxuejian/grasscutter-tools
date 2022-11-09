@@ -6,7 +6,8 @@ const routes: Route.Config = {
   meta: {
     sort: 6,
     isRoot: true,
-    icon: 'mdi:account-edit-outline'
+    icon: 'mdi:account-edit-outline',
+    hideInWeb: true
   },
   children: [
     {

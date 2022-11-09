@@ -42,6 +42,8 @@ declare namespace Route {
     sort?: number
     /** 是否为根节点 */
     isRoot?: boolean
+    /** 是否在web上隐藏 */
+    hideInWeb?: boolean
   }
 
   /** 菜单 */

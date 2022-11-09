@@ -1,22 +1,31 @@
 import { Store } from 'tauri-plugin-store-api'
 import { useSettingStore } from '@/stores'
+import isTauri from '@/utils/is-tauri'
 
 const store = new Store('.settings')
 
 export async function setSetting(key: string, value: any) {
-  try {
-    await store.set(key, value)
-    await saveSetting()
-  } catch {
-    window.$message?.error('set settings failed')
+  if (isTauri) {
+    try {
+      await store.set(key, value)
+      await saveSetting()
+    } catch {
+      window.$message?.error('set settings failed')
+    }
+  } else {
+    window.localStorage.setItem(key, value)
   }
 }
 
 export async function getSetting<T>(key: string) {
-  try {
-    return await store.get<T>(key)
-  } catch {
-    window.$message?.error('get settings failed')
+  if (isTauri) {
+    try {
+      return await store.get<T>(key)
+    } catch {
+      window.$message?.error('get settings failed')
+    }
+  } else {
+    return window.localStorage.getItem(key)
   }
 }
 
@@ -29,10 +38,14 @@ export async function saveSetting() {
 }
 
 export async function remove(key: string) {
-  try {
-    await store.delete(key)
-  } catch {
-    window.$message?.error('remove settings failed')
+  if (isTauri) {
+    try {
+      await store.delete(key)
+    } catch {
+      window.$message?.error('remove settings failed')
+    }
+  } else {
+    window.localStorage.removeItem(key)
   }
 }
 
@@ -44,22 +57,30 @@ export async function clear() {
   }
 }
 
-export async function loadSetting() {
+export async function loadClientSetting() {
   try {
     await store.load()
-    const server = await getSetting<Setting['server']>('server')
+    const server = (await getSetting('server')) as Setting['server'] | null
     if (server && server.history === undefined) server.history = []
-    const token = await getSetting<Setting['token']>('token')
-    const admin_token = await getSetting<Setting['admin_token']>('admin_token')
-    const locale = await getSetting<Setting['locale']>('locale')
-    const theme = await getSetting<Setting['theme']>('theme')
-    const mod = await getSetting<Setting['mod']>('mod')
-    const proxy = await getSetting<Setting['proxy']>('proxy')
-    const update = await getSetting<Setting['update']>('update')
+    const token = (await getSetting('token')) as Setting['token'] | null
+    const admin_token = (await getSetting('admin_token')) as Setting['admin_token'] | null
+    const locale = (await getSetting('locale')) as Setting['locale'] | null
+    const theme = (await getSetting('theme')) as Setting['theme'] | null
+    const mod = (await getSetting('mod')) as Setting['mod'] | null
+    const proxy = (await getSetting('proxy')) as Setting['proxy'] | null
+    const update = (await getSetting('update')) as Setting['update'] | null
 
     const settingStore = useSettingStore()
     settingStore.initSettings({ server, token, admin_token, locale, theme, mod, proxy, update })
   } catch {
     window.$message?.error('load settings failed')
   }
+}
+
+export async function loadWebSetting() {
+  const locale = window.localStorage.getItem('locale') as Setting['locale'] | null
+  const theme = window.localStorage.getItem('theme') as Setting['theme'] | null
+
+  const settingStore = useSettingStore()
+  settingStore.initSettings({ locale, theme })
 }
