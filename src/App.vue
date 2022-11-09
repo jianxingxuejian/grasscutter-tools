@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
   import { useEventListener } from '@vueuse/core'
-  import { zhCN, enUS, dateZhCN, dateEnUS, lightTheme, darkTheme } from 'naive-ui'
+  import { zhCN, enUS, jaJP, dateZhCN, dateEnUS, dateJaJP, lightTheme, darkTheme } from 'naive-ui'
   import { useAppStore, useSettingStore } from '@/stores'
 
   const appStore = useAppStore()
@@ -20,6 +20,8 @@
         return zhCN
       case 'en-US':
         return enUS
+      case 'ja-JP':
+        return jaJP
       default:
         return zhCN
     }
@@ -30,6 +32,8 @@
         return dateZhCN
       case 'en-US':
         return dateEnUS
+      case 'ja-JP':
+        return dateJaJP
       default:
         return dateZhCN
     }
