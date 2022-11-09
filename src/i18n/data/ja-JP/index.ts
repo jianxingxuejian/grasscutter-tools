@@ -11,7 +11,7 @@ import weatherItemJson from './weatherItem.json?raw'
 
 const monsterTypeDict: Record<MonsterType, string> = {
   MONSTER_ORDINARY: 'モンスター',
-  MONSTER_BOSS: 'チーフス',
+  MONSTER_BOSS: 'ボス',
   MONSTER_ENV_ANIMAL: '動物',
   MONSTER_FISH: '魚',
   MONSTER_PARTNER: '友軍'
@@ -19,7 +19,7 @@ const monsterTypeDict: Record<MonsterType, string> = {
 
 const questTags = ['隠す', 'テスト', '未発表']
 
-const weatherType = ['晴天', '曇り', '雨', '雷雨', 'スノー', '霧']
+const weatherType = ['晴天', '曇り', '雨', '雷雨', '雪', '霧']
 
 const itemTags = ['キャラクター', '武器', '素材']
 
@@ -36,16 +36,16 @@ const materialTypeDict: Record<MaterialType, string> = {
   FAKE_ABSORBATE: 'FAKE_ABSORBATE',
   ADSORBATE: 'ADSORBATE',
   CONSUME: '消耗品',
-  TALENT: 'Talent',
-  AVATAR: 'Avatar',
-  CHEST: 'Chest',
+  TALENT: '天賦',
+  AVATAR: 'キャラ',
+  CHEST: '宝箱',
   NOTICE_ADD_HP: '料理',
   EXCHANGE: 'Exchange',
   WOOD: '木材',
-  QUEST: 'Quest',
+  QUEST: 'クエスト',
   CRICKET: 'Cricket',
-  WIDGET: 'Widget',
-  ELEM_CRYSTAL: 'ELEM_CRYSTAL',
+  WIDGET: 'ウィジェット',
+  ELEM_CRYSTAL: '元素クリスタル',
   SPICE_FOOD: 'Spice Food',
   ACTIVITY_GEAR: 'ACTIVITY_GEAR',
   ACTIVITY_ROBOT: 'ACTIVITY_ROBOT',
@@ -53,22 +53,22 @@ const materialTypeDict: Record<MaterialType, string> = {
   FOOD: '食品',
   EXP_FRUIT: '経験',
   WEAPON_EXP_STONE: '鉱石',
-  AVATAR_MATERIAL: '角色材料',
-  RELIQUARY_MATERIAL: 'RELIQUARY_MATERIAL',
+  AVATAR_MATERIAL: 'キャラ突破素材',
+  RELIQUARY_MATERIAL: '聖遺物の素材',
   CONSUME_BATCH_USE: '樹脂',
-  FISH_BAIT: 'FISH_BAIT',
+  FISH_BAIT: '魚の餌',
   CHEST_BATCH_USE: 'CHEST_BATCH_USE',
-  SELECTABLE_CHEST: 'SELECTABLE_CHEST',
+  SELECTABLE_CHEST: '選択可能な宝箱',
   HOME_SEED: '種子',
   FLYCLOAK: 'FLYCLOAK',
-  BGM: '音楽',
+  BGM: 'BGM',
   SEA_LAMP: 'SEA_LAMP',
   CHANNELLER_SLAB_BUFF: 'CHANNELLER_SLAB_BUFF',
   FISH_ROD: '釣り竿',
   NAMECARD: '名刺',
   ARANARA: 'ARANARA',
   DESHRET_MANUAL: 'DESHRET_MANUAL',
-  FIREWORKS: 'FIREWORKS',
+  FIREWORKS: '花火',
   COSTUME: '衣料品',
   FURNITURE_SUITE_FORMULA: 'オーナメントセット',
   FURNITURE_FORMULA: '装飾品'
