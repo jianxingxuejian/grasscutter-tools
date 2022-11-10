@@ -11,7 +11,7 @@ import weatherItemJson from './weatherItem.json?raw'
 
 const monsterTypeDict: Record<MonsterType, string> = {
   MONSTER_ORDINARY: 'モンスター',
-  MONSTER_BOSS: 'チーフス',
+  MONSTER_BOSS: 'ボス',
   MONSTER_ENV_ANIMAL: '動物',
   MONSTER_FISH: '魚',
   MONSTER_PARTNER: '友軍'
@@ -19,7 +19,7 @@ const monsterTypeDict: Record<MonsterType, string> = {
 
 const questTags = ['隠す', 'テスト', '未発表']
 
-const weatherType = ['晴天', '曇り', '雨', '雷雨', 'スノー', '霧']
+const weatherType = ['晴天', '曇り', '雨', '雷雨', '雪', '霧']
 
 const itemTags = ['キャラクター', '武器', '素材']
 
@@ -32,46 +32,46 @@ const weaponTypeDict: Record<WeaponType, string> = {
 }
 
 const materialTypeDict: Record<MaterialType, string> = {
-  undefined: 'Sundry',
-  FAKE_ABSORBATE: 'FAKE_ABSORBATE',
-  ADSORBATE: 'ADSORBATE',
+  undefined: 'EXP 素材',
+  FAKE_ABSORBATE: '鉄銭',
+  ADSORBATE: '通貨',
   CONSUME: '消耗品',
-  TALENT: 'Talent',
-  AVATAR: 'Avatar',
-  CHEST: 'Chest',
+  TALENT: '天賦',
+  AVATAR: 'キャラ',
+  CHEST: '宝箱',
   NOTICE_ADD_HP: '料理',
-  EXCHANGE: 'Exchange',
+  EXCHANGE: '素材',
   WOOD: '木材',
-  QUEST: 'Quest',
-  CRICKET: 'Cricket',
-  WIDGET: 'Widget',
-  ELEM_CRYSTAL: 'ELEM_CRYSTAL',
-  SPICE_FOOD: 'Spice Food',
-  ACTIVITY_GEAR: 'ACTIVITY_GEAR',
-  ACTIVITY_ROBOT: 'ACTIVITY_ROBOT',
-  ACTIVITY_JIGSAW: 'ACTIVITY_JIGSAW',
+  QUEST: 'クエスト',
+  CRICKET: '引換券',
+  WIDGET: 'ウィジェット',
+  ELEM_CRYSTAL: '元素クリスタル',
+  SPICE_FOOD: 'スパイス フード',
+  ACTIVITY_GEAR: 'ギア',
+  ACTIVITY_ROBOT: 'ロボット',
+  ACTIVITY_JIGSAW: '部品',
   FOOD: '食品',
   EXP_FRUIT: '経験',
   WEAPON_EXP_STONE: '鉱石',
-  AVATAR_MATERIAL: '角色材料',
-  RELIQUARY_MATERIAL: 'RELIQUARY_MATERIAL',
+  AVATAR_MATERIAL: 'キャラ突破素材',
+  RELIQUARY_MATERIAL: '聖遺物の素材',
   CONSUME_BATCH_USE: '樹脂',
-  FISH_BAIT: 'FISH_BAIT',
-  CHEST_BATCH_USE: 'CHEST_BATCH_USE',
-  SELECTABLE_CHEST: 'SELECTABLE_CHEST',
+  FISH_BAIT: '魚の餌',
+  CHEST_BATCH_USE: 'ギフトパック',
+  SELECTABLE_CHEST: '選択ギフト',
   HOME_SEED: '種子',
-  FLYCLOAK: 'FLYCLOAK',
-  BGM: '音楽',
-  SEA_LAMP: 'SEA_LAMP',
-  CHANNELLER_SLAB_BUFF: 'CHANNELLER_SLAB_BUFF',
+  FLYCLOAK: '翼',
+  BGM: 'BGM',
+  SEA_LAMP: '霄灯',
+  CHANNELLER_SLAB_BUFF: 'イベントバフ',
   FISH_ROD: '釣り竿',
   NAMECARD: '名刺',
-  ARANARA: 'ARANARA',
-  DESHRET_MANUAL: 'DESHRET_MANUAL',
-  FIREWORKS: 'FIREWORKS',
-  COSTUME: '衣料品',
-  FURNITURE_SUITE_FORMULA: 'オーナメントセット',
-  FURNITURE_FORMULA: '装飾品'
+  ARANARA: '森林書',
+  DESHRET_MANUAL: '赤砂の石板',
+  FIREWORKS: '花火',
+  COSTUME: 'キャラスキン',
+  FURNITURE_SUITE_FORMULA: '調度品セット',
+  FURNITURE_FORMULA: '壺の調度品'
 }
 
 const items = transformItems({
