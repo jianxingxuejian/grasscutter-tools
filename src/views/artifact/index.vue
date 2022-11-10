@@ -205,11 +205,13 @@
   }
 
   function handleReduce(index: number) {
-    if (artifact.levels[position.value] >= 4) {
+    const substats = artifact.substats[position.value]
+
+    if (artifact.levels[position.value] >= 4 && substats.length < 10) {
       artifact.levels[position.value] -= 4
     }
+
     const gearIds = substatGears[currentSubstats.value[index]].map(item => item.id)
-    const substats = artifact.substats[position.value]
     const count = substats.filter(item => gearIds.includes(item.itemId)).length
     if (count > 1) {
       const i = substats.findIndex(item => gearIds.includes(item.itemId))
