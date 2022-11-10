@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.4.11] - 2022-11-10
+
+### Features
+
+- Improve the translation of some monster names
+
+- Add NFSW switch to the mod download interface
+
+- Add Japanese and Spanish
+
+- Add a button to cancel the ehance of artifact
+
+### Bug Fixes
+
+- Fix the wrong text
+
 ## [1.4.10] - 2022-11-09
 
 ### Features
@@ -88,6 +104,7 @@
 
 - Fix the wrong artifact id
 
+[1.4.11]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.10...v1.4.11
 [1.4.10]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.9...v1.4.10
 [1.4.9]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.8...v1.4.9
 [1.4.8]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.7...v1.4.8

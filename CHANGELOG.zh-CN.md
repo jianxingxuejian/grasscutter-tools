@@ -1,5 +1,21 @@
 # 变更日志
 
+## [1.4.11] - 2022-11-10
+
+### 特性
+
+- 完善部分怪物名称翻译
+
+- 新增 mod 下载界面的 NFSW 开关
+
+- 新增日语与西班牙语
+
+- 新增圣遗物词条取消强化按钮
+
+### 修复 Bug
+
+- 修正错误的文本
+
 ## [1.4.10] - 2022-11-09
 
 ### 特性
@@ -86,6 +102,7 @@
 
 - 修正错误的圣遗物 id
 
+[1.4.11]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.10...v1.4.11
 [1.4.10]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.9...v1.4.10
 [1.4.9]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.8...v1.4.9
 [1.4.8]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.7...v1.4.8

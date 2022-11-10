@@ -2,7 +2,7 @@
   "name": "grasscutter-tools",
   "type": "module",
   "private": true,
-  "version": "1.4.10",
+  "version": "1.4.11",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",

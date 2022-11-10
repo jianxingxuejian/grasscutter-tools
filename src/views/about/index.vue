@@ -1,7 +1,7 @@
 <template>
   <div class="flex-center flex-col gap-5 text-5">
     <span>{{ t('auther') }}: null</span>
-    <span>{{ t('client ver') }}: 1.4.10</span>
+    <span>{{ t('client ver') }}: 1.4.11</span>
     <span>{{ t('plugin ver') }}: 1.4.1</span>
     <div>
       <span>{{ t('project addr') }}: </span>
