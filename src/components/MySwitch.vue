@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center">
-    <span class="text-4 mr-4">{{ text }}</span>
+    <span class="text-4 mr-3">{{ text }}</span>
     <n-switch :value="modelValue" :loading="loading" :disabled="disable" @update:value="clickThrottle" />
   </div>
 </template>

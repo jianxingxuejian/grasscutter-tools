@@ -1,5 +1,5 @@
 <template>
-  <div class="px-10">
+  <div class="px-0">
     <my-divider :title="t('general settings')" />
     <div class="flex-col items-center gap-y-5 mb-5">
       <n-space class="items-center">
@@ -108,9 +108,9 @@
       </n-space>
 
       <n-space>
-        <n-input-group class="w-42 text-center">
+        <n-input-group class="text-center">
           <n-input-group-label>{{ t('avatar lv') }}</n-input-group-label>
-          <n-input-number :value="data.avatarLevel" :show-button="false" disabled />
+          <n-input-number :value="data.avatarLevel" :show-button="false" disabled class="w-15!" />
         </n-input-group>
         <my-input-group
           v-model="data.constellation"

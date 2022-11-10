@@ -2,28 +2,29 @@
   <div class="px-10 flex-col">
     <span class="flex-center text-5 font-bold mb-5">{{ t('give') }}</span>
 
-    <div class="flex-evenly gap-x-5">
-      <n-cascader
-        v-model:value="item"
-        clearable
-        filterable
-        expand-trigger="hover"
-        check-strategy="child"
-        :placeholder="t('to search')"
-        :options="itemOptions"
-        class="grow"
-      />
-      <div class="flex-center">
-        <span class="text-4 shrink-0 mr-2">{{ t('num') }}</span>
-        <n-input-number v-model:value="x_item" class="w-35" />
+    <div class="flex">
+      <div class="grow mr-4">
+        <n-cascader
+          v-model:value="item"
+          clearable
+          filterable
+          expand-trigger="hover"
+          check-strategy="child"
+          :placeholder="t('to search')"
+          :options="itemOptions"
+        />
       </div>
-      <div class="flex-center">
+      <div class="flex-center mr-2">
+        <span class="text-4 shrink-0 mr-2">{{ t('num') }}</span>
+        <n-input-number v-model:value="x_item" class="w-30" />
+      </div>
+      <div class="flex-center mr-2">
         <span class="text-4 shrink-0 mr-2">{{ t('lv') }}</span>
-        <n-input-number v-model:value="lv_item" class="w-30" />
+        <n-input-number v-model:value="lv_item" class="w-26" />
       </div>
       <div class="flex-center">
         <span class="text-4 shrink-0 mr-2">{{ t('refinement') }}</span>
-        <n-input-number v-model:value="r_item" class="w-30" />
+        <n-input-number v-model:value="r_item" class="w-24" />
       </div>
     </div>
     <div class="flex w-full items-center my-5">
@@ -34,24 +35,25 @@
     </div>
 
     <span class="flex-center text-5 font-bold mb-5">{{ t('spawn') }}</span>
-    <div class="flex-evenly gap-x-5">
-      <n-cascader
-        v-model:value="monster"
-        clearable
-        filterable
-        expand-trigger="hover"
-        check-strategy="child"
-        :placeholder="t('to search')"
-        :options="monsterOptions"
-        class="grow"
-      />
-      <div class="flex-center">
+    <div class="flex">
+      <div class="grow mr-4">
+        <n-cascader
+          v-model:value="monster"
+          clearable
+          filterable
+          expand-trigger="hover"
+          check-strategy="child"
+          :placeholder="t('to search')"
+          :options="monsterOptions"
+        />
+      </div>
+      <div class="flex-center mr-2">
         <span class="text-4 shrink-0 mr-2">{{ t('num') }}</span>
-        <n-input-number v-model:value="x_monster" class="w-45" />
+        <n-input-number v-model:value="x_monster" class="w-35" />
       </div>
       <div class="flex-center">
         <span class="text-4 shrink-0 mr-2">{{ t('lv') }}</span>
-        <n-input-number v-model:value="lv_monster" class="w-40" />
+        <n-input-number v-model:value="lv_monster" class="w-30" />
       </div>
     </div>
     <div class="flex w-full items-center my-5">
