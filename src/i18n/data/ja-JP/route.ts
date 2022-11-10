@@ -1,10 +1,10 @@
 export const route: Message['route'] = {
   launcher: 'ランチャー',
-  common: 'Common',
+  common: '一般',
   artifact: '聖遺物',
-  item: '項目',
-  quest: 'ミッション',
+  item: 'アイテム',
+  quest: 'クエスト',
   mod: 'Mod',
   setting: '設定',
-  about: 'について'
+  about: 'About'
 }
