@@ -1,1 +1,0 @@
-import{W as f,g as e}from"./index.55e9ba1b.js";function a(u,n){return f(u,r=>{r!==void 0&&(n.value=r)}),e(()=>u.value===void 0?n.value:u.value)}function t(u,n){return e(()=>{for(const r of n)if(u[r]!==void 0)return u[r];return u[n[n.length-1]]})}export{t as a,a as u};
