@@ -66,9 +66,14 @@
         <div class="w-70">
           <div v-for="(item, index) in show" :key="index" class="flex-between">
             <span class="text-5">{{ item }}</span>
-            <my-button @click="handleEnhance(index)">
-              <icon-line-md-plus-circle />
-            </my-button>
+            <div>
+              <my-button @click="handleReduce(index)">
+                <icon-line-md-minus-circle />
+              </my-button>
+              <my-button @click="handleEnhance(index)">
+                <icon-line-md-plus-circle />
+              </my-button>
+            </div>
           </div>
           <div class="flex-between">
             <span class="shrink-0 mr-4 text-lg">{{ t('set artifact lv') }}</span>
@@ -197,6 +202,21 @@
     }
     const { id, value } = substatGears[currentSubstats.value[index]][gear.value]
     artifact.substats[position.value].push({ itemId: id, value })
+  }
+
+  function handleReduce(index: number) {
+    if (artifact.levels[position.value] >= 4) {
+      artifact.levels[position.value] -= 4
+    }
+    const gearIds = substatGears[currentSubstats.value[index]].map(item => item.id)
+    const substats = artifact.substats[position.value]
+    const count = substats.filter(item => gearIds.includes(item.itemId)).length
+    if (count > 1) {
+      const i = substats.findIndex(item => gearIds.includes(item.itemId))
+      substats.splice(i, 1)
+    } else if (count === 1) {
+      currentSubstats.value.splice(index, 1)
+    }
   }
 
   const level = computed({

@@ -18,6 +18,7 @@ declare module '@vue/runtime-core' {
     IconLineMdDownloadingLoop: typeof import('~icons/line-md/downloading-loop')['default']
     IconLineMdEditTwotone: typeof import('~icons/line-md/edit-twotone')['default']
     IconLineMdEmail: typeof import('~icons/line-md/email')['default']
+    IconLineMdMinusCircle: typeof import('~icons/line-md/minus-circle')['default']
     IconLineMdMoonTwotone: typeof import('~icons/line-md/moon-twotone')['default']
     IconLineMdPlusCircle: typeof import('~icons/line-md/plus-circle')['default']
     IconLineMdQuestionCircle: typeof import('~icons/line-md/question-circle')['default']
