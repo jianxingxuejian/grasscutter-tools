@@ -8,7 +8,7 @@
     </div>
     <updater ref="updaterRef" />
     <n-space class="flex-center">
-      <span class="text-6">{{ t('proxy system') }}</span>
+      <span class="text-6">{{ t('use proxy system') }}</span>
       <n-switch :value="setting.proxy.enable" @update:value="updateProxy({ enable: $event })" />
       <!-- <n-input-number v-if="setting.proxy.enable" :show-button="false" class="w-22!" /> -->
     </n-space>

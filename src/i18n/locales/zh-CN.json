@@ -57,6 +57,7 @@
   "give": "获取",
   "spawn": "怪物",
   "proxy system": "系统代理",
+  "use proxy system": "使用系统代理进行请求",
   "latest ver now": "当前已是最新版本",
   "failed get update info": "获取更新信息失败",
   "retry manually": "请手动点击版本号标签重试，如果多次失败则检查网络情况或者在Github提个issue",

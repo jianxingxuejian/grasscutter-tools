@@ -57,6 +57,7 @@
   "give": "Obtener",
   "spawn": "Spawnear",
   "proxy system": "Sistema de Proxy",
+  "use proxy system": "Usar el proxy del sistema para la solicitud",
   "latest ver now": "Esta es la versión más reciente",
   "failed get update info": "Error al intentar obtener información de actualizaciones",
   "retry manually": "Por favor, inténtalo manualmente dando click en la pestaña de versiones, si falla varias veces, puede ser problema de tu internet",

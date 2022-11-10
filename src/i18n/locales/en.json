@@ -57,6 +57,7 @@
   "give": "Give",
   "spawn": "Spawn",
   "proxy system": "Proxy System",
+  "use proxy system": "Use system proxy for request",
   "latest ver now": "This is the latest version",
   "failed get update info": "Failed to get update information",
   "retry manually": "Please retry manually by clicking on the version number tab, if it fails several times then check the network situation or open an issue in Github",
