@@ -13,7 +13,8 @@
   const languageOptions = [
     { label: '中文', value: 'zh-CN' },
     { label: 'English', value: 'en-US' },
-    { label: '日本語', value: 'ja-JP' }
+    { label: '日本語', value: 'ja-JP' },
+    { label: 'Español', value: 'es' }
   ]
 
   const settingStore = useSettingStore()
