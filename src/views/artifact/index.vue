@@ -63,7 +63,7 @@
         <div class="flex-col items-center">
           <img class="h-45 w-45 mt-2" :src="artifact.img" />
         </div>
-        <div class="w-70">
+        <div class="w-75">
           <div v-for="(item, index) in show" :key="index" class="flex-between">
             <span class="text-5">{{ item }}</span>
             <div>
