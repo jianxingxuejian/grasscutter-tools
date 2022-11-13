@@ -8,7 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     IconIcBaselineRemoveRedEye: typeof import('~icons/ic/baseline-remove-red-eye')['default']
-    IconIconParkSolidLike: typeof import('~icons/icon-park-solid/like')['default']
+    IconIconParkTwotoneLike: typeof import('~icons/icon-park-twotone/like')['default']
     IconIconParkTwotoneUnlock: typeof import('~icons/icon-park-twotone/unlock')['default']
     IconIcOutlineSettings: typeof import('~icons/ic/outline-settings')['default']
     IconIonLanguage: typeof import('~icons/ion/language')['default']
