@@ -27,7 +27,7 @@
   import { getVersion } from '@tauri-apps/api/app'
   import { checkUpdate } from '@tauri-apps/api/updater'
   import { useSettingStore } from '@/stores'
-  import { installCA, proxyStart } from '@/utils'
+  import { installCA, setProxyAddr, proxyStart } from '@/utils'
   import { Updater } from './components'
 
   const { t } = useI18n()
@@ -37,7 +37,7 @@
   const updateInfo = ref<string>()
 
   const setting = useSettingStore()
-  const { updateProxy, updateCheckTime } = useSettingStore()
+  const { updateProxy, updateCheckTime, getServer } = useSettingStore()
 
   const updaterRef = ref<InstanceType<typeof Updater>>()
 
@@ -73,7 +73,9 @@
     }
   }
 
-  function handleProxyStart() {
+  async function handleProxyStart() {
+    await setProxyAddr(getServer)
+    console.log(getServer)
     proxyStart()
   }
 

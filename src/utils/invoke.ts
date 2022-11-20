@@ -46,6 +46,10 @@ export function installCA() {
   return invoke<string>('install_ca')
 }
 
+export function setProxyAddr(addr: string) {
+  return invoke('set_proxy_addr', { addr })
+}
+
 export function proxyStart() {
   return invoke<string>('proxy_start', { port: 8080 })
 }
