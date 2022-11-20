@@ -1,10 +1,8 @@
-use core::slice::SlicePattern;
 use hudsucker::{
     async_trait::async_trait,
-    certificate_authority::OpensslAuthority,
+    certificate_authority::RcgenAuthority,
     hyper::{Body, Request, Response},
-    openssl::{hash::MessageDigest, pkey::PKey, x509::X509},
-    *,
+    rustls, HttpContext, HttpHandler, ProxyBuilder, RequestOrResponse,
 };
 use lazy_static::lazy_static;
 use rcgen::{
@@ -12,16 +10,16 @@ use rcgen::{
     KeyUsagePurpose,
 };
 use rustls_pemfile;
+use std::fs;
 use std::net::SocketAddr;
 use std::process::Command;
+use std::str::FromStr;
 use std::sync::Mutex;
 use std::{error::Error, path::PathBuf};
-use std::{fs, io::Read};
-use std::{fs::File, str::FromStr};
 use tauri::{api::path::data_dir, http::Uri};
 use winreg::enums::{HKEY_CURRENT_USER, KEY_ALL_ACCESS};
 
-#[cfg(windows)]
+#[cfg(target_os = "windows")]
 use winreg::RegKey;
 
 pub fn generate_ca() -> Result<(), Box<dyn Error>> {
@@ -50,29 +48,21 @@ pub fn generate_ca() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
+#[cfg(target_os = "windows")]
 pub fn install_ca() -> Result<String, Box<dyn Error>> {
-    let output = if cfg!(target_os = "windows") {
-        let path_crt = get_ca_path_with("cert.crt")?.display().to_string();
-        let cmd_str = "certutil -user -addstore Root ".to_string() + &path_crt;
-        Command::new("cmd")
-            .arg("/c")
-            .arg(cmd_str)
-            .output()
-            .expect("cmd exec error!")
-    } else {
-        let cmd_str = format!("{} {}", "certutil -user -addstore Root", "");
-        Command::new("cmd")
-            .arg("/c")
-            .arg(cmd_str)
-            .output()
-            .expect("cmd exec error!")
-    };
+    let path_crt = get_ca_path_with("cert.crt")?.display().to_string();
+    let cmd_str = "certutil -user -addstore Root ".to_string() + &path_crt;
+    let output = Command::new("cmd")
+        .arg("/c")
+        .arg(cmd_str)
+        .output()
+        .expect("cmd exec error!");
     let output_str = String::from_utf8_lossy(&output.stdout);
     Ok(output_str.to_string())
 }
 
 lazy_static! {
-    static ref SERVER: Mutex<String> = Mutex::new(String::from("https://1.12.240.115"));
+    static ref SERVER: Mutex<String> = Mutex::new(String::from("http://127.0.0.1:443"));
 }
 
 pub fn set_proxy_addr(addr: String) {
@@ -125,23 +115,16 @@ impl HttpHandler for ProxyHandler {
 
 pub async fn start(port: u16) -> Result<(), Box<dyn Error>> {
     let path_key = get_ca_path_with("private.key")?;
-    let mut file_key = File::open(&path_key)?;
-    let mut private_key = Vec::new();
-    file_key.read_to_end(&mut private_key)?;
-    let private_key = PKey::private_key_from_pem(&mut private_key.as_slice())?;
-    // let private_key = rustls::PrivateKey(
-    //     rustls_pemfile::pkcs8_private_keys(&mut private_key.as_slice())?.remove(0),
-    // );
+    let private_key = fs::read(path_key)?;
+    let private_key = rustls::PrivateKey(
+        rustls_pemfile::pkcs8_private_keys(&mut private_key.as_slice())?.remove(0),
+    );
 
     let path_crt = get_ca_path_with("cert.crt")?;
-    let mut file_crt = File::open(&path_crt)?;
-    let mut ca_cert = Vec::new();
-    file_crt.read_to_end(&mut ca_cert)?;
-    let ca_cert = X509::from_pem(&mut ca_cert.as_slice());
-    // let ca_cert = rustls::Certificate(rustls_pemfile::certs(&mut ca_cert.as_slice())?.remove(0));
+    let ca_cert = fs::read(path_crt)?;
+    let ca_cert = rustls::Certificate(rustls_pemfile::certs(&mut ca_cert.as_slice())?.remove(0));
 
-    let ca = OpensslAuthority::new(private_key, ca_cert, MessageDigest::sha256(), 1_000)?;
-    // let ca = RcgenAuthority::new(private_key, ca_cert, 1_000)?;
+    let ca = RcgenAuthority::new(private_key, ca_cert, 1_000)?;
 
     let proxy = ProxyBuilder::new()
         .with_addr(SocketAddr::from(([127, 0, 0, 1], port)))
