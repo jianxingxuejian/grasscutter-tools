@@ -16,6 +16,7 @@
       <n-button @click="handleInstallCA">安装证书</n-button>
       <n-button @click="handleProxyStart">开启</n-button>
       <n-button @click="handleProxyStart">关闭</n-button>
+      <server-input />
     </n-space>
   </div>
 </template>

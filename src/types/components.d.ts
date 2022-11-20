@@ -81,5 +81,6 @@ declare module '@vue/runtime-core' {
     NTooltip: typeof import('naive-ui')['NTooltip']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ServerInput: typeof import('./../components/ServerInput.vue')['default']
   }
 }

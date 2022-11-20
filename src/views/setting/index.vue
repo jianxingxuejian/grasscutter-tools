@@ -3,20 +3,7 @@
     <my-divider :title="t('server settings')" />
     <n-form ref="serverRef" label-placement="left" inline :model="server" :rules="serverRules" class="flex-center">
       <n-form-item :label="t('server')" path="ip">
-        <n-input-group>
-          <n-popselect v-model:value="server.protocol" :options="protocolOptions">
-            <n-input-group-label>{{ server.protocol }}</n-input-group-label>
-          </n-popselect>
-          <n-input v-model:value="server.ip">
-            <template #suffix>
-              <n-dropdown trigger="hover" :options="history" :render-label="renderDropdownLabel">
-                <my-button>
-                  <icon-material-symbols-history />
-                </my-button>
-              </n-dropdown>
-            </template>
-          </n-input>
-        </n-input-group>
+        <server-input />
       </n-form-item>
       <n-form-item :label="t('username')" path="username">
         <n-input v-model:value="server.username" />
@@ -94,11 +81,9 @@
 </template>
 
 <script setup lang="ts">
-  import type { FormInst, FormItemInst, FormRules, FormItemRule, DropdownOption } from 'naive-ui'
+  import type { FormInst, FormItemInst, FormRules, FormItemRule } from 'naive-ui'
   import { useI18n } from 'vue-i18n'
   import { useThrottleFn } from '@vueuse/core'
-  import IconDelete from '~icons/mdi/delete-forever-outline'
-  import { MyButton } from '@/components'
   import { useSettingStore } from '@/stores'
   import {
     mailVerifyCode,
@@ -115,10 +100,6 @@
   const settingStore = useSettingStore()
   const { server, updateServer } = settingStore
 
-  const protocolOptions = [
-    { label: 'http', value: 'http' },
-    { label: 'https', value: 'https' }
-  ]
   const serverRef = ref<FormInst | null>(null)
   const serverRules: FormRules = {
     ip: {
@@ -137,32 +118,6 @@
       required: true,
       message: t('input username'),
       trigger: ['input', 'blur']
-    }
-  }
-
-  const history = computed(() => server.history.map(item => ({ key: item, label: item })))
-
-  function renderDropdownLabel(option: DropdownOption) {
-    return h('div', { class: 'flex-between' }, [
-      h('span', { class: 'mr-2', onClick: () => handleSelectHistory(option.key) }, { default: () => option.label }),
-      h(MyButton, { onClick: () => deleteHistory(option.key) }, { default: () => h(IconDelete) })
-    ])
-  }
-
-  function deleteHistory(key?: string | number) {
-    if (key) {
-      const history = server.history
-      history.splice(
-        history.findIndex(item => item === key),
-        1
-      )
-    }
-  }
-
-  function handleSelectHistory(key?: string | number) {
-    if (key && typeof key === 'string') {
-      server.ip = key
-      updateServer()
     }
   }
 
