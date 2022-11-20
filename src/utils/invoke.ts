@@ -41,3 +41,11 @@ export function download(url: string, path: string, mod: ModBasic) {
   const contents = JSON.stringify({ id, name, images, submitter })
   return invoke('download', { url, path, contents })
 }
+
+export function installCA() {
+  return invoke<string>('install_ca')
+}
+
+export function proxyStart() {
+  return invoke<string>('proxy_start', { port: 8080 })
+}

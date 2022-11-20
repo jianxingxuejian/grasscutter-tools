@@ -12,16 +12,22 @@
       <n-switch :value="setting.proxy.enable" @update:value="updateProxy({ enable: $event })" />
       <!-- <n-input-number v-if="setting.proxy.enable" :show-button="false" class="w-22!" /> -->
     </n-space>
+    <n-space>
+      <n-button @click="handleInstallCA">安装证书</n-button>
+      <n-button @click="handleProxyStart">开启</n-button>
+      <n-button @click="handleProxyStart">关闭</n-button>
+    </n-space>
   </div>
 </template>
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
-  import { getVersion } from '@tauri-apps/api/app'
-  import { useSettingStore } from '@/stores'
-  import { checkUpdate } from '@tauri-apps/api/updater'
-  import { Updater } from './components'
   import { NButton } from 'naive-ui'
+  import { getVersion } from '@tauri-apps/api/app'
+  import { checkUpdate } from '@tauri-apps/api/updater'
+  import { useSettingStore } from '@/stores'
+  import { installCA, proxyStart } from '@/utils'
+  import { Updater } from './components'
 
   const { t } = useI18n()
 
@@ -57,6 +63,21 @@
     }
   }
 
+  async function handleInstallCA() {
+    try {
+      const result = await installCA()
+      window.$message?.success(result)
+    } catch (error) {
+      window.$message?.error(error as string)
+    }
+  }
+
+  function handleProxyStart() {
+    proxyStart()
+  }
+
+  // function handleMitm() {}
+
   watchEffect(() => {
     if (update.value) {
       const notification = window.$notification?.info({
@@ -83,14 +104,4 @@
     version.value = await getVersion()
     checkUpdateTime()
   })
-
-  // function test() {
-  //   update.value = true
-  //   updateInfo.value = '## [1.4.3] - 2022-10-12\n### Features\n- Test\n- Test\n### Bug Fixes\n- Test'
-  //   window.$notification?.error({
-  //     title: t('n1'),
-  //     description: 'err',
-  //     content: t('n2')
-  //   })
-  // }
 </script>

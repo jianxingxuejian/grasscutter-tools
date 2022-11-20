@@ -5,6 +5,7 @@ use std::path::Path;
 
 pub mod file;
 pub mod http;
+pub mod proxy;
 
 type CmdResult<T = ()> = Result<T, String>;
 
@@ -97,5 +98,24 @@ pub async fn download(url: String, path: String, contents: String) -> CmdResult 
         .display()
         .to_string();
     let result = file::write_file(path, contents);
+    wrap_result!(result)
+}
+
+#[tauri::command]
+pub fn install_ca() -> CmdResult<String> {
+    proxy::generate_ca().ok();
+    let result = proxy::install_ca();
+    wrap_result!(result)
+}
+
+#[tauri::command]
+pub fn set_proxy_addr(addr: String) {
+    proxy::set_proxy_addr(addr)
+}
+
+#[tauri::command]
+pub async fn proxy_start(port: u16) -> CmdResult {
+    proxy::add_setting(port).ok();
+    let result = proxy::start(port).await;
     wrap_result!(result)
 }

@@ -25,6 +25,13 @@ base64 = { version = "0.13.0" }
 zip = "0.6.3"
 unrar = "0.4.4"
 sevenz-rust = "0.1.4"
+lazy_static = "1.4.0"
+hudsucker = { version = "0.18.0", features = ["openssl-ca"] }
+rcgen = { version = "0.10", features = ["x509-parser"] }
+rustls-pemfile = "1.0"
+
+[target.'cfg(windows)'.dependencies]
+winreg = "0.10"
 
 [dependencies.tauri-plugin-store]
 git = "https://github.com/tauri-apps/tauri-plugin-store"
