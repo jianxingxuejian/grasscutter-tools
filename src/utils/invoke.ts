@@ -53,3 +53,7 @@ export function setProxyAddr(addr: string) {
 export function proxyStart() {
   return invoke<string>('proxy_start', { port: 8080 })
 }
+
+export function proxyEnd() {
+  return invoke<string>('proxy_end')
+}

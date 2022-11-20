@@ -116,6 +116,12 @@ pub fn set_proxy_addr(addr: String) {
 #[tauri::command]
 pub async fn proxy_start(port: u16) -> CmdResult {
     proxy::add_setting(port).ok();
-    let result = proxy::start(port).await;
+    let result = proxy::start(port);
+    wrap_result!(result)
+}
+
+#[tauri::command]
+pub async fn proxy_end() -> CmdResult {
+    let result = proxy::end();
     wrap_result!(result)
 }

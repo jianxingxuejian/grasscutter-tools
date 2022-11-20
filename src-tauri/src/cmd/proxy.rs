@@ -17,6 +17,7 @@ use std::str::FromStr;
 use std::sync::Mutex;
 use std::{error::Error, path::PathBuf};
 use tauri::{api::path::data_dir, http::Uri};
+use tokio::task::JoinHandle;
 use winreg::enums::{HKEY_CURRENT_USER, KEY_ALL_ACCESS};
 
 #[cfg(target_os = "windows")]
@@ -95,6 +96,7 @@ impl HttpHandler for ProxyHandler {
         if array.iter().any(|e| uri.contains(e)) {
             let path_and_query = request.uri().path_and_query();
             if let Some(path_and_query) = path_and_query {
+                println!("url:{}", path_and_query);
                 let new_uri =
                     Uri::from_str(format!("{}{}", SERVER.lock().unwrap(), path_and_query).as_str())
                         .unwrap();
@@ -113,7 +115,9 @@ impl HttpHandler for ProxyHandler {
     }
 }
 
-pub async fn start(port: u16) -> Result<(), Box<dyn Error>> {
+static mut TASK: Option<JoinHandle<Result<(), hudsucker::Error>>> = None;
+
+pub fn start(port: u16) -> Result<(), Box<dyn Error>> {
     let path_key = get_ca_path_with("private.key")?;
     let private_key = fs::read(path_key)?;
     let private_key = rustls::PrivateKey(
@@ -132,7 +136,24 @@ pub async fn start(port: u16) -> Result<(), Box<dyn Error>> {
         .with_ca(ca)
         .with_http_handler(ProxyHandler)
         .build();
-    tokio::spawn(proxy.start(shutdown_signal()));
+    unsafe {
+        if let None = TASK {
+            TASK = Some(tokio::spawn(proxy.start(shutdown_signal())));
+        }
+    }
+    Ok(())
+}
+
+pub fn end() -> Result<(), Box<dyn Error>> {
+    let hkcu = RegKey::predef(HKEY_CURRENT_USER);
+    let key = hkcu.open_subkey_with_flags(KEY_PATH, KEY_ALL_ACCESS)?;
+    key.set_value("ProxyEnable", &0u32)?;
+    unsafe {
+        if let Some(task) = &TASK {
+            task.abort();
+            TASK = None;
+        }
+    }
     Ok(())
 }
 

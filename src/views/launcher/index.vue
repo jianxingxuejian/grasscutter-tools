@@ -14,8 +14,8 @@
     </n-space>
     <n-space>
       <n-button @click="handleInstallCA">安装证书</n-button>
-      <n-button @click="handleProxyStart">开启</n-button>
-      <n-button @click="handleProxyStart">关闭</n-button>
+      <span>开启</span>
+      <n-switch :value="proxyState" @update-value="handleProxySwitch" />
       <server-input />
     </n-space>
   </div>
@@ -27,7 +27,7 @@
   import { getVersion } from '@tauri-apps/api/app'
   import { checkUpdate } from '@tauri-apps/api/updater'
   import { useSettingStore } from '@/stores'
-  import { installCA, setProxyAddr, proxyStart } from '@/utils'
+  import { installCA, setProxyAddr, proxyStart, proxyEnd } from '@/utils'
   import { Updater } from './components'
 
   const { t } = useI18n()
@@ -73,13 +73,22 @@
     }
   }
 
-  async function handleProxyStart() {
-    await setProxyAddr(getServer)
-    console.log(getServer)
-    proxyStart()
-  }
+  const proxyState = ref(false)
 
-  // function handleMitm() {}
+  async function handleProxySwitch(value: boolean) {
+    try {
+      if (value) {
+        await setProxyAddr(getServer)
+        await proxyStart()
+        proxyState.value = true
+      } else {
+        await proxyEnd()
+        proxyState.value = false
+      }
+    } catch (error) {
+      window.$message?.error(error as string)
+    }
+  }
 
   watchEffect(() => {
     if (update.value) {
