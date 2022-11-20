@@ -72,6 +72,7 @@ pub fn set_proxy_addr(addr: String) {
 
 const KEY_PATH: &'static str = "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings";
 
+#[cfg(target_os = "windows")]
 pub fn add_setting(port: u16) -> Result<(), Box<dyn Error>> {
     let hkcu = RegKey::predef(HKEY_CURRENT_USER);
     let key = hkcu.open_subkey_with_flags(KEY_PATH, KEY_ALL_ACCESS)?;
@@ -145,9 +146,12 @@ pub fn start(port: u16) -> Result<(), Box<dyn Error>> {
 }
 
 pub fn end() -> Result<(), Box<dyn Error>> {
-    let hkcu = RegKey::predef(HKEY_CURRENT_USER);
-    let key = hkcu.open_subkey_with_flags(KEY_PATH, KEY_ALL_ACCESS)?;
-    key.set_value("ProxyEnable", &0u32)?;
+    if cfg!(target_os = "windows") {
+        let hkcu = RegKey::predef(HKEY_CURRENT_USER);
+        let key = hkcu.open_subkey_with_flags(KEY_PATH, KEY_ALL_ACCESS)?;
+        key.set_value("ProxyEnable", &0u32)?;
+    }
+
     unsafe {
         if let Some(task) = &TASK {
             task.abort();
