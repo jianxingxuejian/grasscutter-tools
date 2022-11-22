@@ -8,13 +8,8 @@
     </div>
     <updater ref="updaterRef" />
     <n-space class="flex-center">
-      <span class="text-6">{{ t('use proxy system') }}</span>
-      <n-switch :value="setting.proxy.enable" @update:value="updateProxy({ enable: $event })" />
-      <!-- <n-input-number v-if="setting.proxy.enable" :show-button="false" class="w-22!" /> -->
-    </n-space>
-    <n-space>
       <n-button @click="handleInstallCA">安装证书</n-button>
-      <span>开启</span>
+      <span class="text-5">Start</span>
       <n-switch :value="proxyState" @update-value="handleProxySwitch" />
       <server-input />
     </n-space>
@@ -36,20 +31,20 @@
   const update = ref(false)
   const updateInfo = ref<string>()
 
-  const setting = useSettingStore()
-  const { updateProxy, updateCheckTime, getServer } = useSettingStore()
+  const settingStore = useSettingStore()
+  const { updateCheckTime, getServer } = useSettingStore()
 
   const updaterRef = ref<InstanceType<typeof Updater>>()
 
   async function checkUpdateTime(click?: boolean) {
     const now = Date.now()
-    const last = setting.update.lastCheckTime
+    const last = settingStore.update.lastCheckTime
     if (click || !last || (last && last + 86400000 < now)) {
       try {
         const { shouldUpdate, manifest } = await checkUpdate()
         updateCheckTime(now)
         if (shouldUpdate && manifest?.body) {
-          updateInfo.value = JSON.parse(manifest.body)[setting.locale]
+          updateInfo.value = JSON.parse(manifest.body)[settingStore.locale]
           update.value = true
         } else {
           window.$message?.success(t('latest ver now'))

@@ -116,7 +116,6 @@ impl HttpHandler for ProxyHandler {
         if array.iter().any(|e| uri.contains(e)) {
             let path_and_query = request.uri().path_and_query();
             if let Some(path_and_query) = path_and_query {
-                println!("url:{}", path_and_query);
                 let new_uri =
                     Uri::from_str(format!("{}{}", SERVER.lock().unwrap(), path_and_query).as_str())
                         .unwrap();
@@ -151,7 +150,7 @@ pub fn start(port: u16) -> Result<(), Box<dyn Error>> {
     let ca = RcgenAuthority::new(private_key, ca_cert, 1_000)?;
 
     let proxy = ProxyBuilder::new()
-        .with_addr(SocketAddr::from(([127, 0, 0, 1], port)))
+        .with_addr(SocketAddr::from(([0, 0, 0, 0], port)))
         .with_rustls_client()
         .with_ca(ca)
         .with_http_handler(ProxyHandler)

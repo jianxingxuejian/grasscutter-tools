@@ -17,11 +17,17 @@
     </n-form>
 
     <my-divider :title="t('player auth')">
-      <span>{{ t('send code mail') }}</span
-      ><br />
+      <span>{{ t('send code mail') }}</span>
+      <br />
       <span>{{ t('password verify') }}</span>
     </my-divider>
     <n-space>
+      <n-tooltip trigger="hover">
+        <template #trigger>
+          <n-switch :value="settingStore.proxy.enable" class="mt-0.8" @update:value="updateProxy({ enable: $event })" />
+        </template>
+        <span class="text-4">{{ t('use proxy system') }}</span>
+      </n-tooltip>
       <my-button @click="handleChangeAuthWay">
         <icon-line-md-rotate-270 :class="{ 'animate-spin': loadingChange }" />
         <template #tooltip>
@@ -98,7 +104,7 @@
   const { t } = useI18n()
 
   const settingStore = useSettingStore()
-  const { server, updateServer } = settingStore
+  const { server, updateServer, updateProxy } = settingStore
 
   const serverRef = ref<FormInst | null>(null)
   const serverRules: FormRules = {
@@ -114,11 +120,7 @@
         return true
       }
     },
-    username: {
-      required: true,
-      message: t('input username'),
-      trigger: ['input', 'blur']
-    }
+    username: { required: true, message: t('input username'), trigger: ['input', 'blur'] }
   }
 
   const loadingChange = ref(false)
@@ -126,19 +128,16 @@
   const handleChangeAuthWay = useThrottleFn(function () {
     loadingChange.value = true
     authWay.value = !authWay.value
-    setTimeout(() => {
-      loadingChange.value = false
-    }, 1000)
+    setTimeout(() => (loadingChange.value = false), 1000)
   }, 1000)
 
   async function checkService() {
-    let check = false
-    await serverRef.value?.validate(err => {
-      if (!err) {
-        check = true
-      }
-    })
-    return check
+    try {
+      await serverRef.value?.validate()
+    } catch (error) {
+      return false
+    }
+    return true
   }
 
   async function sendVerifyCode() {
@@ -179,13 +178,11 @@
 
     let result: ApiResult<string> | undefined
     if (authWay.value) {
-      await verifyCodeRef.value?.validate().then(async () => {
-        result = await playerAuthByVerifyCode(server.username, verifyCode.value)
-      })
+      await verifyCodeRef.value?.validate()
+      result = await playerAuthByVerifyCode(server.username, verifyCode.value)
     } else {
-      await passwordRef.value?.validate().then(async () => {
-        result = await playerAuthByPassword(server.username, password.value)
-      })
+      await passwordRef.value?.validate()
+      result = await playerAuthByPassword(server.username, password.value)
     }
     const token = result?.data
     if (token) {
@@ -222,30 +219,18 @@
   }
 
   const accountRef = ref<FormInst | null>(null)
-  const account = reactive<Account>({
-    username: '',
-    password: ''
-  })
+  const account = reactive<Account>({ username: '', password: '' })
   const accountRules: FormRules = {
-    username: {
-      required: true,
-      message: t('input username'),
-      trigger: ['input', 'blur']
-    },
-    password: {
-      required: true,
-      message: t('input password'),
-      trigger: ['input', 'blur']
-    }
+    username: { required: true, message: t('input username'), trigger: ['input', 'blur'] },
+    password: { required: true, message: t('input password'), trigger: ['input', 'blur'] }
   }
 
   async function handleCreateAccount() {
-    await accountRef.value?.validate().then(async () => {
-      const result = await adminCreateAccount(account)
-      if (result?.code === 200) {
-        window.$message?.success(t('accout create success'))
-      }
-    })
+    await accountRef.value?.validate()
+    const result = await adminCreateAccount(account)
+    if (result?.code === 200) {
+      window.$message?.success(t('accout create success'))
+    }
   }
 
   const command = ref('')
