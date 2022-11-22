@@ -75,7 +75,7 @@
               </my-button>
             </div>
           </div>
-          <div class="flex-between">
+          <div v-show="currentSubstats.length > 0" class="flex-between">
             <span class="shrink-0 mr-4 text-lg">{{ t('set artifact lv') }}</span>
             <n-slider v-model:value="level" :max="20" />
           </div>
