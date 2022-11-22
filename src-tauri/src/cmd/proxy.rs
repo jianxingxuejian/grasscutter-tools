@@ -10,18 +10,16 @@ use rcgen::{
     KeyUsagePurpose,
 };
 use rustls_pemfile;
+use std::error::Error;
 use std::fs;
 use std::net::SocketAddr;
+use std::path::PathBuf;
 use std::process::Command;
 use std::str::FromStr;
 use std::sync::Mutex;
-use std::{error::Error, path::PathBuf};
+use sysproxy::Sysproxy;
 use tauri::{api::path::data_dir, http::Uri};
 use tokio::task::JoinHandle;
-use winreg::enums::{HKEY_CURRENT_USER, KEY_ALL_ACCESS};
-
-#[cfg(target_os = "windows")]
-use winreg::RegKey;
 
 pub fn generate_ca() -> Result<(), Box<dyn Error>> {
     let mut params = CertificateParams::default();
@@ -52,12 +50,34 @@ pub fn generate_ca() -> Result<(), Box<dyn Error>> {
 #[cfg(target_os = "windows")]
 pub fn install_ca() -> Result<String, Box<dyn Error>> {
     let path_crt = get_ca_path_with("cert.crt")?.display().to_string();
-    let cmd_str = "certutil -user -addstore Root ".to_string() + &path_crt;
-    let output = Command::new("cmd")
-        .arg("/c")
-        .arg(cmd_str)
-        .output()
-        .expect("cmd exec error!");
+    let cmd_str = "/c certutil -user -addstore root ".to_string() + &path_crt;
+    let output = Command::new("cmd").arg(cmd_str).output()?;
+    let output_str = String::from_utf8_lossy(&output.stdout);
+    Ok(output_str.to_string())
+}
+
+#[cfg(target_os = "macos")]
+pub fn install_ca() -> Result<String, Box<dyn Error>> {
+    let path_crt = get_ca_path_with("cert.crt")?.display().to_string();
+    let cmd_str = "add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain "
+        .to_string()
+        + &path_crt;
+    let output = Command::new("security").arg(cmd_str).output()?;
+    let output_str = String::from_utf8_lossy(&output.stdout);
+    Ok(output_str.to_string())
+}
+
+#[cfg(target_os = "linux")]
+pub fn install_ca() -> Result<String, Box<dyn Error>> {
+    let path = PathBuf::from("/usr/local/share/ca-certificates");
+    if !path.exists() {
+        fs::create_dir_all(&path)?;
+    }
+    let path = path.join("grasscutter-tools.crt");
+    let path_crt = get_ca_path_with("cert.crt")?.display().to_string();
+    fs::copy(path_crt, path)?;
+
+    let output = Command::new("update-ca-certificates").output()?;
     let output_str = String::from_utf8_lossy(&output.stdout);
     Ok(output_str.to_string())
 }
@@ -70,15 +90,14 @@ pub fn set_proxy_addr(addr: String) {
     *SERVER.lock().unwrap() = addr
 }
 
-const KEY_PATH: &'static str = "Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings";
-
-#[cfg(target_os = "windows")]
 pub fn add_setting(port: u16) -> Result<(), Box<dyn Error>> {
-    let hkcu = RegKey::predef(HKEY_CURRENT_USER);
-    let key = hkcu.open_subkey_with_flags(KEY_PATH, KEY_ALL_ACCESS)?;
-    key.set_value("ProxyEnable", &1u32)?;
-    let server = format!("127.0.0.1:{}", port);
-    key.set_value("ProxyServer", &server)?;
+    let sysproxy = Sysproxy {
+        enable: true,
+        host: String::from("127.0.0.1"),
+        port,
+        bypass: String::from("localhost;127.*;10.*;192.168.*;"),
+    };
+    sysproxy.set_system_proxy()?;
     Ok(())
 }
 
@@ -146,11 +165,9 @@ pub fn start(port: u16) -> Result<(), Box<dyn Error>> {
 }
 
 pub fn end() -> Result<(), Box<dyn Error>> {
-    if cfg!(target_os = "windows") {
-        let hkcu = RegKey::predef(HKEY_CURRENT_USER);
-        let key = hkcu.open_subkey_with_flags(KEY_PATH, KEY_ALL_ACCESS)?;
-        key.set_value("ProxyEnable", &0u32)?;
-    }
+    let mut sysproxy = Sysproxy::get_system_proxy()?;
+    sysproxy.enable = false;
+    sysproxy.set_system_proxy()?;
 
     unsafe {
         if let Some(task) = &TASK {

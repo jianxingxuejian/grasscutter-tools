@@ -29,9 +29,7 @@ lazy_static = "1.4.0"
 hudsucker = { version = "0.18.0", features = ["rustls-client"] }
 rcgen = { version = "0.10", features = ["x509-parser"] }
 rustls-pemfile = "1.0"
-
-[target.'cfg(windows)'.dependencies]
-winreg = "0.10"
+sysproxy = "0.1"
 
 [dependencies.tauri-plugin-store]
 git = "https://github.com/tauri-apps/tauri-plugin-store"
