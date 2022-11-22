@@ -31,9 +31,9 @@
 </template>
 
 <script setup lang="ts">
-  import type { Ref } from 'vue'
-  import { useSlots } from 'vue'
+  import { type Ref, useSlots } from 'vue'
   import { useThrottleFn } from '@vueuse/core'
+  import { showSuccessMsg } from '@/utils'
 
   const props = defineProps<{
     /** 按钮文本 */
@@ -61,9 +61,7 @@
 
     try {
       const result = await props.onClickAsync()
-      if (result?.code == 200) {
-        window.$message?.success(result.msg)
-      }
+      showSuccessMsg(result)
       // eslint-disable-next-line no-empty
     } catch (err) {
     } finally {

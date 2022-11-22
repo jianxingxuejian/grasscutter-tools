@@ -61,8 +61,9 @@
 </template>
 
 <script setup lang="ts">
-  import { playerCommand } from '@/http'
   import { useI18n } from 'vue-i18n'
+  import { playerCommand } from '@/http'
+  import { showSuccessMsg } from '@/utils'
 
   const { t, tm } = useI18n()
 
@@ -89,9 +90,7 @@
         break
     }
 
-    if (result?.code === 200) {
-      window.$message?.success(result.msg)
-    }
+    showSuccessMsg(result)
   }
 </script>
 

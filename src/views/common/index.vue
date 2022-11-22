@@ -134,6 +134,7 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { playerCommand, levelUpAll, getProps, cdr } from '@/http'
+  import { showSuccessMsg } from '@/utils'
 
   const { t, tm } = useI18n()
 
@@ -183,9 +184,7 @@
     const [type, id] = weather.value.split('_')
     const command = `w ${['sunny', 'cloudy', 'rain', 'thunderstorm', 'snow', 'mist'][Number(type)]} ${id}`
     const result = await playerCommand(command)
-    if (result?.code === 200) {
-      window.$message?.success(result.msg)
-    }
+    showSuccessMsg(result)
   }
 
   onActivated(async () => {

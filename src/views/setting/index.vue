@@ -99,7 +99,7 @@
     adminCreateAccount,
     adminCommand
   } from '@/http'
-  import { testUrlOrIP } from '@/utils'
+  import { testUrlOrIP, showSuccessMsg } from '@/utils'
 
   const { t } = useI18n()
 
@@ -145,9 +145,7 @@
     if (!check) return
 
     const result = await mailVerifyCode(server.username)
-    if (result?.code === 200) {
-      window.$message?.success(t('send code success'))
-    }
+    showSuccessMsg(result?.code, t('send code success'))
   }
 
   const verifyCode = ref<string>('')
@@ -228,9 +226,7 @@
   async function handleCreateAccount() {
     await accountRef.value?.validate()
     const result = await adminCreateAccount(account)
-    if (result?.code === 200) {
-      window.$message?.success(t('accout create success'))
-    }
+    showSuccessMsg(result?.code, t('accout create success'))
   }
 
   const command = ref('')
@@ -238,9 +234,7 @@
   async function handleAdminCommand() {
     if (command.value.length > 0) {
       const result = await adminCommand(command.value)
-      if (result?.code === 200) {
-        window.$message?.success(result.msg)
-      }
+      showSuccessMsg(result)
     }
   }
 </script>

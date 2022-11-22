@@ -15,6 +15,7 @@
 
 <script setup lang="ts">
   import { playerCommand } from '@/http'
+  import { showSuccessMsg } from '@/utils'
 
   const props = withDefaults(
     defineProps<{
@@ -43,8 +44,6 @@
 
   async function onClick() {
     const result = await playerCommand(props.command + ' ' + props.modelValue)
-    if (result?.code == 200) {
-      window.$message?.success(result.msg)
-    }
+    showSuccessMsg(result)
   }
 </script>

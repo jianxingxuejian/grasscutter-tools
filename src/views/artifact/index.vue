@@ -96,7 +96,7 @@
   import { useI18n } from 'vue-i18n'
   import { groupBy, difference, remove } from 'lodash-es'
   import { positionMainstats, substatGears } from './constant'
-  import { getImageUrl } from '@/utils'
+  import { getImageUrl, showSuccessMsg } from '@/utils'
   import { playerCommand } from '@/http'
 
   const { t, tm } = useI18n()
@@ -243,8 +243,6 @@
 
   async function sendCommand() {
     const result = await playerCommand(command.value.slice(1))
-    if (result?.msg) {
-      window.$message?.success(result.msg)
-    }
+    showSuccessMsg(result)
   }
 </script>

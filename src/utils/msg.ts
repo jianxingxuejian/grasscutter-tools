@@ -18,3 +18,17 @@ export function showErrorMsg(code: number, msg: string): void {
     errorMsgStack.delete(code)
   }, ERROR_MSG_DURATION)
 }
+
+export function showSuccessMsg(result: ApiResult<null> | undefined | void): void
+export function showSuccessMsg(code?: number, msg?: string): void
+export function showSuccessMsg(resultOrCode?: ApiResult<null> | undefined | void | number, msg?: string): void {
+  if (!resultOrCode) return
+  if (typeof resultOrCode === 'object') {
+    const { code, msg } = resultOrCode
+    if (code === 200) {
+      window.$message?.success(msg)
+    }
+  } else if (resultOrCode === 200 && msg) {
+    window.$message?.success(msg)
+  }
+}
