@@ -12,7 +12,7 @@
 
   const languageOptions = [
     { label: '中文', value: 'zh-CN' },
-    { label: 'English', value: 'en-US' },
+    { label: 'English', value: 'en' },
     { label: '日本語', value: 'ja-JP' },
     { label: 'Español', value: 'es' }
   ]

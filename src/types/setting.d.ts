@@ -7,7 +7,7 @@ interface Setting {
   }
   token: string
   admin_token: string
-  locale: 'zh-CN' | 'en-US' | 'ja-JP' | 'es'
+  locale: 'zh-CN' | 'en' | 'ja-JP' | 'es'
   theme: 'light' | 'dark'
   mod: {
     path: string

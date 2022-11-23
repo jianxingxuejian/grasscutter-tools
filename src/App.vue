@@ -18,24 +18,24 @@
     switch (settingStore.locale) {
       case 'zh-CN':
         return zhCN
-      case 'en-US':
+      case 'en':
         return enUS
       case 'ja-JP':
         return jaJP
       default:
-        return zhCN
+        return enUS
     }
   })
   const dateLocale = computed(() => {
     switch (settingStore.locale) {
       case 'zh-CN':
         return dateZhCN
-      case 'en-US':
+      case 'en':
         return dateEnUS
       case 'ja-JP':
         return dateJaJP
       default:
-        return dateZhCN
+        return dateEnUS
     }
   })
   const theme = computed(() => {
@@ -146,13 +146,9 @@
     appStore.updateFontSize(fontSize)
   }
 
-  useEventListener(window, 'resize', () => {
-    resizeFontSize()
-  })
+  useEventListener(window, 'resize', () => resizeFontSize())
 
-  onMounted(() => {
-    resizeFontSize()
-  })
+  onMounted(() => resizeFontSize())
 </script>
 
 <style lang="scss">

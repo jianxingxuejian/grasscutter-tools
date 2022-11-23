@@ -4,14 +4,14 @@ import { setSetting } from '@/utils'
 export const useSettingStore = defineStore('setting-store', {
   state: (): Setting => ({
     server: {
-      protocol: 'https',
-      ip: '127.0.0.1',
+      protocol: 'http',
+      ip: '127.0.0.1:443',
       username: '',
       history: []
     },
     token: '',
     admin_token: '',
-    locale: 'zh-CN',
+    locale: 'en',
     theme: 'light',
     mod: {
       path: '',
