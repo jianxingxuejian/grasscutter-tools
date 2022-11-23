@@ -24,6 +24,10 @@ interface Setting {
   update: {
     lastCheckTime?: number
   }
+  launcher: {
+    gamePath: string
+    akebiPath: string
+  }
 }
 
 type LocaleModule = Record<string, { default: unknown }>

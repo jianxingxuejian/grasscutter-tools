@@ -1,15 +1,12 @@
 <template>
   <n-modal v-model:show="showModal" preset="card" :title="t('mod settings')" :auto-focus="false" class="w-80%">
     <div class="flex-col items-center gap-y-5">
-      <n-input-group>
-        <n-input :value="settingStore.mod.path" />
-        <n-tooltip>
-          <template #trigger>
-            <n-button type="primary" @click="handleSelectPath"> {{ t('select') }} </n-button>
-          </template>
-          <span>{{ t('select 3dm') }}</span>
-        </n-tooltip>
-      </n-input-group>
+      <select-file
+        :value="settingStore.mod.path"
+        :button-text="t('select')"
+        :placeholder="t('select 3dm')"
+        @click="handleSelectPath"
+      />
       <n-space class="items-center">
         <span>{{ t('img aspect ratio') }}</span>
         <n-input-number v-model:value="settingStore.mod.width" class="w-50" />

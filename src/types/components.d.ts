@@ -20,6 +20,7 @@ declare module '@vue/runtime-core' {
     IconLineMdEmail: typeof import('~icons/line-md/email')['default']
     IconLineMdMinusCircle: typeof import('~icons/line-md/minus-circle')['default']
     IconLineMdMoonTwotone: typeof import('~icons/line-md/moon-twotone')['default']
+    IconLineMdPlus: typeof import('~icons/line-md/plus')['default']
     IconLineMdPlusCircle: typeof import('~icons/line-md/plus-circle')['default']
     IconLineMdQuestionCircle: typeof import('~icons/line-md/question-circle')['default']
     IconLineMdRotate270: typeof import('~icons/line-md/rotate270')['default']
@@ -28,6 +29,7 @@ declare module '@vue/runtime-core' {
     IconMaterialSymbolsDownloadDone: typeof import('~icons/material-symbols/download-done')['default']
     IconMaterialSymbolsFolderOpenOutline: typeof import('~icons/material-symbols/folder-open-outline')['default']
     IconMaterialSymbolsHistory: typeof import('~icons/material-symbols/history')['default']
+    IconMaterialSymbolsRocketLaunchOutlineRounded: typeof import('~icons/material-symbols/rocket-launch-outline-rounded')['default']
     IconMaterialSymbolsRotateRight: typeof import('~icons/material-symbols/rotate-right')['default']
     IconMdiProgressDownload: typeof import('~icons/mdi/progress-download')['default']
     MyButton: typeof import('./../components/MyButton.vue')['default']
@@ -81,6 +83,7 @@ declare module '@vue/runtime-core' {
     NTooltip: typeof import('naive-ui')['NTooltip']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SelectFile: typeof import('./../components/SelectFile.vue')['default']
     ServerInput: typeof import('./../components/ServerInput.vue')['default']
   }
 }

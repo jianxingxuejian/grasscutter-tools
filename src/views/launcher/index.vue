@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col px-10 gap-y-4">
+  <div class="flex-col items-center px-10 gap-y-4">
     <div class="flex-center">
       <span class="text-8 flex-center">Grasscutter-Tools</span>
       <n-tag type="success" size="large" class="ml-2 cursor-pointer" @click="checkUpdateTime(true)">
@@ -7,11 +7,20 @@
       </n-tag>
     </div>
     <updater ref="updaterRef" />
+    <startup-items ref="startupItemsRef" />
     <n-space class="flex-center">
-      <n-button @click="handleInstallCA">安装证书</n-button>
-      <span class="text-5">Start</span>
-      <n-switch :value="proxyState" @update-value="handleProxySwitch" />
+      <n-button @click="handleInstallCA">{{ t('install ca') }}</n-button>
       <server-input />
+      <span class="text-5">{{ t('proxy start') }}</span>
+      <n-switch :value="proxyState" @update-value="handleProxySwitch" />
+    </n-space>
+    <n-space class="flex-center">
+      <my-button :text="t('startup items')" @click="startupItemsRef?.show">
+        <icon-line-md-plus />
+      </my-button>
+      <my-button :text="t('launch')" @click="startupItemsRef?.launcher">
+        <icon-material-symbols-rocket-launch-outline-rounded />
+      </my-button>
     </n-space>
   </div>
 </template>
@@ -19,11 +28,12 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { NButton } from 'naive-ui'
+  import { useEventListener } from '@vueuse/core'
   import { getVersion } from '@tauri-apps/api/app'
   import { checkUpdate } from '@tauri-apps/api/updater'
   import { useSettingStore } from '@/stores'
   import { installCA, setProxyAddr, proxyStart, proxyEnd } from '@/utils'
-  import { Updater } from './components'
+  import { StartupItems, Updater } from './components'
 
   const { t } = useI18n()
 
@@ -35,6 +45,7 @@
   const { updateCheckTime, getServer } = useSettingStore()
 
   const updaterRef = ref<InstanceType<typeof Updater>>()
+  const startupItemsRef = ref<InstanceType<typeof StartupItems>>()
 
   async function checkUpdateTime(click?: boolean) {
     const now = Date.now()
@@ -110,5 +121,9 @@
   onActivated(async () => {
     version.value = await getVersion()
     checkUpdateTime()
+  })
+
+  useEventListener(window, 'beforeunload', () => {
+    if (proxyState.value) proxyEnd()
   })
 </script>

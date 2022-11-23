@@ -24,7 +24,11 @@ export const useSettingStore = defineStore('setting-store', {
     proxy: {
       enable: false
     },
-    update: {}
+    update: {},
+    launcher: {
+      gamePath: '',
+      akebiPath: ''
+    }
   }),
   getters: {
     getServer: state => `${state.server.protocol}://${state.server.ip}`,
@@ -97,6 +101,18 @@ export const useSettingStore = defineStore('setting-store', {
     async updateCheckTime(lastCheckTime: number) {
       this.update.lastCheckTime = lastCheckTime
       await setSetting('update', this.update)
+    },
+    async updateGamePath(path?: string) {
+      if (path) {
+        this.launcher.gamePath = path
+      }
+      await setSetting('launcher', this.launcher)
+    },
+    async updateAkebiPath(path?: string) {
+      if (path) {
+        this.launcher.akebiPath = path
+      }
+      await setSetting('launcher', this.launcher)
     }
   }
 })
