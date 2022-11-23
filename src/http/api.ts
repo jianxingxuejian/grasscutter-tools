@@ -5,11 +5,11 @@ import i18n from '@/i18n'
 import isTauri from '@/utils/is-tauri'
 
 export function adminAuth(adminVoucher: string) {
-  return request.get<string>(`/plugin/admin/auth?adminVoucher=${adminVoucher}`)
+  return request.post<string>('/plugin/admin/auth', { adminVoucher })
 }
 
 export function adminCreateAccount(params: Param.Account) {
-  return request.get('/plugin/admin/createAccount', params)
+  return request.post('/plugin/admin/createAccount', params)
 }
 
 export function adminCommand(command: string) {
@@ -21,11 +21,11 @@ export function mailVerifyCode(username: string) {
 }
 
 export function playerAuthByVerifyCode(username: string, verifyCode: string) {
-  return request.get<string>('/plugin/player/authByVerifyCode', { username, verifyCode })
+  return request.post<string>('/plugin/player/authByVerifyCode', { username, verifyCode })
 }
 
 export function playerAuthByPassword(username: string, password: string) {
-  return request.get<string>('/plugin/player/authByPassword', { username, password })
+  return request.post<string>('/plugin/player/authByPassword', { username, password })
 }
 
 export function playerCommand(command: string) {
