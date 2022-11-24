@@ -24,7 +24,7 @@
     <n-space>
       <n-tooltip trigger="hover">
         <template #trigger>
-          <n-switch v-model:value="proxy.enable" class="mt-0.8" @update:value="updateProxy({ enable: $event })" />
+          <n-switch v-model:value="proxy.enable" class="mt-0.8" @update:value="updateProxy" />
         </template>
         <span class="text-4">{{ t('use proxy system') }}</span>
       </n-tooltip>
