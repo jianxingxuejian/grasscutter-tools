@@ -1,8 +1,8 @@
 <template>
   <div class="flex-center flex-col gap-5 text-5">
     <span>{{ t('auther') }}: null</span>
-    <span>{{ t('client ver') }}: 1.4.11</span>
-    <span>{{ t('plugin ver') }}: 1.4.1</span>
+    <span>{{ t('client ver') }}: 1.5.0</span>
+    <span>{{ t('plugin ver') }}: 1.5.0</span>
     <div>
       <span>{{ t('project addr') }}: </span>
       <n-a href="https://github.com/jianxingxuejian/grasscutter-tools" target="_blank">

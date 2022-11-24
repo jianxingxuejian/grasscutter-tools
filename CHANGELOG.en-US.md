@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.5.0] - 2022-11-24
+
+### Features
+
+- certificate installation and traffic proxy
+
+- Launcher and startup item management
+
+### Breaking Changes
+
+- The corresponding plugin must be upgrade to 1.5.0
+
 ## [1.4.11] - 2022-11-10
 
 ### Features
@@ -104,6 +116,7 @@
 
 - Fix the wrong artifact id
 
+[1.5.0]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.11...v1.5.0
 [1.4.11]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.10...v1.4.11
 [1.4.10]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.9...v1.4.10
 [1.4.9]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.8...v1.4.9

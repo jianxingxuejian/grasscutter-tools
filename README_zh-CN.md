@@ -18,6 +18,7 @@
 
 ## 功能
 
+- [x] 启动器
 - [x] 常用指令
 - [x] 快速生成圣遗物
 - [x] 物品分类检索
@@ -25,13 +26,14 @@
 - [x] 任务/场景/传送
 - [x] 在线 Mod 下载和本地 Mod 管理
 - [x] 管理员控制台
-- [ ] 启动器(TODO)
 
 ## 使用
 
 大部分功能需要服务端配合[这个插件](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.4.1)使用。
 
 使用客户端之前需要完成简单的账号认证(向你的游戏发送验证码邮件然后在 1 分钟之内完成验证或者用该游戏账号的密码验证)。服务端拥有者可以完成管理员认证然后使用管理员控制台，效果与服务器控制台相同。
+
+如果想使用启动器，请确保服务端的 config.json 文件中 useEncryption 与 useInRouting 的值都是 false，然后使用 http 地址，例如: http:127.0.0.1:443，或者服务端配置 https 证书，然后就能使用 https 连接，例如：https:127.0.0.1。
 
 mod 相关功能的使用请看[这里](docs/mod_zh-CN.md)。
 

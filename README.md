@@ -18,6 +18,7 @@ English | [简体中文](README_zh-CN.md)
 
 ## Features
 
+- [x] Launcher
 - [x] Common Command
 - [x] Create Artifacts
 - [x] Item Category Search
@@ -25,13 +26,14 @@ English | [简体中文](README_zh-CN.md)
 - [x] Quest/Scene/TP
 - [x] Online Mod Download and Local Mod Management
 - [x] Admin Console
-- [ ] Launcher(TODO)
 
 ## Usage
 
 Need to Server use with the [plugin](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.4.1).
 
 Before you use the client, you should complete the easy certification first(send a verification code via in-game mailbox to your game to complete the verification within 1 minute or verify with the password of the game account). If you are the server owner, you can use the Server-Console on it after completing the admin certification.
+
+If you want to use the launcher, make sure the values of useEncryption and useInRouting in the server config.json file are both false, and then use the http address, like this: http:127.0.0.1:443, or configure the server with an https certificate, make sure the values of useEncryption and useInRouting are both true, and then you can use the https connection, like this: https:127.0.0.1
 
 About Mod please [go here](docs/mod.md).
 

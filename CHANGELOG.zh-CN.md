@@ -1,5 +1,17 @@
 # 变更日志
 
+## [1.5.0] - 2022-11-24
+
+### 特性
+
+- CA 证书安装以及流量代理
+
+- 启动器以及启动项管理
+
+### 破坏性变更
+
+- 相应的插件必须升级到 1.5.0
+
 ## [1.4.11] - 2022-11-10
 
 ### 特性
@@ -102,6 +114,7 @@
 
 - 修正错误的圣遗物 id
 
+[1.5.0]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.11...v1.5.0
 [1.4.11]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.10...v1.4.11
 [1.4.10]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.9...v1.4.10
 [1.4.9]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.8...v1.4.9
