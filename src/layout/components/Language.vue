@@ -1,6 +1,6 @@
 <template>
   <div class="flex-center">
-    <n-popselect :value="settingStore.locale" :options="languageOptions" @update:value="updateLocale">
+    <n-popselect v-model:value="settingStore.locale" :options="languageOptions" @update:value="updateLocale">
       <icon-ion-language class="text-8 outline-unset" />
     </n-popselect>
   </div>

@@ -75,9 +75,8 @@ export const useSettingStore = defineStore('setting-store', {
       this.admin_token = admin_token
       await setSetting('admin_token', admin_token)
     },
-    async updateLocale(locale: Setting['locale']) {
-      this.locale = locale
-      await setSetting('locale', locale)
+    async updateLocale() {
+      await setSetting('locale', this.locale)
     },
     async updateTheme() {
       if (this.theme === 'light') {
@@ -94,8 +93,7 @@ export const useSettingStore = defineStore('setting-store', {
       }
       await setSetting('mod', this.mod)
     },
-    async updateProxy(proxy: Setting['proxy']) {
-      this.proxy = proxy
+    async updateProxy() {
       await setSetting('proxy', this.proxy)
     },
     async updateCheckTime(lastCheckTime: number) {

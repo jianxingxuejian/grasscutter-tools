@@ -2,7 +2,7 @@
   <n-modal v-model:show="showModal" preset="card" :title="t('mod settings')" :auto-focus="false" class="w-80%">
     <div class="flex-col items-center gap-y-5">
       <n-input-group>
-        <n-input :value="settingStore.mod.path" />
+        <n-input :value="mod.path" />
         <n-tooltip>
           <template #trigger>
             <n-button type="primary" @click="handleSelectPath"> {{ t('select') }} </n-button>
@@ -12,7 +12,7 @@
       </n-input-group>
       <n-space>
         <span>{{ t('open nsfw') }}</span>
-        <n-switch v-model:value="settingStore.mod.nsfw" />
+        <n-switch v-model:value="mod.nsfw" />
       </n-space>
       <n-button type="success" @click="updateModPath()">{{ t('save') }}</n-button>
     </div>
@@ -28,7 +28,7 @@
 
   const { t } = useI18n()
   const settingStore = useSettingStore()
-  const { updateModPath } = settingStore
+  const { mod, updateModPath } = settingStore
 
   const showModal = ref(false)
 

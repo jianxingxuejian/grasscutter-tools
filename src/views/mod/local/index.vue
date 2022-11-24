@@ -22,7 +22,7 @@
         :style="style"
       >
         <n-input
-          v-show="settingStore.mod.showName"
+          v-show="mod.showName"
           v-model:value="item.name"
           size="small"
           class="text-center bg-black/10"
@@ -30,7 +30,7 @@
           @change="write_file(item)"
         />
         <n-input
-          v-show="settingStore.mod.showAuthor"
+          v-show="mod.showAuthor"
           v-model:value="item.submitter.name"
           size="small"
           class="text-center bg-black/10"
@@ -87,6 +87,7 @@
   const settingRef = ref<InstanceType<typeof SettingModal>>()
 
   const settingStore = useSettingStore()
+  const { mod } = settingStore
 
   const keyword = ref('')
   const enabledNum = computed(() => props.modList.filter(item => item.enabled).length)
@@ -96,7 +97,7 @@
     props.modList.filter(item => item.name.includes(keyword.value) || item.submitter.name.includes(keyword.value))
   )
 
-  const style = computed(() => `aspect-ratio: ${settingStore.mod.width}/${settingStore.mod.height}`)
+  const style = computed(() => `aspect-ratio: ${mod.width}/${mod.height}`)
 
   async function handleCheck(mod: Mod) {
     const { enabled, path } = mod
@@ -126,7 +127,7 @@
   }
 
   onMounted(() => {
-    if (!settingStore.mod.path) settingRef.value?.showWarning()
+    if (!mod.path) settingRef.value?.showWarning()
   })
 </script>
 

@@ -33,7 +33,7 @@
           </div>
           <div
             class="w-full grow bg-center bg-no-repeat hover:(cursor-pointer opacity-75 transition-opacity-500)"
-            :class="{ 'blur-md': item.nsfw && settingStore.mod.nsfw }"
+            :class="{ 'blur-md': item.nsfw && mod.nsfw }"
             :style="{ backgroundImage: `url(${item.images[0]})` }"
           ></div>
           <div class="w-full flex-evenly">
@@ -108,6 +108,7 @@
   const downloadQueueRef = ref<InstanceType<typeof DownloadQueue>>()
 
   const settingStore = useSettingStore()
+  const { mod } = settingStore
 
   const pageIndex = ref(1)
   const modDataList = ref<ModData[]>([])
@@ -169,7 +170,7 @@
   const { x, y } = useMouse()
 
   async function handleInstallList(item: ModData) {
-    if (!settingStore.mod.path) {
+    if (!mod.path) {
       settingRef.value?.showWarning()
       return
     }

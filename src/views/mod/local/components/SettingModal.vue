@@ -2,21 +2,21 @@
   <n-modal v-model:show="showModal" preset="card" :title="t('mod settings')" :auto-focus="false" class="w-80%">
     <div class="flex-col items-center gap-y-5">
       <select-file
-        :value="settingStore.mod.path"
+        :value="mod.path"
         :button-text="t('select')"
         :placeholder="t('select 3dm')"
         @click="handleSelectPath"
       />
       <n-space class="items-center">
         <span>{{ t('img aspect ratio') }}</span>
-        <n-input-number v-model:value="settingStore.mod.width" class="w-50" />
-        <n-input-number v-model:value="settingStore.mod.height" class="w-50" />
+        <n-input-number v-model:value="mod.width" class="w-50" />
+        <n-input-number v-model:value="mod.height" class="w-50" />
       </n-space>
       <n-space>
         <span>{{ t('show name') }}</span>
-        <n-switch v-model:value="settingStore.mod.showName" />
+        <n-switch v-model:value="mod.showName" />
         <span>{{ t('show name') }}</span>
-        <n-switch v-model:value="settingStore.mod.showAuthor" />
+        <n-switch v-model:value="mod.showAuthor" />
       </n-space>
       <n-button type="success" @click="updateModPath()">{{ t('save') }}</n-button>
     </div>
@@ -33,7 +33,7 @@
 
   const { t } = useI18n()
   const settingStore = useSettingStore()
-  const { updateModPath } = settingStore
+  const { mod, updateModPath } = settingStore
 
   const showModal = ref(false)
 

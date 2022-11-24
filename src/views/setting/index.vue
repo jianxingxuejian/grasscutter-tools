@@ -24,7 +24,7 @@
     <n-space>
       <n-tooltip trigger="hover">
         <template #trigger>
-          <n-switch :value="settingStore.proxy.enable" class="mt-0.8" @update:value="updateProxy({ enable: $event })" />
+          <n-switch v-model:value="proxy.enable" class="mt-0.8" @update:value="updateProxy({ enable: $event })" />
         </template>
         <span class="text-4">{{ t('use proxy system') }}</span>
       </n-tooltip>
@@ -104,7 +104,7 @@
   const { t } = useI18n()
 
   const settingStore = useSettingStore()
-  const { server, updateServer, updateProxy } = settingStore
+  const { server, proxy, updateServer, updateProxy } = settingStore
 
   const serverRef = ref<FormInst | null>(null)
   const serverRules: FormRules = {
