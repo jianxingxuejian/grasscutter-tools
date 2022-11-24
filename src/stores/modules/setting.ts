@@ -27,7 +27,10 @@ export const useSettingStore = defineStore('setting-store', {
     update: {},
     launcher: {
       gamePath: '',
-      akebiPath: ''
+      akebiPath: '',
+      gameStart: true,
+      modStart: true,
+      akebiStart: true
     }
   }),
   getters: {
@@ -110,6 +113,10 @@ export const useSettingStore = defineStore('setting-store', {
       if (path) {
         this.launcher.akebiPath = path
       }
+      await setSetting('launcher', this.launcher)
+    },
+    async updateLauncher() {
+      console.log(this.launcher)
       await setSetting('launcher', this.launcher)
     }
   }

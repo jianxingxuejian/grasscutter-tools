@@ -1,12 +1,13 @@
 use std::error::Error;
+use std::os::windows::process::CommandExt;
 use std::process::{Command, Output};
 
 #[cfg(target_os = "windows")]
 pub fn run_program(path: String) -> Result<String, Box<dyn Error>> {
     let index = path.rfind("/").ok_or("path fail")?;
-    let (path, file) = path.split_at(index);
-    let cmd_str = format!("/c cd /d {} && start {}", path, file);
-    let output = Command::new("cmd").arg(cmd_str).output()?;
+    let (path, file) = path.split_at(index + 1);
+    let cmd_str = format!("/c cd /d {} && start \"\" \"{}\"", path, file);
+    let output = Command::new("cmd").raw_arg(cmd_str).output()?;
     return_output(output)
 }
 
@@ -19,10 +20,10 @@ pub fn run_program(path: String) -> Result<String, Box<dyn Error>> {
 
 fn return_output(output: Output) -> Result<String, Box<dyn Error>> {
     if output.status.success() {
-        let output_str = String::from_utf8_lossy(&output.stdout).to_string();
+        let output_str = String::from_utf8(output.stdout)?;
         Ok(output_str)
     } else {
-        let output_str = String::from_utf8_lossy(&output.stderr).to_string();
+        let output_str = String::from_utf8(output.stderr)?;
         Err(output_str.into())
     }
 }

@@ -27,6 +27,9 @@ interface Setting {
   launcher: {
     gamePath: string
     akebiPath: string
+    gameStart: boolean
+    modStart: boolean
+    akebiStart: boolean
   }
 }
 

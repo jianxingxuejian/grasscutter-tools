@@ -18,7 +18,7 @@
       <my-button :text="t('startup items')" @click="startupItemsRef?.show">
         <icon-line-md-plus />
       </my-button>
-      <my-button :text="t('launch')" @click="startupItemsRef?.launcher">
+      <my-button :text="t('launch')" @click="handleLaunch">
         <icon-material-symbols-rocket-launch-outline-rounded />
       </my-button>
     </n-space>
@@ -47,29 +47,6 @@
   const updaterRef = ref<InstanceType<typeof Updater>>()
   const startupItemsRef = ref<InstanceType<typeof StartupItems>>()
 
-  async function checkUpdateTime(click?: boolean) {
-    const now = Date.now()
-    const last = settingStore.update.lastCheckTime
-    if (click || !last || (last && last + 86400000 < now)) {
-      try {
-        const { shouldUpdate, manifest } = await checkUpdate()
-        updateCheckTime(now)
-        if (shouldUpdate && manifest?.body) {
-          updateInfo.value = JSON.parse(manifest.body)[settingStore.locale]
-          update.value = true
-        } else {
-          window.$message?.success(t('latest ver now'))
-        }
-      } catch (error) {
-        window.$notification?.error({
-          title: t('failed get update info'),
-          description: `error: ${error}`,
-          content: t('retry manually')
-        })
-      }
-    }
-  }
-
   async function handleInstallCA() {
     try {
       const result = await installCA()
@@ -93,6 +70,36 @@
       }
     } catch (error) {
       window.$message?.error(error as string)
+    }
+  }
+
+  async function handleLaunch() {
+    await setProxyAddr(getServer)
+    await proxyStart()
+    proxyState.value = true
+    startupItemsRef.value?.launcherAll()
+  }
+
+  async function checkUpdateTime(click?: boolean) {
+    const now = Date.now()
+    const last = settingStore.update.lastCheckTime
+    if (click || !last || (last && last + 86400000 < now)) {
+      try {
+        const { shouldUpdate, manifest } = await checkUpdate()
+        updateCheckTime(now)
+        if (shouldUpdate && manifest?.body) {
+          updateInfo.value = JSON.parse(manifest.body)[settingStore.locale]
+          update.value = true
+        } else {
+          window.$message?.success(t('latest ver now'))
+        }
+      } catch (error) {
+        window.$notification?.error({
+          title: t('failed get update info'),
+          description: `error: ${error}`,
+          content: t('retry manually')
+        })
+      }
     }
   }
 

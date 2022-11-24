@@ -1,24 +1,33 @@
 <template>
   <n-modal v-model:show="showModal" preset="card" :title="t('startup items')" :auto-focus="false" class="w-70%">
     <div class="flex-col items-center gap-y-5">
-      <select-file
-        :value="settingStore.launcher.gamePath"
-        :button-text="t('select')"
-        :placeholder="t('select game')"
-        @click="handleSelectGamePath"
-      />
-      <select-file
-        :value="settingStore.mod.path"
-        :button-text="t('select')"
-        :placeholder="t('select 3dm')"
-        @click="handleSelectModPath"
-      />
-      <select-file
-        :value="settingStore.launcher.akebiPath"
-        :button-text="t('select')"
-        :placeholder="t('select akebi')"
-        @click="handleSelectAkebiPath"
-      />
+      <div class="flex-center w-full">
+        <n-checkbox v-model:checked="launcher.gameStart" class="w-7 mr-4" @update:checked="updateLauncher" />
+        <select-file
+          :value="launcher.gamePath"
+          :button-text="t('select')"
+          :placeholder="t('select game')"
+          @click="handleSelectGamePath"
+        />
+      </div>
+      <div class="flex-center w-full">
+        <n-checkbox v-model:checked="launcher.modStart" class="w-7 mr-4" @update:checked="updateLauncher" />
+        <select-file
+          :value="mod.path"
+          :button-text="t('select')"
+          :placeholder="t('select 3dm')"
+          @click="handleSelectModPath"
+        />
+      </div>
+      <div class="flex-center w-full">
+        <n-checkbox v-model:checked="launcher.akebiStart" class="w-7 mr-4" @update:checked="updateLauncher" />
+        <select-file
+          :value="launcher.akebiPath"
+          :button-text="t('select')"
+          :placeholder="t('select akebi')"
+          @click="handleSelectAkebiPath"
+        />
+      </div>
     </div>
   </n-modal>
 </template>
@@ -28,11 +37,11 @@
   import { useSettingStore } from '@/stores'
   import { select_file, runProgram } from '@/utils'
 
-  defineExpose({ show, launcher })
+  defineExpose({ show, launcherAll })
 
   const { t } = useI18n()
   const settingStore = useSettingStore()
-  const { updateGamePath, updateModPath, updateAkebiPath } = settingStore
+  const { launcher, mod, updateGamePath, updateModPath, updateAkebiPath, updateLauncher } = settingStore
 
   const showModal = ref(false)
 
@@ -51,18 +60,18 @@
     }
   }
 
-  async function launcher() {
+  async function launcherAll() {
     try {
-      const modPath = settingStore.mod.path
-      if (modPath) {
+      const modPath = mod.path
+      if (modPath && launcher.modStart) {
         await runProgram(modPath)
       }
-      const akebiPath = settingStore.launcher.akebiPath
-      if (akebiPath) {
+      const akebiPath = launcher.akebiPath
+      if (akebiPath && launcher.akebiStart) {
         await runProgram(akebiPath)
       } else {
-        const gamePath = settingStore.launcher.gamePath
-        if (gamePath) {
+        const gamePath = launcher.gamePath
+        if (gamePath && launcher.gameStart) {
           await runProgram(gamePath)
         }
       }
@@ -71,3 +80,14 @@
     }
   }
 </script>
+
+<style scoped lang="scss">
+  :deep(.n-checkbox .n-checkbox-box) {
+    height: 100%;
+    width: 100%;
+  }
+  :deep(.n-checkbox .n-checkbox-box-wrapper) {
+    height: 100%;
+    width: 100%;
+  }
+</style>
