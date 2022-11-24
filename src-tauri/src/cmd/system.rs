@@ -1,6 +1,8 @@
 use std::error::Error;
-use std::os::windows::process::CommandExt;
 use std::process::{Command, Output};
+
+#[cfg(target_os = "windows")]
+use std::os::windows::process::CommandExt;
 
 #[cfg(target_os = "windows")]
 pub fn run_program(path: String) -> Result<String, Box<dyn Error>> {
