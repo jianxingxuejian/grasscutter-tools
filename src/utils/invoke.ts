@@ -57,3 +57,7 @@ export function proxyStart() {
 export function proxyEnd() {
   return invoke<string>('proxy_end')
 }
+
+export function runProgram(path: string) {
+  return invoke<string>('run_program', { path: path.replace(/\\/g, '/') })
+}

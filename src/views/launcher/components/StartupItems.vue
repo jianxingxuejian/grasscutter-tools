@@ -25,9 +25,8 @@
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
-  import { Command } from '@tauri-apps/api/shell'
   import { useSettingStore } from '@/stores'
-  import { select_file } from '@/utils'
+  import { select_file, runProgram } from '@/utils'
 
   defineExpose({ show, launcher })
 
@@ -53,20 +52,22 @@
   }
 
   async function launcher() {
-    const modPath = settingStore.mod.path
-    if (modPath) await start(modPath)
-    const gamePath = settingStore.launcher.gamePath
-    if (gamePath) await start(gamePath)
-  }
-
-  async function start(filePath: string) {
-    const path = filePath.replace(/\\/g, '/')
-    const index = path.lastIndexOf('/')
-    const dir = path.slice(0, index + 1)
-    const file = path.slice(index + 1)
-    const { code, stderr } = await new Command('cmd', ['/C', `cd /d ${dir} && start ${file}`]).execute()
-    if (code !== 0) {
-      window.$message?.error(stderr)
+    try {
+      const modPath = settingStore.mod.path
+      if (modPath) {
+        await runProgram(modPath)
+      }
+      const akebiPath = settingStore.launcher.akebiPath
+      if (akebiPath) {
+        await runProgram(akebiPath)
+      } else {
+        const gamePath = settingStore.launcher.gamePath
+        if (gamePath) {
+          await runProgram(gamePath)
+        }
+      }
+    } catch (error) {
+      window.$message?.error(error as string)
     }
   }
 </script>

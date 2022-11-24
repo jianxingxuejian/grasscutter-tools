@@ -16,16 +16,6 @@
         "request": true,
         "scope": ["https://gamebanana.com/**"]
       },
-      "shell": {
-        "execute": true,
-        "scope": [
-          {
-            "name": "cmd",
-            "cmd": "cmd.exe",
-            "args": ["/C", { "validator": "\\S+" }]
-          }
-        ]
-      },
       "all": true
     },
     "bundle": {

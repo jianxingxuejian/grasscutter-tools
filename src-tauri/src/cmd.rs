@@ -6,6 +6,7 @@ use std::path::Path;
 pub mod file;
 pub mod http;
 pub mod proxy;
+pub mod system;
 
 type CmdResult<T = ()> = Result<T, String>;
 
@@ -123,5 +124,11 @@ pub async fn proxy_start(port: u16) -> CmdResult {
 #[tauri::command]
 pub async fn proxy_end() -> CmdResult {
     let result = proxy::end();
+    wrap_result!(result)
+}
+
+#[tauri::command]
+pub async fn run_program(path: String) -> CmdResult<String> {
+    let result = system::run_program(path);
     wrap_result!(result)
 }
