@@ -6,7 +6,7 @@
           v-if="currentPage === 0"
           ref="localRef"
           :mod-list="modList"
-          @list:sort="listSort"
+          @list:reload="loadModList"
           @page:change="currentPage = $event"
         />
         <mod-download v-else ref="downloadRef" :mod-list="modList" @page:change="currentPage = $event" />
@@ -33,23 +33,20 @@
     modList.value = []
     try {
       modList.value = await get_mod_list(settingStore.getModPath)
-      listSort()
+      modList.value.sort((next, pre) => {
+        if (next.enabled && !pre.enabled) {
+          return -1
+        } else if (next.enabled == pre.enabled) {
+          return next.name.localeCompare(pre.name, settingStore.locale)
+        }
+        return 0
+      })
     } catch (e) {
       window.$message?.warning(t('not found mod path'))
     }
   }
-  loadModList()
 
-  function listSort() {
-    modList.value.sort((next, pre) => {
-      if (next.enabled && !pre.enabled) {
-        return -1
-      } else if (next.enabled == pre.enabled) {
-        return next.name.localeCompare(pre.name, settingStore.locale)
-      }
-      return 0
-    })
-  }
+  loadModList()
 
   watchEffect(() => {
     if (currentPage.value === 0) {

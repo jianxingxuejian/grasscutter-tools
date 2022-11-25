@@ -125,7 +125,7 @@
 
   const loadingChange = ref(false)
   const authWay = ref(true)
-  const handleChangeAuthWay = useThrottleFn(function () {
+  const handleChangeAuthWay = useThrottleFn(() => {
     loadingChange.value = true
     authWay.value = !authWay.value
     setTimeout(() => (loadingChange.value = false), 1000)

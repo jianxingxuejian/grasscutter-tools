@@ -7,8 +7,8 @@
         <my-button @click="settingRef?.show">
           <icon-ic-outline-settings />
         </my-button>
-        <my-button @click="listSort">
-          <icon-material-symbols-rotate-right :class="{ 'animate-spin': loadingSort }" />
+        <my-button @click="handleReload">
+          <icon-material-symbols-rotate-right :class="{ 'animate-spin': loadingReload }" />
         </my-button>
         <n-a class="text-4" @click="emits('page:change', 1)"> {{ t('mods download') }} </n-a>
       </n-space>
@@ -70,6 +70,7 @@
 
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
+  import { useThrottleFn } from '@vueuse/core'
   import { SettingModal } from './components'
   import { useSettingStore } from '@/stores'
   import { read_local_img, open_dir, rename, write_file } from '@/utils'
@@ -78,7 +79,7 @@
     modList: Mod[]
   }>()
   const emits = defineEmits<{
-    (e: 'list:sort'): void
+    (e: 'list:reload'): void
     (e: 'page:change', value: number): void
   }>()
 
@@ -91,7 +92,7 @@
 
   const keyword = ref('')
   const enabledNum = computed(() => props.modList.filter(item => item.enabled).length)
-  const loadingSort = ref(false)
+  const loadingReload = ref(false)
 
   const showList = computed(() =>
     props.modList.filter(item => item.name.includes(keyword.value) || item.submitter.name.includes(keyword.value))
@@ -118,13 +119,11 @@
     mod.src = await read_local_img(mod.path)
   }
 
-  function listSort() {
-    loadingSort.value = true
-    emits('list:sort')
-    setTimeout(() => {
-      loadingSort.value = false
-    }, 1000)
-  }
+  const handleReload = useThrottleFn(() => {
+    loadingReload.value = true
+    emits('list:reload')
+    setTimeout(() => (loadingReload.value = false), 1000)
+  }, 1000)
 
   onMounted(() => {
     if (!mod.path) settingRef.value?.showWarning()
