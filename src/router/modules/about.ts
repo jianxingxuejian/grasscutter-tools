@@ -6,7 +6,7 @@ const routes: Route.Config = {
   meta: {
     sort: 8,
     isRoot: true,
-    icon: 'icon-park-outline:info'
+    icon: 'ic:outline-info'
   },
   children: [
     {

@@ -4,7 +4,7 @@
     <div class="flex-col items-center gap-y-5 mb-5">
       <n-space class="items-center">
         <my-button :text="t('unlock map')" @click-async="playerCommand('setprop unlockmap 1')">
-          <icon-icon-park-twotone-unlock />
+          <icon-ic-round-lock-open />
         </my-button>
         <n-popconfirm :show-icon="false">
           <template #trigger>

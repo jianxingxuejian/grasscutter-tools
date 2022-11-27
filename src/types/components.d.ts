@@ -7,10 +7,14 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    IconCarbonChangeCatalog: typeof import('~icons/carbon/change-catalog')['default']
+    IconCarbonLogoDiscord: typeof import('~icons/carbon/logo-discord')['default']
+    IconCarbonLogoGithub: typeof import('~icons/carbon/logo-github')['default']
     IconIcBaselineRemoveRedEye: typeof import('~icons/ic/baseline-remove-red-eye')['default']
-    IconIconParkTwotoneLike: typeof import('~icons/icon-park-twotone/like')['default']
-    IconIconParkTwotoneUnlock: typeof import('~icons/icon-park-twotone/unlock')['default']
+    IconIconParkSolidLike: typeof import('~icons/icon-park-solid/like')['default']
+    IconIconParkSolidTencentQq: typeof import('~icons/icon-park-solid/tencent-qq')['default']
     IconIcOutlineSettings: typeof import('~icons/ic/outline-settings')['default']
+    IconIcRoundLockOpen: typeof import('~icons/ic/round-lock-open')['default']
     IconIonLanguage: typeof import('~icons/ion/language')['default']
     IconLineMdAccountAdd: typeof import('~icons/line-md/account-add')['default']
     IconLineMdChevronSmallTripleLeft: typeof import('~icons/line-md/chevron-small-triple-left')['default']

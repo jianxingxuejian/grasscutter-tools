@@ -1,27 +1,41 @@
 <template>
-  <div class="flex-col items-center px-10 gap-y-4">
-    <div class="flex-center">
-      <span class="text-8 flex-center">Grasscutter-Tools</span>
-      <n-tag type="success" size="large" class="ml-2 cursor-pointer" @click="checkUpdateTime(true)">
-        v{{ version }}
-      </n-tag>
+  <div class="flex-col px-10 gap-y-4">
+    <div class="flex items-center">
+      <div class="text-8">
+        <icon-carbon-change-catalog />
+      </div>
+      <div class="flex-center grow">
+        <span class="text-8 flex-center">Grasscutter-Tools</span>
+        <n-tag type="success" size="large" class="ml-2 cursor-pointer" @click="checkUpdateTime(true)">
+          v{{ version }}
+        </n-tag>
+      </div>
+      <div class="ml-auto flex text-8 gap-x-2">
+        <icon-carbon-logo-github />
+        <icon-carbon-logo-discord />
+        <icon-icon-park-solid-tencent-qq />
+      </div>
     </div>
     <updater ref="updaterRef" />
     <startup-items ref="startupItemsRef" />
-    <n-space class="flex-center">
-      <n-button @click="handleInstallCA">{{ t('install ca') }}</n-button>
-      <server-input />
-      <span class="text-5">{{ t('proxy start') }}</span>
-      <n-switch :value="proxyState" @update-value="handleProxySwitch" />
-    </n-space>
-    <n-space class="flex-center">
-      <my-button :text="t('startup items')" @click="startupItemsRef?.show">
-        <icon-line-md-plus />
-      </my-button>
-      <my-button :text="t('launch')" @click="handleLaunch">
-        <icon-material-symbols-rocket-launch-outline-rounded />
-      </my-button>
-    </n-space>
+    <div class="flex-center">
+      <n-space>
+        <n-button @click="handleInstallCA">{{ t('install ca') }}</n-button>
+        <server-input />
+        <span class="text-5">{{ t('proxy start') }}</span>
+        <n-switch :value="proxyState" @update-value="handleProxySwitch" />
+      </n-space>
+    </div>
+    <div class="flex-center">
+      <n-space>
+        <my-button :text="t('startup items')" @click="startupItemsRef?.show">
+          <icon-line-md-plus />
+        </my-button>
+        <my-button :text="t('launch')" @click="handleLaunch">
+          <icon-material-symbols-rocket-launch-outline-rounded />
+        </my-button>
+      </n-space>
+    </div>
   </div>
 </template>
 

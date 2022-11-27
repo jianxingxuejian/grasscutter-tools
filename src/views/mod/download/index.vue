@@ -38,12 +38,7 @@
           ></div>
           <div class="w-full flex-evenly">
             <div class="flex-center">
-              <icon-icon-park-twotone-like
-                preserveAspectRatio="xMaxYMax meet"
-                width="25%"
-                height="25%"
-                class="mr-0.5"
-              />
+              <icon-icon-park-solid-like preserveAspectRatio="xMaxYMax meet" width="25%" height="25%" class="mr-0.5" />
               <span class="text-2">{{ item.likeCount }}</span>
             </div>
             <div class="flex-center">
