@@ -97,10 +97,9 @@
   async function checkUpdateTime(click?: boolean) {
     const now = Date.now()
     const last = settingStore.update.lastCheckTime
-    if (click || !last || (last && last + 86400000 < now)) {
+    if (click || !last || (last && last + 21600000 < now)) {
       try {
         const { shouldUpdate, manifest } = await checkUpdate()
-        updateCheckTime(now)
         if (shouldUpdate && manifest?.body) {
           updateInfo.value = JSON.parse(manifest.body)[settingStore.locale]
           update.value = true
@@ -113,6 +112,8 @@
           description: `error: ${error}`,
           content: t('retry manually')
         })
+      } finally {
+        updateCheckTime(now)
       }
     }
   }
@@ -139,10 +140,8 @@
     }
   })
 
-  onActivated(async () => {
-    version.value = await getVersion()
-    checkUpdateTime()
-  })
+  onMounted(async () => (version.value = await getVersion()))
+  onActivated(async () => checkUpdateTime())
 
   useEventListener(window, 'beforeunload', () => {
     if (proxyState.value) proxyEnd()
