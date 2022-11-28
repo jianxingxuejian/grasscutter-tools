@@ -125,6 +125,7 @@
   "launch": "Launch",
   "select game": "Please select your GenshinImpact.exe",
   "select akebi": "Please select your injector.exe",
+  "proxy port": "Proxy Port",
   "30960": "会心率",
   "30950": "会心ダメージ",
   "50880": "元素熟知",

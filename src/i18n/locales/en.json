@@ -125,6 +125,7 @@
   "launch": "Launch",
   "select game": "Please select your GenshinImpact.exe",
   "select akebi": "Please select your injector.exe",
+  "proxy port": "Proxy Port",
   "30960": "CRIT Rate",
   "30950": "CRIT DMG",
   "50880": "EM",

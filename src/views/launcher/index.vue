@@ -22,8 +22,14 @@
       <n-space>
         <n-button @click="handleInstallCA">{{ t('install ca') }}</n-button>
         <server-input />
-        <span class="text-5">{{ t('proxy start') }}</span>
-        <n-switch :value="proxyState" @update-value="handleProxySwitch" />
+        <div class="flex">
+          <span class="text-5 mr-2">{{ t('proxy port') }}</span>
+          <n-input v-model:value="port" :allow-input="allowInput" class="w-20!" />
+        </div>
+        <div class="flex">
+          <span class="text-5 mr-2">{{ t('proxy start') }}</span>
+          <n-switch :value="proxyState" @update-value="handleProxySwitch" />
+        </div>
       </n-space>
     </div>
     <div class="flex-center">
@@ -70,13 +76,19 @@
     }
   }
 
+  const port = ref<string>('8080')
   const proxyState = ref(false)
+  function allowInput(value: string) {
+    if (!/^\d+$/.test(value)) return false
+    const number = Number(value)
+    return number > 0 && number <= 65535
+  }
 
   async function handleProxySwitch(value: boolean) {
     try {
       if (value) {
         await setProxyAddr(getServer)
-        await proxyStart()
+        await proxyStart(port.value)
         proxyState.value = true
       } else {
         await proxyEnd()
@@ -89,7 +101,7 @@
 
   async function handleLaunch() {
     await setProxyAddr(getServer)
-    await proxyStart()
+    await proxyStart(port.value)
     proxyState.value = true
     startupItemsRef.value?.launcherAll()
   }

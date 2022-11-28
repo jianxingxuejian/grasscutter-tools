@@ -125,6 +125,7 @@
   "launch": "Launch",
   "select game": "Please select your GenshinImpact.exe",
   "select akebi": "Please select your injector.exe",
+  "proxy port": "Proxy Port",
   "30960": "Prob. Crítica",
   "30950": "Daño crítico",
   "50880": "Maestría elemental",
