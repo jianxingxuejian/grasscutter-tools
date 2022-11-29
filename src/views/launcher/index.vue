@@ -2,7 +2,7 @@
   <div class="flex-col px-10 gap-y-4">
     <div class="flex items-center">
       <div class="text-8">
-        <icon-carbon-change-catalog />
+        <icon-carbon-change-catalog @click="changelogRef?.open" />
       </div>
       <div class="flex-center grow">
         <span class="text-8 flex-center">Grasscutter-Tools</span>
@@ -18,6 +18,7 @@
     </div>
     <updater ref="updaterRef" />
     <startup-items ref="startupItemsRef" />
+    <changelog ref="changelogRef" />
     <div class="flex-center">
       <n-space>
         <n-button @click="handleInstallCA">{{ t('install ca') }}</n-button>
@@ -53,7 +54,7 @@
   import { checkUpdate } from '@tauri-apps/api/updater'
   import { useSettingStore } from '@/stores'
   import { installCA, setProxyAddr, proxyStart, proxyEnd } from '@/utils'
-  import { StartupItems, Updater } from './components'
+  import { Changelog, StartupItems, Updater } from './components'
 
   const { t } = useI18n()
 
@@ -66,6 +67,7 @@
 
   const updaterRef = ref<InstanceType<typeof Updater>>()
   const startupItemsRef = ref<InstanceType<typeof StartupItems>>()
+  const changelogRef = ref<InstanceType<typeof Changelog>>()
 
   async function handleInstallCA() {
     try {

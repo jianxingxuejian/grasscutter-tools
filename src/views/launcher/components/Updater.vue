@@ -21,6 +21,8 @@
   import { installUpdate } from '@tauri-apps/api/updater'
   import { relaunch } from '@tauri-apps/api/process'
 
+  defineExpose({ open })
+
   const { t } = useI18n()
 
   const loading = ref(false)
@@ -49,18 +51,15 @@
   }
 
   function open(notes?: string) {
-    if (notes) {
-      showModal.value = true
-      nextTick(() => {
-        const content = document.getElementById('content')
-        if (content) {
-          content.innerHTML = snarkdown(notes)
-        }
-      })
-    }
-  }
+    if (!notes) return
 
-  defineExpose({ open })
+    showModal.value = true
+    nextTick(() => {
+      const content = document.getElementById('content')
+      if (!content) return
+      content.innerHTML = snarkdown(notes)
+    })
+  }
 </script>
 
 <style lang="scss" scope>
