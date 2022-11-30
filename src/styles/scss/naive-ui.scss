@@ -43,6 +43,11 @@
   }
 }
 
+.n-dropdown-menu-wrapper .n-dropdown-menu {
+  max-height: 40vh;
+  overflow: auto;
+}
+
 .n-dropdown-menu:not(.n-dropdown-menu--scrollable) {
   padding: 0.25rem 0;
 }

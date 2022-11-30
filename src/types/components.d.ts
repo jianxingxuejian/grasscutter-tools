@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    IconCarbonCategory: typeof import('~icons/carbon/category')['default']
     IconCarbonChangeCatalog: typeof import('~icons/carbon/change-catalog')['default']
     IconCarbonLogoDiscord: typeof import('~icons/carbon/logo-discord')['default']
     IconCarbonLogoGithub: typeof import('~icons/carbon/logo-github')['default']
@@ -44,6 +45,7 @@ declare module '@vue/runtime-core' {
     NA: typeof import('naive-ui')['NA']
     NaiveProvider: typeof import('./../components/NaiveProvider.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
+    NCalendar: typeof import('naive-ui')['NCalendar']
     NCard: typeof import('naive-ui')['NCard']
     NCascader: typeof import('naive-ui')['NCascader']
     NCheckbox: typeof import('naive-ui')['NCheckbox']

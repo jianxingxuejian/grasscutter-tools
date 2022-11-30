@@ -2,6 +2,17 @@
   <div class="h-full w-full flex-col">
     <div class="flex-center mb-1">
       <n-space class="items-center">
+        <n-cascader
+          v-model:value="select"
+          :options="options"
+          multiple
+          clearable
+          filterable
+          check-strategy="parent"
+          max-tag-count="responsive"
+          class="w-50"
+          @update:value="select = $event"
+        />
         <span class="text-4">{{ enabledNum + '/' + modList.length }}</span>
         <n-input v-model:value="keyword" clearable class="w-37!" />
         <my-button @click="settingRef?.show">
@@ -50,6 +61,11 @@
                 @click="open_dir(item.path)"
               />
             </n-button>
+            <n-dropdown trigger="hover" :options="options" key-field="value" @select="handleSelectType($event, item)">
+              <n-button text class="w-30%">
+                <icon-carbon-category preserveAspectRatio="xMaxYMax meet" width="100%" height="100%" />
+              </n-button>
+            </n-dropdown>
           </div>
           <n-image
             lazy
@@ -74,6 +90,7 @@
   import { SettingModal } from './components'
   import { useSettingStore } from '@/stores'
   import { read_local_img, open_dir, rename, write_file } from '@/utils'
+  import { characterIds } from '../constant'
 
   const props = defineProps<{
     modList: Mod[]
@@ -90,12 +107,38 @@
   const settingStore = useSettingStore()
   const { mod } = settingStore
 
+  const select = ref<number[]>([])
+  const options = computed(() => [
+    { value: 1, label: t('characters'), children: characterIds.map(item => ({ value: item, label: t(item) })) },
+    { value: 2, label: t('weapons') },
+    { value: 3, label: t('npc') },
+    { value: 4, label: t('enemy') },
+    { value: 10, label: t('misc') }
+  ])
+
+  function handleSelectType(key: number, mod: Mod) {
+    if (key > 10) {
+      mod.type = 1
+      mod.modId = key
+    } else {
+      mod.type = key
+    }
+    write_file(mod)
+  }
+
   const keyword = ref('')
   const enabledNum = computed(() => props.modList.filter(item => item.enabled).length)
   const loadingReload = ref(false)
 
   const showList = computed(() =>
-    props.modList.filter(item => item.name.includes(keyword.value) || item.submitter.name.includes(keyword.value))
+    props.modList
+      .filter(
+        item =>
+          select.value.length == 0 ||
+          (item.type && select.value.includes(item.type)) ||
+          (item.modId && select.value.includes(item.modId))
+      )
+      .filter(item => item.name.includes(keyword.value) || item.submitter.name.includes(keyword.value))
   )
 
   const style = computed(() => `aspect-ratio: ${mod.width}/${mod.height}`)

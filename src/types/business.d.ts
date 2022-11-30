@@ -3,6 +3,8 @@ interface Mod extends ModBasic {
   src: string
   enabled: boolean
   show?: boolean
+  type?: number
+  modId: number
 }
 
 interface ModBasic {
