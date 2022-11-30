@@ -22,7 +22,7 @@
       <span>{{ t('password verify') }}</span>
     </my-divider>
     <n-space>
-      <n-tooltip trigger="hover">
+      <n-tooltip v-if="isTauri" trigger="hover">
         <template #trigger>
           <n-switch v-model:value="proxy.enable" class="mt-0.8" @update:value="updateProxy" />
         </template>
@@ -100,6 +100,7 @@
     adminCommand
   } from '@/http'
   import { testUrlOrIP, showSuccessMsg } from '@/utils'
+  import isTauri from '@/utils/is-tauri'
 
   const { t } = useI18n()
 
@@ -174,7 +175,7 @@
     const check = await checkService()
     if (!check) return
 
-    let result: ApiResult<string> | undefined
+    let result: ApiResult<string> | undefined | null
     if (authWay.value) {
       await verifyCodeRef.value?.validate()
       result = await playerAuthByVerifyCode(server.username, verifyCode.value)
