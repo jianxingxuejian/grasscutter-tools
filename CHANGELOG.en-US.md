@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.1] - 2022-12-01
+
+### Features
+
+- Add Grasscutter to startup items
+
+- Add changelog view
+
+- Add proxy port setting
+
+- Local mods support category and filter
+
+- Ignore case when searching
+
+- Spwn command add maxhp,hp,atk,def parameters
+
 ## [1.5.0] - 2022-11-24
 
 ### Features
@@ -116,6 +132,7 @@
 
 - Fix the wrong artifact id
 
+[1.5.1]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.11...v1.5.0
 [1.4.11]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.10...v1.4.11
 [1.4.10]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.9...v1.4.10

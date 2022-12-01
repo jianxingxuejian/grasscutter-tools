@@ -1,5 +1,21 @@
 # 变更日志
 
+## [1.5.1] - 2022-12-01
+
+### 特性
+
+- 启动项新增割草机
+
+- 新增变更日志查看
+
+- 新增代理端口配置
+
+- 本地 mod 支持分类与筛选
+
+- 搜索时忽略大小写
+
+- spawn 命令新增血量、攻击力等参数
+
 ## [1.5.0] - 2022-11-24
 
 ### 特性
@@ -114,6 +130,7 @@
 
 - 修正错误的圣遗物 id
 
+[1.5.1]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.11...v1.5.0
 [1.4.11]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.10...v1.4.11
 [1.4.10]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.9...v1.4.10
