@@ -86,6 +86,7 @@
           <n-cascader
             v-model:value="weather"
             filterable
+            :filter="filterIgnoreCase"
             expand-trigger="hover"
             check-strategy="child"
             :options="weatherOptions"
@@ -134,7 +135,7 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { playerCommand, levelUpAll, getProps, cdr } from '@/http'
-  import { showSuccessMsg } from '@/utils'
+  import { showSuccessMsg, filterIgnoreCase } from '@/utils'
 
   const { t, tm } = useI18n()
 

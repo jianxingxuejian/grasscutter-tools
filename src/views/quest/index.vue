@@ -6,6 +6,7 @@
         v-model:value="quest"
         clearable
         filterable
+        :filter="filterIgnoreCase"
         expand-trigger="hover"
         check-strategy="child"
         :placeholder="t('to search')"
@@ -63,7 +64,7 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { playerCommand } from '@/http'
-  import { showSuccessMsg } from '@/utils'
+  import { showSuccessMsg, filterIgnoreCase } from '@/utils'
 
   const { t, tm } = useI18n()
 

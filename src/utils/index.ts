@@ -1,6 +1,7 @@
 export * from './common'
 export * from './invoke'
 export * from './msg'
+export * from './naive-ui'
 export * from './parse'
 export * from './regex'
 export * from './route'

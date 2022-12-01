@@ -8,6 +8,7 @@
           v-model:value="item"
           clearable
           filterable
+          :filter="filterIgnoreCase"
           expand-trigger="hover"
           check-strategy="child"
           :placeholder="t('to search')"
@@ -41,6 +42,7 @@
           v-model:value="monster"
           clearable
           filterable
+          :filter="filterIgnoreCase"
           expand-trigger="hover"
           check-strategy="child"
           :placeholder="t('to search')"
@@ -68,7 +70,8 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { playerCommand } from '@/http'
-  import { showSuccessMsg } from '@/utils'
+  import { showSuccessMsg, filterIgnoreCase } from '@/utils'
+  import { MyButton } from '@/components'
 
   const { t, tm } = useI18n()
 
