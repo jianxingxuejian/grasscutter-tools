@@ -44,6 +44,8 @@ declare namespace Route {
     isRoot?: boolean
     /** 是否在web上隐藏 */
     hideInWeb?: boolean
+    /** 是否在tauri上隐藏 */
+    hideInTauri?: boolean
   }
 
   /** 菜单 */

@@ -21,7 +21,13 @@
   function transformRouteToMenu(routes: Route.RecordRaw[]): Route.Menu[] {
     const menus: Route.Menu[] = []
     routes
-      .filter(item => isTauri || !item.meta?.hideInWeb)
+      .filter(({ meta }) => {
+        if (isTauri) {
+          return !meta?.hideInTauri
+        } else {
+          return !meta?.hideInWeb
+        }
+      })
       .forEach(route => {
         const { name } = route
         const routeMessage: Message['route'] = tm('data.route')

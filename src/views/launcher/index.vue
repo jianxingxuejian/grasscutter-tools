@@ -2,7 +2,7 @@
   <div class="flex-col px-10 gap-y-4">
     <div class="flex items-center">
       <div class="text-8">
-        <icon-carbon-change-catalog @click="changelogRef?.open" />
+        <icon-carbon-change-catalog class="cursor-pointer" @click="changelogRef?.open" />
       </div>
       <div class="flex-center grow">
         <span class="text-8 flex-center">Grasscutter-Tools</span>
@@ -10,10 +10,17 @@
           v{{ version }}
         </n-tag>
       </div>
-      <div class="ml-auto flex text-8 gap-x-2">
-        <icon-carbon-logo-github />
-        <icon-carbon-logo-discord />
-        <icon-icon-park-solid-tencent-qq />
+      <div class="ml-auto flex text-8 gap-x-2 cursor-pointer">
+        <icon-carbon-logo-github @click="open(`https://github.com/jianxingxuejian/grasscutter-tools`)" />
+        <icon-carbon-logo-discord @click="open(`https://discord.com/invite/qGyWhAUApU`)" />
+        <icon-icon-park-solid-tencent-qq
+          v-if="settingStore.locale === 'zh-CN'"
+          @click="
+            open(
+              `https://qm.qq.com/cgi-bin/qm/qr?k=0VnTLjWPz76RSScycDyp2_X68w6b73gO&jump_from=webapi&authKey=AO4rT4mzAw8krhEVDIMECCwFX7wRmGJA9+ui7AK7aQRA3l5BCeS1h/3pXT2MCkzZ`
+            )
+          "
+        />
       </div>
     </div>
     <updater ref="updaterRef" />
@@ -52,6 +59,7 @@
   import { useEventListener } from '@vueuse/core'
   import { getVersion } from '@tauri-apps/api/app'
   import { checkUpdate } from '@tauri-apps/api/updater'
+  import { open } from '@tauri-apps/api/shell'
   import { useSettingStore } from '@/stores'
   import { installCA, setProxyAddr, proxyStart, proxyEnd } from '@/utils'
   import { Changelog, StartupItems, Updater } from './components'
