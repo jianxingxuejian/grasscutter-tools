@@ -39,7 +39,7 @@
     /** 按钮文本 */
     text?: string
     /** 异步点击事件 */
-    onClickAsync?: () => Promise<void | ApiResult<null>>
+    onClickAsync?: () => Promise<void | ApiResult<null>> | void
     /** 点击事件 */
     onClick?: () => void
   }>()
