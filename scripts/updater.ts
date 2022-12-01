@@ -2,7 +2,7 @@ import path from 'path'
 import fs from 'fs-extra'
 import fetch from 'node-fetch'
 import { getOctokit, context } from '@actions/github'
-import { parseMd } from '@/utils'
+import { parseMd } from 'src/utils'
 
 const i18nList = ['en-US', 'zh-CN']
 
