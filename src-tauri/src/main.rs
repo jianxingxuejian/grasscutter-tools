@@ -7,7 +7,7 @@ use tauri_plugin_store::PluginBuilder;
 mod cmd;
 use crate::cmd::{
     download, get_mod_list, http, install_ca, proxy_end, proxy_start, read_local_img, rename,
-    run_program, set_proxy_addr, write_file,
+    run_jar, run_program, set_proxy_addr, write_file,
 };
 
 fn main() {
@@ -24,7 +24,8 @@ fn main() {
             set_proxy_addr,
             proxy_start,
             proxy_end,
-            run_program
+            run_program,
+            run_jar
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -51,7 +51,7 @@ export function setProxyAddr(addr: string) {
 }
 
 export function proxyStart(port: string) {
-  return invoke<string>('proxy_start', { port })
+  return invoke<string>('proxy_start', { port: Number(port) })
 }
 
 export function proxyEnd() {
@@ -60,4 +60,8 @@ export function proxyEnd() {
 
 export function runProgram(path: string) {
   return invoke<string>('run_program', { path: path.replace(/\\/g, '/') })
+}
+
+export function runJar(path: string) {
+  return invoke<string>('run_jar', { path: path.replace(/\\/g, '/') })
 }

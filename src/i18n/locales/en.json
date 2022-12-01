@@ -131,6 +131,7 @@
   "npc": "NPC",
   "enemy": "Enemy",
   "misc": "Misc",
+  "select gc": "Please select your grasscutter-version.jar",
   "30960": "CRIT Rate",
   "30950": "CRIT DMG",
   "50880": "EM",

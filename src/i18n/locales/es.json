@@ -131,6 +131,7 @@
   "npc": "NPC",
   "enemy": "Enemy",
   "misc": "Misc",
+  "select gc": "Please select your grasscutter-version.jar",
   "30960": "Prob. Crítica",
   "30950": "Daño crítico",
   "50880": "Maestría elemental",

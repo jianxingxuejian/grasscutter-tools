@@ -2,6 +2,15 @@
   <n-modal v-model:show="showModal" preset="card" :title="t('startup items')" :auto-focus="false" class="w-70%">
     <div class="flex-col items-center gap-y-5">
       <div class="flex-center w-full">
+        <n-checkbox v-model:checked="launcher.GCStart" class="w-7 mr-4" @update:checked="updateLauncher" />
+        <select-file
+          :value="launcher.GCPath"
+          :button-text="t('select')"
+          :placeholder="t('select gc')"
+          @click="handleSelectGCPath"
+        />
+      </div>
+      <div class="flex-center w-full">
         <n-checkbox v-model:checked="launcher.gameStart" class="w-7 mr-4" @update:checked="updateLauncher" />
         <select-file
           :value="launcher.gamePath"
@@ -35,13 +44,13 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { useSettingStore } from '@/stores'
-  import { select_file, runProgram } from '@/utils'
+  import { select_file, runProgram, runJar } from '@/utils'
 
   defineExpose({ show, launcherAll })
 
   const { t } = useI18n()
   const settingStore = useSettingStore()
-  const { launcher, mod, updateGamePath, updateModPath, updateAkebiPath, updateLauncher } = settingStore
+  const { launcher, mod, updateGamePath, updateModPath, updateAkebiPath, updateLauncher, updateGCPath } = settingStore
 
   const showModal = ref(false)
 
@@ -49,6 +58,7 @@
     showModal.value = true
   }
 
+  const handleSelectGCPath = () => selectPath(updateGCPath)
   const handleSelectGamePath = () => selectPath(updateGamePath)
   const handleSelectModPath = () => selectPath(updateModPath)
   const handleSelectAkebiPath = () => selectPath(updateAkebiPath)
@@ -62,6 +72,11 @@
 
   async function launcherAll() {
     try {
+      const GCPath = launcher.GCPath
+      if (GCPath && launcher.GCStart) {
+        await runJar(GCPath)
+      }
+
       const modPath = mod.path
       if (modPath && launcher.modStart) {
         await runProgram(modPath)

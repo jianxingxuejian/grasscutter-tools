@@ -28,9 +28,11 @@ export const useSettingStore = defineStore('setting-store', {
     launcher: {
       gamePath: '',
       akebiPath: '',
+      GCPath: '',
       gameStart: true,
       modStart: true,
-      akebiStart: true
+      akebiStart: true,
+      GCStart: true
     }
   }),
   getters: {
@@ -104,19 +106,21 @@ export const useSettingStore = defineStore('setting-store', {
       await setSetting('update', this.update)
     },
     async updateGamePath(path?: string) {
-      if (path) {
-        this.launcher.gamePath = path
-      }
+      if (!path) return
+      this.launcher.gamePath = path
       await setSetting('launcher', this.launcher)
     },
     async updateAkebiPath(path?: string) {
-      if (path) {
-        this.launcher.akebiPath = path
-      }
+      if (!path) return
+      this.launcher.akebiPath = path
       await setSetting('launcher', this.launcher)
     },
     async updateLauncher() {
-      console.log(this.launcher)
+      await setSetting('launcher', this.launcher)
+    },
+    async updateGCPath(path?: string) {
+      if (!path) return
+      this.launcher.GCPath = path
       await setSetting('launcher', this.launcher)
     }
   }

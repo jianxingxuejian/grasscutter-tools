@@ -132,3 +132,9 @@ pub async fn run_program(path: String) -> CmdResult<String> {
     let result = system::run_program(path);
     wrap_result!(result)
 }
+
+#[tauri::command]
+pub async fn run_jar(path: String) -> CmdResult {
+    let result = system::run_jar(path);
+    wrap_result!(result)
+}

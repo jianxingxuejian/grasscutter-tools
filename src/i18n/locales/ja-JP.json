@@ -131,6 +131,7 @@
   "npc": "NPC",
   "enemy": "Enemy",
   "misc": "Misc",
+  "select gc": "Please select your grasscutter-version.jar",
   "30960": "会心率",
   "30950": "会心ダメージ",
   "50880": "元素熟知",
