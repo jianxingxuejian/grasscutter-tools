@@ -2,7 +2,6 @@ import path from 'path'
 import fs from 'fs-extra'
 import fetch from 'node-fetch'
 import { getOctokit, context } from '@actions/github'
-import { parseMd } from 'src/utils'
 
 const i18nList = ['en-US', 'zh-CN']
 
@@ -19,8 +18,19 @@ export async function updater() {
       throw new Error(`could not found CHANGELOG.${locale}.md`)
     }
 
-    const read = fs.readFileSync(logPath, 'utf-8')
-    notes[locale] = parseMd(read, 1)
+    const read = fs.readFileSync(logPath, 'utf-8').split('\n')
+    const changelog: string[] = []
+    let count = 0
+    for (const line of read) {
+      if (/^## [v[\d.]+/.test(line)) {
+        count++
+      }
+      if (count > 1) break
+      if (line.startsWith('##') || line.startsWith('-')) {
+        changelog.push(line)
+      }
+    }
+    notes[locale] = changelog.join('\n')
   })
 
   const options = { owner: context.repo.owner, repo: context.repo.repo }
