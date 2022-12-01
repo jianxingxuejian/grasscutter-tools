@@ -66,6 +66,7 @@ dependencies = [
  "base64",
  "hudsucker",
  "lazy_static 1.4.0",
+ "open",
  "rcgen 0.10.0",
  "reqwest",
  "rustls-pemfile",
