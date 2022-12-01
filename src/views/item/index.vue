@@ -58,6 +58,26 @@
         <n-input-number v-model:value="lv_monster" class="w-30" />
       </div>
     </div>
+
+    <div class="flex gap-x-4 mt-5">
+      <div class="flex-center">
+        <span class="text-4 shrink-0 mr-2">maxhp</span>
+        <n-input v-model:value="maxhp" />
+      </div>
+      <div class="flex-center">
+        <span class="text-4 shrink-0 mr-2">hp</span>
+        <n-input v-model:value="hp" />
+      </div>
+      <div class="flex-center">
+        <span class="text-4 shrink-0 mr-2">atk</span>
+        <n-input v-model:value="atk" />
+      </div>
+      <div class="flex-center">
+        <span class="text-4 shrink-0 mr-2">def</span>
+        <n-input v-model:value="def" />
+      </div>
+    </div>
+
     <div class="flex w-full items-center my-5">
       <n-input v-model:value="command_monster" />
       <my-button type="primary" class="ml-10" :text="t('execute')" @click-async="sendCommand(2)">
@@ -87,7 +107,18 @@
   const monster = ref<string>()
   const x_monster = ref(1)
   const lv_monster = ref(90)
-  const command_monster = computed(() => `/spawn ${monster.value || ''} x${x_monster.value} lv${lv_monster.value}`)
+  const maxhp = ref<string>('')
+  const hp = ref<string>('')
+  const atk = ref<string>('')
+  const def = ref<string>('')
+  const command_monster = computed(
+    () =>
+      `/spawn ${monster.value || ''} x${x_monster.value} lv${lv_monster.value}` +
+      (maxhp.value && ` maxhp${maxhp.value}`) +
+      (hp.value && ` hp${hp.value}`) +
+      (atk.value && ` atk${atk.value}`) +
+      (def.value && ` def${def.value}`)
+  )
 
   async function sendCommand(index: number) {
     let result
