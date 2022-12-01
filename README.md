@@ -29,6 +29,10 @@ English | [简体中文](README_zh-CN.md)
 - [x] Online Mod Download and Local Mod Management
 - [x] Admin Console
 
+## Community
+
+Join our [discord](https://discord.gg/qGyWhAUApU)
+
 ## Usage
 
 Need to Server use with the [plugin](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.5.0).

@@ -29,6 +29,12 @@
 - [x] 在线 Mod 下载和本地 Mod 管理
 - [x] 管理员控制台
 
+## 社区
+
+加入我们的 [Discord](https://discord.gg/qGyWhAUApU)
+
+加入 [QQ](https://qm.qq.com/cgi-bin/qm/qr?k=0VnTLjWPz76RSScycDyp2_X68w6b73gO&jump_from=webapi&authKey=AO4rT4mzAw8krhEVDIMECCwFX7wRmGJA9+ui7AK7aQRA3l5BCeS1h/3pXT2MCkzZ) 交流群 734643309
+
 ## 使用
 
 大部分功能需要服务端配合[这个插件](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.5.0)使用。
