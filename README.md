@@ -15,7 +15,7 @@ English | [简体中文](README_zh-CN.md)
 [![GitHub forks](https://img.shields.io/github/forks/jianxingxuejian/grasscutter-tools)](https://github.com/jianxingxuejian/grasscutter-tools/network/members)
 [![Github All Releases](https://img.shields.io/github/downloads/jianxingxuejian/grasscutter-tools/total.svg)](https://github.com/jianxingxuejian/grasscutter-tools/releases)
 [![Github All Releases](https://img.shields.io/github/v/release/jianxingxuejian/grasscutter-tools)](https://github.com/jianxingxuejian/grasscutter-tools/releases)
-[![Discord chat](https://img.shields.io/discord/1043376560343883846.svg?logo=discord&style=flat-square)](https://discord.gg/qGyWhAUApU)
+[![Discord chat](https://img.shields.io/discord/1043376560343883846.svg?logo=discord&style=flat-square)](https://discord.com/invite/qGyWhAUApU)
 [![QQ chat](https://img.shields.io/badge/chat-qq群-blue)](https://qm.qq.com/cgi-bin/qm/qr?k=0VnTLjWPz76RSScycDyp2_X68w6b73gO&jump_from=webapi&authKey=AO4rT4mzAw8krhEVDIMECCwFX7wRmGJA9+ui7AK7aQRA3l5BCeS1h/3pXT2MCkzZ)
 
 ## Features
@@ -31,7 +31,7 @@ English | [简体中文](README_zh-CN.md)
 
 ## Community
 
-Join our [discord](https://discord.gg/qGyWhAUApU)
+Join our [discord](https://discord.com/invite/qGyWhAUApU)
 
 ## Usage
 
