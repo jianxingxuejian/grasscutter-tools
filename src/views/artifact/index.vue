@@ -79,6 +79,10 @@
             <span class="shrink-0 mr-4 text-lg">{{ t('set artifact lv') }}</span>
             <n-slider v-model:value="level" :max="20" />
           </div>
+          <div class="flex-center">
+            <span class="text-4 shrink-0 mr-4">{{ t('num') }}</span>
+            <n-input-number v-model:value="num" class="w-30" />
+          </div>
         </div>
       </div>
       <!-- 底部命令语句 -->
@@ -226,13 +230,15 @@
     set: (value: number) => (artifact.levels[position.value] = value)
   })
 
+  const num = ref<number>(1)
+
   /** 命令文本 */
   const command = computed(
     () =>
       '/give ' +
       artifact.itemIds[position.value] +
-      ' lv' +
-      artifact.levels[position.value] +
+      ` lv${artifact.levels[position.value]}` +
+      ` x${num.value}` +
       ' ' +
       artifact.mainstats[position.value] +
       ' ' +
