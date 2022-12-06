@@ -127,7 +127,6 @@
           isEnd.value = true
           return
         }
-        console.log(records)
         modDataList.value.push(
           ...records.map(
             ({
