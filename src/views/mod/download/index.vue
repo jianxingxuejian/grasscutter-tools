@@ -58,7 +58,7 @@
           </div>
         </div>
       </div>
-      <n-popover trigger="manual" :x="positionX" :y="positionY" :show="showDropdown" @clickoutside="handleClickoutside">
+      <n-popover trigger="manual" :x="posX" :y="posY" :show="showDropdown" @clickoutside="showDropdown = false">
         <div class="flex-col items-center text-4 gap-y-2">
           <div>{{ t('to install') }}</div>
           <div
@@ -85,7 +85,7 @@
   import { useI18n } from 'vue-i18n'
   import { fetch } from '@tauri-apps/api/http'
   import { open } from '@tauri-apps/api/shell'
-  import { useScroll, useMouse } from '@vueuse/core'
+  import { useInfiniteScroll, useMouse } from '@vueuse/core'
   import { SettingModal, DownloadQueue } from './components'
   import type { ModDataBody, ModData, ProfilePage, InstallOption } from './interface'
   import { useSettingStore } from '@/stores'
@@ -127,7 +127,6 @@
           isEnd.value = true
           return
         }
-        console.log(records)
         modDataList.value.push(
           ...records.map(
             ({
@@ -159,8 +158,8 @@
   }
 
   const showDropdown = ref(false)
-  const positionX = ref(0)
-  const positionY = ref(0)
+  const posX = ref(0)
+  const posY = ref(0)
   const installOptions = ref<InstallOption[]>([])
   const { x, y } = useMouse()
 
@@ -170,8 +169,8 @@
       return
     }
     setTimeout(() => {
-      positionX.value = x.value
-      positionY.value = y.value
+      posX.value = x.value
+      posY.value = y.value
     }, 150)
     try {
       const { id, images, author, authorUrl } = item
@@ -204,33 +203,27 @@
     await downloadQueueRef.value?.push(mod)
   }
 
-  const handleClickoutside = () => (showDropdown.value = false)
-
   const modListRef = ref<HTMLElement | null>(null)
-  const { arrivedState } = useScroll(modListRef, { offset: { bottom: 300 } })
-  const { bottom } = toRefs(arrivedState)
+  useInfiniteScroll(modListRef, () => infiniteScroll(), { distance: 300 })
 
   async function infiniteScroll() {
     if (isEnd.value) return
-
     requesting.value = true
     await getModDataBody()
     pageIndex.value++
     requesting.value = false
+  }
 
+  async function init() {
+    await infiniteScroll()
     nextTick(() => {
-      if (modListRef.value) {
-        const { clientHeight, scrollHeight } = modListRef.value
-        if (clientHeight >= scrollHeight - 2) infiniteScroll()
-      }
+      if (!modListRef.value) return
+      const { clientHeight, scrollHeight } = modListRef.value
+      if (clientHeight >= scrollHeight - 2) infiniteScroll()
     })
   }
 
-  onActivated(() => infiniteScroll())
-
-  watch(bottom, (newVal, _oldVal) => {
-    if (newVal) infiniteScroll()
-  })
+  onMounted(() => init())
 
   function numberFormat(num: number) {
     if (num < 1000) return num

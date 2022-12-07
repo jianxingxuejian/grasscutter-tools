@@ -48,7 +48,6 @@
       const path = settingStore.getModPath + 'gamebanana/' + id + '/' + name
       await download(url, path, mod)
     } catch (error) {
-      console.log(error)
       window.$message?.error(error as string)
     } finally {
       downloadQueue.splice(
