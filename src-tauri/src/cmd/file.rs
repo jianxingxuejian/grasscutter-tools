@@ -92,8 +92,9 @@ pub fn write_file(path: String, contents: String) -> Result<(), Box<dyn Error>> 
     Ok(())
 }
 
+const EXTS: &'static [&'static str] = &["png", "jpg", "jpeg", "jfif"];
+
 pub fn read_local_img(path: String) -> Result<String, Box<dyn Error>> {
-    let exts: Vec<&str> = vec!["png", "jpg", "jpeg", "jfif"];
     let path = Path::new(&path);
     let mut contents = Vec::new();
 
@@ -105,10 +106,9 @@ pub fn read_local_img(path: String) -> Result<String, Box<dyn Error>> {
         }
         let extension = path
             .extension()
-            .ok_or(MyError::IOError)?
-            .to_str()
+            .and_then(OsStr::to_str)
             .ok_or(MyError::IOError)?;
-        if exts.contains(&extension) {
+        if EXTS.contains(&extension) {
             let mut file = File::open(&path)?;
             file.read_to_end(&mut contents)?;
             return Ok("data:image/".to_string() + &extension + ";base64," + &encode(&contents));
