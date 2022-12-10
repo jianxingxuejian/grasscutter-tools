@@ -3,8 +3,7 @@ interface Mod extends ModBasic {
   src: string
   enabled: boolean
   show?: boolean
-  type?: number
-  modId: number
+  iniName: string
 }
 
 interface ModBasic {
@@ -15,4 +14,6 @@ interface ModBasic {
     name: string
     url: string
   }
+  type?: number
+  modId?: number
 }

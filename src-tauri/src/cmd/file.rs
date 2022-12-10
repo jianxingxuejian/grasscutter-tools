@@ -1,4 +1,5 @@
 use base64::encode;
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::error::Error;
 use std::ffi::OsStr;
@@ -6,41 +7,46 @@ use std::fs;
 use std::fs::File;
 use std::io;
 use std::io::{Read, Write};
-use std::path::{Path, PathBuf};
+use std::path::Path;
 use walkdir::WalkDir;
 
 use super::MyError;
 
-pub fn get_mod_list(path: String) -> HashMap<String, String> {
+#[derive(Serialize, Deserialize)]
+pub struct ModInfo {
+    pub contents: String,
+    pub name: String,
+}
+
+pub fn get_mod_list(path: String) -> HashMap<String, ModInfo> {
     let path = Path::new(&path);
     let ini = Some(OsStr::new("ini"));
     let merged = Some(OsStr::new("merged.ini"));
     let mut map = HashMap::new();
     for entry in WalkDir::new(path) {
-        let result = || -> Option<(String, String)> {
+        let result = || -> Option<(String, ModInfo)> {
             let entry = entry.ok()?;
-            if entry.path().extension() != ini {
+            let path = entry.path();
+            if path.extension() != ini {
                 return None;
             }
-            if entry.path().file_name() == merged {
-                let parent = entry.path().parent()?;
-                if is_deep_merge(parent, ini) == Some(false) {
-                    let modinfo = parent.join("modinfo.json");
-                    return init_ini(modinfo, parent);
+            if path.file_name() == merged {
+                let target = path.parent()?;
+                if is_deep_merge(target, ini) == Some(false) {
+                    return get_info(target, path);
                 }
                 return None;
             }
-            let parent = entry.path().parent()?.parent()?;
-            let parent_merged = parent.join("merged.ini");
-            if parent_merged.exists() {
+            let target = path.parent()?.parent()?;
+            let merged = target.join("merged.ini");
+            if merged.exists() {
                 return None;
             }
-            let modinfo = parent.join("modinfo.json");
-            return init_ini(modinfo, parent);
+            return get_info(target, path);
         };
         match result() {
-            Some((k, v)) => {
-                map.insert(k, v);
+            Some((path, mod_info)) => {
+                map.insert(path, mod_info);
             }
             None => continue,
         }
@@ -48,31 +54,37 @@ pub fn get_mod_list(path: String) -> HashMap<String, String> {
     map
 }
 
-fn init_ini(modinfo: PathBuf, target: &Path) -> Option<(String, String)> {
-    if modinfo.exists() {
+fn get_info(target: &Path, path: &Path) -> Option<(String, ModInfo)> {
+    let name = path.file_stem().unwrap().to_string_lossy().to_string();
+    let modinfo = target.join("modinfo.json");
+    let contents = if modinfo.exists() {
         let mut file = File::open(&modinfo).ok()?;
-        let mut info = String::new();
-        file.read_to_string(&mut info).ok()?;
-        return Some((target.display().to_string(), info));
+        let mut contents = String::new();
+        file.read_to_string(&mut contents).ok()?;
+        contents
     } else {
-        let info =
-            "{\"id\":0,\"name\":\"\",\"images\":[],\"submitter\":{\"name\":\"\",\"url\":\"\"}}";
+        let contents =
+            "{\"id\":0,\"name\":\"\",\"images\":[],\"submitter\":{\"name\":\"\",\"url\":\"\"}}"
+                .to_string();
         let mut file = File::create(&modinfo).ok()?;
-        file.write(info.as_bytes()).ok();
-        return Some((target.display().to_string(), info.to_string()));
-    }
+        file.write(contents.as_bytes()).ok();
+        contents
+    };
+    return Some((target.display().to_string(), ModInfo { contents, name }));
 }
 
 fn is_deep_merge(path: &Path, ini: Option<&OsStr>) -> Option<bool> {
     let entries = fs::read_dir(path).ok()?;
     for entry in entries {
         let path = entry.ok()?.path();
-        if path.is_dir() {
-            let entries = fs::read_dir(path).ok()?;
-            for entry in entries {
-                if entry.ok()?.path().extension() == ini {
-                    return Some(false);
-                }
+        if !path.is_dir() {
+            return Some(true);
+        }
+
+        let entries = fs::read_dir(path).ok()?;
+        for entry in entries {
+            if entry.ok()?.path().extension() == ini {
+                return Some(false);
             }
         }
     }

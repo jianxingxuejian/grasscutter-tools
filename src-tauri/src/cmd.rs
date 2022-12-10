@@ -3,6 +3,8 @@ use std::error::Error;
 use std::fmt;
 use std::path::Path;
 
+use self::file::ModInfo;
+
 pub mod file;
 pub mod http;
 pub mod proxy;
@@ -50,12 +52,8 @@ pub async fn http(
 }
 
 #[tauri::command]
-pub fn get_mod_list(path: String) -> Result<HashMap<String, String>, ()> {
-    let result = file::get_mod_list(path);
-    if result.is_empty() {
-        return Err(());
-    }
-    Ok(result)
+pub fn get_mod_list(path: String) -> HashMap<String, ModInfo> {
+    return file::get_mod_list(path);
 }
 
 #[tauri::command]

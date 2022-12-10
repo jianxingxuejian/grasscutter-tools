@@ -4,10 +4,11 @@
       <n-space class="items-center">
         <n-cascader
           v-model:value="select"
-          :options="options"
+          :options="optionsHas"
           multiple
           clearable
           filterable
+          trigger="hover"
           check-strategy="parent"
           max-tag-count="responsive"
           class="w-50"
@@ -61,7 +62,12 @@
                 @click="open_dir(item.path)"
               />
             </n-button>
-            <n-dropdown trigger="hover" :options="options" key-field="value" @select="handleSelectType($event, item)">
+            <n-dropdown
+              trigger="hover"
+              :options="optionsAll"
+              key-field="value"
+              @select="handleSelectType($event, item)"
+            >
               <n-button text class="w-30%">
                 <icon-carbon-category preserveAspectRatio="xMaxYMax meet" width="100%" height="100%" />
               </n-button>
@@ -87,6 +93,7 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { useThrottleFn } from '@vueuse/core'
+  import { uniq } from 'lodash-es'
   import { SettingModal } from './components'
   import { useSettingStore } from '@/stores'
   import { read_local_img, open_dir, rename, write_file } from '@/utils'
@@ -108,7 +115,21 @@
   const { mod } = settingStore
 
   const select = ref<number[]>([])
-  const options = computed(() => [
+  const optionsHas = computed(() => [
+    {
+      value: 1,
+      label: t('characters'),
+      children: uniq(props.modList.filter(item => item.modId).map(item => item.modId)).map(item => ({
+        value: item,
+        label: t(item!)
+      }))
+    },
+    { value: 2, label: t('weapons') },
+    { value: 3, label: t('npc') },
+    { value: 4, label: t('enemy') },
+    { value: 10, label: t('misc') }
+  ])
+  const optionsAll = computed(() => [
     { value: 1, label: t('characters'), children: characterIds.map(item => ({ value: item, label: t(item) })) },
     { value: 2, label: t('weapons') },
     { value: 3, label: t('npc') },
