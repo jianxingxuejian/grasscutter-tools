@@ -15,7 +15,7 @@
       <n-space>
         <span>{{ t('show name') }}</span>
         <n-switch v-model:value="mod.showName" />
-        <span>{{ t('show name') }}</span>
+        <span>{{ t('show author') }}</span>
         <n-switch v-model:value="mod.showAuthor" />
       </n-space>
       <n-button type="success" @click="updateModPath()">{{ t('save') }}</n-button>
