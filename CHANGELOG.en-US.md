@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.2] - 2022-12-11
+
+### Features
+
+- mods auto-complete classification based on ini file name (only the characters part is completed)
+
+- update some quest data
+
+- add num param of artifact generate
+
+### Bug Fixes
+
+- mods classification results are not written locally
+
+- Wrong text
+
 ## [1.5.1] - 2022-12-01
 
 ### Features
@@ -132,6 +148,7 @@
 
 - Fix the wrong artifact id
 
+[1.5.2]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.1...v1.5.2
 [1.5.1]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.11...v1.5.0
 [1.4.11]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.10...v1.4.11

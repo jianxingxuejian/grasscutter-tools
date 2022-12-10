@@ -1,5 +1,21 @@
 # 变更日志
 
+## [1.5.2] - 2022-12-11
+
+### 特性
+
+- Mod 根据 ini 文件名自动完成分类（仅完成角色部分）
+
+- 更新部分任务数据
+
+- 新增圣遗物生成的数量参数
+
+### 修复 Bug
+
+- Mod 分类结果并未写入本地
+
+- 错误的文案
+
 ## [1.5.1] - 2022-12-01
 
 ### 特性
@@ -130,6 +146,7 @@
 
 - 修正错误的圣遗物 id
 
+[1.5.2]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.1...v1.5.2
 [1.5.1]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.11...v1.5.0
 [1.4.11]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.10...v1.4.11
