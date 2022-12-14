@@ -94,17 +94,3 @@
     showSuccessMsg(result)
   }
 </script>
-
-<style lang="scss" scope>
-  .n-cascader-menu {
-    .n-cascader-submenu.n-cascader-submenu--virtual {
-      width: auto;
-    }
-    .n-cascader-option {
-      min-width: 28rem;
-    }
-    .n-cascader-submenu {
-      min-width: 29.5rem;
-    }
-  }
-</style>
