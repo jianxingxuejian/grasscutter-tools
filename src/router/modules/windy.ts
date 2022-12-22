@@ -6,7 +6,8 @@ const routes: Route.Config = {
   meta: {
     sort: 7,
     isRoot: true,
-    icon: 'mdi:seed'
+    icon: 'mdi:seed',
+    hideInWeb: true
   },
   children: [
     {
