@@ -70,9 +70,10 @@ export async function loadClientSetting() {
     const proxy = (await getSetting('proxy')) as Setting['proxy'] | null
     const update = (await getSetting('update')) as Setting['update'] | null
     const launcher = (await getSetting('launcher')) as Setting['launcher'] | null
+    const seed = (await getSetting('seed')) as Setting['seed'] | null
 
     const settingStore = useSettingStore()
-    settingStore.initSettings({ server, token, admin_token, locale, theme, mod, proxy, update, launcher })
+    settingStore.initSettings({ server, token, admin_token, locale, theme, mod, proxy, update, launcher, seed })
   } catch {
     window.$message?.error('load settings failed')
   }

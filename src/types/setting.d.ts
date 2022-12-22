@@ -33,6 +33,9 @@ interface Setting {
     akebiStart: boolean
     GCStart: boolean
   }
+  seed: {
+    luacPath: string
+  }
 }
 
 type LocaleModule = Record<string, { default: unknown }>

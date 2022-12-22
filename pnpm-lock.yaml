@@ -27,6 +27,7 @@ specifiers:
   eslint-plugin-vue: ^9.8.0
   fs-extra: ^10.1.0
   lodash-es: ^4.17.21
+  monaco-editor: ^0.34.1
   naive-ui: 2.34.2
   node-fetch: ^3.3.0
   pinia: ^2.0.27
@@ -52,6 +53,7 @@ dependencies:
   '@vueuse/core': 9.6.0_vue@3.2.45
   axios: 1.2.0
   lodash-es: 4.17.21
+  monaco-editor: 0.34.1
   pinia: 2.0.27_mgnvym7yiazkylwwogi5r767ue
   snarkdown: 2.0.0
   tauri-plugin-store-api: github.com/tauri-apps/tauri-plugin-store/9bd993aa67766596638bbfd91e79a1bf8f632014
@@ -2460,6 +2462,10 @@ packages:
       pkg-types: 1.0.1
       ufo: 1.0.0
     dev: true
+
+  /monaco-editor/0.34.1:
+    resolution: {integrity: sha512-FKc80TyiMaruhJKKPz5SpJPIjL+dflGvz4CpuThaPMc94AyN7SeC9HQ8hrvaxX7EyHdJcUY5i4D0gNyJj1vSZQ==}
+    dev: false
 
   /mrmime/1.0.1:
     resolution: {integrity: sha512-hzzEagAgDyoU1Q6yg5uI+AorQgdvMCur3FcKf7NhMKWsaYg+RnbTyHRa/9IlLF9rf455MOCtcqqrQQ83pPP7Uw==}

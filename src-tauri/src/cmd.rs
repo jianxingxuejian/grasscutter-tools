@@ -136,3 +136,9 @@ pub async fn run_jar(path: String) -> CmdResult {
     let result = system::run_jar(path);
     wrap_result!(result)
 }
+
+#[tauri::command]
+pub fn execute_luac(path: String, contents: String) -> CmdResult<String> {
+    let result = system::execute_luac(path, contents);
+    wrap_result!(result)
+}

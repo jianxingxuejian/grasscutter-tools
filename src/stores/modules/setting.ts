@@ -33,6 +33,9 @@ export const useSettingStore = defineStore('setting-store', {
       modStart: true,
       akebiStart: true,
       GCStart: true
+    },
+    seed: {
+      luacPath: ''
     }
   }),
   getters: {
@@ -122,6 +125,10 @@ export const useSettingStore = defineStore('setting-store', {
       if (!path) return
       this.launcher.GCPath = path
       await setSetting('launcher', this.launcher)
+    },
+    async updateLuacPath(path: string) {
+      this.seed.luacPath = path
+      await setSetting('seed', this.seed)
     }
   }
 })

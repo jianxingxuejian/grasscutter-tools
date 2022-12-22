@@ -8,9 +8,7 @@ export function select_file<T extends OpenDialogOptions = OpenDialogOptions>(opt
   return open(options) as Promise<T['multiple'] extends true ? null | string[] : null | string>
 }
 
-export function open_dir(path: string) {
-  shell.open(path)
-}
+export const open_dir = (path: string) => shell.open(path)
 
 export async function get_mod_list(path?: string) {
   if (!path) return []
@@ -41,13 +39,9 @@ function convertModBasic(contents: string, name: string) {
   return basic
 }
 
-export function read_local_img(path: string) {
-  return invoke<string>('read_local_img', { path })
-}
+export const read_local_img = (path: string) => invoke<string>('read_local_img', { path })
 
-export function rename(path: string, newPath: string) {
-  return invoke('rename', { path, newPath })
-}
+export const rename = (path: string, newPath: string) => invoke('rename', { path, newPath })
 
 export function write_file(mod: Mod) {
   const { path, id, name, images, submitter, type, modId } = mod
@@ -61,26 +55,17 @@ export function download(url: string, path: string, mod: ModBasic) {
   return invoke('download', { url, path, contents })
 }
 
-export function installCA() {
-  return invoke<string>('install_ca')
-}
+export const installCA = () => invoke<string>('install_ca')
 
-export function setProxyAddr(addr: string) {
-  return invoke('set_proxy_addr', { addr })
-}
+export const setProxyAddr = (addr: string) => invoke('set_proxy_addr', { addr })
 
-export function proxyStart(port: string) {
-  return invoke<string>('proxy_start', { port: Number(port) })
-}
+export const proxyStart = (port: string) => invoke<string>('proxy_start', { port: Number(port) })
 
-export function proxyEnd() {
-  return invoke<string>('proxy_end')
-}
+export const proxyEnd = () => invoke<string>('proxy_end')
 
-export function runProgram(path: string) {
-  return invoke<string>('run_program', { path: path.replace(/\\/g, '/') })
-}
+export const runProgram = (path: string) => invoke<string>('run_program', { path: path.replace(/\\/g, '/') })
 
-export function runJar(path: string) {
-  return invoke<string>('run_jar', { path: path.replace(/\\/g, '/') })
-}
+export const runJar = (path: string) => invoke<string>('run_jar', { path: path.replace(/\\/g, '/') })
+
+export const executeLuac = (path: string, contents: string) =>
+  invoke<string>('execute_luac', { path: path.replace(/\\/g, '/'), contents })
