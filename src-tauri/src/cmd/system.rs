@@ -27,7 +27,7 @@ pub fn run_program(path: String) -> Result<String, Box<dyn Error>> {
 
 #[cfg(target_os = "windows")]
 pub fn run_jar(path: String) -> Result<(), Box<dyn Error>> {
-    let index = path.rfind("/").ok_or("path fail")?;
+    let index = path.rfind("/").ok_or("path error")?;
     let (path, file) = path.split_at(index + 1);
     let cmd_str = format!("/k cd /d {} && java -jar {}", path, file);
     open::with(cmd_str, "cmd.exe")?;
@@ -53,7 +53,7 @@ pub fn execute_luac(path: String, contents: String) -> Result<String, Box<dyn Er
     }
     let mut file = File::create(&lua_path)?;
     file.write_all(contents.as_bytes())?;
-    let index = path.rfind("/").ok_or("path fail")?;
+    let index = path.rfind("/").ok_or("path error")?;
     let (path, file) = path.split_at(index + 1);
     let cmd_str = format!(
         "/c cd /d {} && .\\{} -o dev.luac {}",
