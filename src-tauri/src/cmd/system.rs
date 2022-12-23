@@ -63,7 +63,7 @@ pub fn execute_luac(path: String, contents: String) -> Result<String, Box<dyn Er
         return Err(output_str.into());
     }
     let out_path = Path::new(&path).join("luac.out");
-    let mut out_file = File::create(&out_path)?;
+    let mut out_file = File::open(&out_path)?;
     let mut buf = Vec::new();
     out_file.read_to_end(&mut buf)?;
     let result = String::from_utf8_lossy(&buf).to_string();
