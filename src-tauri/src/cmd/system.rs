@@ -1,7 +1,7 @@
 use std::error::Error;
 use std::fs;
 use std::fs::File;
-use std::io::{Read, Write};
+use std::io::Write;
 use std::path::Path;
 use std::process::{Command, Output};
 use tauri::api::path::data_dir;
@@ -55,18 +55,21 @@ pub fn execute_luac(path: String, contents: String) -> Result<String, Box<dyn Er
     file.write_all(contents.as_bytes())?;
     let index = path.rfind("/").ok_or("path fail")?;
     let (path, file) = path.split_at(index + 1);
-    let cmd_str = format!("/c cd /d {} && .\\{} {}", path, file, lua_path.display());
+    let cmd_str = format!(
+        "/c cd /d {} && .\\{} -o dev.luac {}",
+        path,
+        file,
+        lua_path.display()
+    );
     let child = Command::new("cmd").raw_arg(cmd_str).spawn()?;
     let output = child.wait_with_output()?;
     if !output.status.success() {
         let output_str = String::from_utf8(output.stderr)?;
         return Err(output_str.into());
     }
-    let out_path = Path::new(&path).join("luac.out");
-    let mut out_file = File::open(&out_path)?;
-    let mut buf = Vec::new();
-    out_file.read_to_end(&mut buf)?;
-    let result = String::from_utf8_lossy(&buf).to_string();
+    let out_path = Path::new(&path).join("dev.luac");
+    let bytes = fs::read(out_path)?;
+    let result = base64::encode(&bytes);
     Ok(result)
 }
 
