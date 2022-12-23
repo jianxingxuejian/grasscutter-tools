@@ -44,6 +44,8 @@
     onClick?: () => void
   }>()
 
+  defineExpose({ clickAsync })
+
   let loading: Ref<boolean>
   if (useSlots().default) {
     loading = ref(false)

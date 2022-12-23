@@ -1,6 +1,7 @@
 import { invoke } from '@tauri-apps/api/tauri'
 import { useSettingStore } from '@/stores'
 import { showErrorMsg } from '@/utils'
+import i18n from '@/i18n'
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' | 'HEAD' | 'OPTIONS'
 

@@ -6,6 +6,5 @@ export const route: Message['route'] = {
   quest: 'Quest',
   mod: 'Mod',
   setting: 'Setting',
-  about: 'About',
-  seed: 'Seed'
+  about: 'About'
 }

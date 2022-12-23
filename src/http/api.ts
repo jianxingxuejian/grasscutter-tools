@@ -47,6 +47,10 @@ export function cdr() {
   return request.get('/plugin/player/cdr')
 }
 
+export function seed(contents: string) {
+  return request.post('/plugin/admin/seed', { contents })
+}
+
 function checkToken() {
   if (isTauri && !useSettingStore().token) {
     window.$message?.error(i18n.global.t('player auth first'))

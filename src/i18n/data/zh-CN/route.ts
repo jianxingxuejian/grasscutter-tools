@@ -6,6 +6,5 @@ export const route: Message['route'] = {
   quest: '任务',
   mod: 'Mod',
   setting: '设置',
-  about: '关于',
-  seed: 'Seed'
+  about: '关于'
 }
