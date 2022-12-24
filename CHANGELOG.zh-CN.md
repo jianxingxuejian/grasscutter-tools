@@ -1,5 +1,13 @@
 # 变更日志
 
+## [1.5.3] - 2022-12-24
+
+### 特性
+
+- 新增了一项神秘功能
+
+- 调整自动宽度和滚动条宽度
+
 ## [1.5.2] - 2022-12-11
 
 ### 特性
@@ -146,6 +154,7 @@
 
 - 修正错误的圣遗物 id
 
+[1.5.3]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.2...v1.5.3
 [1.5.2]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.1...v1.5.2
 [1.5.1]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.4.11...v1.5.0
