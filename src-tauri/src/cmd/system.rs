@@ -60,7 +60,7 @@ pub fn execute_luac(path: String, contents: String) -> Result<String, Box<dyn Er
 pub fn execute_luac(path: String, contents: String) -> Result<String, Box<dyn Error>> {
     let lua_path = write_lua(contents)?;
     let cmd_str = format!("-c {} -o dev.luac {}", path, lua_path.display());
-    let child = Command::new("cmd").raw_arg(cmd_str).spawn()?;
+    let child = Command::new("bash").arg(cmd_str).spawn()?;
     return_luac(child, &path)
 }
 
