@@ -38,7 +38,7 @@ Join our [discord](https://discord.com/invite/qGyWhAUApU)
 
 If you don't want to install the client, you can use the web version that includes some of the features: https://null-grasscutter-tools.vercel.app/
 
-The remote execute feature requires your server to use the [plugin](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.5.0).
+The remote execute feature requires your server to use the [plugin](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.5.1).
 
 Before you use the client, you should complete the easy certification first(send a verification code via in-game mailbox to your game to complete the verification within 1 minute or verify with the password of the game account). If you are the server owner, you can use the Server-Console on it after completing the admin certification.
 

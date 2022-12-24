@@ -40,7 +40,7 @@
 
 如果你不想安装应用程序，可以使用包含部分功能的 web 版本: https://null-grasscutter-tools.vercel.app/
 
-远程执行功能需要服务端配合[这个插件](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.5.0)使用。
+远程执行功能需要服务端配合[这个插件](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.5.1)使用。
 
 使用客户端之前需要完成简单的账号认证(向你的游戏发送验证码邮件然后在 1 分钟之内完成验证或者用该游戏账号的密码验证)。服务端拥有者可以完成管理员认证然后使用管理员控制台，效果与服务器控制台相同。
 
