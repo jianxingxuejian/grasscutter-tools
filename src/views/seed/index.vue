@@ -7,6 +7,7 @@
         <my-button ref="buttonRef" type="primary" :text="t('execute')" @click-async="execute">
           <icon-line-md-chevron-small-triple-left />
         </my-button>
+        <span>Alt+Enter</span>
       </n-space>
     </div>
   </div>
