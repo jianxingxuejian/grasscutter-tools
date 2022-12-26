@@ -93,7 +93,7 @@
   "auth": "Auth",
   "create": "Create",
   "save settings": "Save Settings",
-  "send code mail": "Will send a Code in-game via Mailbox, please check your mail",
+  "send code mail": "Will send a Code in-game via Mailbox, please check your mail, and you also can get it by using /verify command",
   "password verify": "Account needs a password for password verification option",
   "change verify": "Change Verify Method",
   "adv find": "Admin Voucher inside plugin config file",
