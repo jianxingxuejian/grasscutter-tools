@@ -4,7 +4,7 @@ const routes: Route.RecordRaw[] = [
   {
     path: '/',
     name: 'home',
-    redirect: isTauri ? '/common' : '/artifact',
+    redirect: isTauri ? '/launcher' : '/artifact',
     component: () => import('@/layout/index.vue')
   }
 ]
