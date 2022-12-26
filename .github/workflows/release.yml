@@ -34,7 +34,7 @@ jobs:
           path: ./CHANGELOG.en-US.md
 
       - name: Pnpm setup
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2
         with:
           version: 7
 
