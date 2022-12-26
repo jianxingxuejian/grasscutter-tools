@@ -69,3 +69,5 @@ export const runJar = (path: string) => invoke<string>('run_jar', { path: path.r
 
 export const executeLuac = (path: string, contents: string) =>
   invoke<string>('execute_luac', { path: path.replace(/\\/g, '/'), contents })
+
+export const getEnableState = () => invoke<boolean>('get_enable_state')

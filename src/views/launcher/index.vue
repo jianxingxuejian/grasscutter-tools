@@ -56,12 +56,11 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { NButton } from 'naive-ui'
-  import { useEventListener } from '@vueuse/core'
   import { getVersion } from '@tauri-apps/api/app'
   import { checkUpdate } from '@tauri-apps/api/updater'
   import { open } from '@tauri-apps/api/shell'
   import { useSettingStore } from '@/stores'
-  import { installCA, setProxyAddr, proxyStart, proxyEnd } from '@/utils'
+  import { installCA, setProxyAddr, proxyStart, proxyEnd, getEnableState } from '@/utils'
   import { Changelog, StartupItems, Updater } from './components'
 
   const { t } = useI18n()
@@ -163,9 +162,8 @@
   })
 
   onMounted(async () => (version.value = await getVersion()))
-  onActivated(async () => checkUpdateTime())
-
-  useEventListener(window, 'beforeunload', () => {
-    if (proxyState.value) proxyEnd()
+  onActivated(async () => {
+    checkUpdateTime()
+    proxyState.value = await getEnableState()
   })
 </script>
