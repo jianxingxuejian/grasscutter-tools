@@ -93,7 +93,7 @@
   "auth": "认证",
   "create": "创建",
   "save settings": "保存配置",
-  "send code mail": "邮箱验证会发送一封验证码邮件到游戏，请前往查收",
+  "send code mail": "邮箱验证会发送一封验证码邮件到游戏，请前往查收，或者使用指令/verify获取",
   "password verify": "密码验证需要该账号已设定密码，目前为明文对比",
   "change verify": "更换验证方式",
   "adv find": "管理员凭证会在服务端加载插件后打印出来，或者在配置文件里找到",

@@ -40,7 +40,7 @@ If you don't want to install the client, you can use the web version that includ
 
 The remote execute feature requires your server to use the [plugin](https://github.com/jianxingxuejian/grasscutter-plugin/releases/tag/v1.5.1).
 
-Before you use the client, you should complete the easy certification first(send a verification code via in-game mailbox to your game to complete the verification within 1 minute or verify with the password of the game account). If you are the server owner, you can use the Server-Console on it after completing the admin certification.
+Before you use the client, you should complete the easy certification first(send a verification code to your in-game mailbox to complete the verification within 1 minute. The new version of the plugin add a custom command, so you can also use `/verify` command to get the verification code). If you are the server owner, you can use the Admin-Console on it after completed the admin certification.
 
 If you want to use the launcher, make sure the values of useEncryption and useInRouting in the server config.json file are both false, and then use the http address, like this: http:127.0.0.1:443, or configure the server with an https certificate, make sure the values of useEncryption and useInRouting are both true, and then you can use the https connection, like this: https:127.0.0.1
 

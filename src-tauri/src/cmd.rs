@@ -142,3 +142,8 @@ pub fn execute_luac(path: String, contents: String) -> CmdResult<String> {
     let result = system::execute_luac(path, contents);
     wrap_result!(result)
 }
+
+#[tauri::command]
+pub fn get_enable_state() -> bool {
+    proxy::get_enable_state()
+}

@@ -90,7 +90,12 @@ pub fn set_proxy_addr(addr: String) {
     *SERVER.lock().unwrap() = addr
 }
 
+static mut TEMP_PROXY: Option<Sysproxy> = None;
+
 pub fn add_setting(port: u16) -> Result<(), Box<dyn Error>> {
+    unsafe {
+        TEMP_PROXY = Some(Sysproxy::get_system_proxy()?);
+    }
     let sysproxy = Sysproxy {
         enable: true,
         host: String::from("127.0.0.1"),
@@ -135,6 +140,7 @@ impl HttpHandler for ProxyHandler {
 }
 
 static mut TASK: Option<JoinHandle<Result<(), hudsucker::Error>>> = None;
+static mut ENABLE_STATE: bool = false;
 
 pub fn start(port: u16) -> Result<(), Box<dyn Error>> {
     let path_key = get_ca_path_with("private.key")?;
@@ -159,22 +165,42 @@ pub fn start(port: u16) -> Result<(), Box<dyn Error>> {
         if let None = TASK {
             TASK = Some(tokio::spawn(proxy.start(shutdown_signal())));
         }
+        ENABLE_STATE = true;
     }
     Ok(())
 }
 
 pub fn end() -> Result<(), Box<dyn Error>> {
-    let mut sysproxy = Sysproxy::get_system_proxy()?;
-    sysproxy.enable = false;
-    sysproxy.set_system_proxy()?;
-
+    stop_proxy()?;
     unsafe {
         if let Some(task) = &TASK {
             task.abort();
             TASK = None;
         }
+        ENABLE_STATE = false;
     }
     Ok(())
+}
+
+pub fn get_enable_state() -> bool {
+    unsafe { ENABLE_STATE }
+}
+
+pub fn stop_proxy() -> Result<(), Box<dyn Error>> {
+    unsafe {
+        if let Some(temp_proxy) = &TEMP_PROXY {
+            temp_proxy.set_system_proxy()?;
+        } else {
+            let mut sysproxy = Sysproxy::get_system_proxy()?;
+            sysproxy.enable = false;
+            sysproxy.set_system_proxy()?;
+        }
+    }
+    Ok(())
+}
+
+pub fn before_exit() {
+    stop_proxy().ok();
 }
 
 async fn shutdown_signal() {
