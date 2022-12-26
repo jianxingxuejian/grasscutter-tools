@@ -1,5 +1,15 @@
 # 变更日志
 
+## [1.5.4] - 2022-12-26
+
+### 特性
+
+- 添加 /verify 指令用于获取验证码
+
+- 在停止流量代理或者退出程序后，恢复之前的代理设置
+
+- 右键刷新不会再影响代理状态
+
 ## [1.5.3] - 2022-12-24
 
 ### 特性
@@ -154,6 +164,7 @@
 
 - 修正错误的圣遗物 id
 
+[1.5.4]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.3...v1.5.4
 [1.5.3]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.2...v1.5.3
 [1.5.2]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.1...v1.5.2
 [1.5.1]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.0...v1.5.1

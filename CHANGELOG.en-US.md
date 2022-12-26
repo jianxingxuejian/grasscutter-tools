@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.5.4] - 2022-12-26
+
+### Features
+
+- add /verify command to get mail verify code
+
+- restore the previous proxy settings after stopping proxy traffic or exit the program
+
+- right click refresh will no longer affect the proxy state
+
 ## [1.5.3] - 2022-12-24
 
 ### Features
@@ -156,6 +166,7 @@
 
 - Fix the wrong artifact id
 
+[1.5.4]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.3...v1.5.4
 [1.5.3]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.2...v1.5.3
 [1.5.2]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.1...v1.5.2
 [1.5.1]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.0...v1.5.1
