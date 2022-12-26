@@ -90,7 +90,12 @@ pub fn set_proxy_addr(addr: String) {
     *SERVER.lock().unwrap() = addr
 }
 
+static mut TEMP_PROXY: Option<Sysproxy> = None;
+
 pub fn add_setting(port: u16) -> Result<(), Box<dyn Error>> {
+    unsafe {
+        TEMP_PROXY = Some(Sysproxy::get_system_proxy()?);
+    }
     let sysproxy = Sysproxy {
         enable: true,
         host: String::from("127.0.0.1"),
@@ -164,11 +169,14 @@ pub fn start(port: u16) -> Result<(), Box<dyn Error>> {
 }
 
 pub fn end() -> Result<(), Box<dyn Error>> {
-    let mut sysproxy = Sysproxy::get_system_proxy()?;
-    sysproxy.enable = false;
-    sysproxy.set_system_proxy()?;
-
     unsafe {
+        if let Some(temp_proxy) = &TEMP_PROXY {
+            temp_proxy.set_system_proxy()?;
+        } else {
+            let mut sysproxy = Sysproxy::get_system_proxy()?;
+            sysproxy.enable = false;
+            sysproxy.set_system_proxy()?;
+        }
         if let Some(task) = &TASK {
             task.abort();
             TASK = None;
