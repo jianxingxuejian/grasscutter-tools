@@ -78,9 +78,7 @@
             preview-disabled
             object-fit="contain"
             :src="item.src"
-            :intersection-observer-options="{
-              root: '#app'
-            }"
+            :intersection-observer-options="{ root: '#app' }"
             class="rd-1 absolute z0 h-full w-full justify-center p-1 border-slate-400"
           />
         </div>
