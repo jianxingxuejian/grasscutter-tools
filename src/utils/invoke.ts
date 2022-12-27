@@ -1,11 +1,10 @@
 import type { OpenDialogOptions } from '@tauri-apps/api/dialog'
-import { open } from '@tauri-apps/api/dialog'
-import { shell } from '@tauri-apps/api'
+import { shell, dialog } from '@tauri-apps/api'
 import { invoke } from '@tauri-apps/api/tauri'
 import { characterDict } from '@/views/mod/constant'
 
 export function select_file<T extends OpenDialogOptions = OpenDialogOptions>(options?: T) {
-  return open(options) as Promise<T['multiple'] extends true ? null | string[] : null | string>
+  return dialog.open(options) as Promise<T['multiple'] extends true ? null | string[] : null | string>
 }
 
 export const open_dir = (path: string) => shell.open(path)

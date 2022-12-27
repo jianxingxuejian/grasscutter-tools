@@ -11,12 +11,12 @@
         </n-tag>
       </div>
       <div class="ml-auto flex text-8 gap-x-2 cursor-pointer">
-        <icon-carbon-logo-github @click="open(`https://github.com/jianxingxuejian/grasscutter-tools`)" />
-        <icon-carbon-logo-discord @click="open(`https://discord.com/invite/qGyWhAUApU`)" />
+        <icon-carbon-logo-github @click="shell.open(`https://github.com/jianxingxuejian/grasscutter-tools`)" />
+        <icon-carbon-logo-discord @click="shell.open(`https://discord.com/invite/qGyWhAUApU`)" />
         <icon-icon-park-solid-tencent-qq
           v-if="settingStore.locale === 'zh-CN'"
           @click="
-            open(
+            shell.open(
               `https://qm.qq.com/cgi-bin/qm/qr?k=0VnTLjWPz76RSScycDyp2_X68w6b73gO&jump_from=webapi&authKey=AO4rT4mzAw8krhEVDIMECCwFX7wRmGJA9+ui7AK7aQRA3l5BCeS1h/3pXT2MCkzZ`
             )
           "
@@ -56,9 +56,7 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import { NButton } from 'naive-ui'
-  import { getVersion } from '@tauri-apps/api/app'
-  import { checkUpdate } from '@tauri-apps/api/updater'
-  import { open } from '@tauri-apps/api/shell'
+  import { app, updater, shell } from '@tauri-apps/api'
   import { useSettingStore } from '@/stores'
   import { installCA, setProxyAddr, proxyStart, proxyEnd, getEnableState } from '@/utils'
   import { Changelog, StartupItems, Updater } from './components'
@@ -120,7 +118,7 @@
     const last = settingStore.update.lastCheckTime
     if (click || !last || (last && last + 21600000 < now)) {
       try {
-        const { shouldUpdate, manifest } = await checkUpdate()
+        const { shouldUpdate, manifest } = await updater.checkUpdate()
         if (shouldUpdate && manifest?.body) {
           updateInfo.value = JSON.parse(manifest.body)[settingStore.locale]
           update.value = true
@@ -161,7 +159,7 @@
     }
   })
 
-  onMounted(async () => (version.value = await getVersion()))
+  onMounted(async () => (version.value = await app.getVersion()))
   onActivated(async () => {
     checkUpdateTime()
     proxyState.value = await getEnableState()

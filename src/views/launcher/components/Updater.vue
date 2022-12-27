@@ -18,8 +18,7 @@
 <script setup lang="ts">
   import { useI18n } from 'vue-i18n'
   import snarkdown from 'snarkdown'
-  import { installUpdate } from '@tauri-apps/api/updater'
-  import { relaunch } from '@tauri-apps/api/process'
+  import { updater, process } from '@tauri-apps/api'
 
   defineExpose({ open })
 
@@ -31,13 +30,13 @@
   async function handleUpdate() {
     try {
       loading.value = true
-      await installUpdate()
+      await updater.installUpdate()
       window.$dialog?.success({
         title: t('install successful'),
         content: t('whether relaunch'),
         negativeText: t('cancel'),
         positiveText: t('relaunch'),
-        onPositiveClick: () => relaunch()
+        onPositiveClick: () => process.relaunch()
       })
     } catch (error) {
       window.$notification?.error({
