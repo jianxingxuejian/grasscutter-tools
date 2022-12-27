@@ -1,6 +1,6 @@
 import type { OpenDialogOptions } from '@tauri-apps/api/dialog'
 import { shell, dialog } from '@tauri-apps/api'
-import { invoke } from '@tauri-apps/api/tauri'
+import { invoke, convertFileSrc } from '@tauri-apps/api/tauri'
 import { characterDict } from '@/views/mod/constant'
 
 export function select_file<T extends OpenDialogOptions = OpenDialogOptions>(options?: T) {
@@ -9,14 +9,27 @@ export function select_file<T extends OpenDialogOptions = OpenDialogOptions>(opt
 
 export const open_dir = (path: string) => shell.open(path)
 
-export async function get_mod_list(path?: string) {
+type ModListResult = Record<string, { contents: string; name: string; local_img: string[] }>
+
+export async function get_mod_list(path?: string): Promise<Mod[]> {
   if (!path) return []
-  const result = await invoke<Record<string, { contents: string; name: string }>>('get_mod_list', { path })
+  const result = await invoke<ModListResult>('get_mod_list', { path })
   return Object.entries(result).map(([path, modinfo]) => {
-    const { contents, name } = modinfo
+    const { contents, name, local_img } = modinfo
     const { images, ...other }: ModBasic = convertModBasic(contents, name)
     const enabled = !path.includes('DISABLED_')
-    return { path: path.replace(/\\/g, '/'), src: images[0], enabled, images, ...other, iniName: name }
+    let src = images[0]
+    if (!src && local_img.length > 0) {
+      src = convertFileSrc(local_img[0])
+    }
+    return {
+      path: path.replace(/\\/g, '/'),
+      src,
+      enabled,
+      images,
+      ...other,
+      iniName: name
+    }
   })
 }
 
@@ -37,8 +50,6 @@ function convertModBasic(contents: string, name: string) {
   }
   return basic
 }
-
-export const read_local_img = (path: string) => invoke<string>('read_local_img', { path })
 
 export const rename = (path: string, newPath: string) => invoke('rename', { path, newPath })
 

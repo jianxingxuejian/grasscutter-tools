@@ -1,4 +1,3 @@
-use base64::encode;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::error::Error;
@@ -16,6 +15,7 @@ use super::MyError;
 pub struct ModInfo {
     pub contents: String,
     pub name: String,
+    pub local_img: Vec<String>,
 }
 
 pub fn get_mod_list(path: String) -> HashMap<String, ModInfo> {
@@ -70,7 +70,15 @@ fn get_info(target: &Path, path: &Path) -> Option<(String, ModInfo)> {
         file.write(contents.as_bytes()).ok();
         contents
     };
-    return Some((target.display().to_string(), ModInfo { contents, name }));
+    let local_img = read_local_img(&target).expect("Read local img fail");
+    return Some((
+        target.display().to_string(),
+        ModInfo {
+            contents,
+            name,
+            local_img,
+        },
+    ));
 }
 
 fn is_deep_merge(path: &Path, ini: Option<&OsStr>) -> Option<bool> {
@@ -106,10 +114,8 @@ pub fn write_file(path: String, contents: String) -> Result<(), Box<dyn Error>> 
 
 const EXTS: &'static [&'static str] = &["png", "jpg", "jpeg", "jfif"];
 
-pub fn read_local_img(path: String) -> Result<String, Box<dyn Error>> {
-    let path = Path::new(&path);
-    let mut contents = Vec::new();
-
+fn read_local_img(path: &Path) -> Result<Vec<String>, Box<dyn Error>> {
+    let mut local_img = Vec::new();
     let dir = fs::read_dir(path)?;
     for entry in dir {
         let path = entry?.path();
@@ -121,12 +127,10 @@ pub fn read_local_img(path: String) -> Result<String, Box<dyn Error>> {
             .and_then(OsStr::to_str)
             .ok_or(MyError::IOError)?;
         if EXTS.contains(&extension) {
-            let mut file = File::open(&path)?;
-            file.read_to_end(&mut contents)?;
-            return Ok("data:image/".to_string() + &extension + ";base64," + &encode(&contents));
+            local_img.push(path.display().to_string());
         }
     }
-    return Err("Local_img not found".into());
+    Ok(local_img)
 }
 
 pub fn unzip(path: &Path) -> Result<(), Box<dyn Error>> {

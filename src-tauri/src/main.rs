@@ -8,7 +8,7 @@ use tauri_plugin_store::PluginBuilder;
 mod cmd;
 use crate::cmd::{
     download, execute_luac, get_enable_state, get_mod_list, http, install_ca, proxy_end,
-    proxy_start, read_local_img, rename, run_jar, run_program, set_proxy_addr, write_file,
+    proxy_start, rename, run_jar, run_program, set_proxy_addr, write_file,
 };
 
 fn main() {
@@ -17,7 +17,6 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             get_mod_list,
             http,
-            read_local_img,
             rename,
             write_file,
             download,

@@ -69,12 +69,6 @@ pub fn write_file(path: String, contents: String) -> CmdResult {
 }
 
 #[tauri::command]
-pub async fn read_local_img(path: String) -> CmdResult<String> {
-    let result = file::read_local_img(path);
-    wrap_result!(result)
-}
-
-#[tauri::command]
 pub async fn download(url: String, path: String, contents: String) -> CmdResult {
     let path = Path::new(&path);
     http::download(url, path).await.ok();

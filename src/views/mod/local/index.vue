@@ -82,7 +82,6 @@
               root: '#app'
             }"
             class="rd-1 absolute z0 h-full w-full justify-center p-1 border-slate-400"
-            @error="loadLocalImg(item)"
           />
         </div>
       </n-gi>
@@ -96,7 +95,7 @@
   import { uniq } from 'lodash-es'
   import { SettingModal } from './components'
   import { useSettingStore } from '@/stores'
-  import { read_local_img, open_dir, rename, write_file } from '@/utils'
+  import { open_dir, rename, write_file } from '@/utils'
   import { characterIds } from '../constant'
 
   const props = defineProps<{
@@ -176,11 +175,6 @@
     await rename(path, newPath)
     mod.path = newPath
     mod.enabled = !enabled
-  }
-
-  async function loadLocalImg(mod: Mod) {
-    if (/(http|https):\/\/([\w.]+\/?)\S*/.test(mod.src)) return
-    mod.src = await read_local_img(mod.path)
   }
 
   const handleReload = useThrottleFn(() => {

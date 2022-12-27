@@ -16,6 +16,10 @@
         "request": true,
         "scope": ["https://gamebanana.com/**"]
       },
+      "protocol": {
+        "asset": true,
+        "assetScope": ["**"]
+      },
       "all": true
     },
     "bundle": {
