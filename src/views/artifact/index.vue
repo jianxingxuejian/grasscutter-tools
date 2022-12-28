@@ -100,14 +100,12 @@
   import { useI18n } from 'vue-i18n'
   import { groupBy, difference, remove } from 'lodash-es'
   import { positionMainstats, substatGears } from './constant'
-  import { getImageUrl, showSuccessMsg } from '@/utils'
+  import { showSuccessMsg } from '@/utils'
   import { playerCommand } from '@/http'
 
   const { t, tm } = useI18n()
 
-  const artifactInfo = computed(() =>
-    (tm('data.artifactInfo') as Message['artifactInfo']).map(item => ({ ...item, img: getImageUrl(item.img) }))
-  )
+  const artifactInfo = computed<Message['artifactInfo']>(() => tm('data.artifactInfo'))
 
   /** 部位 */
   const position = ref<number>(0)

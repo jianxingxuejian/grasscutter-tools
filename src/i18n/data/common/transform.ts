@@ -20,6 +20,7 @@ interface Param {
 }
 
 interface ArtifactText {
+  id: number
   name: string
   desc1: string
   desc2: string
@@ -93,7 +94,13 @@ export function transformItems({
   materialTypeDict
 }: Param) {
   const artifactTexts: ArtifactText[] = JSON.parse(artifactInfoJson)
-  const artifactInfo = artifactTexts.map((item, index) => ({ ...item, ...artifactIds[index] }))
+  const artifactInfo = artifactTexts
+    .sort((a, b) => b.id - a.id)
+    .map(({ id, ...other }) => ({
+      ...other,
+      itemIds: artifactIds[id],
+      img: new URL(`/src/assets/artifact/${id}.png`, import.meta.url).href
+    }))
 
   const monsterItem: Record<MonsterType, Record<number, string>> = JSON.parse(monsterItemJson)
   const monster: Message['monster'] = Object.entries(monsterItem).map(([k, v]) => ({

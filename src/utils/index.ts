@@ -1,4 +1,3 @@
-export * from './common'
 export * from './invoke'
 export * from './msg'
 export * from './naive-ui'

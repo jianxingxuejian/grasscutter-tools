@@ -1,122 +1,164 @@
 [
   {
-    "name": "Deepwood Memories",
-    "desc1": "Dendro DMG Bonus +15%.",
-    "desc2": "After Elemental Skills or Bursts hit opponents, the targets Dendro RES will be decreased by 30% for 8s. This effect can be triggered even if the equipping character is not on the field."
+    "id": 214001,
+    "name": "Nómada del Invierno",
+    "desc1": "Bono de Daño Cryo +15%.",
+    "desc2": "Aumenta en un 20% la Prob. CRIT contra los enemigos afectados por Cryo. Si el enemigo está Congelado, la Prob. CRIT aumentará en un 20% adicional."
   },
   {
-    "name": "Gilded Dreams",
-    "desc1": "Elemental Mastery +80.",
-    "desc2": "Within 8s of triggering an Elemental Reaction, the character equipping this will obtain buffs based on the Elemental Type of the other party members. ATK is increased by 14% for each party member whose Elemental Type is the same as the equipping character, and Elemental Mastery is increased by 50 for every party member with a different Elemental Type. Each of the aforementioned buffs will count up to 3 characters. This effect can be triggered once every 8s. The character who equips this can still trigger its effects when not on the field."
+    "id": 214002,
+    "name": "Domador de Truenos",
+    "desc1": "RES Electro +40%",
+    "desc2": "Aumenta el Daño contra los enemigos afectados por Electro un 35%."
   },
   {
-    "name": "Vermillion Hereafter",
-    "desc1": "ATK +18%.",
-    "desc2": "After using an Elemental Burst, this character will gain the Nascent Light effect, increasing their ATK by 8% for 16s. When the characters HP decreases, their ATK will further increase by 10%. This further increase can occur this way a maximum of 4 times. This effect can be triggered once every 0.8s. Nascent Light will be dispelled when the character leaves the field. If an Elemental Burst is used again during the duration of Nascent Light, the original Nascent Light will be dispelled."
+    "id": 214003,
+    "name": "Virtuoso Corredor de Lava",
+    "desc1": "RES Pyro +40%.",
+    "desc2": "Aumenta en un 35% el daño contra los enemigos afectados por Pyro."
   },
   {
-    "name": "Echoes of an Offering",
-    "desc1": "ATK +18%.",
-    "desc2": "When Normal Attacks hit opponents, there is a 36% chance that it will trigger Valley Rite, which will increase Normal Attack DMG by 70% of ATK. This effect will be dispelled 0.05s after a Normal Attack deals DMG. If a Normal Attack fails to trigger Valley Rite, the odds of it triggering the next time will increase by 20%. This trigger can occur once every 0.2s."
+    "id": 214004,
+    "name": "Doncella Amada",
+    "desc1": "Aumenta en un 15% la curación realizada.",
+    "desc2": "El uso de una Habilidad Elemental o Definitiva aumenta en un 20% la curación recibida de todos los miembros del equipo durante 10 s."
   },
   {
-    "name": "Husk of Opulent Dreams",
-    "desc1": "DEF +30%",
-    "desc2": "A character equipped with this Artifact set will obtain the Curiosity effect in the following conditions: When on the field, the character gains 1 stack after hitting an opponent with a Geo attack, triggering a maximum of once every 0.3s. When off the field, the character gains 1 stack every 3s. Curiosity can stack up to 4 times, each providing 6% DEF and a 6% Geo DMG Bonus. When 6 seconds pass without gaining a Curiosity stack, 1 stack is lost."
+    "id": 215001,
+    "name": "Final del Gladiador",
+    "desc1": "ATQ +18%.",
+    "desc2": "Aumenta el daño de Ataque Normal en un 35% si el personaje usa una espada ligera, mandoble o lanza."
   },
   {
-    "name": "Ocean-Hued Clam",
-    "desc1": "Healing Bonus +15%.",
-    "desc2": "When the character equipping this artifact set heals a character in the party, a Sea-Dyed Foam will appear for 3 seconds, accumulating the amount of HP recovered from healing (including overflow healing). At the end of the duration, the Sea-Dyed Foam will explode, dealing DMG to nearby opponents based on 90% of the accumulated healing. (This DMG is calculated similarly to Reactions such as Electro-Charged, and Superconduct, but is not affected by Elemental Mastery, Character Levels, or Reaction DMG Bonuses). Only one Sea-Dyed Foam can be produced every 3.5 seconds. Each Sea-Dyed Foam can accumulate up to 30,000 HP (including overflow healing). There can be no more than one Sea-Dyed Foam active at any given time. This effect can still be triggered even when the character who is using this artifact set is not on the field."
+    "id": 215002,
+    "name": "Sombra Verde Esmeralda",
+    "desc1": "Bono de Daño Anemo +15%.",
+    "desc2": "Aumenta el daño de Torbellino en un 60%. Dependiendo del tipo elemental que tenga, disminuye la RES Elemental correspondiente del enemigo en un 40% durante 10 s."
   },
   {
-    "name": "Emblem of Severed Fate",
-    "desc1": "Energy Recharge +20%",
-    "desc2": "Increases Elemental Burst DMG by 25% of Energy Recharge. A maximum of 75% bonus DMG can be obtained in this way."
+    "id": 215003,
+    "name": "Orquesta del Errante",
+    "desc1": "Maestría Elemental +80.",
+    "desc2": "Aumenta el daño de ATQ Cargado en un 35% si el personaje usa catalizador o arco."
   },
   {
-    "name": "Shimenawas Reminiscence",
-    "desc1": "ATK +18%.",
-    "desc2": "When casting an Elemental Skill, if the character has 15 or more Energy, they lose 15 Energy and Normal/Charged/Plunging Attack DMG is increased by 50% for 10s. This effect will not trigger again during that duration."
+    "id": 215004,
+    "name": "Arenas de hielo y nieve",
+    "desc1": "Bono de Daño Cryo +15%.",
+    "desc2": "Aumenta en un 100% el daño infligido por Superconductor y el de Derretido en un 15%. Además, al usar una Habilidad Definitiva, obtienes un 30% de Bono de Daño Cryo durante 10 s"
   },
   {
-    "name": "Tenacity of the Millelith",
-    "desc1": "HP increased by 20%.",
-    "desc2": "When an Elemental Skill hits an opponent, the ATK of all nearby party members is increased by 20% and their Shield Strength is increased by 30% for 3s. This effect can be triggered once every 0.5s. This effect can still be triggered even when the character who is using this artifact set is not on the field."
+    "id": 215005,
+    "name": "Furia del Trueno",
+    "desc1": "Bono de Daño Electro +15%.",
+    "desc2": "Aumenta en un 40% el daño infligido por Sobrecarga, Electrocargado, Superconductor y Sobreflorecimiento, y aumenta en un 20% el bono de daño generado por Intensificación. Al causar una de estas reacciones o una reacción de Aceleración, el TdE de la Habilidad Elemental se reduce en 1 s. Solo puede ocurrir una vez cada 0.8 s."
   },
   {
-    "name": "Pale Flame",
-    "desc1": "Physical DMG is increased by 25%.",
-    "desc2": "When an Elemental Skill hits an opponent, ATK is increased by 9% for 7s. This effect stacks up to 2 times and can be triggered once every 0.3s. Once 2 stacks are reached, the 2-set effect is increased by 100%."
+    "id": 215006,
+    "name": "Bruja Carmesí en Llamas",
+    "desc1": "Bono de Daño Pyro +15%.",
+    "desc2": "Aumenta el daño causado por Sobrecarga, Quemadura y Crepitar en un 40%, y el de Vaporización y Derretido en un 15%. El uso de una Habilidad Elemental aumenta los efectos del conjunto de 2 piezas en un 50% durante 10 s. Puede acumularse hasta un máximo de 3 veces."
   },
   {
-    "name": "Thundersoother",
-    "desc1": "Electro RES increased by 40%.",
-    "desc2": "Increases DMG against opponents affected by Electro by 35%."
+    "id": 215007,
+    "name": "Ritual Antiguo de la Nobleza",
+    "desc1": "Daño de Habilidad Definitiva +20%.",
+    "desc2": "Después de lanzar una Habilidad Definitiva, aumenta el ATQ de todos los miembros del equipo en un 20% durante 12 s. Este efecto no puede acumularse."
   },
   {
-    "name": "Crimson Witch of Flames",
-    "desc1": "Pyro DMG Bonus +15%",
-    "desc2": "Increases Overloaded and Burning, and Burgeon DMG by 40%. Increases Vaporize and Melt DMG by 15%. Using Elemental Skill increases the 2-Piece Set Bonus by 50% of its starting value for 10s. Max 3 stacks."
+    "id": 215008,
+    "name": "Caballería Sanguinaria",
+    "desc1": "Daño Físico +25%.",
+    "desc2": "Derrotar a un enemigo hace que no consumas Aguante al lanzar un Ataque Cargado, y que el daño de Ataque Cargado aumente en un 50% durante 10 s."
   },
   {
-    "name": "Wanderers Troupe",
-    "desc1": "Increases Elemental Mastery by 80.",
-    "desc2": "Increases Charged Attack DMG by 35% if the character uses a Catalyst or a Bow."
+    "id": 215014,
+    "name": "Petra Arcaica",
+    "desc1": "Bono de Daño Geo +15%.",
+    "desc2": "Al obtener un cristal creado a través de la reacción de Cristalización, todos los miembros del equipo obtienen durante 10 s un 35% de Bono de Daño Elemental del elemento que causó dicha reacción. Solo se puede obtener un tipo de Bono de Daño Elemental a la vez."
   },
   {
-    "name": "Bloodstained Chivalry",
-    "desc1": "Physical DMG +25%",
-    "desc2": "After defeating an opponent, increases Charged Attack DMG by 50%, and reduces its Stamina cost to 0 for 10s."
+    "id": 215015,
+    "name": "Retroceso del Meteorito",
+    "desc1": "Protección de Escudo +35%.",
+    "desc2": "Los Ataque Normales y Cargados obtienen un 40% de daño adicional mientras estés bajo la protección de un escudo."
   },
   {
-    "name": "Maiden Beloved",
-    "desc1": "Character Healing Effectiveness +15%",
-    "desc2": "Using an Elemental Skill or Burst increases healing received by all party members by 20% for 10s."
+    "id": 215016,
+    "name": "Corazón de las Profundidades",
+    "desc1": "Bono de Daño Hydro +15%.",
+    "desc2": "Tras usar la Habilidad Elemental, aumenta el daño de Ataque Normal y Ataque Cargado en un 30% durante 15 s."
   },
   {
-    "name": "Gladiators Finale",
-    "desc1": "ATK +18%.",
-    "desc2": "If the wielder of this artifact set uses a Sword, Claymore or Polearm, increases their Normal Attack DMG by 35%."
+    "id": 215017,
+    "name": "Tenacidad de la Geoarmada",
+    "desc1": "Vida +20%.",
+    "desc2": "Cuando una Habilidad Elemental golpea a un enemigo, el ATQ de todos los personajes del equipo cercanos aumenta en un 20% y su Protección de Escudo aumenta en un 30% durante 3 s. Este efecto puede tener lugar cada 0.5 s y se activa incluso cuando el personaje que lleva equipado este conjunto de artefactos está en tu equipo pero no en combate."
   },
   {
-    "name": "Lavawalker",
-    "desc1": "Pyro RES increased by 40%.",
-    "desc2": "Increases DMG against opponents affected by Pyro by 35%."
+    "id": 215018,
+    "name": "Llamas Albinas",
+    "desc1": "Daño Físico +25%.",
+    "desc2": "Al atacar a un enemigo con una Habilidad Elemental, el ATQ aumenta en un 9% durante 7 s. Este efecto puede acumularse hasta 2 veces y activarse cada 0.3 s. Al alcanzar 2 acumulaciones, el efecto de dos piezas del conjunto aumenta en un 100%."
   },
   {
-    "name": "Archaic Petra",
-    "desc1": "Gain a 15% Geo DMG Bonus.",
-    "desc2": "Upon obtaining an Elemental Shard created through a Crystallize Reaction, all party members gain a 35% DMG Bonus for that particular element for 10s. Only one form of Elemental DMG Bonus can be gained in this manner at any one time."
+    "id": 215019,
+    "name": "Reminiscencia de la Purificación",
+    "desc1": "ATQ +18%.",
+    "desc2": "Si el personaje tiene 15 pts. de Energía Elemental o más, perderá 15 pts. al realizar una Habilidad Elemental y el daño infligido con los Ataques Normales, Cargados y Descendentes aumentará en un 50% durante 10 s. Este efecto no puede activarse más de una vez simultáneamente."
   },
   {
-    "name": "Thundering Fury",
-    "desc1": "Electro DMG Bonus +15%",
-    "desc2": "Increases DMG caused by Overloaded, Electro-Charged, Superconduct, and Hyperbloom by 40%, and the DMG Bonus conferred by Aggravate is increased by 20%. When Quicken or the aforementioned Elemental Reactions are triggered, Elemental Skill CD is decreased by 1s. Can only occur once every 0.8s."
+    "id": 215020,
+    "name": "Emblema del Destino",
+    "desc1": "Recarga de Energía +20%.",
+    "desc2": "Aumenta el daño infligido con la Habilidad Definitiva en una cantidad equivalente al 25% de la Recarga de Energía. Se puede obtener un aumento del 75% como máximo."
   },
   {
-    "name": "Heart of Depth",
-    "desc1": "Hydro DMG Bonus +15%",
-    "desc2": "After using Elemental Skill, increases Normal Attack and Charged Attack DMG by 30% for 15s."
+    "id": 215021,
+    "name": "Cáscara de Sueños Opulentos",
+    "desc1": "DEF +30%.",
+    "desc2": "El personaje que equipe este conjunto de artefactos obtendrá el efecto de “curiosidad” en las siguientes circunstancias: al golpear a un enemigo con un ataque Geo, obtiene una carga, lo cual solo puede ocurrir una vez cada 0.3 s; mientras está en tu equipo pero no en combate, obtiene una carga cada 3 s. Este efecto puede acumularse hasta 4 veces, y cada carga aumenta en un 6% la DEF y otorga un 6% de Bono de Daño Geo. Si el personaje no obtiene una carga de curiosidad en 6 s, perderá una acumulación."
   },
   {
-    "name": "Retracing Bolide",
-    "desc1": "Increases Shield Strength by 35%.",
-    "desc2": "While protected by a shield, gain an additional 40% Normal and Charged Attack DMG."
+    "id": 215022,
+    "name": "Perla Oceánica",
+    "desc1": "Bono de Curación +15%.",
+    "desc2": "Cuando el personaje que equipa este conjunto de artefactos cura a otro, crea el efecto de “burbuja marina” durante 3 s, el cual registra la cantidad de Vida regenerada (incluida la regenerada por encima del 100%). Tras ello, la burbuja marina estalla e inflige contra los enemigos cercanos un daño basado en el 90% de la cantidad regenerada. Este daño se calcula de manera similar al de las reacciones de Electrocargado, Superconductor, etc., pero no varía en función de la Maestría Elemental, el nivel del personaje o el bono de daño de las reacciones. Solo se puede crear una burbuja marina cada 3.5 s, la cual solo puede registrar un máximo de 30 000 pts. de Vida regenerada, incluyendo la regenerada por encima del 100%. Además, solo puede existir una burbuja marina en tu equipo al mismo tiempo. Cuando el personaje que equipa este conjunto de artefactos está en el equipo pero no en combate, también podrá activar este efecto."
   },
   {
-    "name": "Noblesse Oblige",
-    "desc1": "Elemental Burst DMG +20%",
-    "desc2": "Using an Elemental Burst increases all party members ATK by 20% for 12s. This effect cannot stack."
+    "id": 215023,
+    "name": "Deceso del Cinabrio",
+    "desc1": "ATQ +18%.",
+    "desc2": "#Al usar la Habilidad Definitiva, obtienes el efecto de “destello emergente” durante 16{NON_BREAK_SPACE}s, el cual aumenta el ATQ en un 8% y, además, hace que cada vez que el personaje pierda Vida, su ATQ aumente en un 10% adicional. Este efecto solo puede aumentar el ATQ un máximo de 4 veces de esta manera y activarse una vez cada 0.8 s. Los efectos de destello emergente se disiparán si el personaje es retirado de combate. Si el personaje vuelve a usar la Habilidad Definitiva mientras dicho efecto está activo, el destello emergente original también se disipará."
   },
   {
-    "name": "Viridescent Venerer",
-    "desc1": "Anemo DMG Bonus +15%",
-    "desc2": "Increases Swirl DMG by 60%. Decreases opponents Elemental RES to the element infused in the Swirl by 40% for 10s."
+    "id": 215024,
+    "name": "Eco del Sacrificio",
+    "desc1": "ATQ +18%.",
+    "desc2": "#Al golpear a un enemigo con un Ataque Normal, hay una probabilidad del 36% de activar el efecto de “ritual del valle”, el cual aumenta el daño de Ataque Normal en una cantidad equivalente al 70% del ATQ. Este efecto se anula 0.05 s después de infligir daño con un Ataque Normal. Si dicho ataque no activa ritual del valle, la probabilidad de activarlo con el siguiente golpe de Ataque Normal aumenta en un 20%. Esta activación solo puede ocurrir una vez cada 0.2{NON_BREAK_SPACE}s."
   },
   {
-    "name": "Blizzard Strayer",
-    "desc1": "Cryo DMG Bonus +15%",
-    "desc2": "When a character attacks an opponent affected by Cryo, their CRIT Rate is increased by 20%. If the opponent is Frozen, CRIT Rate is increased by an additional 20%."
+    "id": 215025,
+    "name": "Recuerdos del Bosque",
+    "desc1": "Bono de Daño Dendro +15%.",
+    "desc2": "Tras golpear a un enemigo con una Habilidad Elemental o Definitiva, la RES Dendro de dicho enemigo se reduce en un 30% durante 8 s. Este efecto se puede activar incluso cuando el personaje que lleva este conjunto equipado está en tu equipo pero no en combate."
+  },
+  {
+    "id": 215026,
+    "name": "Sueños Áureos",
+    "desc1": "Maestría Elemental +80 pts.",
+    "desc2": "Tras causar una Reacción Elemental, el personaje que lleve equipado este conjunto obtiene durante 8 s los siguientes fortalecimientos en función de los tipos elementales de los miembros del equipo: por cada personaje del mismo tipo elemental que el portador de este conjunto, el ATQ aumenta en un 14%; por cada personaje de tipo elemental distinto al portador de este conjunto, la Maestría Elemental aumenta en 50 pts. Cada uno de estos efectos se calcula para un máximo de 3 personajes. Este efecto solo se puede activar una vez cada 8 s, y se activará incluso cuando el personaje que lleva este conjunto equipado esté en tu equipo pero no en combate."
+  },
+  {
+    "id": 215027,
+    "name": "Épica del Pabellón del Desierto",
+    "desc1": "Bono de Daño Anemo +15%.",
+    "desc2": "#Tras golpear a un enemigo con un Ataque Cargado, la Vel. de Ataque Normal del personaje aumenta en un 10%, y el daño de Ataque Normal, Cargado y Descendente aumenta en un 40% durante 15{NON_BREAK_SPACE}s."
+  },
+  {
+    "id": 215028,
+    "name": "Flor Olvidada del Paraíso",
+    "desc1": "Maestría Elemental +80 pts.",
+    "desc2": "#Aumenta en un 40% el daño que inflige el portador de este conjunto con las reacciones de Florecimiento, Sobreflorecimiento y Crepitar. Además, cuando el portador de este conjunto causa alguna de estas reacciones, el bono anterior aumenta en un 25%. Este efecto dura 10{NON_BREAK_SPACE}s, puede acumularse hasta 4 veces y ocurrir una vez por segundo. Puede activarse incluso cuando el portador del conjunto está en tu equipo pero no en combate."
   }
 ]
