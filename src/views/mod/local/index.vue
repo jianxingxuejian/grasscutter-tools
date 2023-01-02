@@ -185,14 +185,3 @@
     if (!mod.path) settingRef.value?.showWarning()
   })
 </script>
-
-<style scoped lang="scss">
-  :deep(.n-checkbox .n-checkbox-box) {
-    height: 100%;
-    width: 100%;
-  }
-  :deep(.n-checkbox .n-checkbox-box-wrapper) {
-    height: 100%;
-    width: 100%;
-  }
-</style>
