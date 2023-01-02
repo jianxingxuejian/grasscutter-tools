@@ -71,7 +71,13 @@ const materialTypeDict: Record<MaterialType, string> = {
   FIREWORKS: 'FIREWORKS',
   COSTUME: '衣装',
   FURNITURE_SUITE_FORMULA: '摆设套装',
-  FURNITURE_FORMULA: '摆设'
+  FURNITURE_FORMULA: '摆设',
+  RENAME_ITEM: 'RENAME_ITEM',
+  GCG_EXCHANGE_ITEM: 'GCG_EXCHANGE_ITEM',
+  GCG_CARD: 'GCG_CARD',
+  GCG_CARD_FACE: 'GCG_CARD_FACE',
+  GCG_CARD_BACK: 'GCG_CARD_BACK',
+  GCG_FIELD: 'GCG_FIELD'
 }
 
 const items = transformItems({

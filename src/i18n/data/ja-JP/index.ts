@@ -71,7 +71,13 @@ const materialTypeDict: Record<MaterialType, string> = {
   FIREWORKS: '花火',
   COSTUME: 'キャラスキン',
   FURNITURE_SUITE_FORMULA: '調度品セット',
-  FURNITURE_FORMULA: '壺の調度品'
+  FURNITURE_FORMULA: '壺の調度品',
+  RENAME_ITEM: 'RENAME_ITEM',
+  GCG_EXCHANGE_ITEM: 'GCG_EXCHANGE_ITEM',
+  GCG_CARD: 'GCG_CARD',
+  GCG_CARD_FACE: 'GCG_CARD_FACE',
+  GCG_CARD_BACK: 'GCG_CARD_BACK',
+  GCG_FIELD: 'GCG_FIELD'
 }
 
 const items = transformItems({

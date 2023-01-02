@@ -76,6 +76,12 @@ export type MaterialType =
   | 'COSTUME'
   | 'FURNITURE_SUITE_FORMULA'
   | 'FURNITURE_FORMULA'
+  | 'RENAME_ITEM'
+  | 'GCG_EXCHANGE_ITEM'
+  | 'GCG_CARD'
+  | 'GCG_CARD_FACE'
+  | 'GCG_CARD_BACK'
+  | 'GCG_FIELD'
 
 export function transformItems({
   artifactInfoJson,
