@@ -133,6 +133,8 @@
   "misc": "Misc",
   "select gc": "Please select your grasscutter-version.jar",
   "about project": "This's a cross-platform client that combines traffic proxy, launcher, command generation, mod management, and other to easily play Grasscutte. It's limited to support only part of the features in the web side, if you want to use all the features please go to Github to download the client and the corresponding plugin. Feel free to join our Discord community to chat or ask for help.",
+  "app settings": "App Settings",
+  "always on top": "Window always on top",
   "30960": "Prob. Crítica",
   "30950": "Daño crítico",
   "50880": "Maestría elemental",

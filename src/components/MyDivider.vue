@@ -1,6 +1,6 @@
 <!-- 分割线+标题+图标 -->
 <template>
-  <n-divider v-if="!vertical" class="mb-2! mt-0!" :dashed="dashed">
+  <n-divider v-if="!vertical" class="mb-2! mt-0! px-10%" :dashed="dashed">
     <span v-if="!dashed" class="text-5 font-bold">{{ title }}</span>
     <span v-else class="text-4">{{ title }}</span>
     <n-tooltip v-if="$slots.default">

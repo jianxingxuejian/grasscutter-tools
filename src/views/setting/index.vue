@@ -1,5 +1,17 @@
 <template>
   <div class="px-10 flex-col items-center">
+    <my-divider v-if="isTauri" :title="t('app settings')" />
+    <n-space v-if="isTauri" class="mb-4">
+      <div class="flex-center">
+        <span class="text-4 mr-2">{{ t('use proxy system') }}</span>
+        <n-switch v-model:value="proxy.enable" class="mt-0.8" @update:value="updateProxy" />
+      </div>
+      <div class="flex-center">
+        <span class="text-4 mr-2">{{ t('always on top') }}</span>
+        <n-switch v-model:value="alwaysOnTop" class="mt-0.8" @update:value="appWindow.setAlwaysOnTop($event)" />
+      </div>
+    </n-space>
+
     <my-divider :title="t('server settings')" />
     <n-form ref="serverRef" label-placement="left" inline :model="server" :rules="serverRules" class="flex-center">
       <n-form-item :label="t('server')" path="ip">
@@ -22,12 +34,6 @@
       <span>{{ t('password verify') }}</span>
     </my-divider>
     <n-space>
-      <n-tooltip v-if="isTauri" trigger="hover">
-        <template #trigger>
-          <n-switch v-model:value="proxy.enable" class="mt-0.8" @update:value="updateProxy" />
-        </template>
-        <span class="text-4">{{ t('use proxy system') }}</span>
-      </n-tooltip>
       <my-button @click="handleChangeAuthWay">
         <icon-line-md-rotate-270 :class="{ 'animate-spin': loadingChange }" />
         <template #tooltip>
@@ -89,6 +95,7 @@
 <script setup lang="ts">
   import type { FormInst, FormItemInst, FormRules, FormItemRule } from 'naive-ui'
   import { useI18n } from 'vue-i18n'
+  import { appWindow } from '@tauri-apps/api/window'
   import { useThrottleFn } from '@vueuse/core'
   import { useSettingStore } from '@/stores'
   import {
@@ -106,6 +113,8 @@
 
   const settingStore = useSettingStore()
   const { server, proxy, updateServer, updateProxy } = settingStore
+
+  const alwaysOnTop = ref(false)
 
   const serverRef = ref<FormInst | null>(null)
   const serverRules: FormRules = {
