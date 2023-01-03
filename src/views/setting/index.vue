@@ -3,12 +3,12 @@
     <my-divider v-if="isTauri" :title="t('app settings')" />
     <n-space v-if="isTauri" class="mb-4">
       <div class="flex-center">
-        <span class="text-4 mr-2">{{ t('use proxy system') }}</span>
-        <n-switch v-model:value="proxy.enable" class="mt-0.8" @update:value="updateProxy" />
+        <span class="text-4 mr-2">{{ t('always on top') }}</span>
+        <n-switch v-model:value="settingStore.alwaysOnTop" @update:value="updateAlwaysOnTop()" />
       </div>
       <div class="flex-center">
-        <span class="text-4 mr-2">{{ t('always on top') }}</span>
-        <n-switch v-model:value="alwaysOnTop" class="mt-0.8" @update:value="appWindow.setAlwaysOnTop($event)" />
+        <span class="text-4 mr-2">{{ t('use proxy system') }}</span>
+        <n-switch v-model:value="proxy.enable" @update:value="updateProxy" />
       </div>
     </n-space>
 
@@ -95,7 +95,6 @@
 <script setup lang="ts">
   import type { FormInst, FormItemInst, FormRules, FormItemRule } from 'naive-ui'
   import { useI18n } from 'vue-i18n'
-  import { appWindow } from '@tauri-apps/api/window'
   import { useThrottleFn } from '@vueuse/core'
   import { useSettingStore } from '@/stores'
   import {
@@ -112,9 +111,7 @@
   const { t } = useI18n()
 
   const settingStore = useSettingStore()
-  const { server, proxy, updateServer, updateProxy } = settingStore
-
-  const alwaysOnTop = ref(false)
+  const { server, proxy, updateServer, updateProxy, updateAlwaysOnTop } = settingStore
 
   const serverRef = ref<FormInst | null>(null)
   const serverRules: FormRules = {

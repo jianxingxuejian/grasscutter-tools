@@ -9,6 +9,7 @@ interface Setting {
   admin_token: string
   locale: 'zh-CN' | 'en' | 'ja-JP' | 'es'
   theme: 'light' | 'dark'
+  alwaysOnTop: boolean
   mod: {
     path: string
     width: number
@@ -32,6 +33,10 @@ interface Setting {
     modStart: boolean
     akebiStart: boolean
     GCStart: boolean
+    popup: boolean
+    fullscreen: boolean
+    height: string
+    width: string
   }
   seed: {
     luacPath: string

@@ -71,9 +71,22 @@ export async function loadClientSetting() {
     const update = (await getSetting('update')) as Setting['update'] | null
     const launcher = (await getSetting('launcher')) as Setting['launcher'] | null
     const seed = (await getSetting('seed')) as Setting['seed'] | null
+    const alwaysOnTop = (await getSetting('alwaysOnTop')) as Setting['alwaysOnTop'] | null
 
     const settingStore = useSettingStore()
-    settingStore.initSettings({ server, token, admin_token, locale, theme, mod, proxy, update, launcher, seed })
+    settingStore.initSettings({
+      server,
+      token,
+      admin_token,
+      locale,
+      theme,
+      mod,
+      proxy,
+      update,
+      launcher,
+      seed,
+      alwaysOnTop
+    })
   } catch {
     window.$message?.error('load settings failed')
   }

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { appWindow } from '@tauri-apps/api/window'
 import { setSetting } from '@/utils'
 
 export const useSettingStore = defineStore('setting-store', {
@@ -13,6 +14,7 @@ export const useSettingStore = defineStore('setting-store', {
     admin_token: '',
     locale: 'en',
     theme: 'light',
+    alwaysOnTop: false,
     mod: {
       path: '',
       width: 9,
@@ -32,7 +34,11 @@ export const useSettingStore = defineStore('setting-store', {
       gameStart: true,
       modStart: true,
       akebiStart: true,
-      GCStart: true
+      GCStart: true,
+      popup: false,
+      fullscreen: true,
+      height: '800',
+      width: '1600'
     },
     seed: {
       luacPath: ''
@@ -53,7 +59,17 @@ export const useSettingStore = defineStore('setting-store', {
         let key: keyof Setting
         for (key in settings) {
           const value = settings[key]
-          if (value) {
+          if (!value) return
+
+          if (typeof value === 'object') {
+            for (const childKey in value) {
+              //@ts-ignore
+              const childValue = value[childKey]
+              if (childValue === undefined) return
+              //@ts-ignore
+              state[key][childKey] = childValue
+            }
+          } else {
             //@ts-ignore
             state[key] = value
           }
@@ -129,6 +145,10 @@ export const useSettingStore = defineStore('setting-store', {
     async updateLuacPath(path: string) {
       this.seed.luacPath = path
       await setSetting('seed', this.seed)
+    },
+    async updateAlwaysOnTop() {
+      appWindow.setAlwaysOnTop(this.alwaysOnTop)
+      await setSetting('alwaysOnTop', this.alwaysOnTop)
     }
   }
 })
