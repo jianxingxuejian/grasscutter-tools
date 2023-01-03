@@ -93,9 +93,13 @@ export async function loadClientSetting() {
 }
 
 export async function loadWebSetting() {
+  const server = (await getSetting('server')) as Setting['server'] | null
+  if (server && server.history === undefined) server.history = []
+  const token = (await getSetting('token')) as Setting['token'] | null
+  const admin_token = (await getSetting('admin_token')) as Setting['admin_token'] | null
   const locale = window.localStorage.getItem('locale') as Setting['locale'] | null
   const theme = window.localStorage.getItem('theme') as Setting['theme'] | null
 
   const settingStore = useSettingStore()
-  settingStore.initSettings({ locale, theme })
+  settingStore.initSettings({ server, token, admin_token, locale, theme })
 }
