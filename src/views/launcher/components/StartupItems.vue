@@ -70,7 +70,7 @@
     }
   }
 
-  async function launcherAll() {
+  async function launcherAll(args: string) {
     try {
       const GCPath = launcher.GCPath
       if (GCPath && launcher.GCStart) {
@@ -87,7 +87,7 @@
       } else {
         const gamePath = launcher.gamePath
         if (gamePath && launcher.gameStart) {
-          await runProgram(gamePath)
+          await runProgram(gamePath, args)
         }
       }
     } catch (error) {

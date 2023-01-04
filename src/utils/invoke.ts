@@ -73,7 +73,8 @@ export const proxyStart = (port: string) => invoke<string>('proxy_start', { port
 
 export const proxyEnd = () => invoke<string>('proxy_end')
 
-export const runProgram = (path: string) => invoke<string>('run_program', { path: path.replace(/\\/g, '/') })
+export const runProgram = (path: string, args?: string) =>
+  invoke<string>('run_program', { path: path.replace(/\\/g, '/'), args })
 
 export const runJar = (path: string) => invoke<string>('run_jar', { path: path.replace(/\\/g, '/') })
 

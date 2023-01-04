@@ -34,20 +34,39 @@
           <span class="text-5 mr-2">{{ t('proxy port') }}</span>
           <n-input v-model:value="port" :allow-input="allowInput" class="w-20!" />
         </div>
-        <div class="flex">
+        <div class="flex-center">
           <span class="text-5 mr-2">{{ t('proxy start') }}</span>
           <n-switch :value="proxyState" @update-value="handleProxySwitch" />
         </div>
       </n-space>
     </div>
     <div class="flex-center">
-      <n-space>
+      <n-space class="items-center">
         <my-button :text="t('startup items')" @click="startupItemsRef?.show">
           <icon-line-md-plus />
         </my-button>
         <my-button :text="t('launch')" @click="handleLaunch">
           <icon-material-symbols-rocket-launch-outline-rounded />
         </my-button>
+      </n-space>
+    </div>
+    <div class="flex-center">
+      <n-space class="items-center">
+        <div class="flex-center">
+          <n-checkbox v-model:checked="launcher.popup" class="h-4 w-4" @update:checked="updateLauncher" />
+          <span class="ml-2 text-4">{{ t('borderless window') }}</span>
+        </div>
+        <div class="flex-center">
+          <n-checkbox v-model:checked="launcher.fullscreen" class="h-4 w-4" @update:checked="updateLauncher" />
+          <span class="ml-2 text-4">{{ t('fullscreen') }}</span>
+        </div>
+        <div class="flex-center">
+          <n-checkbox v-model:checked="launcher.customResolution" class="h-4 w-4" @update:checked="updateLauncher" />
+          <span class="mx-2 text-4">{{ t('custom resolution') }}</span>
+          <n-input v-model:value="launcher.height" :allow-input="allowInput" class="w-18!" />
+          <span class="text-4 mx-1">x</span>
+          <n-input v-model:value="launcher.width" :allow-input="allowInput" class="w-18!" />
+        </div>
       </n-space>
     </div>
   </div>
@@ -68,7 +87,7 @@
   const updateInfo = ref<string>()
 
   const settingStore = useSettingStore()
-  const { updateCheckTime, getServer } = useSettingStore()
+  const { updateCheckTime, getServer, launcher, updateLauncher } = useSettingStore()
 
   const updaterRef = ref<InstanceType<typeof Updater>>()
   const startupItemsRef = ref<InstanceType<typeof StartupItems>>()
@@ -110,7 +129,19 @@
     await setProxyAddr(getServer)
     await proxyStart(port.value)
     proxyState.value = true
-    startupItemsRef.value?.launcherAll()
+    let args = ''
+    const { popup, fullscreen, customResolution, width, height } = launcher
+    if (popup) {
+      args += ' -popupwindow'
+    }
+    if (fullscreen) {
+      args += ' -screen-fullscreen'
+    }
+    if (customResolution && width && height) {
+      args += ` -screen-height ${height} -screen-width ${width}`
+    }
+    console.log(args)
+    startupItemsRef.value?.launcherAll(args)
   }
 
   async function checkUpdateTime(click?: boolean) {

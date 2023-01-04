@@ -10,10 +10,15 @@ use tauri::api::path::data_dir;
 use std::os::windows::process::CommandExt;
 
 #[cfg(target_os = "windows")]
-pub fn run_program(path: String) -> Result<String, Box<dyn Error>> {
+pub fn run_program(path: String, args: Option<String>) -> Result<String, Box<dyn Error>> {
     let index = path.rfind("/").ok_or("path fail")?;
     let (path, file) = path.split_at(index + 1);
-    let cmd_str = format!("/c cd /d {} && start \"\" \"{}\"", path, file);
+    let cmd_str = format!(
+        "/c cd /d {} && start \"\" \"{}\" {}",
+        path,
+        file,
+        args.map_or("".to_string(), |s| s)
+    );
     let output = Command::new("cmd").raw_arg(cmd_str).output()?;
     return_output(output)
 }

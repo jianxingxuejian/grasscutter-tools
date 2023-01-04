@@ -35,6 +35,7 @@ interface Setting {
     GCStart: boolean
     popup: boolean
     fullscreen: boolean
+    customResolution: boolean
     height: string
     width: string
   }

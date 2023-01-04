@@ -120,8 +120,8 @@ pub async fn proxy_end() -> CmdResult {
 }
 
 #[tauri::command]
-pub async fn run_program(path: String) -> CmdResult<String> {
-    let result = system::run_program(path);
+pub async fn run_program(path: String, args: Option<String>) -> CmdResult<String> {
+    let result = system::run_program(path, args);
     wrap_result!(result)
 }
 
