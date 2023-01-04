@@ -64,7 +64,7 @@ function createRequest(axiosConfig: AxiosRequestConfig) {
     try {
       return (await instance.get(url, config)) as ApiResult<T>
     } catch {
-      return null
+      return
     }
   }
 
@@ -72,7 +72,7 @@ function createRequest(axiosConfig: AxiosRequestConfig) {
     try {
       return (await instance.post(url, data, config)) as ApiResult<T>
     } catch {
-      return null
+      return
     }
   }
 
