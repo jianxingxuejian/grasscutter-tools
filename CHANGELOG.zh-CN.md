@@ -1,5 +1,17 @@
 # 变更日志
 
+## [1.5.5] - 2023-01-05
+
+### 特性
+
+- 提高本地图片加载速度
+
+- 部分数据更新至 3.3
+
+- 添加窗口总在最前设置
+
+- 游戏启动参数添加无边框窗口/全屏/自定义分辨率
+
 ## [1.5.4] - 2022-12-26
 
 ### 特性
@@ -164,6 +176,7 @@
 
 - 修正错误的圣遗物 id
 
+[1.5.5]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.4...v1.5.5
 [1.5.4]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.3...v1.5.4
 [1.5.3]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.2...v1.5.3
 [1.5.2]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.1...v1.5.2

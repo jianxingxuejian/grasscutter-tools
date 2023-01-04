@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.5.5] - 2023-01-05
+
+### Features
+
+- improve local image loading speed
+
+- update some data to 3.3
+
+- add alwaysOnTop setting
+
+- add borderless window/fullscreen/custom resolution game start parameters
+
 ## [1.5.4] - 2022-12-26
 
 ### Features
@@ -166,6 +178,7 @@
 
 - Fix the wrong artifact id
 
+[1.5.5]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.4...v1.5.5
 [1.5.4]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.3...v1.5.4
 [1.5.3]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.2...v1.5.3
 [1.5.2]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.1...v1.5.2
