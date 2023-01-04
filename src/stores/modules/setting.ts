@@ -75,6 +75,8 @@ export const useSettingStore = defineStore('setting-store', {
           }
         }
       })
+
+      appWindow.setAlwaysOnTop(this.alwaysOnTop)
     },
     async updateServer() {
       const history = this.server.history
