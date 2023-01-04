@@ -59,13 +59,13 @@ export const useSettingStore = defineStore('setting-store', {
         let key: keyof Setting
         for (key in settings) {
           const value = settings[key]
-          if (!value) return
+          if (!value) continue
 
           if (typeof value === 'object') {
             for (const childKey in value) {
               //@ts-ignore
               const childValue = value[childKey]
-              if (childValue === undefined) return
+              if (childValue === undefined) continue
               //@ts-ignore
               state[key][childKey] = childValue
             }

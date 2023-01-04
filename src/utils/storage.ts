@@ -13,7 +13,7 @@ export async function setSetting(key: string, value: any) {
       window.$message?.error('set settings failed')
     }
   } else {
-    window.localStorage.setItem(key, value)
+    window.localStorage.setItem(key, JSON.stringify(value))
   }
 }
 
@@ -25,7 +25,12 @@ export async function getSetting<T>(key: string) {
       window.$message?.error('get settings failed')
     }
   } else {
-    return window.localStorage.getItem(key)
+    const value = window.localStorage.getItem(key)
+    if (value) {
+      return JSON.parse(value)
+    } else {
+      return value
+    }
   }
 }
 
