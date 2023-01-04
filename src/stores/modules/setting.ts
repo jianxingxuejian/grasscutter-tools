@@ -38,7 +38,8 @@ export const useSettingStore = defineStore('setting-store', {
       popup: false,
       fullscreen: true,
       height: '800',
-      width: '1600'
+      width: '1600',
+      customResolution: false
     },
     seed: {
       luacPath: ''
