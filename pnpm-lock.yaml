@@ -34,6 +34,7 @@ specifiers:
   prettier: ^2.8.1
   sass: ^1.57.1
   snarkdown: ^2.0.0
+  tauri-plugin-store-api: github:tauri-apps/tauri-plugin-store#dev
   tsx: ^3.12.1
   typescript: ^4.9.4
   unocss: ^0.48.0
@@ -55,6 +56,7 @@ dependencies:
   monaco-editor: 0.34.1
   pinia: 2.0.28_prq2uz4lho2pwp6irk4cfkrxwu
   snarkdown: 2.0.0
+  tauri-plugin-store-api: github.com/tauri-apps/tauri-plugin-store/9bd993aa67766596638bbfd91e79a1bf8f632014
   vue: 3.2.45
   vue-i18n: 9.2.2_vue@3.2.45
   vue-router: 4.1.6_vue@3.2.45
@@ -826,6 +828,11 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
     dev: true
+
+  /@tauri-apps/api/1.1.0:
+    resolution: {integrity: sha512-n13pIqdPd3KtaMmmAcrU7BTfdMtIlGNnfZD0dNX8L4p8dgmuNyikm6JAA+yCpl9gqq6I8x5cV2Y0muqdgD0cWw==}
+    engines: {node: '>= 12.22.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
+    dev: false
 
   /@tauri-apps/api/1.2.0:
     resolution: {integrity: sha512-lsI54KI6HGf7VImuf/T9pnoejfgkNoXveP14pVV7XarrQ46rOejIVJLFqHI9sRReJMGdh2YuCoI3cc/yCWCsrw==}
@@ -3180,6 +3187,10 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
+  /tslib/2.4.0:
+    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
+    dev: false
+
   /tsutils/3.21.0_typescript@4.9.4:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
     engines: {node: '>= 6'}
@@ -3640,3 +3651,12 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  github.com/tauri-apps/tauri-plugin-store/9bd993aa67766596638bbfd91e79a1bf8f632014:
+    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/9bd993aa67766596638bbfd91e79a1bf8f632014}
+    name: tauri-plugin-store-api
+    version: 0.1.0
+    dependencies:
+      '@tauri-apps/api': 1.1.0
+      tslib: 2.4.0
+    dev: false
