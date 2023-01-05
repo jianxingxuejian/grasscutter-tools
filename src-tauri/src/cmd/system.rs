@@ -24,8 +24,8 @@ pub fn run_program(path: String, args: Option<String>) -> Result<String, Box<dyn
 }
 
 #[cfg(not(target_os = "windows"))]
-pub fn run_program(path: String) -> Result<String, Box<dyn Error>> {
-    let cmd_str = format!("-c open {}", path);
+pub fn run_program1(path: String, args: Option<String>) -> Result<String, Box<dyn Error>> {
+    let cmd_str = format!("-c open {} {}", path, args.map_or("".to_string(), |s| s));
     let output = Command::new("bash").arg(cmd_str).output()?;
     return_output(output)
 }
