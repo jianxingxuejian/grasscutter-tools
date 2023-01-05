@@ -5,30 +5,29 @@ on:
     types: [published]
 
   workflow_dispatch:
-  
+
 jobs:
   release-update:
     runs-on: macos-latest
-    
+
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Pnpm setup
-        uses: pnpm/action-setup@v2.2.2
+        uses: pnpm/action-setup@v2
         with:
           version: 7
 
       - name: Node.js setup
         uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: 18
           cache: 'pnpm'
-      
+
       - name: Install dependencies
         run: pnpm install
-        
+
       - name: Release updater file
         run: pnpm run updater
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
