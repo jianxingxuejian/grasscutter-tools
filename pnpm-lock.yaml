@@ -34,7 +34,7 @@ specifiers:
   prettier: ^2.8.1
   sass: ^1.57.1
   snarkdown: ^2.0.0
-  tauri-plugin-store-api: github:tauri-apps/tauri-plugin-store#dev
+  tauri-plugin-store-api: github:jianxingxuejian/tauri-plugin-store#dev
   tsx: ^3.12.1
   typescript: ^4.9.4
   unocss: ^0.48.0
@@ -56,7 +56,7 @@ dependencies:
   monaco-editor: 0.34.1
   pinia: 2.0.28_prq2uz4lho2pwp6irk4cfkrxwu
   snarkdown: 2.0.0
-  tauri-plugin-store-api: github.com/tauri-apps/tauri-plugin-store/9bd993aa67766596638bbfd91e79a1bf8f632014
+  tauri-plugin-store-api: github.com/jianxingxuejian/tauri-plugin-store/57c19dc45c754370ad5b011dd98193ca521c1074
   vue: 3.2.45
   vue-i18n: 9.2.2_vue@3.2.45
   vue-router: 4.1.6_vue@3.2.45
@@ -3652,8 +3652,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/tauri-apps/tauri-plugin-store/9bd993aa67766596638bbfd91e79a1bf8f632014:
-    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/9bd993aa67766596638bbfd91e79a1bf8f632014}
+  github.com/jianxingxuejian/tauri-plugin-store/57c19dc45c754370ad5b011dd98193ca521c1074:
+    resolution: {tarball: https://codeload.github.com/jianxingxuejian/tauri-plugin-store/tar.gz/57c19dc45c754370ad5b011dd98193ca521c1074}
     name: tauri-plugin-store-api
     version: 0.1.0
     dependencies:
