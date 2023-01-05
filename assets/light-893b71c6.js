@@ -1,1 +1,0 @@
-import{k as e,j as i}from"./Icon-8b27cbfd.js";import{b as n}from"./index-a59e0609.js";import{i as r}from"./light-c2f7637f.js";const m=t=>{const{textColorDisabled:o}=t;return{iconColorDisabled:o}},s=e({name:"InputNumber",common:i,peers:{Button:n,Input:r},self:m}),c=s;export{c as i};
