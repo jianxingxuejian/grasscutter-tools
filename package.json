@@ -61,5 +61,12 @@
     "vite": "^4.0.4",
     "vite-plugin-compression": "^0.5.1",
     "vue-tsc": "^1.0.20"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "typescript"
+      ]
+    }
   }
 }
