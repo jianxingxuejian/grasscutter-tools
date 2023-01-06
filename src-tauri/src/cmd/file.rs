@@ -86,7 +86,7 @@ fn is_deep_merge(path: &Path, ini: Option<&OsStr>) -> Option<bool> {
     for entry in entries {
         let path = entry.ok()?.path();
         if !path.is_dir() {
-            return Some(true);
+            continue;
         }
 
         let entries = fs::read_dir(path).ok()?;

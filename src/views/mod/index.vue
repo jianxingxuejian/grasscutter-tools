@@ -46,8 +46,6 @@
     }
   }
 
-  loadModList()
-
   watchEffect(() => {
     if (currentPage.value === 0) {
       loadModList()
