@@ -1,5 +1,13 @@
 # 变更日志
 
+## [1.5.6] - 2023-01-07
+
+### 修复 Bug
+
+- 复选框样式错误
+
+- 部分 mods 未生成 modinfo.json
+
 ## [1.5.5] - 2023-01-05
 
 ### 特性
@@ -176,6 +184,7 @@
 
 - 修正错误的圣遗物 id
 
+[1.5.6]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.5...v1.5.6
 [1.5.5]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.4...v1.5.5
 [1.5.4]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.3...v1.5.4
 [1.5.3]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.2...v1.5.3

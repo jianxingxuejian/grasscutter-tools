@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.6] - 2023-01-07
+
+### Bug Fixes
+
+- checkbox style error
+
+- some mods do not generate modinfo.json
+
 ## [1.5.5] - 2023-01-05
 
 ### Features
@@ -178,6 +186,7 @@
 
 - Fix the wrong artifact id
 
+[1.5.6]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.5...v1.5.6
 [1.5.5]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.4...v1.5.5
 [1.5.4]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.3...v1.5.4
 [1.5.3]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.2...v1.5.3
