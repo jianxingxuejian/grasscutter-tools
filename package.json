@@ -39,7 +39,7 @@
     "@intlify/eslint-plugin-vue-i18n": "^2.0.0",
     "@intlify/unplugin-vue-i18n": "^0.8.1",
     "@tauri-apps/cli": "^1.2.2",
-    "@types/fs-extra": "^9.0.13",
+    "@types/fs-extra": "^11.0.0",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
     "@vitejs/plugin-basic-ssl": "^1.0.1",
