@@ -57,7 +57,7 @@
     "simple-git-hooks": "^2.8.1",
     "tsx": "^3.12.1",
     "typescript": "^4.9.4",
-    "unocss": "^0.48.0",
+    "unocss": "^0.49.0",
     "unplugin-auto-import": "^0.12.1",
     "unplugin-icons": "^0.15.0",
     "unplugin-vue-components": "^0.22.12",
