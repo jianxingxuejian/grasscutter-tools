@@ -1933,6 +1933,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "lzma-rust"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c5597bd30633fa661297180caaa5c1e3e0a17c6dc25fd769f967fd8c335b36d8"
+dependencies = [
+ "byteorder",
+]
+
+[[package]]
 name = "mac"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3506,14 +3515,17 @@ dependencies = [
 
 [[package]]
 name = "sevenz-rust"
-version = "0.1.5"
+version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "788cb55c676785bf6d182c1d528106790eedcc9a5e40ac35dcebe252b53b2c6e"
+checksum = "7bec44d61bf857ea7132e9b4488e578463ef9859b244e038631ac316233d9a67"
 dependencies = [
  "bit-set",
  "byteorder",
  "crc",
+ "js-sys",
+ "lzma-rust",
  "sha2 0.9.9",
+ "wasm-bindgen",
 ]
 
 [[package]]
