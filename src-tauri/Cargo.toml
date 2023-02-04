@@ -24,7 +24,7 @@ walkdir = "2"
 base64 = { version = "0.13.0" }
 zip = "0.6.4"
 unrar = "0.4.4"
-sevenz-rust = "0.1.4"
+sevenz-rust = "0.2.2"
 lazy_static = "1.4.0"
 hudsucker = { version = "0.18.0", features = ["rustls-client"] }
 rcgen = { version = "0.10", features = ["x509-parser"] }
