@@ -21,7 +21,7 @@ tauri = { version = "1.2.4", features = ["api-all", "updater"] }
 tokio = { version = "1", features = ["rt", "signal"] }
 reqwest = { version = "0.11", features = ["json", "native-tls"] }
 walkdir = "2"
-base64 = { version = "0.13.0" }
+base64 = { version = "0.21.0" }
 zip = "0.6.4"
 unrar = "0.4.4"
 sevenz-rust = "0.2.2"
