@@ -19,18 +19,13 @@ class CustomAxiosInstance {
       config => {
         const { getServer, locale, token, admin_token } = settingStore
         config.baseURL = getServer
-        if (!config.headers) {
-          config.headers = {}
-        }
         config.headers.locale = locale
         config.headers.token = token
         config.headers.admin_token = admin_token
         return config
       },
-      () => {
-        //@ts-ignore
-        showErrorMsg(100, i18n.global.t('network error'))
-      }
+      // @ts-ignore
+      () => showErrorMsg(100, i18n.global.t('network error'))
     )
 
     // intercept response
@@ -49,10 +44,7 @@ class CustomAxiosInstance {
 
         return data
       },
-      () => {
-        //@ts-ignore
-        showErrorMsg(100, i18n.global.t('network error'))
-      }
+      () => showErrorMsg(100, i18n.global.t('network error'))
     )
   }
 }
