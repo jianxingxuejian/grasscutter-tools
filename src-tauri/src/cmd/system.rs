@@ -1,3 +1,5 @@
+use base64::engine::general_purpose;
+use base64::Engine;
 use std::error::Error;
 use std::fs;
 use std::fs::File;
@@ -101,6 +103,6 @@ fn return_luac(child: Child, path: &str) -> Result<String, Box<dyn Error>> {
     }
     let out_path = Path::new(path).join("dev.luac");
     let bytes = fs::read(out_path)?;
-    let result = base64::encode(&bytes);
+    let result = general_purpose::STANDARD.encode(&bytes);
     Ok(result)
 }

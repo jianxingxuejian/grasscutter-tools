@@ -4,7 +4,6 @@
 )]
 
 use cmd::proxy;
-use tauri_plugin_store::PluginBuilder;
 mod cmd;
 use crate::cmd::{
     download, execute_luac, get_enable_state, get_mod_list, http, install_ca, proxy_end,
@@ -13,7 +12,7 @@ use crate::cmd::{
 
 fn main() {
     let builder = tauri::Builder::default()
-        .plugin(PluginBuilder::default().build())
+        .plugin(tauri_plugin_store::Builder::default().build())
         .invoke_handler(tauri::generate_handler![
             get_mod_list,
             http,
