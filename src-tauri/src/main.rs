@@ -31,10 +31,11 @@ fn main() {
     let app = builder
         .build(tauri::generate_context!())
         .expect("error while running tauri application");
-    app.run(|_app_handle, event| match event {
+    app.run(|app_handle, event| match event {
         tauri::RunEvent::ExitRequested { api, .. } => {
             api.prevent_exit();
             proxy::before_exit();
+            tauri::AppHandle::exit(app_handle, 0);
         }
         _ => {}
     });
