@@ -1,0 +1,1 @@
+import{k as t,j as n,v as p}from"./Icon-df94e6ba.js";import{i as r}from"./fade-in-scale-up.cssr-1de820cf.js";function s(e){const{boxShadow2:o}=e;return{menuBoxShadow:o}}const c=t({name:"Popselect",common:n,peers:{Popover:p,InternalSelectMenu:r},self:s}),i=c;export{i as p};
