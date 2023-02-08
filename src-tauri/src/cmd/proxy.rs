@@ -186,7 +186,6 @@ pub fn get_enable_state() -> bool {
     unsafe { ENABLE_STATE }
 }
 
-//http://127.0.0.1:8635;https://127.0.0.1:8635;
 pub fn stop_proxy() -> Result<(), Box<dyn Error>> {
     unsafe {
         if let Some(temp_proxy) = &TEMP_PROXY {
