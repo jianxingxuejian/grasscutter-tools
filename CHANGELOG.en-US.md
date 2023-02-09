@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.5.7] - 2023-02-09
+
+### Features
+
+- update some data to 3.4
+
 ## [1.5.6] - 2023-01-07
 
 ### Bug Fixes
@@ -186,6 +192,7 @@
 
 - Fix the wrong artifact id
 
+[1.5.6]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.6...v1.5.7
 [1.5.6]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.5...v1.5.6
 [1.5.5]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.4...v1.5.5
 [1.5.4]: https://github.com/jianxingxuejian/grasscutter-tools/compare/v1.5.3...v1.5.4
