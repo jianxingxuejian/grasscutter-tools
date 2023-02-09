@@ -36,7 +36,11 @@ pub fn run_program(path: String, args: Option<String>) -> Result<String, Box<dyn
 pub fn run_jar(path: String) -> Result<(), Box<dyn Error>> {
     let index = path.rfind("/").ok_or("path error")?;
     let (path, file) = path.split_at(index + 1);
-    let cmd_str = format!("/k cd /d {} && java -jar {}", path, file);
+    let cmd_str = if file.ends_with("jar") {
+        format!("/k cd /d {} && java -jar {}", path, file)
+    } else {
+        format!("/c cd /d {} && {}", path, file)
+    };
     open::with(cmd_str, "cmd.exe")?;
     Ok(())
 }
