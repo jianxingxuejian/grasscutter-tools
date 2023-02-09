@@ -40,7 +40,7 @@ specifiers:
   tsx: ^3.12.2
   typescript: ^4.9.5
   unocss: ^0.49.4
-  unplugin-auto-import: ^0.13.0
+  unplugin-auto-import: ^0.14.0
   unplugin-icons: ^0.15.2
   unplugin-vue-components: ^0.23.0
   vite: ^4.1.1
@@ -58,7 +58,7 @@ dependencies:
   monaco-editor: 0.34.1
   pinia: 2.0.30_hmuptsblhheur2tugfgucj7gc4
   snarkdown: 2.0.0
-  tauri-plugin-store-api: github.com/jianxingxuejian/tauri-plugin-store/57c19dc45c754370ad5b011dd98193ca521c1074
+  tauri-plugin-store-api: github.com/jianxingxuejian/tauri-plugin-store/c71665bf5dcf48ae70a88d622eb38b2548b60a5d
   vue: 3.2.47
   vue-i18n: 9.2.2_vue@3.2.47
   vue-router: 4.1.6_vue@3.2.47
@@ -95,7 +95,7 @@ devDependencies:
   tsx: 3.12.2
   typescript: 4.9.5
   unocss: 0.49.4_vite@4.1.1
-  unplugin-auto-import: 0.13.0_@vueuse+core@9.12.0
+  unplugin-auto-import: 0.14.2_@vueuse+core@9.12.0
   unplugin-icons: 0.15.2
   unplugin-vue-components: 0.23.0_vue@3.2.47
   vite: 4.1.1_sass@1.58.0
@@ -915,7 +915,7 @@ packages:
       scule: 1.0.0
       semver: 7.3.8
       unctx: 2.1.1
-      unimport: 2.1.0
+      unimport: 2.2.4
       untyped: 1.2.2
     transitivePeerDependencies:
       - rollup
@@ -937,7 +937,7 @@ packages:
       scule: 1.0.0
       std-env: 3.3.2
       ufo: 1.0.1
-      unimport: 2.1.0
+      unimport: 2.2.4
       untyped: 1.2.2
     transitivePeerDependencies:
       - rollup
@@ -1057,11 +1057,6 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
     dev: true
-
-  /@tauri-apps/api/1.1.0:
-    resolution: {integrity: sha512-n13pIqdPd3KtaMmmAcrU7BTfdMtIlGNnfZD0dNX8L4p8dgmuNyikm6JAA+yCpl9gqq6I8x5cV2Y0muqdgD0cWw==}
-    engines: {node: '>= 12.22.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
-    dev: false
 
   /@tauri-apps/api/1.2.0:
     resolution: {integrity: sha512-lsI54KI6HGf7VImuf/T9pnoejfgkNoXveP14pVV7XarrQ46rOejIVJLFqHI9sRReJMGdh2YuCoI3cc/yCWCsrw==}
@@ -4095,10 +4090,6 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tslib/2.4.0:
-    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
-    dev: false
-
   /tslib/2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
     dev: true
@@ -4179,8 +4170,8 @@ packages:
       busboy: 1.6.0
     dev: true
 
-  /unimport/2.1.0:
-    resolution: {integrity: sha512-GDVIxATluUquX8EqelT6DtnmnZaXGID1jsO9IXwlnxb0OIEqKAxTOnTlnGmHbseoGTh+ZC9kcNDaO18HYQj9KA==}
+  /unimport/2.2.4:
+    resolution: {integrity: sha512-qMgmeEGqqrrmEtm0dqxMG37J6xBtrriqxq9hILvDb+e6l2F0yTnJomLoCCp0eghLR7bYGeBsUU5Y0oyiUYhViw==}
     dependencies:
       '@rollup/pluginutils': 5.0.2
       escape-string-regexp: 5.0.0
@@ -4238,8 +4229,8 @@ packages:
       - vite
     dev: true
 
-  /unplugin-auto-import/0.13.0_@vueuse+core@9.12.0:
-    resolution: {integrity: sha512-nKMxDbkjM4FRPInFfm7sWrJOKgxfKKwb5yLPP+DEGl/SG0/FtBoW1LnZL4PQfx0FXjertoHO1P/5nDf+RSip2Q==}
+  /unplugin-auto-import/0.14.2_@vueuse+core@9.12.0:
+    resolution: {integrity: sha512-6DptcCD+bKlxwK0yS4ehleZTvtG4Xl9k/XxhKWxc9ii2uE28HvcA3KbYpoHAzTlHDXRBrtcCAohR8vtIRB5bfg==}
     engines: {node: '>=14'}
     peerDependencies:
       '@vueuse/core': '*'
@@ -4248,14 +4239,16 @@ packages:
         optional: true
     dependencies:
       '@antfu/utils': 0.7.2
+      '@nuxt/kit': 3.1.2
       '@rollup/pluginutils': 5.0.2
       '@vueuse/core': 9.12.0_vue@3.2.47
       local-pkg: 0.4.3
       magic-string: 0.27.0
-      unimport: 2.1.0
+      unimport: 2.2.4
       unplugin: 1.0.1
     transitivePeerDependencies:
       - rollup
+      - supports-color
     dev: true
 
   /unplugin-icons/0.15.2:
@@ -4619,11 +4612,10 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/jianxingxuejian/tauri-plugin-store/57c19dc45c754370ad5b011dd98193ca521c1074:
-    resolution: {tarball: https://codeload.github.com/jianxingxuejian/tauri-plugin-store/tar.gz/57c19dc45c754370ad5b011dd98193ca521c1074}
+  github.com/jianxingxuejian/tauri-plugin-store/c71665bf5dcf48ae70a88d622eb38b2548b60a5d:
+    resolution: {tarball: https://codeload.github.com/jianxingxuejian/tauri-plugin-store/tar.gz/c71665bf5dcf48ae70a88d622eb38b2548b60a5d}
     name: tauri-plugin-store-api
-    version: 0.1.0
+    version: 0.0.0
     dependencies:
-      '@tauri-apps/api': 1.1.0
-      tslib: 2.4.0
+      '@tauri-apps/api': 1.2.0
     dev: false
