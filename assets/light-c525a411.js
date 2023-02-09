@@ -1,1 +1,0 @@
-import{j as e}from"./Icon-df94e6ba.js";const n=o=>{const{textColor1:t,dividerColor:i,fontWeightStrong:r}=o;return{textColor:t,color:i,fontWeight:r}},s={name:"Divider",common:e,self:n},c=s;export{c as d,n as s};
