@@ -140,7 +140,6 @@
     if (customResolution && width && height) {
       args += ` -screen-height ${height} -screen-width ${width}`
     }
-    console.log(args)
     startupItemsRef.value?.launcherAll(args)
   }
 
