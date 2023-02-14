@@ -27,7 +27,7 @@ zip = "0.6.4"
 unrar = "0.4.4"
 sevenz-rust = "0.2.2"
 lazy_static = "1.4.0"
-hudsucker = { version = "0.19.0", features = ["rustls-client"] }
+hudsucker = { version = "0.19.1", features = ["rustls-client"] }
 rcgen = { version = "0.10", features = ["x509-parser"] }
 rustls-pemfile = "1.0"
 sysproxy = "0.2"
