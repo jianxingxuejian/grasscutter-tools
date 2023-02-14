@@ -1525,9 +1525,9 @@ checksum = "c4a1e36c821dbe04574f602848a19f742f4fb3c98d40449f11bcad18d6b17421"
 
 [[package]]
 name = "hudsucker"
-version = "0.19.0"
+version = "0.19.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "86673a14973cbac7939b79157342292c693bd2db55dd8c5ef27324d9ba7bb0d1"
+checksum = "655326a6a1f44e52c64ee30a4fdfd86e4de893b2ed6757250391ec6c9a8f93a8"
 dependencies = [
  "async-compression",
  "async-trait",
@@ -2037,9 +2037,9 @@ dependencies = [
 
 [[package]]
 name = "moka"
-version = "0.9.6"
+version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7b49a05f67020456541f4f29cbaa812016a266a86ec76f96d3873d459c68fe5e"
+checksum = "2b6446f16d504e3d575df79cabb11bfbe9f24b17e9562d964a815db7b28ae3ec"
 dependencies = [
  "async-io",
  "async-lock",
