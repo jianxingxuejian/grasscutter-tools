@@ -940,14 +940,25 @@ dependencies = [
 
 [[package]]
 name = "filetime"
-version = "0.2.19"
+version = "0.2.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4e884668cd0c7480504233e951174ddc3b382f7c2666e3b7310b5c4e7b0c37f9"
+checksum = "8a3de6e8d11b22ff9edc6d916f890800597d60f8b2da1caf2955c274638d6412"
 dependencies = [
  "cfg-if",
  "libc",
  "redox_syscall",
- "windows-sys 0.42.0",
+ "windows-sys 0.45.0",
+]
+
+[[package]]
+name = "filetime_creation"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d92d3a090e4eb905aa0c4376799d51ffe6bc184f0f8b27650a98c1f61ae466a6"
+dependencies = [
+ "cfg-if",
+ "filetime",
+ "windows-sys 0.45.0",
 ]
 
 [[package]]
@@ -1899,9 +1910,9 @@ dependencies = [
 
 [[package]]
 name = "lzma-rust"
-version = "0.1.0"
+version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c5597bd30633fa661297180caaa5c1e3e0a17c6dc25fd769f967fd8c335b36d8"
+checksum = "808dc37ccba979c213304880eadaab444bb522a5fe79acca9e90ec62377125c2"
 dependencies = [
  "byteorder",
 ]
@@ -3474,13 +3485,14 @@ dependencies = [
 
 [[package]]
 name = "sevenz-rust"
-version = "0.2.2"
+version = "0.2.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7bec44d61bf857ea7132e9b4488e578463ef9859b244e038631ac316233d9a67"
+checksum = "67e6718c2f4298ae1f67fd735619b205f37ce31cb746cc7f68a32010c3ad1f1d"
 dependencies = [
  "bit-set",
  "byteorder",
  "crc",
+ "filetime_creation",
  "js-sys",
  "lzma-rust",
  "sha2 0.9.9",
